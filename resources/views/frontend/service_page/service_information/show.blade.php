@@ -41,8 +41,7 @@
 
                 </div>
 
-                @include('frontend.service_page.booking_form.guest')
-                @include('frontend.service_page.booking_form.auth')
+                @include('frontend.service_page.booking_form.form')
             </div>
         </div>
     </section>

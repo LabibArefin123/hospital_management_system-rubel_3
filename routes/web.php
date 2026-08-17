@@ -32,16 +32,13 @@ Route::get('/service/{id}', [FrontendController::class, 'service_show'])->name('
 
 Route::get('/our-appointments', [FrontendController::class, 'appointment'])->name('appointment');
 Route::post('/appointment-store', [FrontendController::class, 'appointment_store'])
-    ->middleware('auth')
     ->name('appointment.store');
 
 //Payment Part (Optional but functional)
 Route::get('/payment/{id}', [FrontendController::class, 'payment_page'])
-    ->middleware('auth')
     ->name('payment.page');
 
 Route::post('/payment-store', [FrontendController::class, 'payment_store'])
-    ->middleware('auth')
     ->name('payment.store');
 
 //Contact Part

@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (window.appData.success) {
         Swal.fire({
             icon: "success",
-            title: "Problem Submitted",
+            title: "Form Accepted",
             text: window.appData.success,
             showConfirmButton: false,
             timer: 2500,

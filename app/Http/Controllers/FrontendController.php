@@ -125,13 +125,11 @@ class FrontendController extends Controller
     public function appointment()
     {
         $doctorAppointments = Appointment::with('doctor')
-            ->where('user_id', auth()->id())
             ->whereNotNull('doctor_id')
             ->latest()
             ->get();
 
         $serviceAppointments = Appointment::with('service')
-            ->where('user_id', auth()->id())
             ->whereNotNull('service_id')
             ->latest()
             ->get();
@@ -145,46 +143,30 @@ class FrontendController extends Controller
     public function appointment_store(Request $request)
     {
         $request->validate([
-
-            'type'              => 'required|in:doctor,service',
-            'name'              => 'required|string',
-            'age'               => 'required|integer',
-            'phone'             => 'required|string',
-            'gender'            => 'required',
-            'payment_method'    => 'required',
-            'appointment_date'  => 'required|date',
-            'appointment_time'  => 'required',
-
-            // EMAIL REQUIRED ONLY FOR ONLINE PAYMENT
+            'type' => 'required|in:doctor,service',
+            'name' => 'required|string',
+            'age' => 'required|integer',
+            'phone' => 'required|string',
+            'gender' => 'required',
+            'payment_method' => 'required',
+            'appointment_date' => 'required|date',
+            'appointment_time' => 'required',
             'email' => $request->payment_method === 'Online'
                 ? 'required|email'
                 : 'nullable|email',
-
         ], [
-
             'email.required' => 'Email is required for online payment.',
-
         ]);
 
         DB::beginTransaction();
 
         try {
-
             $status = $request->payment_method === 'Online'
-                ? 'confirmed'
+                ? 'pending'
                 : 'pending';
 
-            /* ================= DOCTOR ================= */
-
             if ($request->type === 'doctor') {
-
                 $doctor = Doctor::findOrFail($request->doctor_id);
-
-                /*
-            |--------------------------------------------------------------------------
-            | SLOT CHECK
-            |--------------------------------------------------------------------------
-            */
 
                 $slotBooked = Appointment::where('doctor_id', $doctor->id)
                     ->where('appointment_date', $request->appointment_date)
@@ -192,96 +174,64 @@ class FrontendController extends Controller
                     ->exists();
 
                 if ($slotBooked) {
-
                     DB::rollBack();
 
                     return back()
                         ->withInput()
                         ->withErrors([
-                            'appointment_time' =>
-                            'This time slot is already booked.'
+                            'appointment_time' => 'This time slot is already booked.'
                         ]);
                 }
 
                 $appointment = Appointment::create([
-
-                    'user_id'           => Auth::id(),
-                    'type'              => 'doctor',
-                    'doctor_id'         => $doctor->id,
-                    'name'              => $request->name,
-                    'age'               => $request->age,
-                    'phone'             => $request->phone,
-                    'gender'            => $request->gender,
-                    'email'             => $request->email,
-                    'appointment_date'  => $request->appointment_date,
-                    'appointment_time'  => $request->appointment_time,
-                    'payment_method'    => $request->payment_method,
-                    'amount'            => $doctor->consultation_fee,
-                    'status'            => $status,
-
+                    'type' => 'doctor',
+                    'doctor_id' => $doctor->id,
+                    'user_id' => auth()->id(),
+                    'name' => $request->name,
+                    'age' => $request->age,
+                    'phone' => $request->phone,
+                    'gender' => $request->gender,
+                    'email' => $request->email,
+                    'appointment_date' => $request->appointment_date,
+                    'appointment_time' => $request->appointment_time,
+                    'payment_method' => $request->payment_method,
+                    'amount' => $doctor->consultation_fee,
+                    'status' => $status,
                 ]);
-            }
-
-            /* ================= SERVICE ================= */ elseif ($request->type === 'service') {
-
+            } elseif ($request->type === 'service') {
                 $service = Service::findOrFail($request->service_id);
 
                 $appointment = Appointment::create([
-
-                    'user_id'           => Auth::id(),
-                    'type'              => 'service',
-                    'service_id'        => $service->id,
-                    'name'              => $request->name,
-                    'age'               => $request->age,
-                    'phone'             => $request->phone,
-                    'gender'            => $request->gender,
-                    'email'             => $request->email,
-                    'appointment_date'  => $request->appointment_date,
-                    'appointment_time'  => $request->appointment_time,
-                    'payment_method'    => $request->payment_method,
-                    'amount'            => $service->price,
-                    'status'            => $status,
-
+                    'type' => 'service',
+                    'service_id' => $service->id,
+                    'user_id' => auth()->id(),
+                    'name' => $request->name,
+                    'age' => $request->age,
+                    'phone' => $request->phone,
+                    'gender' => $request->gender,
+                    'email' => $request->email,
+                    'appointment_date' => $request->appointment_date,
+                    'appointment_time' => $request->appointment_time,
+                    'payment_method' => $request->payment_method,
+                    'amount' => $service->price,
+                    'status' => $status,
                 ]);
             }
 
-            /*
-        |--------------------------------------------------------------------------
-        | ONLINE PAYMENT
-        |--------------------------------------------------------------------------
-        */
+            DB::commit();
 
             if ($request->payment_method === 'Online') {
-
-                // IF EMAIL EMPTY => ROLLBACK
-                if (!$request->email) {
-
-                    DB::rollBack();
-
-                    return back()
-                        ->withInput()
-                        ->withErrors([
-                            'email' =>
-                            'Email is required for online payment.'
-                        ]);
-                }
-
-                DB::commit();
-
                 return redirect()->route(
                     'payment.page',
                     $appointment->id
                 );
             }
 
-            DB::commit();
-
             return back()->with(
                 'success',
                 'Appointment booked successfully'
             );
         } catch (\Exception $e) {
-
             DB::rollBack();
 
             return back()
@@ -302,62 +252,70 @@ class FrontendController extends Controller
             'cvv' => 'required|min:3|max:4',
         ]);
 
-        /* ================= FETCH APPOINTMENT ================= */
-        $appointment = Appointment::where('id', $request->appointment_id)
-            ->where('user_id', auth()->id())
-            ->firstOrFail();
+        $appointment = Appointment::findOrFail(
+            $request->appointment_id
+        );
 
-        /* ================= ALREADY PAID ================= */
-        // if ($appointment->status === 'confirmed') {
-        //     return back()->with('error', '⚠️ This appointment is already paid.');
-        // }
-
-        /* ================= STRICT AMOUNT CHECK ================= */
-        if ((float)$request->amount !== (float)$appointment->amount) {
-            return back()->with('error', '❌ Please pay the full amount!');
+        if ((float) $request->amount !== (float) $appointment->amount) {
+            return back()->with(
+                'error',
+                'Please pay the full amount!'
+            );
         }
 
-        /* ================= BASIC CARD VALIDATION ================= */
-        if (strlen(preg_replace('/\s+/', '', $request->card_number)) < 12) {
-            return back()->with('error', '❌ Invalid Card Number');
+        $cardNumber = preg_replace(
+            '/\s+/',
+            '',
+            $request->card_number
+        );
+
+        if (strlen($cardNumber) < 12) {
+            return back()->with(
+                'error',
+                'Invalid Card Number'
+            );
         }
 
-        /* ================= DETERMINE SOURCE ================= */
         $paymentFor = $appointment->type === 'doctor'
             ? 'Doctor: ' . optional($appointment->doctor)->name
             : 'Service: ' . optional($appointment->service)->name;
 
-        /* ================= CREATE PAYMENT ================= */
         Payment::create([
             'user_id' => auth()->id(),
             'appointment_id' => $appointment->id,
             'payment_method' => 'Card',
             'transaction_id' => 'TXN_' . strtoupper(Str::random(10)),
             'amount' => $appointment->amount,
-            'card_number' => substr($request->card_number, -4),
+            'card_number' => substr($cardNumber, -4),
             'expiry' => $request->expiry,
             'cvv' => $request->cvv,
             'status' => 'paid',
         ]);
 
-        /* ================= UPDATE APPOINTMENT ================= */
         $appointment->update([
             'status' => 'confirmed'
         ]);
 
-        /* ================= REDIRECT BASED ON TYPE ================= */
         if ($appointment->type === 'doctor') {
-            return redirect()->route('doctor.show', $appointment->doctor_id)
-                ->with('success', '✅ Payment successful! Doctor appointment confirmed.');
-        } else {
-            return redirect()->route('service.show', $appointment->service_id)
-                ->with('success', '✅ Payment successful! Service booked successfully.');
+            return redirect()
+                ->route('doctor.show', $appointment->doctor_id)
+                ->with(
+                    'success',
+                    'Payment successful! Doctor appointment confirmed.'
+                );
         }
+
+        return redirect()
+            ->route('service.show', $appointment->service_id)
+            ->with(
+                'success',
+                'Payment successful! Service booked successfully.'
+            );
     }
 
     public function payment_page($id)
     {
-        $appointment = Appointment::with(['doctor', 'service', 'user'])
+        $appointment = Appointment::with(['doctor', 'service'])
             ->where('id', $id)
             ->firstOrFail();
 

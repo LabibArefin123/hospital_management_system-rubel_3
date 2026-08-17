@@ -1,5 +1,4 @@
-  {{-- ================= AUTH VIEW (REAL) ================= --}}
-  @auth
+  
   <form method="POST" action="{{ route('appointments.store') }}">
       @csrf
 
@@ -141,4 +140,3 @@
 
       </div>
   </form>
-  @endauth

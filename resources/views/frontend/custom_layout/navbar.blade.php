@@ -3,7 +3,7 @@
 
         <a class="navbar-brand d-flex align-items-center" href="{{ route('welcome') }}">
             <img src="{{ asset('uploads/images/original_logor.JPG') }}" class="brand-logo">
-           
+
         </a>
 
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -59,7 +59,7 @@
                     $dashboardRoute = 'dashboard.default';
                 } elseif ($user->hasRole('doctor')) {
                     $dashboardRoute = 'dashboard.doctor';
-                } 
+                }
             }
         @endphp
 
@@ -140,12 +140,9 @@
 
 
             @guest
-                <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#loginModal">
-                    Login
-                </button>
 
                 <a href="{{ route('login') }}" class="btn btn-success">
-                    Doctor Panel
+                    Login
                 </a>
             @endguest
 
