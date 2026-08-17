@@ -49,15 +49,6 @@ Route::get('/contact-us', [FrontendController::class, 'contact'])->name('contact
 Route::post('/contact-store', [FrontendController::class, 'contact_store'])->name('contact.store');
 Route::post('/newsletter/subscribe', [FrontendController::class, 'newsletter_store'])->name('newsletter.store');
 
-//Google Login Part
-Route::get('/auth/google', [GoogleController::class, 'redirect'])
-    ->name('google.login');
-
-Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
-
-Route::post('/logout-user', [GoogleController::class, 'logout'])
-    ->name('user.logout');
-
 //Frontend Profile Part
 Route::middleware('auth')->group(function () {
 
