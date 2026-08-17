@@ -41,6 +41,9 @@ Route::get('/payment/{id}', [FrontendController::class, 'payment_page'])
 Route::post('/payment-store', [FrontendController::class, 'payment_store'])
     ->name('payment.store');
 
+Route::get('/search-data', [FrontendController::class, 'searchData'])
+    ->name('search.data');
+
 //Contact Part
 Route::get('/contact-us', [FrontendController::class, 'contact'])->name('contact');
 Route::post('/contact-store', [FrontendController::class, 'contact_store'])->name('contact.store');
@@ -94,7 +97,7 @@ Route::group(['middleware' => ['auth', 'permission']], function () {
     //Doctor Menu
     Route::resource('doctors', DoctorController::class);
     Route::resource('doctor-schedules', DoctorScheduleController::class);
-    
+
     //Service Menu
     Route::resource('services', ServiceController::class);
 

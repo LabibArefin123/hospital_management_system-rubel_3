@@ -9,6 +9,7 @@ use App\Models\Newsletter;
 use App\Models\Service;
 use App\Models\Payment;
 use App\Models\Contact;
+use App\Models\User;
 use App\Models\Doctor;
 use App\Models\Appointment;
 use Illuminate\Support\Facades\Auth;
@@ -320,6 +321,171 @@ class FrontendController extends Controller
             ->firstOrFail();
 
         return view('frontend.payment_page.payment', compact('appointment'));
+    }
+
+
+    public function searchData(Request $request)
+    {
+        $search = trim($request->query('search', ''));
+
+        /* Empty Search */
+        if ($search === '') {
+
+            if ($request->ajax()) {
+                return response()->json([
+                    'status' => true,
+                    'patients' => [],
+                    'doctors' => [],
+                    'count' => 0,
+                ]);
+            }
+
+            return view('frontend.search', [
+                'search' => '',
+                'patients' => collect(),
+                'doctors' => collect(),
+            ]);
+        }
+
+        /*
+    |--------------------------------------------------------------------------
+    | USER / PATIENT SEARCH
+    |--------------------------------------------------------------------------
+    | Patient data is now stored in users table.
+    */
+        $patients = User::query()
+            ->where(function ($query) use ($search) {
+
+                $query->where('name', 'like', "%{$search}%")
+                    ->orWhere('phone', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%");
+            })
+            ->latest()
+            ->limit(20)
+            ->get();
+
+        /*
+    |--------------------------------------------------------------------------
+    | DOCTOR SEARCH
+    |--------------------------------------------------------------------------
+    */
+        $doctors = Doctor::query()
+            ->where(function ($query) use ($search) {
+
+                $query->where('name', 'like', "%{$search}%")
+                    ->orWhere('phone', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%");
+            })
+            ->latest()
+            ->limit(20)
+            ->get();
+
+        /*
+    |--------------------------------------------------------------------------
+    | AJAX RESPONSE
+    |--------------------------------------------------------------------------
+    */
+        if ($request->ajax()) {
+
+            return response()->json([
+
+                'status' => true,
+
+                /*
+            |--------------------------------------------------------------------------
+            | PATIENTS / USERS
+            |--------------------------------------------------------------------------
+            */
+                'patients' => $patients->map(function ($user) {
+
+                    return [
+                        'id' => $user->id,
+
+                        'name' => $user->name ?? '-',
+
+                        'patient_code' => $user->patient_code ?? '-',
+
+                        'phone' => $user->phone ?? '-',
+
+                        'email' => $user->email ?? '-',
+
+                        'photo' => !empty($user->patient_image)
+                            ? asset(
+                                'uploads/images/patients/' .
+                                    $user->patient_image
+                            )
+                            : asset(
+                                'uploads/images/default.jpg'
+                            ),
+
+                        'created_at' => optional($user->created_at)
+                            ->format('d M Y'),
+
+                        'url' => route(
+                            'patients.show',
+                            $user->id
+                        ),
+                    ];
+                })->values(),
+
+                /*
+            |--------------------------------------------------------------------------
+            | DOCTORS
+            |--------------------------------------------------------------------------
+            */
+                'doctors' => $doctors->map(function ($doctor) {
+
+                    return [
+                        'id' => $doctor->id,
+
+                        'name' => $doctor->name ?? '-',
+
+                        'speciality' => $doctor->speciality ?? '-',
+
+                        'phone' => $doctor->phone ?? '-',
+
+                        'email' => $doctor->email ?? '-',
+
+                        'experience_years' =>
+                        $doctor->experience_years ?? 0,
+
+                        'image' => $doctor->image
+                            ? asset($doctor->image)
+                            : asset(
+                                'uploads/images/default.jpg'
+                            ),
+
+                        'url' => route(
+                            'doctor.show',
+                            $doctor->id
+                        ),
+                    ];
+                })->values(),
+
+                /*
+            |--------------------------------------------------------------------------
+            | TOTAL RESULT COUNT
+            |--------------------------------------------------------------------------
+            */
+                'count' =>
+                $patients->count() +
+                    $doctors->count(),
+            ]);
+        }
+
+        /*
+    |--------------------------------------------------------------------------
+    | NORMAL SEARCH PAGE
+    |--------------------------------------------------------------------------
+    */
+        return view(
+            'frontend.search',
+            compact(
+                'search',
+                'patients',
+                'doctors'
+            )
+        );
     }
 
     public function newsletter_store(Request $request)

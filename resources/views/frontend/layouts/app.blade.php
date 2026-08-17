@@ -28,6 +28,7 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('css/frontend/frontend.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/front_search.css') }}">
 </head>
 
 <body>
@@ -44,7 +45,7 @@
         <main class="">
             @yield('content')
         </main>
-        
+
     </div>
     <!-- Bootstrap JS + dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -65,12 +66,16 @@
     </button>
     {{-- Start of SweetAlert2 notifications --}}
     <script>
+        window.systemSearchUrl = "{{ route('search.data') }}";
+    </script>
+    <script>
         window.appData = {
             success: @json(session('success')),
             errors: @json($errors->all())
         };
     </script>
     {{-- End of SweetAlert2 notifications --}}
+    <script src="{{ asset('js/custom_frontend/system_search.js') }}"></script> {{-- System Search JS --}}
     <script src="{{ asset('js/custom_frontend/sweet_alert.js') }}"></script> {{-- Sweet Alert Notification JS --}}
     <script src="{{ asset('js/custom_frontend/custom_banner.js') }}"></script> {{-- Banner JS --}}
     <script src="{{ asset('js/custom_frontend/scroll_progress.js') }}"></script> {{-- Scroll Progress JS --}}
