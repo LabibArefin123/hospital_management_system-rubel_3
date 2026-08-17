@@ -31,6 +31,7 @@
     {{-- Global system search --}}
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search_results.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/system_search_page_result.css') }}">
 
     {{-- Dedicated search page --}}
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search_page.css') }}">
@@ -82,12 +83,16 @@
         window.systemSearchUrl = @json(route('search.data'));
     </script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="{{ asset('js/custom_frontend/system_search_core.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search_events.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search_api.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search_render.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search_ui.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search_init.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/system_search_core.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/system_search_events.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/system_search_api.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/system_search_core.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/system_search_render_status.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/system_search_render_item.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/system_search_render_containers.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/system_search_render.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/system_search_ui.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/system_search_init.js') }}"></script>
 </body>
 
 </html>
