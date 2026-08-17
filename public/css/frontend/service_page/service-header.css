@@ -1,0 +1,14 @@
+/* ==================================================
+   SERVICE HEADER
+================================================== */
+
+.service-intro h2 {
+    font-size: 34px;
+    font-weight: 700;
+    color: #14532d;
+}
+
+.service-intro p {
+    color: #6b7280;
+    margin-top: 8px;
+}

@@ -1,0 +1,47 @@
+/* PROFILE STATS */
+.profile-stats {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.stat-card {
+    width: 80px;
+    padding: 8px;
+    border-radius: 10px;
+    color: #fff;
+    text-align: center;
+    font-size: 11px;
+    transition: 0.3s;
+}
+
+.stat-card .icon {
+    font-size: 14px;
+}
+
+.stat-card h4 {
+    font-size: 14px;
+    margin: 3px 0;
+}
+
+.stat-card p {
+    font-size: 10px;
+}
+
+/* COLORS */
+.stat-card.success {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.stat-card.experience {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.stat-card.patients {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}

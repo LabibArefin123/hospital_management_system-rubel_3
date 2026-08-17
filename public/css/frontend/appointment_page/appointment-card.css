@@ -1,0 +1,52 @@
+/* ==================================================
+   APPOINTMENT CARD
+================================================== */
+
+.appointment-card {
+    background: #fff;
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+
+    transition: 0.3s;
+}
+
+.appointment-card:hover {
+    transform: translateY(-5px);
+}
+
+/* IMAGE */
+
+.top-img img {
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    border: 3px solid #22c55e;
+
+    object-fit: cover;
+}
+
+/* TIME BOX */
+
+.time-box {
+    display: inline-block;
+
+    padding: 6px 12px;
+
+    margin: 5px;
+
+    border-radius: 12px;
+
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+
+    color: #fff;
+
+    font-size: 13px;
+}

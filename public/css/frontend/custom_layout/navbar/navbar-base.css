@@ -1,0 +1,14 @@
+/* =========================================================
+   FILE: navbar-base.css
+========================================================= */
+
+.premium-navbar {
+    background: linear-gradient(135deg, #e6f9f0, #f0fff7);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 4px 0;
+}
+
+.navbar .container {
+    align-items: center;
+}

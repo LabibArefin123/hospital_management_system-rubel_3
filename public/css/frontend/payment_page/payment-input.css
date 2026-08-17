@@ -1,0 +1,31 @@
+/* ==================================================
+   PAYMENT INPUTS
+================================================== */
+
+.form-group label {
+    font-size: 13px;
+
+    margin-bottom: 4px;
+
+    display: block;
+
+    color: #374151;
+}
+
+.form-group input {
+    width: 100%;
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    border: 1px solid #ddd;
+
+    transition: 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #22c55e;
+
+    outline: none;
+}

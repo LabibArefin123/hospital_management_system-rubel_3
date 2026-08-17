@@ -1,0 +1,82 @@
+/* =========================================================
+   FILE: booking-summary-payment.css
+========================================================= */
+
+/* ================= SUMMARY ================= */
+
+.summary-card {
+    background: #f9fafb;
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.summary-card p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.no-slot {
+    color: #9ca3af;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.no-slot.hidden {
+    display: none;
+}
+
+/* ================= PAYMENT ================= */
+
+.payment {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+    position: relative;
+    z-index: 10;
+}
+
+.pay-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    background: #eee;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 20;
+}
+
+.pay-btn:hover {
+    background: #22c55e;
+    color: #fff;
+    border-color: #22c55e;
+}
+
+.pay-btn.active {
+    background: #22c55e !important;
+    color: #fff !important;
+    border-color: #22c55e !important;
+}
+
+/* ================= CONFIRM BUTTON ================= */
+
+#confirmBtn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    background: gray;
+    color: white;
+    cursor: not-allowed;
+    transition: 0.3s;
+}
+
+#confirmBtn:enabled {
+    background: #22c55e;
+    cursor: pointer;
+}

@@ -1,0 +1,57 @@
+.permission-main-scroll {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 8px;
+}
+
+/* Scrollbar */
+.permission-main-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.permission-main-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.permission-main-scroll::-webkit-scrollbar-thumb {
+    background: #0d6efd;
+    border-radius: 10px;
+}
+
+.permission-main-scroll::-webkit-scrollbar-thumb:hover {
+    background: #0b5ed7;
+}
+
+.permission-box {
+    transition: all 0.3s ease;
+}
+
+.permission-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+.form-check-input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.form-check-label {
+    cursor: pointer;
+    user-select: none;
+}
+
+.card {
+    transition: all 0.3s ease;
+}
+
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}

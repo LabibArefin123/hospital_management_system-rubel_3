@@ -1,0 +1,24 @@
+/* ==================================================
+   SERVICE INFO CARD
+================================================== */
+
+.service-info-card {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #fff;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.service-desc {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* PRICE */
+
+.service-price {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #14532d;
+}

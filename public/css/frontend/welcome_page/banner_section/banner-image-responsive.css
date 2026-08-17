@@ -1,0 +1,51 @@
+/* ==================================================
+   BANNER IMAGE & RESPONSIVE
+================================================== */
+
+/* RIGHT SIDE IMAGE */
+
+.banner-right {
+    width: 50%;
+
+    height: 350px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+}
+
+.banner-right img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transform: scale(1.05);
+
+    transition: 0.4s;
+}
+
+.banner-right img:hover {
+    transform: scale(1.1);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+    .banner-container {
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .banner-left {
+        max-width: 100%;
+    }
+
+    .banner-right {
+        width: 100%;
+
+        height: 250px;
+    }
+}

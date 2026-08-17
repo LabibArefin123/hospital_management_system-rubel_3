@@ -1,0 +1,9 @@
+/* =========================================================
+   CONTACT BASE
+========================================================= */
+
+.contact-section {
+    padding: 70px 20px;
+    background: linear-gradient(135deg, #f0fff7, #ecfdf5);
+    min-height: 100vh;
+}

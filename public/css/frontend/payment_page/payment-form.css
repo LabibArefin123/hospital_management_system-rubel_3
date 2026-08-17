@@ -1,0 +1,29 @@
+/* ==================================================
+   PAYMENT FORM
+================================================== */
+
+.payment-form-card {
+    background: #fff;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.payment-form-card h4 {
+    margin-bottom: 15px;
+}
+
+/* INPUT GROUP */
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: flex;
+
+    gap: 10px;
+}

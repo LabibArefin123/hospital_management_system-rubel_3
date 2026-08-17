@@ -1,0 +1,43 @@
+/* ==================================================
+   PAYMENT SUMMARY
+================================================== */
+
+.payment-summary {
+    background: #f9fafb;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.payment-summary h4 {
+    margin-bottom: 15px;
+}
+
+.payment-summary p {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+
+    color: #374151;
+}
+
+.payment-summary hr {
+    margin: 15px 0;
+}
+
+.payment-summary .total {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    color: #22c55e;
+}

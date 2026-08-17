@@ -1,0 +1,30 @@
+.login-container {
+    width: 92%;
+    max-width: 1450px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+
+    gap: 35px;
+
+    position: relative;
+    z-index: 2;
+}
+
+/* BOTH SIDES EQUAL */
+.brand-side,
+.login-side {
+    flex: 1;
+
+    display: flex;
+}
+
+/* SAME HEIGHT */
+.brand-content,
+.login-card {
+    width: 100%;
+    min-height: 200px;
+}

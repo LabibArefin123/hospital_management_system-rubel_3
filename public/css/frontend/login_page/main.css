@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
+}
+
+.login-page {
+    min-height: 100vh;
+    position: relative;
+    background: url("/uploads/images/login_page/wallpaper.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bg-overlay {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(6px);
+}

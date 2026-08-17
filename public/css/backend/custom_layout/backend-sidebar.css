@@ -1,0 +1,45 @@
+/* =========================================================
+   FILE: backend-sidebar.css
+========================================================= */
+
+.main-sidebar {
+    overflow-x: hidden !important;
+    background-color: #ffffff !important;
+}
+
+/* SIDEBAR LINKS */
+
+.nav-sidebar .nav-link {
+    color: #444;
+    border-radius: 8px;
+    margin: 2px 8px;
+    transition: 0.3s ease;
+}
+
+/* HOVER */
+
+.nav-sidebar .nav-link:hover {
+    background-color: rgba(255, 107, 107, 0.12);
+    color: #ff6b6b;
+}
+
+/* ACTIVE */
+
+.nav-sidebar .nav-link.active {
+    background-color: #ff6b6b !important;
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+/* ACTIVE ICON */
+
+.nav-sidebar .nav-link.active i {
+    color: #ffffff !important;
+}
+
+/* TREEVIEW */
+
+.nav-sidebar .menu-open > .nav-link {
+    background-color: rgba(255, 107, 107, 0.15);
+    color: #ff6b6b;
+}

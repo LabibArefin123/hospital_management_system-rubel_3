@@ -1,0 +1,39 @@
+/* =========================
+   TRUST BOX & SLIDER
+========================= */
+
+/* BOX */
+.trust-box {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* GROUP TITLE */
+.trust-group-title {
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #16a34a;
+}
+
+/* SLIDER */
+.trust-slider {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.trust-slide {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.5s ease;
+}
+
+.trust-slide.active {
+    opacity: 1;
+    transform: translateY(0);
+}

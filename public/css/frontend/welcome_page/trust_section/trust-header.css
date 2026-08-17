@@ -1,0 +1,15 @@
+/* =========================
+   TRUST TITLES
+========================= */
+
+.trust-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #064e3b;
+}
+
+.trust-subtitle {
+    color: #6b7280;
+    max-width: 600px;
+    margin: auto;
+}

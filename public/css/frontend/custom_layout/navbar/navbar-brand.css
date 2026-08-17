@@ -1,0 +1,42 @@
+/* =========================================================
+   FILE: navbar-brand.css
+========================================================= */
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 90px;
+    overflow: hidden;
+}
+
+/* LOGO */
+
+.brand-logo {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+/* TEXT CONTAINER */
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.2;
+}
+
+/* TEXT */
+
+.brand-text h6 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #14532d;
+    margin: 0;
+}
+
+.brand-text small {
+    font-size: 12px;
+    color: #6b7280;
+}

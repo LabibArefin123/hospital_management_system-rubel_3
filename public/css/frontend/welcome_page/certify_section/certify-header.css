@@ -1,0 +1,25 @@
+/* =========================
+   CERTIFIED HEADER
+========================= */
+
+.certified-header h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #14532d;
+}
+
+.certified-header p {
+    color: #6b7280;
+    margin-top: 10px;
+}
+
+.certified-badge {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 20px;
+    background: #22c55e;
+    color: #fff;
+    font-size: 13px;
+    border-radius: 30px;
+    letter-spacing: 1px;
+}

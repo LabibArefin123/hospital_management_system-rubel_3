@@ -1,0 +1,38 @@
+/* =========================================================
+   FILE: navbar-buttons.css
+========================================================= */
+
+/* BUTTON WRAPPER */
+
+.nav-actions .btn {
+    font-size: 12px;
+    padding: 5px 10px;
+}
+
+/* OUTLINE BUTTON */
+
+.btn-light-outline {
+    border: 1px solid #16a34a;
+    color: #16a34a;
+    border-radius: 30px;
+    transition: 0.3s ease;
+}
+
+.btn-light-outline:hover {
+    background: #16a34a;
+    color: #fff;
+}
+
+/* SUCCESS BUTTON */
+
+.btn-success-solid {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #fff;
+    border-radius: 30px;
+    border: none;
+    transition: 0.3s ease;
+}
+
+.btn-success-solid:hover {
+    box-shadow: 0 6px 18px rgba(34, 197, 94, 0.3);
+}

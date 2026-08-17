@@ -1,0 +1,93 @@
+/* =========================================================
+   CONTACT FORM
+========================================================= */
+
+.contact-form-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 28px;
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.06),
+        0 3px 10px rgba(34, 197, 94, 0.05);
+
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+}
+
+.contact-form-box h4 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #14532d;
+    margin-bottom: 28px;
+}
+
+/* ROW */
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+/* GROUP */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #374151;
+}
+
+/* INPUT */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 15px 18px;
+    border-radius: 14px;
+    border: 1px solid #d1d5db;
+    outline: none;
+    background: #fff;
+    transition: 0.3s ease;
+    font-size: 15px;
+    color: #111827;
+}
+
+.form-group textarea {
+    resize: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.12);
+}
+
+/* BUTTON */
+
+.btn-whatsapp {
+    width: 100%;
+    padding: 16px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    font-size: 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn-whatsapp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(34, 197, 94, 0.25);
+}

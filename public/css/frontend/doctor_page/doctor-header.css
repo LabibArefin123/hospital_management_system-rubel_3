@@ -1,0 +1,36 @@
+/* ==================================================
+   DOCTOR INTRO HEADER
+================================================== */
+
+.doctor-intro h2 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #14532d;
+}
+
+.doctor-intro p {
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+/* SEARCH BOX */
+
+#doctorSearch {
+    width: 320px;
+
+    padding: 10px 15px;
+
+    border-radius: 30px;
+
+    border: 1px solid #d1d5db;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+#doctorSearch:focus {
+    border-color: #22c55e;
+
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+}

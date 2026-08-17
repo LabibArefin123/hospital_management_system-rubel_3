@@ -1,0 +1,51 @@
+/* ==================================================
+   PRE TEST INSTRUCTIONS
+================================================== */
+
+.pre-test-box {
+    margin-top: 15px;
+
+    background: #f0fdf4;
+
+    border: 1px solid #bbf7d0;
+
+    border-radius: 12px;
+
+    padding: 15px;
+}
+
+.pre-test-box h5 {
+    font-size: 15px;
+    color: #14532d;
+    margin-bottom: 10px;
+}
+
+/* LIST */
+
+.pre-test-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pre-test-box ul li {
+    font-size: 13px;
+    color: #374151;
+
+    margin-bottom: 6px;
+
+    display: flex;
+    align-items: center;
+}
+
+/* TICK ICON */
+
+.pre-test-box ul li::before {
+    content: "✔";
+
+    color: #22c55e;
+
+    font-weight: bold;
+
+    margin-right: 8px;
+}

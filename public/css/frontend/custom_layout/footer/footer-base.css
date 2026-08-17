@@ -1,0 +1,20 @@
+/* =========================================================
+   FILE: footer-base.css
+========================================================= */
+
+.premium-footer {
+    background: linear-gradient(135deg, #d1fae5, #ecfdf5);
+    padding: 80px 0 30px;
+    color: #065f46;
+    position: relative;
+    overflow: hidden;
+}
+
+.premium-footer .container {
+    max-width: 1320px;
+}
+
+.premium-footer hr {
+    margin: 50px 0 20px;
+    border-color: rgba(6, 95, 70, 0.12);
+}

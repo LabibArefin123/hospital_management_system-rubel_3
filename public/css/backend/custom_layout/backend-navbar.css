@@ -1,0 +1,37 @@
+/* =========================================================
+   FILE: backend-navbar.css
+========================================================= */
+
+.main-header.navbar {
+    padding: 8px 16px;
+}
+
+/* NAV LINKS */
+
+.main-header .nav-link {
+    color: #000 !important;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+/* HOVER */
+
+.main-header .nav-link:hover {
+    background-color: #ff6b6b !important;
+    color: #fff !important;
+}
+
+/* ICONS */
+
+.main-header .nav-link i {
+    color: inherit !important;
+}
+
+/* RIGHT TIME */
+
+.navbar-right-time {
+    font-weight: 500;
+    color: #000;
+}

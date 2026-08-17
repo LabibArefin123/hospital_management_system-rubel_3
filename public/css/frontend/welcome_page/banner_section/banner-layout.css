@@ -1,0 +1,42 @@
+/* ==================================================
+   BANNER LAYOUT
+================================================== */
+
+.banner-section {
+    padding: 50px;
+    background: #f3f4f6;
+}
+
+/* CARD FRAME */
+
+.banner-card {
+    position: relative;
+
+    border-radius: 25px;
+
+    padding: 3px;
+
+    background: linear-gradient(270deg, #22c55e, #4ade80, #16a34a);
+
+    background-size: 400% 400%;
+
+    animation: borderMove 6s ease infinite;
+}
+
+/* INNER CARD */
+
+.banner-container {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background: #ffffff;
+
+    border-radius: 22px;
+
+    padding: 40px;
+
+    gap: 20px;
+}

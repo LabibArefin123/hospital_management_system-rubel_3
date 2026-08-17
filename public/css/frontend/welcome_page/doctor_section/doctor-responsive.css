@@ -1,0 +1,18 @@
+/* ==================================================
+   DOCTOR RESPONSIVE
+================================================== */
+
+@media (max-width: 768px) {
+
+    .home-doctor-section .section-title h2 {
+        font-size: 30px;
+    }
+
+    .home-doctor-section .section-title p {
+        font-size: 15px;
+    }
+
+    .home-doctor-section .doctor-card .doctor-img {
+        height: 240px;
+    }
+}

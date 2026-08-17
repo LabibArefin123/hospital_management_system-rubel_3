@@ -1,0 +1,53 @@
+/* =========================================================
+   CENTER NAV PILL CONTAINER
+========================================================= */
+
+.nav-pill {
+    background: rgba(34, 197, 94, 0.08);
+    padding: 8px 18px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* REMOVE DEFAULT SPACING */
+.nav-pill .nav-link {
+    margin: 0;
+}
+
+/* =========================================================
+   NAV ITEM BASE STYLE (PILL BUTTON LOOK)
+========================================================= */
+
+.nav-pill .nav-link {
+    padding: 8px 16px;
+    border-radius: 30px;
+    transition: 0.3s ease;
+    position: relative;
+    color: #14532d !important;
+}
+
+/* =========================================================
+   HOVER EFFECT (SOFT GREEN PILL)
+========================================================= */
+
+.nav-pill .nav-link:hover {
+    background: rgba(34, 197, 94, 0.15);
+    color: #16a34a !important;
+}
+
+/* =========================================================
+   ACTIVE MENU (IMPORTANT PART)
+========================================================= */
+
+.nav-pill .nav-link.active {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #fff !important;
+    box-shadow: 0 6px 18px rgba(34, 197, 94, 0.25);
+}
+
+/* ACTIVE HOVER (KEEP SAME STYLE) */
+.nav-pill .nav-link.active:hover {
+    color: #fff !important;
+}

@@ -1,0 +1,31 @@
+/* ==================================================
+   PAYMENT ALERTS & RESPONSIVE
+================================================== */
+
+/* ERROR ALERT */
+
+.alert-error {
+    background: #fee2e2;
+
+    color: #b91c1c;
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    margin-bottom: 10px;
+}
+
+.error {
+    color: red;
+
+    font-size: 12px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+    .payment-grid {
+        grid-template-columns: 1fr;
+    }
+}

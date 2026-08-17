@@ -1,0 +1,16 @@
+/* ==================================================
+   APPOINTMENT PAGE LAYOUT
+================================================== */
+
+.appointment-section {
+    padding: 60px 0;
+    background: #f9fafb;
+}
+
+/* GRID */
+
+.appointment-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}

@@ -1,0 +1,15 @@
+/* ==================================================
+   HOME DOCTOR SECTION LAYOUT
+================================================== */
+
+.home-doctor-section {
+    position: relative;
+    overflow: hidden;
+}
+
+/* DOCTOR GRID */
+.home-doctor-section .doctor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}

@@ -1,0 +1,13 @@
+/* BOOKING SECTION */
+.booking-section {
+    padding: 40px 0;
+}
+
+.booking-left,
+.booking-right {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    height: 100%;
+}

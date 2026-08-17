@@ -1,0 +1,48 @@
+/* =========================================================
+   FILE: backend-datatable.css
+========================================================= */
+
+div.dataTables_wrapper {
+    width: 100% !important;
+    overflow-x: auto;
+}
+
+table.dataTable {
+    width: 100% !important;
+}
+
+/* ERROR TOAST */
+
+.dt-error-toast {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+.dt-error-toast.show {
+    display: flex;
+}
+
+/* BOX */
+
+.dt-error-box {
+    background: #fff;
+    padding: 24px 28px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+    animation: popIn 0.3s ease;
+}
+
+.dt-error-box h5 {
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #dc3545;
+}

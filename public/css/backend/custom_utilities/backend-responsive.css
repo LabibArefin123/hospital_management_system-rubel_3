@@ -1,0 +1,24 @@
+/* =========================================================
+   FILE: backend-responsive.css
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .main-header.navbar {
+        padding: 6px 10px;
+    }
+
+    .main-header .nav-link {
+        font-size: 13px;
+        padding: 5px 8px;
+    }
+
+    .navbar-right-time {
+        font-size: 13px;
+    }
+
+    .brand-link .brand-image,
+    .brand-link .bidtrack-logo {
+        max-height: 42px;
+    }
+}

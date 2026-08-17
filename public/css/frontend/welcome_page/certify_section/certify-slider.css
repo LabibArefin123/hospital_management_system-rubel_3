@@ -1,0 +1,18 @@
+/* =========================
+   CERTIFIED SLIDER
+========================= */
+
+/* SLIDER WRAPPER */
+.certified-slider {
+    margin-top: 50px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* TRACK */
+.certified-track {
+    display: flex;
+    gap: 25px;
+    width: max-content;
+    animation: scrollLeft 30s linear infinite;
+}

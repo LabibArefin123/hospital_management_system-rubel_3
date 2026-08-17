@@ -1,0 +1,15 @@
+/* ==================================================
+   LOGO
+================================================== */
+
+.brand-logo-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 35px;
+}
+
+.brand-logo {
+    width: 300px;
+    height: auto;
+    object-fit: contain;
+}

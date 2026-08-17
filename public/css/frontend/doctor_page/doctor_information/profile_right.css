@@ -1,0 +1,42 @@
+/* PROFILE RIGHT */
+.profile-right h2 {
+    font-size: 28px;
+    color: #14532d;
+}
+
+.speciality {
+    color: #16a34a;
+    margin-bottom: 20px;
+}
+
+/* INFO GRID */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.info-box {
+    background: #ffffff;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
+}
+
+.info-box:hover {
+    transform: translateY(-3px);
+}
+
+.info-box h5 {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 5px;
+}
+
+.info-box p {
+    font-size: 15px;
+    font-weight: 500;
+    color: #111827;
+}

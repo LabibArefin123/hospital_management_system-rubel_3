@@ -1,0 +1,51 @@
+/* =========================================================
+   FILE: footer-widget.css
+========================================================= */
+
+.footer-widget h5 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #064e3b;
+    margin-bottom: 28px;
+    position: relative;
+}
+
+.footer-widget h5::after {
+    content: "";
+    width: 45px;
+    height: 3px;
+    background: #10b981;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    border-radius: 20px;
+}
+
+.footer-widget p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #065f46;
+    margin-bottom: 20px;
+}
+
+.footer-widget ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-widget ul li {
+    margin-bottom: 14px;
+}
+
+.footer-widget ul li a {
+    text-decoration: none;
+    color: #065f46;
+    transition: 0.3s ease;
+    font-size: 15px;
+}
+
+.footer-widget ul li a:hover {
+    color: #16a34a;
+    padding-left: 6px;
+}

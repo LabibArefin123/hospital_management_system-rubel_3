@@ -1,0 +1,168 @@
+/* =========================================================
+   FRONTEND MAIN CSS IMPORT FILE
+========================================================= */
+
+/* ================= NAVBAR ================= */
+
+@import url('./custom_layout/navbar/navbar-base.css');
+@import url('./custom_layout/navbar/navbar-pill.css');
+@import url('./custom_layout/navbar/navbar-brand.css');
+@import url('./custom_layout/navbar/navbar-menu.css');
+@import url('./custom_layout/navbar/navbar-dropdown.css');
+@import url('./custom_layout/navbar/navbar-buttons.css');
+@import url('./custom_layout/navbar/navbar-responsive.css');
+
+/* ================= BACK TO TOP ================= */
+
+@import url('./custom_layout/custom_back_to_top.css');
+
+/* ================= WELCOME PAGE : BANNER ================= */
+
+@import url('./welcome_page/banner_section/banner-layout.css');
+@import url('./welcome_page/banner_section/banner-content.css');
+@import url('./welcome_page/banner_section/banner-feature.css');
+@import url('./welcome_page/banner_section/banner-button.css');
+@import url('./welcome_page/banner_section/banner-animation.css');
+@import url('./welcome_page/banner_section/banner-image-responsive.css');
+
+/* ================= WELCOME PAGE : TRUST ================= */
+
+@import url('./welcome_page/trust_section/trust-layout.css');
+@import url('./welcome_page/trust_section/trust-header.css');
+@import url('./welcome_page/trust_section/trust-box-slider.css');
+@import url('./welcome_page/trust_section/trust-card.css');
+@import url('./welcome_page/trust_section/trust-responsive.css');
+
+/* ================= WELCOME PAGE : CERTIFY ================= */
+
+@import url('./welcome_page/certify_section/certify-layout.css');
+@import url('./welcome_page/certify_section/certify-header.css');
+@import url('./welcome_page/certify_section/certify-card.css');
+@import url('./welcome_page/certify_section/certify-slider.css');
+@import url('./welcome_page/certify_section/certify-animation.css');
+
+/* ================= WELCOME PAGE : DOCTOR ================= */
+
+@import url('./welcome_page/doctor_section/doctor-layout.css');
+@import url('./welcome_page/doctor_section/doctor-header.css');
+@import url('./welcome_page/doctor_section/doctor-card.css');
+@import url('./welcome_page/doctor_section/doctor-button.css');
+@import url('./welcome_page/doctor_section/doctor-responsive.css');
+
+/* ================= DOCTOR PAGE ================= */
+
+@import url('./doctor_page/doctor-layout.css');
+@import url('./doctor_page/doctor-header.css');
+@import url('./doctor_page/doctor-card.css');
+@import url('./doctor_page/doctor-button.css');
+@import url('./doctor_page/doctor-responsive.css');
+
+/* ================= DOCTOR INFORMATION PAGE ================= */
+
+@import url('./doctor_page/doctor_information/profile_section.css');
+@import url('./doctor_page/doctor_information/profile_stat.css');
+@import url('./doctor_page/doctor_information/profile_right.css');
+@import url('./doctor_page/doctor_information/about_doctor.css');
+@import url('./doctor_page/doctor_information/booking_section.css');
+@import url('./doctor_page/doctor_information/booking-time-section.css');
+@import url('./doctor_page/doctor_information/booking-patient-form.css');
+@import url('./doctor_page/doctor_information/booking-summary-payment.css');
+@import url('./doctor_page/doctor_information/responsive.css');
+
+/* ================= SERVICE PAGE ================= */
+
+@import url('./service_page/service-layout.css');
+@import url('./service_page/service-header.css');
+@import url('./service_page/service-grid.css');
+@import url('./service_page/service-card.css');
+@import url('./service_page/service-media.css');
+@import url('./service_page/service-button-responsive.css');
+
+/* ================= SERVICE INFORMATION PAGE ================= */
+
+@import url('./service_page/service_information/service-layout.css');
+@import url('./service_page/service_information/service-summary.css');
+@import url('./service_page/service_information/service-booking-form.css');
+@import url('./service_page/service_information/service-pretest.css');
+@import url('./service_page/service_information/service-info.css');
+
+/* ================= APPOINTMENT PAGE ================= */
+
+@import url('./appointment_page/appointment-layout.css');
+@import url('./appointment_page/appointment-header.css');
+@import url('./appointment_page/appointment-card.css');
+@import url('./appointment_page/appointment-status.css');
+@import url('./appointment_page/appointment-responsive.css');
+
+/* ================= CONTACT PAGE ================= */
+
+@import url('./contact_page/contact-base.css');
+@import url('./contact_page/contact-intro.css');
+@import url('./contact_page/contact-layout.css');
+@import url('./contact_page/contact-form.css');
+@import url('./contact_page/contact-sidebar.css');
+@import url('./contact_page/contact-responsive.css');
+
+/* ================= PAYMENT PAGE ================= */
+
+@import url('./payment_page/payment-layout.css');
+@import url('./payment_page/payment-summary.css');
+@import url('./payment_page/payment-form.css');
+@import url('./payment_page/payment-input.css');
+@import url('./payment_page/payment-button.css');
+@import url('./payment_page/payment-alert-responsive.css');
+
+/* ================= FOOTER ================= */
+
+@import url('./custom_layout/footer/footer-base.css');
+@import url('./custom_layout/footer/footer-brand.css');
+@import url('./custom_layout/footer/footer-contact.css');
+@import url('./custom_layout/footer/footer-widget.css');
+@import url('./custom_layout/footer/footer-newsletter.css');
+@import url('./custom_layout/footer/footer-bottom.css');
+@import url('./custom_layout/footer/footer-responsive.css');
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    30% {
+        transform: translateY(-10px);
+    }
+
+    50% {
+        transform: translateY(0px);
+    }
+
+    70% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/*navbar stick part */
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 1050;
+    background: #fff;
+}
+
+.modal-backdrop.show {
+    opacity: 0.5 !important;
+}
+
+.modal-content {
+    border-radius: 12px;
+}
+
+
+
+.navbar {
+    position: relative;
+    z-index: 1050;
+}

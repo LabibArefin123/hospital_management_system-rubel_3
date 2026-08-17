@@ -1,0 +1,16 @@
+/* =========================
+   TRUST RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .trust-slider {
+        height: auto;
+    }
+
+    .trust-slide {
+        position: relative;
+        opacity: 1;
+        transform: none;
+    }
+}

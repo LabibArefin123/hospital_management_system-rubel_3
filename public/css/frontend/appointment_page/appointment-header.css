@@ -1,0 +1,15 @@
+/* ==================================================
+   APPOINTMENT HEADER
+================================================== */
+
+.section-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #14532d;
+    margin-bottom: 25px;
+}
+
+.empty-text {
+    color: #6b7280;
+    margin-bottom: 20px;
+}

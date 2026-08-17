@@ -1,0 +1,73 @@
+/* ==================================================
+   DOCTOR CARD
+================================================== */
+
+.doctor-card {
+    background: #fff;
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    transition: 0.3s;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 100%;
+}
+
+.doctor-card:hover {
+    transform: translateY(-5px);
+}
+
+/* IMAGE */
+
+.doctor-img {
+    width: 100px;
+    height: 100px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    border: 3px solid #22c55e;
+}
+
+.doctor-img img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+/* TEXT */
+
+.doctor-card h5 {
+    margin-top: 15px;
+
+    font-size: 16px;
+
+    color: #111827;
+}
+
+.doctor-card p {
+    color: #16a34a;
+
+    font-size: 14px;
+
+    margin: 5px 0;
+}
+
+.doctor-card span {
+    font-size: 12px;
+
+    color: #6b7280;
+}

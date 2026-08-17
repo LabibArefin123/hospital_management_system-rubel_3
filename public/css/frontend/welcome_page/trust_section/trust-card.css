@@ -1,0 +1,54 @@
+/* =========================
+   TRUST CARD
+========================= */
+
+.trust-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
+}
+
+.trust-card:hover {
+    transform: translateY(-4px);
+}
+
+/* USER */
+.user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+/* AVATAR */
+.avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #16a34a;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.user-avatar {
+    background: #059669;
+}
+
+/* TEXT */
+.trust-card small {
+    display: block;
+    color: #9ca3af;
+    font-size: 12px;
+}
+
+.trust-card p {
+    font-size: 14px;
+    color: #374151;
+    margin: 0;
+}

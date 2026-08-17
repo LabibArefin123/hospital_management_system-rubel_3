@@ -1,0 +1,146 @@
+/* =========================================================
+   FOOTER BRAND SECTION
+========================================================= */
+
+.footer-brand {
+    border-radius: 28px;
+    padding: 0px;
+    backdrop-filter: blur(12px);
+}
+
+/* =========================================================
+   LOGO WRAPPER
+========================================================= */
+
+.footer-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+/* =========================================================
+   LOGO BOX
+========================================================= */
+
+/* =========================================================
+   LOGO BOX
+========================================================= */
+
+.footer-logo-box {
+    width: 220px;
+    height: 120px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    overflow: hidden;
+
+    flex-shrink: 0;
+
+    transition: 0.3s ease;
+}
+
+.footer-logo-box:hover {
+    transform: translateY(-3px);
+}
+
+/* =========================================================
+   LOGO IMAGE
+========================================================= */
+
+.footer-brand-logo {
+    width: 200px;
+    height: auto;
+
+    object-fit: contain;
+
+    display: block;
+
+    transition: 0.3s ease;
+}
+
+.footer-logo-box:hover .footer-brand-logo {
+    transform: scale(1.03);
+}
+
+/* =========================================================
+   LOGO IMAGE
+========================================================= */
+
+.footer-brand-logo {
+    width: 300px;
+    height: 75px;
+    object-fit: contain;
+    transition: 0.3s ease;
+}
+
+.footer-logo-box:hover .footer-brand-logo {
+    transform: scale(1.05);
+}
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+.footer-logo-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.footer-logo-text h4 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 800;
+    color: #064e3b;
+    line-height: 1.1;
+}
+
+.footer-logo-text span {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #059669;
+    letter-spacing: 0.3px;
+}
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.footer-description {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #065f46;
+    margin-bottom: 28px;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+    .footer-brand {
+        padding: 24px;
+    }
+
+    .footer-logo-box {
+        width: 72px;
+        height: 72px;
+        border-radius: 18px;
+    }
+
+    .footer-brand-logo {
+        width: 56px;
+        height: 56px;
+    }
+
+    .footer-logo-text h4 {
+        font-size: 24px;
+    }
+
+    .footer-logo-text span {
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,15 @@
+/* ==================================================
+   SERVICE DETAILS LAYOUT
+================================================== */
+
+.service-details {
+    padding: 60px 20px;
+}
+
+/* IMAGE */
+
+.service-image-box img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: contain;
+}
