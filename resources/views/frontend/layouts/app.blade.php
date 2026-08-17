@@ -31,6 +31,7 @@
     {{-- Global system search --}}
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search_results.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/system_search_appointment.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search_page_result.css') }}">
 
     {{-- Dedicated search page --}}
@@ -86,7 +87,6 @@
     <script src="{{ asset('js/custom_frontend/system_search/system_search_core.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/system_search_events.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/system_search_api.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search/system_search_core.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/system_search_render_status.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/system_search_render_item.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/system_search_render_containers.js') }}"></script>

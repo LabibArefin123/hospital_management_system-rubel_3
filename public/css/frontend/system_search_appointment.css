@@ -1,0 +1,154 @@
+.system-search-result-item[data-result-type="appointment"] {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 15px 17px;
+    margin-bottom: 8px;
+    background: #fff;
+    border: 1px solid #e9edf2;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    transition: all 0.2s ease;
+    overflow: hidden;
+}
+.system-search-result-item[data-result-type="appointment"]::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #00a0d6;
+    opacity: 0.8;
+}
+.system-search-result-item[data-result-type="appointment"]:hover {
+    border-color: #cfeaf4;
+    box-shadow: 0 7px 20px rgba(15, 23, 42, 0.09);
+    transform: translateY(-1px);
+}
+.system-search-result-item[data-result-type="appointment"]
+    .system-search-result-content {
+    display: block;
+    min-width: 0;
+}
+.system-search-result-item[data-result-type="appointment"]
+    .system-search-result-name {
+    display: block;
+    margin-bottom: 3px;
+    padding-left: 3px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #1f2937;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.system-search-result-item[data-result-type="appointment"]
+    .system-search-result-type {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #00a0d6;
+}
+.system-search-result-item[data-result-type="appointment"]
+    .system-search-result-type::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #00a0d6;
+}
+.system-search-result-item[data-result-type="appointment"]
+    .system-search-result-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #f0f2f5;
+}
+.system-search-result-item[data-result-type="appointment"]
+    .system-search-result-date,
+.system-search-result-item[data-result-type="appointment"]
+    .system-search-result-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 27px;
+    padding: 5px 9px;
+    border-radius: 7px;
+    background: #f7f9fb;
+    font-size: 11px;
+    font-weight: 600;
+    color: #596579;
+}
+.system-search-result-item[data-result-type="appointment"]
+    .system-search-result-date
+    i,
+.system-search-result-item[data-result-type="appointment"]
+    .system-search-result-time
+    i {
+    font-size: 11px;
+    color: #00a0d6;
+}
+.system-search-result-item[data-result-type="appointment"]
+    .system-search-result-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 27px;
+    margin-left: auto;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+.system-search-result-item[data-result-type="appointment"]
+    .system-search-result-status::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    margin-right: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+.system-search-result-item[data-result-type="appointment"]
+    .system-search-result-status.confirmed {
+    color: #15803d;
+    background: #ecfdf3;
+    border: 1px solid #c8f0d7;
+}
+.system-search-result-item[data-result-type="appointment"]
+    .system-search-result-status.pending {
+    color: #b45309;
+    background: #fff8e8;
+    border: 1px solid #f7dfaa;
+}
+.system-search-result-item[data-result-type="appointment"]
+    .system-search-result-status.cancelled {
+    color: #dc2626;
+    background: #fff1f2;
+    border: 1px solid #fecdd3;
+}
+.system-search-results,
+#systemSearchResults,
+#systemSearchPageResults {
+    padding: 6px;
+}
+#systemSearchResults
+    .system-search-result-item[data-result-type="appointment"]:last-child,
+#systemSearchPageResults
+    .system-search-result-item[data-result-type="appointment"]:last-child {
+    margin-bottom: 0;
+}
