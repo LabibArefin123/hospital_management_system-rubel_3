@@ -1,370 +1,296 @@
-$(function () {
+/**
+ * ==========================================================
+ * SUSTHOCARE SYSTEM SEARCH
+ * ==========================================================
+ *
+ * Global search
+ *
+ * Searches:
+ * - Users / Patients
+ * - Doctors
+ *
+ * Result data:
+ * - Name only
+ */
+
+(function ($) {
     "use strict";
 
-    const input = $("#systemSearchInput");
-    const results = $("#systemSearchResults");
-    const loading = $("#systemSearchLoading");
-    const empty = $("#systemSearchEmpty");
+    window.SystemSearch = {
+        timer: null,
 
-    const patientResults = $("#systemPatientResults");
-    const doctorResults = $("#systemDoctorResults");
+        delay: 300,
 
-    const patientList = $("#systemPatientList");
-    const doctorList = $("#systemDoctorList");
+        /*
+        |--------------------------------------------------------------------------
+        | INITIALIZE
+        |--------------------------------------------------------------------------
+        */
 
-    const clearButton = $("#systemSearchClear");
+        init: function () {
+            this.bindEvents();
+        },
 
-    let searchTimer = null;
-    let request = null;
+        /*
+        |--------------------------------------------------------------------------
+        | EVENTS
+        |--------------------------------------------------------------------------
+        */
 
-    /*
-    |--------------------------------------------------------------------------
-    | SEARCH URL
-    |--------------------------------------------------------------------------
-    */
+        bindEvents: function () {
+            const self = this;
 
-    const searchUrl = window.systemSearchUrl;
+            /*
+            |--------------------------------------------------------------------------
+            | GLOBAL SEARCH INPUT
+            |--------------------------------------------------------------------------
+            */
 
-    if (!searchUrl) {
-        console.error("System Search: window.systemSearchUrl is not defined.");
+            $(document).on(
+                "input",
+                "#systemSearchInput, #systemSearchPageInput",
+                function () {
+                    const input = $(this);
 
-        return;
-    }
+                    const search = $.trim(input.val());
 
-    /*
-    |--------------------------------------------------------------------------
-    | ESCAPE HTML
-    |--------------------------------------------------------------------------
-    */
+                    clearTimeout(self.timer);
 
-    function escapeHtml(value) {
-        return $("<div>")
-            .text(value ?? "")
-            .html();
-    }
+                    self.timer = setTimeout(function () {
+                        self.search(search, input);
+                    }, self.delay);
+                },
+            );
 
-    /*
-    |--------------------------------------------------------------------------
-    | RESET
-    |--------------------------------------------------------------------------
-    */
+            /*
+            |--------------------------------------------------------------------------
+            | CLEAR BUTTON
+            |--------------------------------------------------------------------------
+            */
 
-    function resetResults() {
-        patientList.html("");
-        doctorList.html("");
+            $(document).on(
+                "click",
+                "#systemSearchClear, #systemSearchPageClear",
+                function () {
+                    const input = $("#systemSearchPageInput").length
+                        ? $("#systemSearchPageInput")
+                        : $("#systemSearchInput");
 
-        patientResults.addClass("d-none");
-        doctorResults.addClass("d-none");
+                    input.val("").trigger("input");
 
-        empty.addClass("d-none");
-        loading.addClass("d-none");
-    }
+                    self.clear();
+                },
+            );
 
-    /*
-    |--------------------------------------------------------------------------
-    | RENDER PATIENTS
-    |--------------------------------------------------------------------------
-    */
+            /*
+            |--------------------------------------------------------------------------
+            | ESCAPE
+            |--------------------------------------------------------------------------
+            */
 
-    function renderPatients(patients) {
-        patientList.html("");
+            $(document).on("keydown", function (event) {
+                if (event.key === "Escape") {
+                    self.clear();
+                }
+            });
+        },
 
-        if (!patients || !patients.length) {
-            patientResults.addClass("d-none");
+        /*
+        |--------------------------------------------------------------------------
+        | SEARCH
+        |--------------------------------------------------------------------------
+        */
 
-            return;
-        }
+        search: function (search, input) {
+            if (!search) {
+                this.clear();
 
-        let html = "";
+                return;
+            }
 
-        $.each(patients, function (index, patient) {
-            html += `
-                <div class="system-result-item">
+            this.showLoading(input);
 
-                    <img
-                        src="${escapeHtml(patient.photo)}"
-                        class="system-result-photo"
-                        alt="${escapeHtml(patient.name)}"
-                    >
+            $.ajax({
+                url: window.systemSearchUrl,
 
-                    <div class="system-result-info">
+                method: "GET",
 
-                        <div class="system-result-name">
-                            ${escapeHtml(patient.name)}
-                        </div>
+                data: {
+                    search: search,
+                },
 
-                        <div class="system-result-meta">
+                dataType: "json",
 
-                            <i class="fas fa-id-card mr-1"></i>
-                            ${escapeHtml(patient.patient_code)}
+                success: function (response) {
+                    if (!response || response.status !== true) {
+                        SystemSearch.showEmpty(input);
 
-                            &nbsp;&nbsp;
-
-                            <i class="fas fa-phone mr-1"></i>
-                            ${escapeHtml(patient.phone)}
-
-                        </div>
-
-                        <div class="system-result-meta">
-
-                            <i class="fas fa-envelope mr-1"></i>
-                            ${escapeHtml(patient.email)}
-
-                            &nbsp;&nbsp;
-
-                            <i class="fas fa-calendar mr-1"></i>
-                            ${escapeHtml(patient.created_at)}
-
-                        </div>
-
-                    </div>
-
-                    ${
-                        patient.url
-                            ? `
-                                <a
-                                    href="${escapeHtml(patient.url)}"
-                                    class="system-result-link"
-                                >
-                                    View
-                                    <i class="fas fa-arrow-right ml-1"></i>
-                                </a>
-                            `
-                            : ""
+                        return;
                     }
 
-                </div>
-            `;
-        });
+                    SystemSearch.render(response, input);
+                },
 
-        patientList.html(html);
+                error: function () {
+                    SystemSearch.showEmpty(input);
+                },
 
-        patientResults.removeClass("d-none");
-    }
+                complete: function () {
+                    SystemSearch.hideLoading(input);
+                },
+            });
+        },
 
-    /*
-    |--------------------------------------------------------------------------
-    | RENDER DOCTORS
-    |--------------------------------------------------------------------------
-    */
+        /*
+        |--------------------------------------------------------------------------
+        | RENDER
+        |--------------------------------------------------------------------------
+        */
 
-    function renderDoctors(doctors) {
-        doctorList.html("");
+        render: function (response, input) {
+            const users = Array.isArray(response.users) ? response.users : [];
 
-        if (!doctors || !doctors.length) {
-            doctorResults.addClass("d-none");
+            const doctors = Array.isArray(response.doctors)
+                ? response.doctors
+                : [];
 
-            return;
-        }
+            const results = [...users, ...doctors];
 
-        let html = "";
+            /*
+            |--------------------------------------------------------------------------
+            | SEARCH PAGE
+            |--------------------------------------------------------------------------
+            */
 
-        $.each(doctors, function (index, doctor) {
-            html += `
-                <div class="system-result-item">
+            const pageResults = $("#systemSearchPageResults");
 
-                    <img
-                        src="${escapeHtml(doctor.image)}"
-                        class="system-result-photo"
-                        alt="${escapeHtml(doctor.name)}"
-                    >
+            if (pageResults.length) {
+                pageResults.empty();
 
-                    <div class="system-result-info">
-
-                        <div class="system-result-name">
-                            ${escapeHtml(doctor.name)}
-                        </div>
-
-                        <div class="system-result-meta">
-
-                            <i class="fas fa-stethoscope mr-1"></i>
-                            ${escapeHtml(doctor.speciality)}
-
-                            &nbsp;&nbsp;
-
-                            <i class="fas fa-briefcase mr-1"></i>
-                            ${escapeHtml(doctor.experience_years)}
-                            Years Experience
-
-                        </div>
-
-                        <div class="system-result-meta">
-
-                            <i class="fas fa-phone mr-1"></i>
-                            ${escapeHtml(doctor.phone)}
-
-                            &nbsp;&nbsp;
-
-                            <i class="fas fa-envelope mr-1"></i>
-                            ${escapeHtml(doctor.email)}
-
-                        </div>
-
-                    </div>
-
-                    ${
-                        doctor.url
-                            ? `
-                                <a
-                                    href="${escapeHtml(doctor.url)}"
-                                    class="system-result-link"
-                                >
-                                    View
-                                    <i class="fas fa-arrow-right ml-1"></i>
-                                </a>
-                            `
-                            : ""
-                    }
-
-                </div>
-            `;
-        });
-
-        doctorList.html(html);
-
-        doctorResults.removeClass("d-none");
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | AJAX SEARCH
-    |--------------------------------------------------------------------------
-    */
-
-    function searchData() {
-        const search = $.trim(input.val());
-
-        clearTimeout(searchTimer);
-
-        if (request) {
-            request.abort();
-            request = null;
-        }
-
-        if (search.length < 2) {
-            results.addClass("d-none");
-
-            clearButton.addClass("d-none");
-
-            resetResults();
-
-            return;
-        }
-
-        clearButton.removeClass("d-none");
-
-        results.removeClass("d-none");
-
-        resetResults();
-
-        loading.removeClass("d-none");
-
-        request = $.ajax({
-            url: searchUrl,
-
-            type: "GET",
-
-            data: {
-                search: search,
-            },
-
-            dataType: "json",
-
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-            },
-
-            success: function (response) {
-                loading.addClass("d-none");
-
-                if (!response || !response.status) {
-                    empty.removeClass("d-none");
+                if (!results.length) {
+                    this.showEmpty(input);
 
                     return;
                 }
 
-                const patients = response.patients || [];
+                results.forEach(function (item) {
+                    pageResults.append(`
+                        <div class="system-search-result-item">
+                            <span class="system-search-result-name">
+                                ${SystemSearch.escape(item.name)}
+                            </span>
+                        </div>
+                    `);
+                });
 
-                const doctors = response.doctors || [];
+                pageResults.removeClass("d-none");
 
-                renderPatients(patients);
+                $("#searchPageEmpty").addClass("d-none");
+            }
 
-                renderDoctors(doctors);
+            /*
+            |--------------------------------------------------------------------------
+            | GLOBAL HEADER SEARCH
+            |--------------------------------------------------------------------------
+            */
 
-                if (patients.length === 0 && doctors.length === 0) {
-                    empty.removeClass("d-none");
-                }
-            },
+            const globalResults = $("#systemSearchResults");
 
-            error: function (xhr, status) {
-                if (status === "abort") {
+            if (globalResults.length) {
+                globalResults.empty();
+
+                if (!results.length) {
+                    globalResults.html(`
+                        <div class="system-search-empty">
+                            No result found
+                        </div>
+                    `);
+
+                    globalResults.removeClass("d-none");
+
                     return;
                 }
 
-                console.error("System Search Error:", xhr.responseText);
+                results.forEach(function (item) {
+                    globalResults.append(`
+                        <div class="system-search-result-item">
+                            <span class="system-search-result-name">
+                                ${SystemSearch.escape(item.name)}
+                            </span>
+                        </div>
+                    `);
+                });
 
-                loading.addClass("d-none");
+                globalResults.removeClass("d-none");
+            }
+        },
 
-                empty.removeClass("d-none");
-            },
+        /*
+        |--------------------------------------------------------------------------
+        | LOADING
+        |--------------------------------------------------------------------------
+        */
 
-            complete: function () {
-                request = null;
-            },
-        });
-    }
+        showLoading: function (input) {
+            $("#searchPageLoading").removeClass("d-none");
 
-    /*
-    |--------------------------------------------------------------------------
-    | LIVE SEARCH
-    |--------------------------------------------------------------------------
-    */
+            $("#systemSearchLoading").removeClass("d-none");
+        },
 
-    input.on("input", function () {
-        clearTimeout(searchTimer);
+        hideLoading: function (input) {
+            $("#searchPageLoading").addClass("d-none");
 
-        searchTimer = setTimeout(function () {
-            searchData();
-        }, 350);
-    });
+            $("#systemSearchLoading").addClass("d-none");
+        },
 
-    /*
-    |--------------------------------------------------------------------------
-    | CLEAR
-    |--------------------------------------------------------------------------
-    */
+        /*
+        |--------------------------------------------------------------------------
+        | EMPTY
+        |--------------------------------------------------------------------------
+        */
 
-    clearButton.on("click", function () {
-        input.val("").focus();
+        showEmpty: function (input) {
+            $("#searchPageEmpty").removeClass("d-none");
 
-        results.addClass("d-none");
+            $("#systemSearchResults").removeClass("d-none").html(`
+                    <div class="system-search-empty">
+                        No result found
+                    </div>
+                `);
 
-        clearButton.addClass("d-none");
+            $("#systemSearchPageResults").addClass("d-none");
+        },
 
-        resetResults();
-    });
+        /*
+        |--------------------------------------------------------------------------
+        | CLEAR
+        |--------------------------------------------------------------------------
+        */
 
-    /*
-    |--------------------------------------------------------------------------
-    | OUTSIDE CLICK
-    |--------------------------------------------------------------------------
-    */
+        clear: function () {
+            clearTimeout(this.timer);
 
-    $(document).on("click", function (e) {
-        if (!$(e.target).closest(".system-search-bar").length) {
-            results.addClass("d-none");
-        }
-    });
+            $("#systemSearchResults").empty().addClass("d-none");
 
-    /*
-    |--------------------------------------------------------------------------
-    | FOCUS
-    |--------------------------------------------------------------------------
-    */
+            $("#systemSearchPageResults").empty().addClass("d-none");
 
-    input.on("focus", function () {
-        if ($.trim(input.val()).length >= 2) {
-            results.removeClass("d-none");
-        }
-    });
-});
+            $("#searchPageLoading").addClass("d-none");
+
+            $("#systemSearchLoading").addClass("d-none");
+
+            $("#searchPageEmpty").addClass("d-none");
+        },
+
+        /*
+        |--------------------------------------------------------------------------
+        | ESCAPE HTML
+        |--------------------------------------------------------------------------
+        */
+
+        escape: function (value) {
+            return $("<div>")
+                .text(value || "")
+                .html();
+        },
+    };
+})(jQuery);

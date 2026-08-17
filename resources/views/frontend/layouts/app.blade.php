@@ -28,7 +28,12 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('css/frontend/frontend.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/front_search.css') }}">
+    {{-- Global system search --}}
+    <link rel="stylesheet" href="{{ asset('css/frontend/system_search.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/system_search_results.css') }}">
+
+    {{-- Dedicated search page --}}
+    <link rel="stylesheet" href="{{ asset('css/frontend/system_search_page.css') }}">
 </head>
 
 <body>
@@ -65,9 +70,7 @@
         <i class="bi bi-arrow-up"></i>
     </button>
     {{-- Start of SweetAlert2 notifications --}}
-    <script>
-        window.systemSearchUrl = "{{ route('search.data') }}";
-    </script>
+
     <script>
         window.appData = {
             success: @json(session('success')),
@@ -75,12 +78,16 @@
         };
     </script>
     {{-- End of SweetAlert2 notifications --}}
-    <script src="{{ asset('js/custom_frontend/system_search.js') }}"></script> {{-- System Search JS --}}
-    <script src="{{ asset('js/custom_frontend/sweet_alert.js') }}"></script> {{-- Sweet Alert Notification JS --}}
-    <script src="{{ asset('js/custom_frontend/custom_banner.js') }}"></script> {{-- Banner JS --}}
-    <script src="{{ asset('js/custom_frontend/scroll_progress.js') }}"></script> {{-- Scroll Progress JS --}}
-    <script src="{{ asset('js/custom_frontend/custom_back_top_button.js') }}"></script> {{-- Back to Top JS --}}
-    <script src="{{ asset('js/custom_frontend/login_dropdown.js') }}"></script> {{-- Back to Top JS --}}
+    <script>
+        window.systemSearchUrl = @json(route('search.data'));
+    </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="{{ asset('js/custom_frontend/system_search_core.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search_events.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search_api.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search_render.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search_ui.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search_init.js') }}"></script>
 </body>
 
 </html>

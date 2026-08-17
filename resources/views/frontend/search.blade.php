@@ -1,16 +1,17 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Search Patient / Doctor - SusthoCare')
+@section('title', 'Search - SusthoCare')
 
 @section('content')
 
     @include('frontend.custom_layout.header')
 
     {{-- =========================================================
-        SEARCH INTRO
+        SEARCH PAGE
     ========================================================== --}}
 
     <section class="doctor-intro">
+
         <div class="container text-center">
 
             <h2>
@@ -19,7 +20,7 @@
             </h2>
 
             <p>
-                Search patients or doctors by name, phone, code or speciality
+                Search by name
             </p>
 
             <div class="search-page-input-wrapper">
@@ -27,7 +28,7 @@
                 <i class="fas fa-search"></i>
 
                 <input type="text" id="systemSearchPageInput" value="{{ $search ?? '' }}"
-                    placeholder="Search patient name, phone, code, doctor or speciality..." autocomplete="off">
+                    placeholder="Search patient or doctor..." autocomplete="off">
 
                 <button type="button" id="systemSearchPageClear">
                     <i class="fas fa-times"></i>
@@ -36,6 +37,7 @@
             </div>
 
         </div>
+
     </section>
 
 
@@ -43,38 +45,45 @@
         SEARCH RESULTS
     ========================================================== --}}
 
-    <section class="doctor-section py-5">
+    <section class="doctor-section py-4">
 
         <div class="container">
 
             {{-- Loading --}}
-            <div id="searchPageLoading" class="text-center py-5 d-none">
+
+            <div id="searchPageLoading" class="text-center py-4 d-none">
 
                 <i class="fas fa-spinner fa-spin fa-2x text-danger"></i>
-
-                <p class="mt-3 text-muted">
-                    Searching...
-                </p>
 
             </div>
 
 
-            {{-- Empty --}}
-            <div id="searchPageEmpty" class="text-center py-5 d-none">
+            {{-- Results --}}
 
-                <i class="fas fa-search fa-3x text-muted mb-3"></i>
+            <div id="systemSearchPageResults" class="d-none"></div>
+
+
+            {{-- Empty --}}
+
+            <div id="searchPageEmpty" class="text-center py-4 d-none">
+
+                <i class="fas fa-search fa-2x text-muted mb-2"></i>
 
                 <h5>
                     No Result Found
                 </h5>
 
-                <p class="text-muted">
-                    No patient or doctor matched your search.
-                </p>
-
             </div>
+
         </div>
+
     </section>
+
+
+    <script>
+        window.systemSearchUrl = @json(route('search.data'));
+    </script>
+
     @include('frontend.custom_layout.footer')
+
 @endsection
-1
