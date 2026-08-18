@@ -149,7 +149,7 @@ class FrontendController extends Controller
             'age' => 'required|integer',
             'phone' => 'required|string',
             'gender' => 'required',
-            'payment_method' => 'required|in:Online,Offline',
+            'payment_method' => 'required|in:Online,Cash',
             'appointment_date' => 'required|date',
             'appointment_time' => 'required',
             'email' => $request->payment_method === 'Online'
@@ -221,16 +221,12 @@ class FrontendController extends Controller
             DB::commit();
 
             if ($request->payment_method === 'Online') {
-                return redirect()->route(
-                    'payment.page',
-                    $appointment->id
-                );
+                return redirect()->route('payment.page', ['id' => $appointment->id]);
             }
 
-            return back()->with(
-                'success',
-                'Appointment booked successfully.'
-            );
+            return redirect()
+                ->back()
+                ->with('success', 'Appointment booked successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
 
@@ -242,6 +238,7 @@ class FrontendController extends Controller
         }
     }
 
+
     public function payment_store(Request $request)
     {
         $request->validate([
@@ -249,10 +246,12 @@ class FrontendController extends Controller
             'amount' => 'required|numeric|min:1',
             'payment_method' => 'required|in:bkash,nagad,rocket',
             'transaction_id' => 'required|string|max:255',
+            'payment_reference' => 'required|string|max:255',
         ], [
             'payment_method.required' => 'Please select a payment method.',
             'payment_method.in' => 'Invalid payment method selected.',
-            'transaction_id.required' => 'Please enter your transaction ID.',
+            'transaction_id.required' => 'Transaction ID is required.',
+            'payment_reference.required' => 'Please enter your payment reference.',
         ]);
 
         DB::beginTransaction();
@@ -260,16 +259,18 @@ class FrontendController extends Controller
         try {
             $appointment = Appointment::with([
                 'doctor',
-                'service'
+                'service',
             ])->findOrFail($request->appointment_id);
 
-            /*
-        |--------------------------------------------------------------------------
-        | VERIFY PAYMENT AMOUNT
-        |--------------------------------------------------------------------------
-        */
+            if ($appointment->user_id !== auth()->id()) {
+                DB::rollBack();
 
-            if ((float) $request->amount !== (float) $appointment->amount) {
+                return back()
+                    ->withInput()
+                    ->with('error', 'You are not authorized to make payment for this appointment.');
+            }
+
+            if ((float)$request->amount !== (float)$appointment->amount) {
                 DB::rollBack();
 
                 return back()
@@ -277,72 +278,48 @@ class FrontendController extends Controller
                     ->with('error', 'Please pay the full amount!');
             }
 
-            /*
-        |--------------------------------------------------------------------------
-        | PREVENT DUPLICATE PAYMENT
-        |--------------------------------------------------------------------------
-        */
-
-            $existingPayment = Payment::where(
-                'appointment_id',
-                $appointment->id
-            )->first();
+            $existingPayment = Payment::where('appointment_id', $appointment->id)->first();
 
             if ($existingPayment) {
                 DB::rollBack();
 
-                return back()
-                    ->with('error', 'Payment has already been submitted for this appointment.');
+                return back()->with(
+                    'error',
+                    'Payment has already been submitted for this appointment.'
+                );
             }
 
-            /*
-        |--------------------------------------------------------------------------
-        | CUSTOMER TRANSACTION ID
-        |--------------------------------------------------------------------------
-        */
-
             $transactionId = trim($request->transaction_id);
+            $paymentReference = trim($request->payment_reference);
 
-            /*
-        |--------------------------------------------------------------------------
-        | GENERATE INTERNAL PAYMENT REFERENCE
-        |--------------------------------------------------------------------------
-        */
+            $existingTransaction = Payment::where(
+                'transaction_id',
+                $transactionId
+            )->exists();
 
-            $paymentReference = 'TXN_' . strtoupper(Str::random(12));
+            if ($existingTransaction) {
+                DB::rollBack();
 
-            /*
-        |--------------------------------------------------------------------------
-        | CREATE PAYMENT
-        |--------------------------------------------------------------------------
-        */
+                return back()
+                    ->withInput()
+                    ->with('error', 'This transaction ID has already been used.');
+            }
 
-            Payment::create([
+            $payment = Payment::create([
                 'user_id' => auth()->id(),
                 'appointment_id' => $appointment->id,
                 'payment_method' => strtolower($request->payment_method),
                 'transaction_id' => $transactionId,
+                'payment_reference' => $paymentReference,
                 'amount' => $appointment->amount,
                 'status' => 'paid',
             ]);
-
-            /*
-        |--------------------------------------------------------------------------
-        | CONFIRM APPOINTMENT
-        |--------------------------------------------------------------------------
-        */
 
             $appointment->update([
                 'status' => 'confirmed',
             ]);
 
             DB::commit();
-
-            /*
-        |--------------------------------------------------------------------------
-        | REDIRECT
-        |--------------------------------------------------------------------------
-        */
 
             if ($appointment->type === 'doctor') {
                 return redirect()
@@ -372,12 +349,31 @@ class FrontendController extends Controller
     {
         $appointment = Appointment::with(['doctor', 'service'])
             ->where('id', $id)
+            ->where('user_id', auth()->id())
             ->firstOrFail();
+
+        if ($appointment->payment_method !== 'Online') {
+            return redirect()
+                ->back()
+                ->with('error', 'This appointment does not require online payment.');
+        }
+
+        $existingPayment = Payment::where('appointment_id', $appointment->id)->first();
+
+        if ($existingPayment) {
+            return redirect()
+                ->back()
+                ->with('error', 'Payment has already been submitted for this appointment.');
+        }
 
         $transactionId = 'TXN' . strtoupper(Str::random(12));
 
-        return view('frontend.payment_page.payment', compact('appointment', 'transactionId'));
+        return view(
+            'frontend.payment_page.payment',
+            compact('appointment', 'transactionId')
+        );
     }
+
     public function searchData(Request $request)
     {
         $search = trim($request->query('search', ''));

@@ -65,6 +65,7 @@
 @import url("./doctor_page/doctor_information/about_doctor.css");
 @import url("./doctor_page/doctor_information/booking_section.css");
 @import url("./doctor_page/doctor_information/booking-time-section.css");
+@import url("./doctor_page/doctor_information/booking-time-occupied.css");
 @import url("./doctor_page/doctor_information/booking-patient-form.css");
 @import url("./doctor_page/doctor_information/booking-summary-payment.css");
 @import url("./doctor_page/doctor_information/responsive.css");

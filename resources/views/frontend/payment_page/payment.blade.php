@@ -150,7 +150,7 @@
                                     <strong>Pay with bKash</strong>
                                     <p>
                                         Complete the payment using your bKash account,
-                                        then enter the transaction ID below.
+                                        then enter the transaction ID and payment reference below.
                                     </p>
                                 </div>
                             </div>
@@ -168,7 +168,7 @@
                                     <strong>Pay with Nagad</strong>
                                     <p>
                                         Complete the payment using your Nagad account,
-                                        then enter the transaction ID below.
+                                        then enter the transaction ID and payment reference below.
                                     </p>
                                 </div>
                             </div>
@@ -186,7 +186,7 @@
                                     <strong>Pay with Rocket</strong>
                                     <p>
                                         Complete the payment using your Rocket account,
-                                        then enter the transaction ID below.
+                                        then enter the transaction ID and payment reference below.
                                     </p>
                                 </div>
                             </div>
@@ -215,7 +215,30 @@
                             </small>
                         </div>
 
+                        <div class="form-group payment-transaction-group">
+                            <label for="payment_reference">
+                                Payment Reference
+                            </label>
+
+                            <div class="payment-input-wrapper">
+                                <i class="fas fa-hashtag"></i>
+
+                                <input type="text" id="payment_reference" name="payment_reference"
+                                    value="{{ old('payment_reference') }}" placeholder="Enter your payment reference"
+                                    autocomplete="off" required>
+                            </div>
+
+                            @error('payment_reference')
+                                <small class="error">{{ $message }}</small>
+                            @enderror
+
+                            <small class="payment-input-help">
+                                Enter the payment reference received after completing your payment.
+                            </small>
+                        </div>
+
                     </div>
+
                     <button type="submit" class="pay-btn">
                         <i class="fas fa-lock mr-2"></i>
                         Confirm Payment

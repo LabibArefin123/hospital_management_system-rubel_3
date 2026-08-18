@@ -1,4 +1,13 @@
 <div class="col-md-6">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="booking-left">
         <h3>Book Your Appointment</h3>
         <div class="schedule-pagination-wrapper">
@@ -19,10 +28,28 @@
 
                                     <div class="time-slot-container">
                                         @foreach ($schedules as $schedule)
-                                            <div class="date-card" data-date="{{ $schedule->date }}"
-                                                data-time="{{ $schedule->time }}">
-                                                <i class="fas fa-clock text-primary"></i>
-                                                {{ \Carbon\Carbon::parse($schedule->time)->format('h:i A') }}
+                                            @php
+                                                $slotDate = $schedule->date;
+                                                $slotTime = $schedule->time;
+                                                $isOccupied =
+                                                    old('appointment_date') === $slotDate &&
+                                                    old('appointment_time') === $slotTime &&
+                                                    $errors->has('appointment_time');
+                                            @endphp
+
+                                            <div class="date-card {{ $isOccupied ? 'occupied' : '' }}"
+                                                data-date="{{ $slotDate }}" data-time="{{ $slotTime }}"
+                                                data-occupied="{{ $isOccupied ? 'true' : 'false' }}"
+                                                aria-disabled="{{ $isOccupied ? 'true' : 'false' }}">
+
+                                                <i
+                                                    class="fas {{ $isOccupied ? 'fa-times-circle' : 'fa-clock' }} {{ $isOccupied ? 'text-danger' : 'text-primary' }}"></i>
+
+                                                @if ($isOccupied)
+                                                    <span>Booked</span>
+                                                @else
+                                                    {{ \Carbon\Carbon::parse($slotTime)->format('h:i A') }}
+                                                @endif
                                             </div>
                                         @endforeach
                                     </div>

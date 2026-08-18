@@ -94,6 +94,8 @@
     <script src="{{ asset('js/custom_frontend/system_search/system_search_ui.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/system_search_init.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/payment_page/payment_toggle.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/doctor_time_slot_occupied.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/sweet_alert.js') }}"></script>
 </body>
 
 </html>

@@ -1,17 +1,13 @@
-/* =========================================================
-   FILE: booking-validation.js
-========================================================= */
-
 document.addEventListener("DOMContentLoaded", function () {
-    window.validateBookingForm = function () {
-        const name = document.getElementById("name")?.value.trim() || "";
-
-        const age = document.getElementById("age")?.value.trim() || "";
-
-        const phone = document.getElementById("phone")?.value.trim() || "";
-
-        const gender = document.getElementById("gender")?.value || "";
-
+    "use strict";
+    window.validateBookingForm = function (showLog = true) {
+        const name = bookingElements.name?.value.trim() || "";
+        const age = bookingElements.age?.value.trim() || "";
+        const phone = bookingElements.phone?.value.trim() || "";
+        const gender = bookingElements.gender?.value || "";
+        const email = bookingElements.email?.value.trim() || "";
+        const isOnline = bookingState.selectedPayment === "Online";
+        const emailValid = !isOnline || email !== "";
         const isValid =
             name !== "" &&
             age !== "" &&
@@ -19,59 +15,60 @@ document.addEventListener("DOMContentLoaded", function () {
             gender !== "" &&
             bookingState.selectedDate !== "" &&
             bookingState.selectedTime !== "" &&
-            bookingState.selectedPayment !== "";
-
+            bookingState.selectedPayment !== "" &&
+            emailValid;
         if (bookingElements.confirmBtn) {
             bookingElements.confirmBtn.disabled = !isValid;
-
-            bookingElements.confirmBtn.style.background = isValid
-                ? "#22c55e"
-                : "gray";
-
-            bookingElements.confirmBtn.style.cursor = isValid
-                ? "pointer"
-                : "not-allowed";
-
-            bookingElements.confirmBtn.style.opacity = isValid ? "1" : "0.7";
+            bookingElements.confirmBtn.classList.toggle("ready", isValid);
+            bookingElements.confirmBtn.setAttribute(
+                "aria-disabled",
+                isValid ? "false" : "true",
+            );
         }
-
-        console.log({
-            name,
-            age,
-            phone,
-            gender,
-            selectedDate: bookingState.selectedDate,
-            selectedTime: bookingState.selectedTime,
-            selectedPayment: bookingState.selectedPayment,
-            isValid,
-        });
+        if (showLog) {
+            console.log("[Booking Validation]", {
+                name: name,
+                age: age,
+                phone: phone,
+                gender: gender,
+                email: email,
+                selectedDate: bookingState.selectedDate,
+                selectedTime: bookingState.selectedTime,
+                selectedPayment: bookingState.selectedPayment,
+                isValid: isValid,
+            });
+        }
+        return isValid;
     };
-
-    ["name", "age", "phone", "gender"].forEach((id) => {
+    ["name", "age", "phone", "gender"].forEach(function (id) {
         const input = document.getElementById(id);
-
         if (!input) return;
-
-        input.addEventListener("input", window.validateBookingForm);
-
-        input.addEventListener("change", window.validateBookingForm);
+        input.addEventListener("input", function () {
+            window.validateBookingForm(false);
+        });
+        input.addEventListener("change", function () {
+            window.validateBookingForm(false);
+        });
     });
-
+    const email = bookingElements.email;
+    if (email) {
+        email.addEventListener("input", function () {
+            window.validateBookingForm(false);
+        });
+        email.addEventListener("change", function () {
+            window.validateBookingForm(false);
+        });
+    }
     if (bookingElements.form) {
         bookingElements.form.addEventListener("submit", function (e) {
-            window.validateBookingForm();
-
-            if (
-                bookingState.selectedDate === "" ||
-                bookingState.selectedTime === "" ||
-                bookingState.selectedPayment === ""
-            ) {
+            const valid = window.validateBookingForm(true);
+            if (!valid) {
                 e.preventDefault();
-
-                alert("Please complete booking information");
-
-                return;
+                console.warn(
+                    "[Booking Validation] Form blocked because required information is missing.",
+                );
             }
         });
     }
+    window.validateBookingForm(false);
 });
