@@ -16,9 +16,7 @@
     <!-- CONTACT -->
     <section class="contact-section">
         <div class="container">
-
             <div class="contact-wrapper">
-
                 <!-- LEFT FORM -->
                 <div class="contact-form-box">
                     <h4>Send Message</h4>
@@ -36,7 +34,7 @@
                         {{-- Row 1 --}}
                         <div class="form-row">
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <label>Full Name</label>
                                 <input type="text" name="name"
                                     class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
@@ -46,7 +44,7 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <label>Email</label>
                                 <input type="email" name="email"
                                     class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}">
@@ -61,7 +59,7 @@
                         {{-- Row 2 --}}
                         <div class="form-row">
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <label>Phone</label>
                                 <input type="text" name="phone"
                                     class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}"
@@ -72,7 +70,7 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <label>Department</label>
                                 <select name="department" class="form-control @error('department') is-invalid @enderror">
 

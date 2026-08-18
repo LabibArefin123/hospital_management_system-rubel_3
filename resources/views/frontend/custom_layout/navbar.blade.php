@@ -39,14 +39,7 @@
                     </a>
                 </li>
 
-                <li>
-                    <a class="nav-link {{ request()->routeIs('search.data') ? 'active' : '' }}"
-                        href="{{ route('search.data') }}">
-                        <i class="fas fa-search mr-1"></i>
-                        Search
-                    </a>
-                </li>
-
+          
                 <li>
                     <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}"
                         href="{{ route('contact') }}">
@@ -151,6 +144,11 @@
 
                 <a href="{{ route('login') }}" class="btn btn-success">
                     Login
+                </a>
+                <a class="nav-link {{ request()->routeIs('search.data') ? 'active' : '' }}"
+                    href="{{ route('search.data') }}">
+                    <i class="fas fa-search mr-1"></i>
+                    Search
                 </a>
             @endguest
 

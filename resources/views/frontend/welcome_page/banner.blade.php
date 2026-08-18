@@ -24,8 +24,8 @@
                 </div>
 
                 <div class="buttons">
-                    <a href="#" class="btn primary">📅 Book Appointment</a>
-                    <a href="#" class="btn danger">📞 Emergency</a>
+                    <a href="{{ route('doctor') }}" class="btn primary">📅 Book Appointment</a>
+                    <a href="{{ route('contact') }}" class="btn danger">📞 Emergency</a>
                 </div>
 
             </div>
