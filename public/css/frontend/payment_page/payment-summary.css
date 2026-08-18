@@ -1,43 +1,102 @@
-/* ==================================================
-   PAYMENT SUMMARY
-================================================== */
-
-.payment-summary {
-    background: #f9fafb;
-
-    padding: 25px;
-
-    border-radius: 15px;
-
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+.payment-summary h4 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 20px;
+    color: #172033;
+    font-size: 18px;
+    font-weight: 700;
 }
 
-.payment-summary h4 {
-    margin-bottom: 15px;
+.payment-summary h4::before {
+    content: "";
+    width: 4px;
+    height: 21px;
+    border-radius: 4px;
+    background: #8b0000;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
 }
 
 .payment-summary p {
     display: flex;
-
+    align-items: flex-start;
     justify-content: space-between;
+    gap: 20px;
+    margin: 0;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f2f5;
+    color: #697386;
+    font-size: 13px;
+    line-height: 1.5;
+}
 
-    margin-bottom: 8px;
+.payment-summary p:last-child {
+    border-bottom: 0;
+}
 
-    color: #374151;
+.payment-summary p strong {
+    flex: 0 0 145px;
+    color: #344054;
+    font-weight: 600;
+}
+
+.payment-summary p:not(.total) > :not(strong) {
+    text-align: right;
+    color: #172033;
+    font-weight: 600;
 }
 
 .payment-summary hr {
-    margin: 15px 0;
+    width: 100%;
+    margin: 23px 0;
+    border: 0;
+    border-top: 1px solid #e9edf2;
 }
 
 .payment-summary .total {
-    display: flex;
+    margin-top: auto;
+    padding: 18px 20px;
+    border: 1px solid #e5eef3;
+    border-radius: 13px;
+    background: linear-gradient(135deg, #f7fbfd, #fff);
+}
 
-    justify-content: space-between;
+.payment-summary .total span:first-child {
+    color: #596579;
+    font-size: 13px;
+    font-weight: 600;
+}
 
-    font-size: 18px;
+.payment-summary .total span:last-child {
+    color: #8b0000;
+    font-size: 21px;
+    font-weight: 800;
+    white-space: nowrap;
+}
 
-    font-weight: bold;
+@media (max-width: 575px) {
+    .payment-summary p {
+        display: block;
+    }
 
-    color: #22c55e;
+    .payment-summary p strong {
+        display: block;
+        margin-bottom: 3px;
+    }
+
+    .payment-summary p:not(.total) > :not(strong) {
+        text-align: left;
+    }
+
+    .payment-summary .total {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+    }
 }

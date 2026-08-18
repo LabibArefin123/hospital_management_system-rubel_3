@@ -48,9 +48,7 @@ class SystemUserController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'phone_2' => $request->phone_2,
-
-            // 🔐 ENCRYPT (reversible)
-            'password' => Crypt::encryptString($request->password),
+            'password' => Hash::make($request->password),
         ]);
 
         $user->assignRole($request->role);
@@ -130,8 +128,7 @@ class SystemUserController extends Controller
         ]);
 
         $user->update([
-            // 🔐 ENCRYPT (reversible)
-            'password' => Crypt::encryptString($request->password),
+            'password' => Hash::make($request->password),
         ]);
 
         return back()->with('success', 'Password updated successfully.');

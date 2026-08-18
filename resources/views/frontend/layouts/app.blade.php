@@ -93,6 +93,7 @@
     <script src="{{ asset('js/custom_frontend/system_search/system_search_render.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/system_search_ui.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/system_search_init.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/payment_page/payment_toggle.js') }}"></script>
 </body>
 
 </html>

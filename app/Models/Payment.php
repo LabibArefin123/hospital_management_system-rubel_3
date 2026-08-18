@@ -14,10 +14,8 @@ class Payment extends Model
         'appointment_id',
         'payment_method',
         'transaction_id',
+        'payment_reference',
         'amount',
-        'card_number',
-        'expiry',
-        'cvv',
         'status',
     ];
 

@@ -149,7 +149,7 @@ class FrontendController extends Controller
             'age' => 'required|integer',
             'phone' => 'required|string',
             'gender' => 'required',
-            'payment_method' => 'required',
+            'payment_method' => 'required|in:Online,Offline',
             'appointment_date' => 'required|date',
             'appointment_time' => 'required',
             'email' => $request->payment_method === 'Online'
@@ -157,14 +157,13 @@ class FrontendController extends Controller
                 : 'nullable|email',
         ], [
             'email.required' => 'Email is required for online payment.',
+            'payment_method.in' => 'Invalid payment method selected.',
         ]);
 
         DB::beginTransaction();
 
         try {
-            $status = $request->payment_method === 'Online'
-                ? 'pending'
-                : 'pending';
+            $status = 'pending';
 
             if ($request->type === 'doctor') {
                 $doctor = Doctor::findOrFail($request->doctor_id);
@@ -230,7 +229,7 @@ class FrontendController extends Controller
 
             return back()->with(
                 'success',
-                'Appointment booked successfully'
+                'Appointment booked successfully.'
             );
         } catch (\Exception $e) {
             DB::rollBack();
@@ -248,70 +247,125 @@ class FrontendController extends Controller
         $request->validate([
             'appointment_id' => 'required|exists:appointments,id',
             'amount' => 'required|numeric|min:1',
-            'card_number' => 'required|min:12|max:19',
-            'expiry' => 'required',
-            'cvv' => 'required|min:3|max:4',
+            'payment_method' => 'required|in:bkash,nagad,rocket',
+            'transaction_id' => 'required|string|max:255',
+        ], [
+            'payment_method.required' => 'Please select a payment method.',
+            'payment_method.in' => 'Invalid payment method selected.',
+            'transaction_id.required' => 'Please enter your transaction ID.',
         ]);
 
-        $appointment = Appointment::findOrFail(
-            $request->appointment_id
-        );
+        DB::beginTransaction();
 
-        if ((float) $request->amount !== (float) $appointment->amount) {
-            return back()->with(
-                'error',
-                'Please pay the full amount!'
-            );
-        }
+        try {
+            $appointment = Appointment::with([
+                'doctor',
+                'service'
+            ])->findOrFail($request->appointment_id);
 
-        $cardNumber = preg_replace(
-            '/\s+/',
-            '',
-            $request->card_number
-        );
+            /*
+        |--------------------------------------------------------------------------
+        | VERIFY PAYMENT AMOUNT
+        |--------------------------------------------------------------------------
+        */
 
-        if (strlen($cardNumber) < 12) {
-            return back()->with(
-                'error',
-                'Invalid Card Number'
-            );
-        }
+            if ((float) $request->amount !== (float) $appointment->amount) {
+                DB::rollBack();
 
-        $paymentFor = $appointment->type === 'doctor'
-            ? 'Doctor: ' . optional($appointment->doctor)->name
-            : 'Service: ' . optional($appointment->service)->name;
+                return back()
+                    ->withInput()
+                    ->with('error', 'Please pay the full amount!');
+            }
 
-        Payment::create([
-            'user_id' => auth()->id(),
-            'appointment_id' => $appointment->id,
-            'payment_method' => 'Card',
-            'transaction_id' => 'TXN_' . strtoupper(Str::random(10)),
-            'amount' => $appointment->amount,
-            'card_number' => substr($cardNumber, -4),
-            'expiry' => $request->expiry,
-            'cvv' => $request->cvv,
-            'status' => 'paid',
-        ]);
+            /*
+        |--------------------------------------------------------------------------
+        | PREVENT DUPLICATE PAYMENT
+        |--------------------------------------------------------------------------
+        */
 
-        $appointment->update([
-            'status' => 'confirmed'
-        ]);
+            $existingPayment = Payment::where(
+                'appointment_id',
+                $appointment->id
+            )->first();
 
-        if ($appointment->type === 'doctor') {
+            if ($existingPayment) {
+                DB::rollBack();
+
+                return back()
+                    ->with('error', 'Payment has already been submitted for this appointment.');
+            }
+
+            /*
+        |--------------------------------------------------------------------------
+        | CUSTOMER TRANSACTION ID
+        |--------------------------------------------------------------------------
+        */
+
+            $transactionId = trim($request->transaction_id);
+
+            /*
+        |--------------------------------------------------------------------------
+        | GENERATE INTERNAL PAYMENT REFERENCE
+        |--------------------------------------------------------------------------
+        */
+
+            $paymentReference = 'TXN_' . strtoupper(Str::random(12));
+
+            /*
+        |--------------------------------------------------------------------------
+        | CREATE PAYMENT
+        |--------------------------------------------------------------------------
+        */
+
+            Payment::create([
+                'user_id' => auth()->id(),
+                'appointment_id' => $appointment->id,
+                'payment_method' => strtolower($request->payment_method),
+                'transaction_id' => $transactionId,
+                'amount' => $appointment->amount,
+                'status' => 'paid',
+            ]);
+
+            /*
+        |--------------------------------------------------------------------------
+        | CONFIRM APPOINTMENT
+        |--------------------------------------------------------------------------
+        */
+
+            $appointment->update([
+                'status' => 'confirmed',
+            ]);
+
+            DB::commit();
+
+            /*
+        |--------------------------------------------------------------------------
+        | REDIRECT
+        |--------------------------------------------------------------------------
+        */
+
+            if ($appointment->type === 'doctor') {
+                return redirect()
+                    ->route('doctor.show', $appointment->doctor_id)
+                    ->with(
+                        'success',
+                        'Payment successful! Your doctor appointment has been confirmed. Payment reference: ' . $paymentReference
+                    );
+            }
+
             return redirect()
-                ->route('doctor.show', $appointment->doctor_id)
+                ->route('service.show', $appointment->service_id)
                 ->with(
                     'success',
-                    'Payment successful! Doctor appointment confirmed.'
+                    'Payment successful! Your service appointment has been confirmed. Payment reference: ' . $paymentReference
                 );
-        }
+        } catch (\Exception $e) {
+            DB::rollBack();
 
-        return redirect()
-            ->route('service.show', $appointment->service_id)
-            ->with(
-                'success',
-                'Payment successful! Service booked successfully.'
-            );
+            return back()
+                ->withInput()
+                ->with('error', $e->getMessage());
+        }
     }
 
     public function payment_page($id)
@@ -320,9 +374,10 @@ class FrontendController extends Controller
             ->where('id', $id)
             ->firstOrFail();
 
-        return view('frontend.payment_page.payment', compact('appointment'));
-    }
+        $transactionId = 'TXN' . strtoupper(Str::random(12));
 
+        return view('frontend.payment_page.payment', compact('appointment', 'transactionId'));
+    }
     public function searchData(Request $request)
     {
         $search = trim($request->query('search', ''));

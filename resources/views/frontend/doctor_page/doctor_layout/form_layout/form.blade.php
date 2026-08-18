@@ -117,7 +117,7 @@
             <p><strong>Fee:</strong> <span>{{ $doctor->consultation_fee }} BDT</span></p>
             <div class="payment">
                 <button type="button" class="pay-btn" data-value="Cash">Cash</button>
-                <button type="button" class="pay-btn" data-value="Online">Online</button>
+                <button type="button" class="pay-btn-2" data-value="Online">Online</button>
             </div>
             <button type="submit" id="confirmBtn" disabled>
                 📞 Confirm Booking

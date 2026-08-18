@@ -93,28 +93,46 @@
 
             <div class="card-body">
 
-                @foreach ($latestAppointments as $appointment)
-                    <div class="d-flex justify-content-between border-bottom py-2">
+                @forelse ($latestAppointments as $appointment)
+                    <div class="d-flex justify-content-between align-items-center border-bottom py-3">
 
                         <div>
-                            <strong>{{ $appointment->name }}</strong><br>
+                            <strong>
+                                {{ $appointment->doctor->name ?? 'N/A' }}
+                            </strong>
+                            <br>
+
                             <small class="text-muted">
                                 {{ ucfirst($appointment->type) }}
                             </small>
+
+                            @if ($appointment->appointment_date)
+                                <br>
+                                <small class="text-muted">
+                                    {{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d M Y') }}
+                                </small>
+                            @endif
                         </div>
 
                         <div class="text-right">
                             <span
                                 class="badge
-                            @if ($appointment->status == 'confirmed') badge-success
-                            @elseif($appointment->status == 'cancelled') badge-danger
-                            @else badge-warning @endif">
+                        @if ($appointment->status == 'confirmed') badge-success
+                        @elseif($appointment->status == 'cancelled')
+                            badge-danger
+                        @else
+                            badge-warning @endif">
                                 {{ ucfirst($appointment->status) }}
                             </span>
                         </div>
 
                     </div>
-                @endforeach
+                @empty
+                    <div class="text-center py-4">
+                        <i class="fas fa-calendar-times fa-2x text-muted mb-2"></i>
+                        <p class="text-muted mb-0">No appointments found.</p>
+                    </div>
+                @endforelse
 
             </div>
 
@@ -129,10 +147,11 @@
 
             <div class="card-body table-responsive">
 
-                <table class="table table-bordered">
+                <table class="table table-bordered table-hover mb-0">
+
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>Doctor</th>
                             <th>Type</th>
                             <th>Date</th>
                             <th>Time</th>
@@ -143,26 +162,57 @@
 
                     <tbody>
 
-                        @foreach ($appointments as $appointment)
+                        @forelse ($appointments as $appointment)
                             <tr>
-                                <td>{{ $appointment->name }}</td>
-                                <td>{{ ucfirst($appointment->type) }}</td>
-                                <td>{{ $appointment->appointment_date }}</td>
-                                <td>{{ $appointment->appointment_time }}</td>
-                                <td>৳{{ number_format($appointment->amount, 2) }}</td>
+
+                                <td>
+                                    <strong>
+                                        {{ $appointment->doctor->name ?? 'N/A' }}
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    {{ ucfirst($appointment->type) }}
+                                </td>
+
+                                <td>
+                                    {{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d M Y') }}
+                                </td>
+
+                                <td>
+                                    {{ $appointment->appointment_time }}
+                                </td>
+
+                                <td>
+                                    ৳{{ number_format($appointment->amount, 2) }}
+                                </td>
+
                                 <td>
                                     <span
                                         class="badge
-                                    @if ($appointment->status == 'confirmed') badge-success
-                                    @elseif($appointment->status == 'cancelled') badge-danger
-                                    @else badge-warning @endif">
+                                @if ($appointment->status == 'confirmed') badge-success
+                                @elseif($appointment->status == 'cancelled')
+                                    badge-danger
+                                @else
+                                    badge-warning @endif">
 
                                         {{ ucfirst($appointment->status) }}
 
                                     </span>
                                 </td>
+
                             </tr>
-                        @endforeach
+                        @empty
+
+                            <tr>
+                                <td colspan="6" class="text-center py-4">
+                                    <i class="fas fa-calendar-times fa-2x text-muted mb-2"></i>
+                                    <div class="text-muted mt-2">
+                                        You don't have any appointments yet.
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforelse
 
                     </tbody>
 

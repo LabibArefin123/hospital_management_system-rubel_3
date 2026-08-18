@@ -15,12 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->index();
             $table->foreignId('appointment_id')->nullable()->index();
-            $table->string('payment_method')->default('Card'); // Card / bKash / Nagad later
+            $table->string('payment_method')->nullable(); // Card / bKash / Nagad later
             $table->string('transaction_id')->nullable();
-            $table->decimal('amount', 10, 2); 
-            $table->string('card_number')->nullable();
-            $table->string('expiry')->nullable();
-            $table->string('cvv')->nullable();
+            $table->decimal('amount', 10, 2);
+            $table->string('payment_reference')->nullable();
             $table->enum('status', ['pending', 'paid', 'failed'])->default('pending');
             $table->timestamps();
         });

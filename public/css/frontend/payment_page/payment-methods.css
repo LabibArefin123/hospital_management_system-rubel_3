@@ -1,0 +1,247 @@
+.payment-method-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.payment-method-tab {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+    min-height: 70px;
+    padding: 10px 12px;
+    border: 1px solid #e3e8ed;
+    border-radius: 13px;
+    background: #fff;
+    color: #344054;
+    text-align: left;
+    cursor: pointer;
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.payment-method-tab:hover {
+    border-color: #c9d5dc;
+    background: #fbfcfd;
+    transform: translateY(-1px);
+}
+
+.payment-method-tab.active {
+    border-color: #8b0000;
+    background: #fffafa;
+    box-shadow: 0 5px 16px rgba(139, 0, 0, 0.09);
+}
+
+.payment-method-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+}
+
+.bkash-icon {
+    background: #e2136e;
+}
+
+.nagad-icon {
+    background: #f58220;
+}
+
+.rocket-icon {
+    background: #713f91;
+}
+
+.payment-method-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.payment-method-info strong {
+    overflow: hidden;
+    color: #263244;
+    font-size: 12px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.payment-method-info small {
+    margin-top: 2px;
+    overflow: hidden;
+    color: #8993a3;
+    font-size: 9px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.payment-method-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    margin-left: auto;
+    border: 1px solid #d7dde3;
+    border-radius: 50%;
+    color: transparent;
+    font-size: 8px;
+}
+
+.payment-method-tab.active .payment-method-check {
+    border-color: #8b0000;
+    background: #8b0000;
+    color: #fff;
+}
+
+.payment-method-content {
+    min-height: 0;
+}
+
+.payment-method-panel {
+    display: none;
+}
+
+.payment-method-panel.active {
+    display: block;
+}
+
+.payment-instruction {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+    padding: 14px;
+    border: 1px solid #e7edf1;
+    border-radius: 12px;
+    background: #f9fbfc;
+}
+
+.payment-instruction-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background: #eaf5f9;
+    color: #00a0d6;
+}
+
+.payment-instruction strong {
+    display: block;
+    margin-bottom: 3px;
+    color: #273142;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.payment-instruction p {
+    margin: 0;
+    color: #758093;
+    font-size: 11px;
+    line-height: 1.55;
+}
+
+.payment-transaction-group {
+    margin-bottom: 18px;
+}
+
+.payment-transaction-group label {
+    display: block;
+    margin-bottom: 7px;
+    color: #344054;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.payment-input-wrapper {
+    position: relative;
+}
+
+.payment-input-wrapper i {
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    z-index: 2;
+    transform: translateY(-50%);
+    color: #8b96a5;
+    font-size: 13px;
+    pointer-events: none;
+}
+
+.payment-input-wrapper input {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px 0 40px;
+    border: 1px solid #dfe5ea;
+    border-radius: 10px;
+    outline: 0;
+    background: #fff;
+    color: #273142;
+    font-size: 13px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.payment-input-wrapper input::placeholder {
+    color: #a1a9b5;
+}
+
+.payment-input-wrapper input:hover {
+    border-color: #c8d1d9;
+}
+
+.payment-input-wrapper input:focus {
+    border-color: #00a0d6;
+    box-shadow: 0 0 0 3px rgba(0, 160, 214, 0.08);
+}
+
+.payment-input-help {
+    display: block;
+    margin-top: 6px;
+    color: #8b95a3;
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+.error {
+    display: block;
+    margin-top: 5px;
+    color: #dc2626;
+    font-size: 11px;
+}
+
+@media (max-width: 767px) {
+    .payment-method-selector {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-method-tab {
+        min-height: 60px;
+    }
+
+    .payment-method-icon {
+        flex-basis: 38px;
+        width: 38px;
+        height: 38px;
+    }
+}
