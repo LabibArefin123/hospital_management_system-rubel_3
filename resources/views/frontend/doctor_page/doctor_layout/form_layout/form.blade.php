@@ -9,32 +9,64 @@
         </div>
     @endif
     <div class="booking-left">
-        <h3>Book Your Appointment</h3>
+        <div class="booking-title-row">
+            <h3>Book Your Appointment</h3>
+
+            <div class="booking-status-legend">
+                <div class="booking-status-item">
+                    <span class="booking-status-dot available"></span>
+                    <span>Available</span>
+                </div>
+
+                <div class="booking-status-item">
+                    <span class="booking-status-dot booked"></span>
+                    <span>Booked</span>
+                </div>
+            </div>
+        </div>
+
         <div class="schedule-pagination-wrapper">
             @foreach ($schedulePages as $pageIndex => $pageSchedules)
                 <div class="schedule-page {{ $pageIndex == 0 ? 'active' : '' }}" data-page="{{ $pageIndex }}">
+
                     <div class="row">
+
                         @foreach ($pageSchedules as $date => $schedules)
                             <div class="col-md-4 mb-3">
+
                                 <div class="date-card-wrapper">
+
                                     <div class="date-header">
                                         <h5>
                                             {{ \Carbon\Carbon::parse($date)->format('l') }}
                                         </h5>
+
                                         <span>
                                             {{ \Carbon\Carbon::parse($date)->format('d M Y') }}
                                         </span>
                                     </div>
 
                                     <div class="time-slot-container">
+
                                         @foreach ($schedules as $schedule)
                                             @php
                                                 $slotDate = $schedule->date;
                                                 $slotTime = $schedule->time;
-                                                $isOccupied =
+
+                                                $isOccupied = (bool) $schedule->is_booked;
+
+                                                /*
+                                                 * If validation failed because this exact
+                                                 * slot was already booked, keep it occupied
+                                                 * even after returning from the controller.
+                                                 */
+                                                if (
                                                     old('appointment_date') === $slotDate &&
                                                     old('appointment_time') === $slotTime &&
-                                                    $errors->has('appointment_time');
+                                                    $errors->has('appointment_time')
+                                                ) {
+                                                    $isOccupied = true;
+                                                }
                                             @endphp
 
                                             <div class="date-card {{ $isOccupied ? 'occupied' : '' }}"
@@ -42,26 +74,29 @@
                                                 data-occupied="{{ $isOccupied ? 'true' : 'false' }}"
                                                 aria-disabled="{{ $isOccupied ? 'true' : 'false' }}">
 
-                                                <i
-                                                    class="fas {{ $isOccupied ? 'fa-times-circle' : 'fa-clock' }} {{ $isOccupied ? 'text-danger' : 'text-primary' }}"></i>
+                                                <i class="fas {{ $isOccupied ? 'fa-times-circle' : 'fa-clock' }}"></i>
 
                                                 @if ($isOccupied)
                                                     <span>Booked</span>
                                                 @else
                                                     {{ \Carbon\Carbon::parse($slotTime)->format('h:i A') }}
                                                 @endif
+
                                             </div>
                                         @endforeach
+
                                     </div>
                                 </div>
                             </div>
                         @endforeach
+
                     </div>
                 </div>
             @endforeach
 
             @if ($schedulePages->count() > 1)
                 <div class="schedule-pagination-controls">
+
                     <button type="button" id="prevSchedule">
                         <i class="fas fa-chevron-left"></i>
                     </button>
@@ -69,23 +104,30 @@
                     <button type="button" id="nextSchedule">
                         <i class="fas fa-chevron-right"></i>
                     </button>
+
                 </div>
             @endif
         </div>
 
         <form method="POST" action="{{ route('appointment.store') }}">
             @csrf
+
             <input type="hidden" name="doctor_id" value="{{ $doctor->id }}">
             <input type="hidden" name="type" value="doctor">
+
             <input type="hidden" name="appointment_date" id="formDate" value="{{ old('appointment_date') }}">
 
             <input type="hidden" name="appointment_time" id="formTime" value="{{ old('appointment_time') }}">
+
             <input type="hidden" name="payment_method" id="paymentMethod">
 
             <div class="patient-form">
+
                 <div>
                     <label>Full Name *</label>
+
                     <input type="text" name="name" id="name" value="{{ old('name') }}">
+
                     @error('name')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
@@ -93,7 +135,9 @@
 
                 <div>
                     <label>Age *</label>
+
                     <input type="number" name="age" id="age" value="{{ old('age') }}">
+
                     @error('age')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
@@ -101,7 +145,9 @@
 
                 <div>
                     <label>Mobile Number *</label>
+
                     <input type="text" name="phone" id="phone" value="{{ old('phone') }}">
+
                     @error('phone')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
@@ -109,13 +155,19 @@
 
                 <div>
                     <label>Gender *</label>
+
                     <select name="gender" id="gender">
                         <option value="">Select</option>
-                        <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male
+
+                        <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>
+                            Male
                         </option>
-                        <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female
+
+                        <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>
+                            Female
                         </option>
                     </select>
+
                     @error('gender')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
@@ -123,12 +175,16 @@
 
                 <div class="full-width">
                     <label>Email (optional)</label>
+
                     <input type="email" name="email" value="{{ old('email') }}">
+
                     @error('email')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
+
             </div>
+        </form>
     </div>
 </div>
 

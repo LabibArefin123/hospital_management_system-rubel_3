@@ -1,39 +1,69 @@
+/* =========================================================
+   BOOKED / SELECTED TIME SLOT STATES
+========================================================= */
+
+/* BOOKED */
 .date-card.occupied {
-    background: #fef2f2;
+    background: #fff5f5;
     border: 1px solid #dc3545;
     color: #dc3545;
+
     cursor: not-allowed;
-    opacity: 0.85;
     pointer-events: none;
+
+    opacity: 1;
     box-shadow: none;
 }
 
 .date-card.occupied:hover {
-    background: #fef2f2;
+    background: #fff5f5;
     border-color: #dc3545;
     color: #dc3545;
+
     transform: none;
+    box-shadow: none;
 }
 
 .date-card.occupied i {
     color: #dc3545 !important;
 }
 
-.date-card.occupied::after {
-    content: "";
-    display: block;
-    font-size: 11px;
-    font-weight: 600;
+.date-card.occupied span {
     color: #dc3545;
-    margin-top: 2px;
+    font-weight: 700;
 }
+
+
+/* =========================================================
+   SELECTED
+========================================================= */
 
 .date-card.active {
     background: #2563eb;
     border-color: #2563eb;
-    color: #fff;
+    color: #ffffff;
+
+    box-shadow: 0 5px 14px rgba(37, 99, 235, 0.22);
 }
 
 .date-card.active i {
-    color: #fff !important;
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   SAFETY
+   BOOKED MUST ALWAYS OVERRIDE ACTIVE
+========================================================= */
+
+.date-card.occupied.active {
+    background: #fff5f5;
+    border-color: #dc3545;
+    color: #dc3545;
+
+    box-shadow: none;
+}
+
+.date-card.occupied.active i {
+    color: #dc3545 !important;
 }
