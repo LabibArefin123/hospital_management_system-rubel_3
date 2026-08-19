@@ -40,7 +40,7 @@ class FrontendController extends Controller
 
     public function doctor_show($id)
     {
-        $doctor = \App\Models\Doctor::with([
+        $doctor = Doctor::with([
             'schedules' => function ($query) {
                 $query->where('is_booked', false)
                     ->orderBy('date')

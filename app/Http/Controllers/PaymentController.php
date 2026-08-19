@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 
@@ -24,8 +25,11 @@ class PaymentController extends Controller
     ========================================================= */
     public function show($id)
     {
-        $payment = Payment::with(['user', 'appointment.doctor', 'appointment.service'])
-            ->findOrFail($id);
+        $payment = Payment::with([
+            'user',
+            'appointment.doctor',
+            'appointment.service',
+        ])->findOrFail($id);
 
         return view('backend.payment.show', compact('payment'));
     }
