@@ -31,15 +31,11 @@ Route::get('/service', [FrontendController::class, 'service'])->name('service');
 Route::get('/service/{id}', [FrontendController::class, 'service_show'])->name('service.show');
 
 Route::get('/our-appointments', [FrontendController::class, 'appointment'])->name('appointment');
-Route::post('/appointment-store', [FrontendController::class, 'appointment_store'])
-    ->name('appointment.store');
+Route::post('/appointment-store', [FrontendController::class, 'appointment_store'])->name('appointment.store');
 
 //Payment Part (Optional but functional)
-Route::get('/payment/{id}', [FrontendController::class, 'payment_page'])
-    ->name('payment.page');
-
-Route::post('/payment-store', [FrontendController::class, 'payment_store'])
-    ->name('payment.store');
+Route::get('/payment/{id}', [FrontendController::class, 'payment_page'])->name('payment.page');
+Route::post('/payment-store', [FrontendController::class, 'payment_store'])->name('payment.store');
 
 Route::get('/search-data', [FrontendController::class, 'searchData'])
     ->name('search.data');

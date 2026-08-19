@@ -1,4 +1,13 @@
-  
+  {{-- Validation Errors --}}
+  @if ($errors->any())
+      <div class="alert alert-danger">
+          <ul class="mb-0">
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+  @endif
   <form method="POST" action="{{ route('appointments.store') }}">
       @csrf
 
@@ -22,7 +31,7 @@
                           <input type="text" name="name" id="name" value="{{ old('name') }}"
                               placeholder="Full Name">
                           @error('name')
-                          <small class="text-danger">{{ $message }}</small>
+                              <small class="text-danger">{{ $message }}</small>
                           @enderror
                       </div>
 
@@ -31,7 +40,7 @@
                           <input type="text" name="phone" id="phone" value="{{ old('phone') }}"
                               placeholder="Mobile">
                           @error('phone')
-                          <small class="text-danger">{{ $message }}</small>
+                              <small class="text-danger">{{ $message }}</small>
                           @enderror
                       </div>
                   </div>
@@ -42,7 +51,7 @@
                           <input type="number" name="age" id="age" value="{{ old('age') }}"
                               placeholder="Age">
                           @error('age')
-                          <small class="text-danger">{{ $message }}</small>
+                              <small class="text-danger">{{ $message }}</small>
                           @enderror
                       </div>
 
@@ -56,7 +65,7 @@
                               </option>
                           </select>
                           @error('gender')
-                          <small class="text-danger">{{ $message }}</small>
+                              <small class="text-danger">{{ $message }}</small>
                           @enderror
                       </div>
                   </div>
@@ -65,20 +74,19 @@
                       <label>Email (optional)</label>
                       <input type="email" name="email" value="{{ old('email') }}" placeholder="Email">
                       @error('email')
-                      <small class="text-danger">{{ $message }}</small>
+                          <small class="text-danger">{{ $message }}</small>
                       @enderror
                   </div>
                   <!-- PAYMENT -->
                   <div class="select-group">
                       <label>Payment Method</label>
                       <div class="btn-group">
-                          <button type="button" class="select-btn" data-type="payment"
-                              data-value="Cash">Cash</button>
+                          <button type="button" class="select-btn" data-type="payment" data-value="Cash">Cash</button>
                           <button type="button" class="select-btn" data-type="payment"
                               data-value="Online">Online</button>
                       </div>
                       @error('payment_method')
-                      <small class="text-danger">{{ $message }}</small>
+                          <small class="text-danger">{{ $message }}</small>
                       @enderror
 
                   </div>
@@ -87,11 +95,10 @@
                   <div class="select-group">
                       <label>Select Date</label>
                       <div class="btn-group">
-                          <button type="button" class="select-btn" data-type="date"
-                              data-value="2026-05-05">5
+                          <button type="button" class="select-btn" data-type="date" data-value="2026-05-05">5
                               May 2026</button>
-                          <button type="button" class="select-btn" data-type="date"
-                              data-value="2026-05-10">10 May 2026</button>
+                          <button type="button" class="select-btn" data-type="date" data-value="2026-05-10">10 May
+                              2026</button>
                       </div>
                   </div>
 
@@ -99,10 +106,9 @@
                   <div class="select-group">
                       <label>Select Time</label>
                       <div class="btn-group">
-                          <button type="button" class="select-btn" data-type="time"
-                              data-value="12:00:00">12 PM</button>
-                          <button type="button" class="select-btn" data-type="time"
-                              data-value="14:00:00">2 PM</button>
+                          <button type="button" class="select-btn" data-type="time" data-value="12:00:00">12
+                              PM</button>
+                          <button type="button" class="select-btn" data-type="time" data-value="14:00:00">2 PM</button>
                       </div>
                   </div>
 

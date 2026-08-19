@@ -37,7 +37,7 @@ class FrontendController extends Controller
 
         return view('frontend.doctor_page.doctor', compact('doctors', 'search'));
     }
-    
+
     public function doctor_show($id)
     {
         $doctor = Doctor::with([
@@ -158,32 +158,51 @@ class FrontendController extends Controller
     {
         $request->validate([
             'type' => 'required|in:doctor,service',
-            'name' => 'required|string',
-            'age' => 'required|integer',
-            'phone' => 'required|string',
-            'gender' => 'required',
+            'name' => 'required|string|max:255',
+            'age' => 'required|integer|min:1',
+            'phone' => 'required|string|max:50',
+            'gender' => 'required|in:Male,Female',
             'payment_method' => 'required|in:Online,Cash',
             'appointment_date' => 'required|date',
             'appointment_time' => 'required',
             'email' => $request->payment_method === 'Online'
                 ? 'required|email'
                 : 'nullable|email',
+            'doctor_id' => $request->type === 'doctor'
+                ? 'required|exists:doctors,id'
+                : 'nullable',
+            'service_id' => $request->type === 'service'
+                ? 'required|exists:services,id'
+                : 'nullable',
         ], [
             'email.required' => 'Email is required for online payment.',
+            'payment_method.required' => 'Please select a payment method.',
             'payment_method.in' => 'Invalid payment method selected.',
+            'doctor_id.required' => 'Doctor is required.',
+            'doctor_id.exists' => 'Selected doctor was not found.',
+            'service_id.required' => 'Service is required.',
+            'service_id.exists' => 'Selected service was not found.',
         ]);
+
+        if (!auth()->check()) {
+            return redirect()
+                ->route('login')
+                ->withInput()
+                ->with('error', 'Please login before booking an appointment.');
+        }
 
         DB::beginTransaction();
 
         try {
-            $status = 'pending';
+            $appointment = null;
 
             if ($request->type === 'doctor') {
                 $doctor = Doctor::findOrFail($request->doctor_id);
 
-                $slotBooked = Appointment::where('doctor_id', $doctor->id)
-                    ->where('appointment_date', $request->appointment_date)
-                    ->where('appointment_time', $request->appointment_time)
+                $slotBooked = Appointment::where('type', 'doctor')
+                    ->where('doctor_id', $doctor->id)
+                    ->whereDate('appointment_date', $request->appointment_date)
+                    ->whereTime('appointment_time', $request->appointment_time)
                     ->exists();
 
                 if ($slotBooked) {
@@ -199,6 +218,7 @@ class FrontendController extends Controller
                 $appointment = Appointment::create([
                     'type' => 'doctor',
                     'doctor_id' => $doctor->id,
+                    'service_id' => null,
                     'user_id' => auth()->id(),
                     'name' => $request->name,
                     'age' => $request->age,
@@ -209,13 +229,16 @@ class FrontendController extends Controller
                     'appointment_time' => $request->appointment_time,
                     'payment_method' => $request->payment_method,
                     'amount' => $doctor->consultation_fee,
-                    'status' => $status,
+                    'status' => 'pending',
                 ]);
-            } elseif ($request->type === 'service') {
+            }
+
+            if ($request->type === 'service') {
                 $service = Service::findOrFail($request->service_id);
 
                 $appointment = Appointment::create([
                     'type' => 'service',
+                    'doctor_id' => null,
                     'service_id' => $service->id,
                     'user_id' => auth()->id(),
                     'name' => $request->name,
@@ -227,19 +250,34 @@ class FrontendController extends Controller
                     'appointment_time' => $request->appointment_time,
                     'payment_method' => $request->payment_method,
                     'amount' => $service->price,
-                    'status' => $status,
+                    'status' => 'pending',
                 ]);
             }
 
             DB::commit();
 
+            if (!$appointment) {
+                return back()
+                    ->withInput()
+                    ->withErrors([
+                        'error' => 'Unable to create appointment.'
+                    ]);
+            }
+
             if ($request->payment_method === 'Online') {
-                return redirect()->route('payment.page', ['id' => $appointment->id]);
+                return redirect()
+                    ->route('payment.page', ['id' => $appointment->id]);
+            }
+
+            if ($appointment->type === 'doctor') {
+                return redirect()
+                    ->route('doctor.show', $appointment->doctor_id)
+                    ->with('success', 'Doctor appointment booked successfully.');
             }
 
             return redirect()
-                ->back()
-                ->with('success', 'Appointment booked successfully.');
+                ->route('service.show', $appointment->service_id)
+                ->with('success', 'Service appointment booked successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
 
@@ -424,26 +462,14 @@ class FrontendController extends Controller
             ->limit(20)
             ->get();
 
-        /*
-    |--------------------------------------------------------------------------
-    | DOCTOR SEARCH
-    |--------------------------------------------------------------------------
-    | Everyone can search doctors by name.
-    |--------------------------------------------------------------------------
-    */
-
+        /* DOCTOR SEARCH */
         $doctors = Doctor::query()
             ->where('name', 'like', "%{$search}%")
             ->latest('id')
             ->limit(20)
             ->get();
 
-        /*
-    |--------------------------------------------------------------------------
-    | AJAX RESPONSE
-    |--------------------------------------------------------------------------
-    */
-
+        /*| AJAX RESPONSE */
         if ($request->ajax()) {
             return response()->json([
                 'status' => true,
@@ -480,7 +506,6 @@ class FrontendController extends Controller
     public function newsletter_store(Request $request)
     {
         try {
-
             $validator = Validator::make($request->all(), [
                 'email' => [
                     'required',
@@ -502,7 +527,6 @@ class FrontendController extends Controller
             ]);
 
             if ($validator->fails()) {
-
                 // 🔴 LOG VALIDATION ERROR
                 Log::warning('Newsletter validation failed', [
                     'email' => $request->email,
