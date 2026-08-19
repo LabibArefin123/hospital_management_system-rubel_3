@@ -1,0 +1,48 @@
+/* =========================================================
+   BOOKING STATUS LEGEND
+========================================================= */
+
+.booking-status-legend {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 18px;
+    flex-shrink: 0;
+}
+
+.booking-status-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #374151;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.booking-status-dot {
+    width: 9px;
+    height: 9px;
+    display: inline-block;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* =========================================================
+   AVAILABLE
+========================================================= */
+
+.booking-status-dot.available {
+    background: #ffffff;
+    border: 2px solid #9ca3af;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   BOOKED
+========================================================= */
+
+.booking-status-dot.booked {
+    background: #dc3545;
+    border: 2px solid #dc3545;
+}

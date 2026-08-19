@@ -1,0 +1,51 @@
+/* =========================================================
+   SCHEDULE PAGINATION WRAPPER
+========================================================= */
+
+.schedule-pagination-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.schedule-page {
+    display: none;
+    width: 100%;
+}
+
+.schedule-page.active {
+    display: block;
+}
+
+/* =========================================================
+   DATE CARD WRAPPER
+========================================================= */
+
+.date-card-wrapper {
+    height: 100%;
+    padding: 18px;
+    background: #ffffff;
+    border: 1px solid #e7ebf2;
+    border-radius: 14px;
+    box-shadow: 0 3px 14px rgba(15, 23, 42, 0.045);
+}
+
+/* =========================================================
+   DATE HEADER
+========================================================= */
+
+.date-header {
+    margin-bottom: 14px;
+}
+
+.date-header h5 {
+    margin: 0 0 3px;
+    color: #111827;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.date-header span {
+    color: #6b7280;
+    font-size: 13px;
+    font-weight: 500;
+}

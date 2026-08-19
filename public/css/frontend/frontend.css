@@ -64,7 +64,13 @@
 @import url("./doctor_page/doctor_information/profile_right.css");
 @import url("./doctor_page/doctor_information/about_doctor.css");
 @import url("./doctor_page/doctor_information/booking_section.css");
-@import url("./doctor_page/doctor_information/booking-time-section.css");
+/* ================= BOOKING TIME SECTION (DOCTOR INFORMATION PAGE) ================= */
+@import url("./doctor_page/doctor_information/booking_time_section/title.css");
+@import url("./doctor_page/doctor_information/booking_time_section/time_slots.css");
+@import url("./doctor_page/doctor_information/booking_time_section/time_status.css");
+@import url("./doctor_page/doctor_information/booking_time_section/schedule_layout.css");
+@import url("./doctor_page/doctor_information/booking_time_section/schedule_pagination.css");
+@import url("./doctor_page/doctor_information/booking_time_section/booking_responsive.css");
 @import url("./doctor_page/doctor_information/booking-time-occupied.css");
 @import url("./doctor_page/doctor_information/booking-patient-form.css");
 @import url("./doctor_page/doctor_information/booking-summary-payment.css");
