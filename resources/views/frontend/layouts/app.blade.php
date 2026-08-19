@@ -84,6 +84,8 @@
         window.systemSearchUrl = @json(route('search.data'));
     </script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    {{--  System Search Start --}}
     <script src="{{ asset('js/custom_frontend/system_search/system_search_core.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/system_search_events.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/system_search_api.js') }}"></script>
@@ -93,8 +95,16 @@
     <script src="{{ asset('js/custom_frontend/system_search/system_search_render.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/system_search_ui.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/system_search_init.js') }}"></script>
+    {{--  System Search End --}}
+
+    {{--  Doctor Slot Part in Doctor Show Page Start --}}
+    <script src="{{ asset('js/custom_frontend/doctor_show/doctor_slot_error.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/doctor_show/doctor_slot_form_data.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/doctor_show/doctor_slot_mark_occupied.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/doctor_show/doctor_time_slot_occupied.js') }}"></script>
+    {{--  Doctor Slot Part in Doctor Show Page End --}}
+    
     <script src="{{ asset('js/custom_frontend/payment_page/payment_toggle.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/doctor_time_slot_occupied.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/sweet_alert.js') }}"></script>
 </body>
 

@@ -37,24 +37,36 @@ class FrontendController extends Controller
 
         return view('frontend.doctor_page.doctor', compact('doctors', 'search'));
     }
-
+    
     public function doctor_show($id)
     {
         $doctor = Doctor::with([
             'schedules' => function ($query) {
-                $query->where('is_booked', false)
-                    ->orderBy('date')
+                $query->orderBy('date')
                     ->orderBy('time');
             }
         ])->findOrFail($id);
 
-        // Group schedules by date
+        $appointments = Appointment::where('doctor_id', $doctor->id)
+            ->pluck('id', 'appointment_date');
+
+        $bookedSlots = Appointment::where('doctor_id', $doctor->id)
+            ->get(['appointment_date', 'appointment_time'])
+            ->mapWithKeys(function ($appointment) {
+                $date = \Carbon\Carbon::parse($appointment->appointment_date)->format('Y-m-d');
+                $time = \Carbon\Carbon::parse($appointment->appointment_time)->format('H:i');
+
+                return [
+                    $date . '|' . $time => true
+                ];
+            })
+            ->toArray();
+
         $groupedSchedules = $doctor->schedules
             ->groupBy(function ($item) {
                 return \Carbon\Carbon::parse($item->date)->format('Y-m-d');
             });
 
-        // Paginate manually (3 dates per page)
         $schedulePages = $groupedSchedules->chunk(3);
 
         return view(
@@ -62,7 +74,8 @@ class FrontendController extends Controller
             compact(
                 'doctor',
                 'groupedSchedules',
-                'schedulePages'
+                'schedulePages',
+                'bookedSlots'
             )
         );
     }

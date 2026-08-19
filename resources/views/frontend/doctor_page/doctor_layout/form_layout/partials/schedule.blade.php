@@ -15,14 +15,16 @@
                             <div class="time-slot-container">
                                 @foreach ($schedules as $schedule)
                                     @php
-                                        $slotDate = $schedule->date;
-                                        $slotTime = $schedule->time;
-                                        $isOccupied = (bool) $schedule->is_booked;
+                                        $slotDate = \Carbon\Carbon::parse($schedule->date)->format('Y-m-d');
+                                        $slotTime = \Carbon\Carbon::parse($schedule->time)->format('H:i');
+
+                                        $slotKey = $slotDate . '|' . $slotTime;
+
+                                        $isOccupied = isset($bookedSlots[$slotKey]);
 
                                         /*
                                         |--------------------------------------------------------------------------
-                                        | If the booking failed because another user booked
-                                        | the slot, keep the slot visually occupied.
+                                        | Keep selected slot occupied after validation error
                                         |--------------------------------------------------------------------------
                                         */
 
@@ -33,13 +35,15 @@
                                         ) {
                                             $isOccupied = true;
                                         }
-
                                     @endphp
+
                                     <div class="date-card {{ $isOccupied ? 'occupied' : '' }}"
                                         data-date="{{ $slotDate }}" data-time="{{ $slotTime }}"
                                         data-occupied="{{ $isOccupied ? 'true' : 'false' }}"
                                         aria-disabled="{{ $isOccupied ? 'true' : 'false' }}">
+
                                         <i class="fas {{ $isOccupied ? 'fa-times-circle' : 'fa-clock' }}"></i>
+
                                         @if ($isOccupied)
                                             <span>Booked</span>
                                         @else
@@ -55,13 +59,12 @@
         </div>
     @endforeach
 
-    {{--  PAGINATION --}}
+    {{-- PAGINATION --}}
     @if ($schedulePages->count() > 1)
         <div class="schedule-pagination-controls">
             <button type="button" id="prevSchedule">
                 <i class="fas fa-chevron-left"></i>
             </button>
-
             <button type="button" id="nextSchedule">
                 <i class="fas fa-chevron-right"></i>
             </button>
