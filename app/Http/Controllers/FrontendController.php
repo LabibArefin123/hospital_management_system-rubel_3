@@ -238,7 +238,6 @@ class FrontendController extends Controller
         }
     }
 
-
     public function payment_store(Request $request)
     {
         $request->validate([
