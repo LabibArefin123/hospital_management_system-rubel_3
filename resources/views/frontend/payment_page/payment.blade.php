@@ -85,9 +85,7 @@
                         @include('frontend.payment_page.partials.type.nagad_part')
                         @include('frontend.payment_page.partials.type.rocket_part')
                         <div class="form-group payment-transaction-group">
-                            <label for="transaction_id">
-                                Transaction ID
-                            </label>
+                            <label for="transaction_id">Transaction ID </label>
 
                             <div class="payment-input-wrapper">
                                 <i class="fas fa-receipt"></i>
@@ -106,9 +104,7 @@
                         </div>
 
                         <div class="form-group payment-transaction-group">
-                            <label for="payment_reference">
-                                Payment Reference
-                            </label>
+                            <label for="payment_reference">Payment Reference</label>
 
                             <div class="payment-input-wrapper">
                                 <i class="fas fa-hashtag"></i>
