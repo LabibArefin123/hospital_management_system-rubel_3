@@ -5,64 +5,7 @@
     <div class="payment-container">
         <div class="payment-grid">
             <!-- ================= LEFT: SUMMARY ================= -->
-            <div class="payment-summary">
-                <h4>Contact Information</h4>
-                <div class="contact-info">
-                    <p>
-                        <strong>Patient Name:</strong>
-                        {{ $appointment->name }}
-                    </p>
-                    <p>
-                        <strong>Email Address:</strong>
-                        {{ $appointment->email ?? 'No Email Provided' }}
-                    </p>
-                    <p>
-                        <strong>Phone Number:</strong>
-                        {{ $appointment->phone }}
-                    </p>
-                    <p>
-                        <strong>Appointment Date:</strong>
-                        {{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d M Y') }}
-                    </p>
-                    <p>
-                        <strong>Appointment Time:</strong>
-                        {{ \Carbon\Carbon::parse($appointment->appointment_time)->format('H:i:s A') }}
-                    </p>
-                </div>
-
-                <hr>
-
-                <h4>Payment Summary</h4>
-                @if ($appointment->type === 'doctor')
-                    <p>
-                        <strong>Doctor:</strong>
-                        {{ $appointment->doctor->name }}
-                    </p>
-                    <p>
-                        <strong>Speciality:</strong>
-                        {{ $appointment->doctor->speciality }}
-                    </p>
-                    <p>
-                        <strong>Consultation Fee:</strong>
-                        {{ $appointment->amount }} BDT
-                    </p>
-                @else
-                    <p>
-                        <strong>Service:</strong>
-                        {{ $appointment->service->title }}
-                    </p>
-                    <p>
-                        <strong>Price:</strong>
-                        {{ $appointment->amount }} BDT
-                    </p>
-                @endif
-                <hr>
-
-                <div class="total">
-                    <span>Total Payable</span>
-                    <span>{{ $appointment->amount }} Taka</span>
-                </div>
-            </div>
+            @include('frontend.payment_page.partials.summary_part')
             <!-- ================= RIGHT: FORM ================= -->
             <div class="payment-form-card">
                 <div class="payment-form-header">
@@ -138,61 +81,9 @@
 
                     {{-- PAYMENT INFORMATION --}}
                     <div class="payment-method-content">
-
-                        <div class="payment-method-panel active" data-payment-panel="bkash">
-
-                            <div class="payment-instruction">
-                                <div class="payment-instruction-icon">
-                                    <i class="fas fa-mobile-alt"></i>
-                                </div>
-
-                                <div>
-                                    <strong>Pay with bKash</strong>
-                                    <p>
-                                        Complete the payment using your bKash account,
-                                        then enter the transaction ID and payment reference below.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="payment-method-panel" data-payment-panel="nagad">
-
-                            <div class="payment-instruction">
-                                <div class="payment-instruction-icon">
-                                    <i class="fas fa-mobile-alt"></i>
-                                </div>
-
-                                <div>
-                                    <strong>Pay with Nagad</strong>
-                                    <p>
-                                        Complete the payment using your Nagad account,
-                                        then enter the transaction ID and payment reference below.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="payment-method-panel" data-payment-panel="rocket">
-
-                            <div class="payment-instruction">
-                                <div class="payment-instruction-icon">
-                                    <i class="fas fa-mobile-alt"></i>
-                                </div>
-
-                                <div>
-                                    <strong>Pay with Rocket</strong>
-                                    <p>
-                                        Complete the payment using your Rocket account,
-                                        then enter the transaction ID and payment reference below.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-
+                        @include('frontend.payment_page.partials.type.bkash_part')
+                        @include('frontend.payment_page.partials.type.nagad_part')
+                        @include('frontend.payment_page.partials.type.rocket_part')
                         <div class="form-group payment-transaction-group">
                             <label for="transaction_id">
                                 Transaction ID
@@ -201,9 +92,8 @@
                             <div class="payment-input-wrapper">
                                 <i class="fas fa-receipt"></i>
 
-                                <input type="text" id="transaction_id" name="transaction_id"
-                                    value="{{ $transactionId }}" placeholder="Enter your transaction ID" autocomplete="off"
-                                    required readonly>
+                                <input type="text" id="transaction_id" name="transaction_id" value="{{ $transactionId }}"
+                                    placeholder="Enter your transaction ID" autocomplete="off" required readonly>
                             </div>
 
                             @error('transaction_id')

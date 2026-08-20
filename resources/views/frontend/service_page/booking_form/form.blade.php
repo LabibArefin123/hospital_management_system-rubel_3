@@ -122,7 +122,6 @@
           <!-- RIGHT: SUMMARY -->
           <div class="col-md-6">
               <div class="summary-card">
-
                   <h5>Booking Summary</h5>
 
                   <div class="summary-row"><span>Name</span><span id="s_name">Not Filled</span></div>
@@ -140,9 +139,7 @@
                       <span>Total</span>
                       <span>৳{{ $service->price }}</span>
                   </div>
-
               </div>
           </div>
-
       </div>
   </form>
