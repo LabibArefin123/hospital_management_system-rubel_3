@@ -9,9 +9,7 @@
       </div>
   @endif
   <form method="POST" action="{{ route('appointment.store') }}" id="serviceAppointmentForm">
-
       @csrf
-
       <input type="hidden" name="service_id" value="{{ $service->id }}">
       <input type="hidden" name="type" value="service">
 
