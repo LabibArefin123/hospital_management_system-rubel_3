@@ -51,4 +51,5 @@
     <script src="{{ asset('js/custom_frontend/service_page/show/service-state.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/service_page/show/service-summary.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/service_page/show/service-booking.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_page/show/service_time_occupied.js') }}"></script>
 @endsection

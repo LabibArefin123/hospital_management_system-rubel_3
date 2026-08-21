@@ -1,0 +1,34 @@
+/* =========================================================
+   SERVICE BOOKING SECTION
+========================================================= */
+
+.service-booking-row {
+    row-gap: 24px;
+}
+
+.service-booking-left,
+.service-booking-right {
+    height: 100%;
+    padding: 26px;
+    background: #ffffff;
+    border: 1px solid #e8edf5;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.07);
+}
+
+.service-booking-right h4 {
+    margin: 0 0 8px;
+    color: #111827;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.service-no-slot {
+    margin: 0 0 18px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.service-booking-alert {
+    margin-bottom: 20px;
+}

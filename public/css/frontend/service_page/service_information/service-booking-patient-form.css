@@ -1,0 +1,105 @@
+/* =========================================================
+   SERVICE PATIENT FORM
+========================================================= */
+
+.service-patient-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+
+    margin-top: 26px;
+    padding-top: 24px;
+
+    border-top: 1px solid #edf0f5;
+}
+
+.service-patient-form > div {
+    min-width: 0;
+}
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.service-patient-form label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #374151;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.service-patient-form input,
+.service-patient-form select {
+    width: 100%;
+    height: 44px;
+
+    padding: 0 13px;
+
+    background: #ffffff;
+    border: 1px solid #dce1e8;
+    border-radius: 9px;
+
+    color: #1f2937;
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.service-patient-form input:hover,
+.service-patient-form select:hover {
+    border-color: #b9c2d0;
+}
+
+.service-patient-form input:focus,
+.service-patient-form select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* =========================================================
+   FULL WIDTH
+========================================================= */
+
+.service-form-full-width {
+    grid-column: 1 / -1;
+}
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.service-patient-form .text-danger {
+    display: block;
+    margin-top: 5px;
+
+    font-size: 12px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 767px) {
+    .service-patient-form {
+        grid-template-columns: 1fr;
+    }
+
+    .service-form-full-width {
+        grid-column: 1;
+    }
+
+    .service-booking-title-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

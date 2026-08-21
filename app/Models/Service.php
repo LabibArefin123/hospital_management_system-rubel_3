@@ -17,4 +17,9 @@ class Service extends Model
     protected $casts = [
         'instructions' => 'array'
     ];
+
+     public function schedules()
+    {
+        return $this->hasMany(ServiceSchedule::class);
+    }
 }

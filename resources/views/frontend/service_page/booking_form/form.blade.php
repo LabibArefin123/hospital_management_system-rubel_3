@@ -8,136 +8,289 @@
           </ul>
       </div>
   @endif
-  <form method="POST" action="{{ route('appointments.store') }}">
+  <form method="POST" action="{{ route('appointment.store') }}" id="serviceAppointmentForm">
+
       @csrf
 
-      <input type="hidden" name="type" value="service">
       <input type="hidden" name="service_id" value="{{ $service->id }}">
-      <input type="hidden" name="appointment_date" id="formDate">
-      <input type="hidden" name="appointment_time" id="formTime">
-      <input type="hidden" name="payment_method" id="paymentMethod">
+      <input type="hidden" name="type" value="service">
 
-      <div class="row g-4">
+      <input type="hidden" name="appointment_date" id="serviceFormDate" value="{{ old('appointment_date') }}">
 
-          <!-- LEFT: FORM -->
+      <input type="hidden" name="appointment_time" id="serviceFormTime" value="{{ old('appointment_time') }}">
+
+      <input type="hidden" name="payment_method" id="servicePaymentMethod" value="{{ old('payment_method') }}">
+
+      <div class="row service-booking-row">
+
+          {{-- =====================================================
+             LEFT SIDE
+        ====================================================== --}}
           <div class="col-md-6">
-              <div class="booking-card">
 
-                  <h5>Your Details</h5>
+              @if ($errors->any())
+                  <div class="service-booking-alert alert alert-danger">
+                      <ul class="mb-0">
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                  </div>
+              @endif
 
-                  <div class="form-row">
-                      <div class="w-100">
-                          <label>Full Name</label>
-                          <input type="text" name="name" id="name" value="{{ old('name') }}"
-                              placeholder="Full Name">
+              <div class="service-booking-left">
+
+                  {{-- TITLE --}}
+                  <div class="service-booking-title-row">
+
+                      <h3>Book Your Service</h3>
+
+                      <div class="service-booking-status-legend">
+
+                          <div class="service-booking-status-item">
+                              <span class="service-booking-status-dot available"></span>
+                              <span>Available</span>
+                          </div>
+
+                          <div class="service-booking-status-item">
+                              <span class="service-booking-status-dot booked"></span>
+                              <span>Booked</span>
+                          </div>
+
+                      </div>
+
+                  </div>
+
+
+                  {{-- SCHEDULE --}}
+                  <div class="service-schedule-pagination-wrapper">
+
+                      @foreach ($schedulePages as $pageIndex => $pageSchedules)
+                          <div class="service-schedule-page {{ $pageIndex == 0 ? 'active' : '' }}"
+                              data-page="{{ $pageIndex }}">
+
+                              <div class="row">
+
+                                  @foreach ($pageSchedules as $date => $schedules)
+                                      <div class="col-md-4 mb-3">
+
+                                          <div class="service-date-card-wrapper">
+
+                                              <div class="service-date-header">
+
+                                                  <h5>
+                                                      {{ \Carbon\Carbon::parse($date)->format('l') }}
+                                                  </h5>
+
+                                                  <span>
+                                                      {{ \Carbon\Carbon::parse($date)->format('d M Y') }}
+                                                  </span>
+
+                                              </div>
+
+
+                                              <div class="service-time-slot-container">
+
+                                                  @foreach ($schedules as $schedule)
+                                                      @php
+                                                          $slotDate = $schedule->date;
+                                                          $slotTime = $schedule->time;
+
+                                                          $isOccupied = (bool) $schedule->is_booked;
+
+                                                          if (
+                                                              old('appointment_date') === $slotDate &&
+                                                              old('appointment_time') === $slotTime &&
+                                                              $errors->has('appointment_time')
+                                                          ) {
+                                                              $isOccupied = true;
+                                                          }
+                                                      @endphp
+
+
+                                                      <div class="service-date-card {{ $isOccupied ? 'occupied' : '' }}"
+                                                          data-date="{{ $slotDate }}"
+                                                          data-time="{{ $slotTime }}"
+                                                          data-occupied="{{ $isOccupied ? 'true' : 'false' }}"
+                                                          aria-disabled="{{ $isOccupied ? 'true' : 'false' }}">
+
+                                                          <i
+                                                              class="fas {{ $isOccupied ? 'fa-times-circle' : 'fa-clock' }}"></i>
+
+                                                          @if ($isOccupied)
+                                                              <span>Booked</span>
+                                                          @else
+                                                              {{ \Carbon\Carbon::parse($slotTime)->format('h:i A') }}
+                                                          @endif
+
+                                                      </div>
+                                                  @endforeach
+
+                                              </div>
+
+                                          </div>
+
+                                      </div>
+                                  @endforeach
+
+                              </div>
+
+                          </div>
+                      @endforeach
+
+
+                      {{-- PAGINATION --}}
+                      @if ($schedulePages->count() > 1)
+                          <div class="service-schedule-pagination-controls">
+
+                              <button type="button" id="prevServiceSchedule">
+                                  <i class="fas fa-chevron-left"></i>
+                              </button>
+
+                              <button type="button" id="nextServiceSchedule">
+                                  <i class="fas fa-chevron-right"></i>
+                              </button>
+
+                          </div>
+                      @endif
+
+                  </div>
+
+
+                  {{-- PATIENT FORM --}}
+                  <div class="service-patient-form">
+
+                      <div>
+                          <label>Full Name *</label>
+
+                          <input type="text" name="name" id="serviceName" value="{{ old('name') }}">
+
                           @error('name')
-                              <small class="text-danger">{{ $message }}</small>
+                              <small class="text-danger">
+                                  {{ $message }}
+                              </small>
                           @enderror
                       </div>
 
-                      <div class="w-100">
-                          <label>Mobile</label>
-                          <input type="text" name="phone" id="phone" value="{{ old('phone') }}"
-                              placeholder="Mobile">
-                          @error('phone')
-                              <small class="text-danger">{{ $message }}</small>
-                          @enderror
-                      </div>
-                  </div>
 
-                  <div class="form-row">
-                      <div class="w-100">
-                          <label>Age</label>
-                          <input type="number" name="age" id="age" value="{{ old('age') }}"
-                              placeholder="Age">
+                      <div>
+                          <label>Age *</label>
+
+                          <input type="number" name="age" id="serviceAge" value="{{ old('age') }}">
+
                           @error('age')
-                              <small class="text-danger">{{ $message }}</small>
+                              <small class="text-danger">
+                                  {{ $message }}
+                              </small>
                           @enderror
                       </div>
 
-                      <div class="w-100">
-                          <label>Gender</label>
-                          <select name="gender" id="gender">
-                              <option value="">Gender</option>
-                              <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male
+
+                      <div>
+                          <label>Mobile Number *</label>
+
+                          <input type="text" name="phone" id="servicePhone" value="{{ old('phone') }}">
+
+                          @error('phone')
+                              <small class="text-danger">
+                                  {{ $message }}
+                              </small>
+                          @enderror
+                      </div>
+
+
+                      <div>
+                          <label>Gender *</label>
+
+                          <select name="gender" id="serviceGender">
+
+                              <option value="">Select</option>
+
+                              <option value="Male" {{ old('gender') === 'Male' ? 'selected' : '' }}>
+                                  Male
                               </option>
-                              <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female
+
+                              <option value="Female" {{ old('gender') === 'Female' ? 'selected' : '' }}>
+                                  Female
                               </option>
+
                           </select>
+
                           @error('gender')
-                              <small class="text-danger">{{ $message }}</small>
+                              <small class="text-danger">
+                                  {{ $message }}
+                              </small>
+                          @enderror
+                      </div>
+
+
+                      <div class="service-form-full-width">
+
+                          <label>
+                              Email
+                              <span id="serviceEmailRequiredMark">(optional)</span>
+                          </label>
+
+                          <input type="email" name="email" id="serviceEmail" value="{{ old('email') }}">
+
+                          @error('email')
+                              <small class="text-danger">
+                                  {{ $message }}
+                              </small>
                           @enderror
                       </div>
                   </div>
-
-                  <div class="w-100">
-                      <label>Email (optional)</label>
-                      <input type="email" name="email" value="{{ old('email') }}" placeholder="Email">
-                      @error('email')
-                          <small class="text-danger">{{ $message }}</small>
-                      @enderror
-                  </div>
-                  <!-- PAYMENT -->
-                  <div class="select-group">
-                      <label>Payment Method</label>
-                      <div class="btn-group">
-                          <button type="button" class="select-btn" data-type="payment" data-value="Cash">Cash</button>
-                          <button type="button" class="select-btn" data-type="payment"
-                              data-value="Online">Online</button>
-                      </div>
-                      @error('payment_method')
-                          <small class="text-danger">{{ $message }}</small>
-                      @enderror
-
-                  </div>
-
-                  <!-- DATE -->
-                  <div class="select-group">
-                      <label>Select Date</label>
-                      <div class="btn-group">
-                          <button type="button" class="select-btn" data-type="date" data-value="2026-05-05">5
-                              May 2026</button>
-                          <button type="button" class="select-btn" data-type="date" data-value="2026-05-10">10 May
-                              2026</button>
-                      </div>
-                  </div>
-
-                  <!-- TIME -->
-                  <div class="select-group">
-                      <label>Select Time</label>
-                      <div class="btn-group">
-                          <button type="button" class="select-btn" data-type="time" data-value="12:00:00">12
-                              PM</button>
-                          <button type="button" class="select-btn" data-type="time" data-value="14:00:00">2 PM</button>
-                      </div>
-                  </div>
-
-                  <button type="submit" class="btn-confirm" id="confirmBtn" disabled>
-                      Confirm Booking (৳{{ $service->price }})
-                  </button>
-
               </div>
           </div>
 
-          <!-- RIGHT: SUMMARY -->
+          {{-- =====================================================
+             RIGHT SIDE
+        ====================================================== --}}
           <div class="col-md-6">
-              <div class="summary-card">
-                  <h5>Booking Summary</h5>
+              <div class="service-booking-right">
+                  <h4>Available Time Slots</h4>
 
-                  <div class="summary-row"><span>Name</span><span id="s_name">Not Filled</span></div>
-                  <div class="summary-row"><span>Mobile</span><span id="s_mobile">Not Filled</span></div>
-                  <div class="summary-row"><span>Age</span><span id="s_age">Not Filled</span></div>
-                  <div class="summary-row"><span>Gender</span><span id="s_gender">Not Filled</span></div>
-                  <div class="summary-row"><span>Date</span><span id="s_date">Not Selected</span></div>
-                  <div class="summary-row"><span>Time</span><span id="s_time">Not Selected</span></div>
-                  <div class="summary-row"><span>Payment</span><span id="s_payment">Not Selected</span>
-                  </div>
+                  <p class="service-no-slot" id="serviceNoSlotText">
+                      No time slots selected
+                  </p>
 
-                  <hr>
+                  <div class="service-summary-card">
+                      <p>
+                          <strong>Service:</strong>
+                          <span>{{ $service->name }}</span>
+                      </p>
+                      <p>
+                          <strong>Date:</strong>
+                          <span id="serviceSelectedDate">
+                              Not Selected
+                          </span>
+                      </p>
+                      <p>
+                          <strong>Time:</strong>
+                          <span id="serviceSelectedTime">
+                              Not Selected
+                          </span>
+                      </p>
+                      <p>
+                          <strong>Fee:</strong>
+                          <span>{{ $service->price }} BDT</span>
+                      </p>
 
-                  <div class="summary-row total">
-                      <span>Total</span>
-                      <span>৳{{ $service->price }}</span>
+                      {{-- PAYMENT --}}
+                      <div class="service-payment">
+                          <button type="button" class="service-pay-btn" data-value="Cash">
+                              Cash
+                          </button>
+                          <button type="button" class="service-pay-btn-online" data-value="Online">
+                              Online
+                          </button>
+                      </div>
+
+
+                      {{-- CONFIRM --}}
+                      <button type="submit" id="serviceConfirmBtn" disabled>
+                          📞 Confirm Booking
+                      </button>
                   </div>
               </div>
           </div>

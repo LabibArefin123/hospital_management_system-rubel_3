@@ -58,7 +58,6 @@
 @import url("./doctor_page/doctor-responsive.css");
 
 /* ================= DOCTOR INFORMATION PAGE ================= */
-
 @import url("./doctor_page/doctor_information/profile_section.css");
 @import url("./doctor_page/doctor_information/profile_stat.css");
 @import url("./doctor_page/doctor_information/profile_right.css");
@@ -86,10 +85,12 @@
 @import url("./service_page/service-button-responsive.css");
 
 /* ================= SERVICE INFORMATION PAGE ================= */
-
 @import url("./service_page/service_information/service-layout.css");
 @import url("./service_page/service_information/service-summary.css");
 @import url("./service_page/service_information/service-booking-form.css");
+@import url("./service_page/service_information/service-booking-patient-form.css");
+@import url("./service_page/service_information/service-booking-time-section.css");
+@import url("./service_page/service_information/service-booking-section.css");
 @import url("./service_page/service_information/service-pretest.css");
 @import url("./service_page/service_information/service-info.css");
 

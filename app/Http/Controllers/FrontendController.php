@@ -82,9 +82,42 @@ class FrontendController extends Controller
 
     public function service_show($id)
     {
-        $service = Service::findOrFail($id);
+        $service = \App\Models\Service::with([
+            'schedules' => function ($query) {
+                $query
+                    ->orderBy('date')
+                    ->orderBy('time');
+            }
+        ])->findOrFail($id);
 
-        return view('frontend.service_page.service_information.show', compact('service'));
+        /*
+    |--------------------------------------------------------------------------
+    | Group schedules by date
+    |--------------------------------------------------------------------------
+    */
+
+        $groupedSchedules = $service->schedules
+            ->groupBy(function ($item) {
+                return \Carbon\Carbon::parse($item->date)->format('Y-m-d');
+            });
+
+        /*
+    |--------------------------------------------------------------------------
+    | Paginate manually
+    | 3 dates per page
+    |--------------------------------------------------------------------------
+    */
+
+        $schedulePages = $groupedSchedules->chunk(3);
+
+        return view(
+            'frontend.service_page.service_information.show',
+            compact(
+                'service',
+                'groupedSchedules',
+                'schedulePages'
+            )
+        );
     }
 
     public function contact()

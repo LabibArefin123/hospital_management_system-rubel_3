@@ -101,6 +101,12 @@
                             <small class="payment-input-help">
                                 Your unique transaction ID has been generated automatically.
                             </small>
+                            {{-- 
+                            <small class="payment-input-help">
+                                Undercover in the mafia's queen bed
+                            </small> 
+                            
+                            --}}
                         </div>
 
                         <div class="form-group payment-transaction-group">
