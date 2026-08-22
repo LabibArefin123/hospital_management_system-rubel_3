@@ -1,27 +1,13 @@
 <div class="service-schedule-pagination-wrapper">
 
-    @if (!empty($schedulePages))
+    @if ($schedulePages->isNotEmpty())
 
         @foreach ($schedulePages as $pageIndex => $pageSchedules)
-            <div class="service-schedule-page {{ $pageIndex == 0 ? 'active' : '' }}" data-page="{{ $pageIndex }}">
+            <div class="service-schedule-page {{ $pageIndex === 0 ? 'active' : '' }}" data-page="{{ $pageIndex }}">
 
                 <div class="row">
 
-                    @foreach ($pageSchedules as $date => $schedules)
-                        @php
-                            $carbonDate = \Carbon\Carbon::parse($date);
-
-                            /*
-                                            |--------------------------------------------------------------------------
-                                            | Friday protection
-                                            |--------------------------------------------------------------------------
-                                            */
-
-                            if ($carbonDate->dayOfWeek === \Carbon\Carbon::FRIDAY) {
-                                continue;
-                            }
-                        @endphp
-
+                    @foreach ($pageSchedules as $scheduleDate)
                         <div class="col-md-4 mb-3">
 
                             <div class="service-date-card-wrapper">
@@ -30,11 +16,11 @@
                                 <div class="service-date-header">
 
                                     <h5>
-                                        {{ $carbonDate->format('l') }}
+                                        {{ $scheduleDate['day_name'] }}
                                     </h5>
 
                                     <span>
-                                        {{ $carbonDate->format('d M Y') }}
+                                        {{ $scheduleDate['formatted_date'] }}
                                     </span>
 
                                 </div>
@@ -43,59 +29,26 @@
                                 {{-- TIME SLOTS --}}
                                 <div class="service-time-slot-container">
 
-                                    @foreach ($schedules as $schedule)
-                                        @php
-                                            $slotDate = \Carbon\Carbon::parse($schedule->date)->format('Y-m-d');
-
-                                            $slotTime = \Carbon\Carbon::parse($schedule->time)->format('H:i:s');
-
-                                            $isOccupied = (bool) $schedule->is_booked;
-
-                                            /*
-                                                            |--------------------------------------------------------------------------
-                                                            | If previous booking attempt failed because slot
-                                                            | was already booked, show it as occupied.
-                                                            |--------------------------------------------------------------------------
-                                                            */
-
-                                            if (
-                                                old('appointment_date') === $slotDate &&
-                                                old('appointment_time') === $slotTime &&
-                                                $errors->has('appointment_time')
-                                            ) {
-                                                $isOccupied = true;
-                                            }
-
-                                            /*
-                                                            |--------------------------------------------------------------------------
-                                                            | Selected old slot
-                                                            |--------------------------------------------------------------------------
-                                                            */
-
-                                            $isSelected =
-                                                !$isOccupied &&
-                                                old('appointment_date') === $slotDate &&
-                                                old('appointment_time') === $slotTime;
-                                        @endphp
-
-
+                                    @foreach ($scheduleDate['schedules'] as $schedule)
                                         <div class="service-date-card
-                                                                {{ $isOccupied ? 'occupied' : '' }}
-                                                                {{ $isSelected ? 'active' : '' }}"
-                                            data-date="{{ $slotDate }}" data-time="{{ $slotTime }}"
-                                            data-occupied="{{ $isOccupied ? 'true' : 'false' }}"
-                                            aria-disabled="{{ $isOccupied ? 'true' : 'false' }}">
+                                                {{ $schedule['is_occupied'] ? 'occupied' : '' }}
+                                                {{ $schedule['is_selected'] ? 'active' : '' }}"
+                                            data-date="{{ $schedule['date'] }}" data-time="{{ $schedule['time'] }}"
+                                            data-schedule-id="{{ $schedule['id'] }}"
+                                            data-occupied="{{ $schedule['is_occupied'] ? 'true' : 'false' }}"
+                                            aria-disabled="{{ $schedule['is_occupied'] ? 'true' : 'false' }}">
 
-                                            <i
-                                                class="fas {{ $isOccupied ? 'fa-times-circle text-danger' : 'fa-clock' }}"></i>
+                                            @if ($schedule['is_occupied'])
+                                                <i class="fas fa-times-circle text-danger"></i>
 
-                                            @if ($isOccupied)
                                                 <span class="slot-booked-text">
                                                     Booked
                                                 </span>
                                             @else
+                                                <i class="fas fa-clock"></i>
+
                                                 <span>
-                                                    {{ \Carbon\Carbon::parse($slotTime)->format('h:i A') }}
+                                                    {{ $schedule['formatted_time'] }}
                                                 </span>
                                             @endif
 
@@ -115,16 +68,14 @@
         @endforeach
 
 
-        {{-- ==================================================
-                            PAGINATION
-                        =================================================== --}}
-
-        @if (count($schedulePages) > 1)
+        {{-- PAGINATION --}}
+        @if ($schedulePages->count() > 1)
             <div class="service-schedule-pagination-controls">
 
                 <button type="button" id="prevServiceSchedule" disabled aria-label="Previous schedule page">
                     <i class="fas fa-chevron-left"></i>
                 </button>
+
 
                 <button type="button" id="nextServiceSchedule" aria-label="Next schedule page">
                     <i class="fas fa-chevron-right"></i>
@@ -133,7 +84,7 @@
             </div>
         @endif
     @else
-        <div class="alert alert-info">
+        <div class="alert alert-info mb-0">
             No appointment schedules are currently available.
         </div>
 

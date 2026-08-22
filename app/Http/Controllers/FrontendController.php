@@ -82,9 +82,11 @@ class FrontendController extends Controller
 
     public function service_show($id)
     {
-        $service = \App\Models\Service::with([
+        $service = Service::with([
             'schedules' => function ($query) {
                 $query
+                    ->whereDate('date', '>=', now('Asia/Dhaka')->toDateString())
+                    ->whereRaw('DAYOFWEEK(date) != ?', [6])
                     ->orderBy('date')
                     ->orderBy('time');
             }
@@ -92,29 +94,104 @@ class FrontendController extends Controller
 
         /*
     |--------------------------------------------------------------------------
-    | Group schedules by date
+    | Old booking values
     |--------------------------------------------------------------------------
     */
 
-        $groupedSchedules = $service->schedules
-            ->groupBy(function ($item) {
-                return \Carbon\Carbon::parse($item->date)->format('Y-m-d');
-            });
+        $oldDate = old('appointment_date');
+        $oldTime = old('appointment_time');
 
         /*
     |--------------------------------------------------------------------------
-    | Paginate manually
+    | Prepare schedules for Blade
+    |--------------------------------------------------------------------------
+    */
+
+        $preparedSchedules = $service->schedules
+            ->groupBy(function ($schedule) use ($oldDate, $oldTime) {
+                return $schedule->date->format('Y-m-d');
+            })
+            ->map(function ($schedules, $date) use ($oldDate, $oldTime) {
+
+                $firstSchedule = $schedules->first();
+
+                return [
+                    'date' => $date,
+
+                    'day_name' => $firstSchedule->date->format('l'),
+
+                    'formatted_date' => $firstSchedule->date->format('d M Y'),
+
+                    'schedules' => $schedules
+                        ->map(function ($schedule) use ($oldDate, $oldTime) {
+
+                            $slotDate = $schedule->date->format('Y-m-d');
+
+                            $slotTime = \Carbon\Carbon::parse(
+                                $schedule->time
+                            )->format('H:i:s');
+
+                            $isOccupied = (bool) $schedule->is_booked;
+
+                            /*
+                        |--------------------------------------------------------------------------
+                        | Previous booking failed because slot was booked
+                        |--------------------------------------------------------------------------
+                        */
+
+                            if (
+                                $oldDate === $slotDate &&
+                                $oldTime === $slotTime &&
+                                session()->has('errors') &&
+                                session('errors')->has('appointment_time')
+                            ) {
+                                $isOccupied = true;
+                            }
+
+                            /*
+                        |--------------------------------------------------------------------------
+                        | Selected old slot
+                        |--------------------------------------------------------------------------
+                        */
+
+                            $isSelected =
+                                !$isOccupied &&
+                                $oldDate === $slotDate &&
+                                $oldTime === $slotTime;
+
+                            return [
+                                'id' => $schedule->id,
+
+                                'date' => $slotDate,
+
+                                'time' => $slotTime,
+
+                                'formatted_time' => \Carbon\Carbon::parse(
+                                    $schedule->time
+                                )->format('h:i A'),
+
+                                'is_occupied' => $isOccupied,
+
+                                'is_selected' => $isSelected,
+                            ];
+                        })
+                        ->values(),
+                ];
+            })
+            ->values();
+
+        /*
+    |--------------------------------------------------------------------------
     | 3 dates per page
     |--------------------------------------------------------------------------
     */
 
-        $schedulePages = $groupedSchedules->chunk(3);
+        $schedulePages = $preparedSchedules->chunk(3)->values();
 
         return view(
             'frontend.service_page.service_information.show',
             compact(
                 'service',
-                'groupedSchedules',
                 'schedulePages'
             )
         );
@@ -216,13 +293,6 @@ class FrontendController extends Controller
             'service_id.required' => 'Service is required.',
             'service_id.exists' => 'Selected service was not found.',
         ]);
-
-        if (!auth()->check()) {
-            return redirect()
-                ->route('login')
-                ->withInput()
-                ->with('error', 'Please login before booking an appointment.');
-        }
 
         DB::beginTransaction();
 
