@@ -22,7 +22,7 @@
 
     <div>
         <label> Mobile Number *</label>
-        <input type="text" name="phone" id="phone" value="{{ old('phone') }}">
+        <input type="text" name="phone" id="phone" class="global-mobile-input"   value="{{ old('phone') }}">
 
         @error('phone')
             <small class="text-danger">

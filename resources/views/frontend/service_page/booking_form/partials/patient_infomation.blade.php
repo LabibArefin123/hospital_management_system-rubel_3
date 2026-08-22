@@ -43,7 +43,8 @@
             Mobile Number *
         </label>
 
-        <input type="text" name="phone" id="servicePhone" value="{{ old('phone') }}" autocomplete="tel">
+        <input type="text" name="phone" id="servicePhone" class="global-mobile-input" value="{{ old('phone') }}"
+            autocomplete="tel" inputmode="numeric" maxlength="11">
 
         @error('phone')
             <small class="text-danger">
@@ -52,7 +53,6 @@
         @enderror
 
     </div>
-
 
     {{-- GENDER --}}
     <div>

@@ -103,8 +103,9 @@
     <script src="{{ asset('js/custom_frontend/doctor_show/doctor_slot_mark_occupied.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/doctor_show/doctor_time_slot_occupied.js') }}"></script>
     {{--  Doctor Slot Part in Doctor Show Page End --}}
-    
+
     <script src="{{ asset('js/custom_frontend/payment_page/payment_toggle.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/phone_validation.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/sweet_alert.js') }}"></script>
 </body>
 
