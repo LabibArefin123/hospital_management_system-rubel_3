@@ -47,8 +47,7 @@
                 @include('frontend.service_page.booking_form.partials.schedule_part')
 
                 {{-- PATIENT INFORMATION --}}
-                @include('frontend.service_page.booking_form.partials.patient_information')
-
+                @include('frontend.service_page.booking_form.partials.patient_infomation')
             </div>
 
         </div>
