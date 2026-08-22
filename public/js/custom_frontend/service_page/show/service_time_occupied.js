@@ -1,14 +1,9 @@
+// ==================================================
+// SERVICE TIME OCCUPIED
+// ==================================================
+
 document.addEventListener("DOMContentLoaded", function () {
     "use strict";
-
-    /*
-    |--------------------------------------------------------------------------
-    | SERVICE TIME OCCUPIED
-    |--------------------------------------------------------------------------
-    | Converts the selected service slot to "Booked" when the backend
-    | returns the "already booked" validation error.
-    |--------------------------------------------------------------------------
-    */
 
     const errorElements = document.querySelectorAll(".text-danger");
 
@@ -29,11 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    const formDate = document.getElementById("formDate");
-    const formTime = document.getElementById("formTime");
+    const formDate = document.getElementById("serviceFormDate");
+
+    const formTime = document.getElementById("serviceFormTime");
 
     if (!formDate || !formTime) {
         console.warn("[Service Slot Occupied] Date/time fields not found.");
+
         return;
     }
 
@@ -41,56 +38,44 @@ document.addEventListener("DOMContentLoaded", function () {
     const bookedTime = formTime.value;
 
     if (!bookedDate || !bookedTime) {
-        console.warn("[Service Slot Occupied] Booked date/time not available.");
         return;
     }
 
-    document.querySelectorAll(".date-card").forEach(function (slot) {
+    document.querySelectorAll(".service-date-card").forEach(function (slot) {
         const slotDate = slot.dataset.date || "";
+
         const slotTime = slot.dataset.time || "";
 
         if (slotDate === bookedDate && slotTime === bookedTime) {
-            /*
-            |--------------------------------------------------------------------------
-            | Mark slot occupied
-            |--------------------------------------------------------------------------
-            */
-
             slot.classList.add("occupied");
             slot.classList.remove("active");
 
             slot.dataset.occupied = "true";
-
             slot.setAttribute("aria-disabled", "true");
 
-            /*
-            |--------------------------------------------------------------------------
-            | Update icon
-            |--------------------------------------------------------------------------
-            */
-
-            const icon = slot.querySelector("i");
-
-            if (icon) {
-                icon.className = "fas fa-times-circle text-danger";
-            }
-
-            /*
-            |--------------------------------------------------------------------------
-            | Replace time with Booked
-            |--------------------------------------------------------------------------
-            */
-
-            const existingBookedText = slot.querySelector(".slot-booked-text");
-
-            if (!existingBookedText) {
-                slot.innerHTML = `
+            slot.innerHTML = `
                     <i class="fas fa-times-circle text-danger"></i>
-                    <span class="slot-booked-text">Booked</span>
+                    <span class="slot-booked-text">
+                        Booked
+                    </span>
                 `;
+
+            /*
+                |--------------------------------------------------------------------------
+                | Clear invalid state
+                |--------------------------------------------------------------------------
+                */
+
+            if (window.ServiceBookingState) {
+                window.ServiceBookingState.date = null;
+                window.ServiceBookingState.time = null;
+
+                updateServiceHiddenInputs();
+                updateServiceSummary();
+                checkServiceBookingForm();
             }
 
-            console.log("[Service Slot Occupied] Occupied slot:", {
+            console.log("[Service Slot Occupied] Marked occupied:", {
                 date: bookedDate,
                 time: bookedTime,
             });

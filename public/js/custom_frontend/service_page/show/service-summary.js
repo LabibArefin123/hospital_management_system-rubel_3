@@ -1,54 +1,66 @@
 // ==================================================
-// SUMMARY & VALIDATION
+// SERVICE BOOKING - GLOBAL STATE & HELPERS
 // ==================================================
 
-// UPDATE SUMMARY
-function updateSummary() {
-    if (el("s_name")) {
-        el("s_name").innerText = el("name")?.value || "Not Filled";
-    }
+(function (window) {
+    "use strict";
 
-    if (el("s_mobile")) {
-        el("s_mobile").innerText = el("phone")?.value || "Not Filled";
-    }
+    window.ServiceBookingState = {
+        payment: null,
+        date: null,
+        time: null,
+    };
 
-    if (el("s_age")) {
-        el("s_age").innerText = el("age")?.value || "Not Filled";
-    }
+    window.serviceEl = function (id) {
+        return document.getElementById(id);
+    };
 
-    if (el("s_gender")) {
-        el("s_gender").innerText = el("gender")?.value || "Not Filled";
-    }
+    window.updateServiceHiddenInputs = function () {
+        const state = window.ServiceBookingState;
 
-    if (el("s_date")) {
-        el("s_date").innerText = state.date || "Not Selected";
-    }
+        const dateInput = serviceEl("serviceFormDate");
+        const timeInput = serviceEl("serviceFormTime");
+        const paymentInput = serviceEl("servicePaymentMethod");
 
-    if (el("s_time")) {
-        el("s_time").innerText = state.time || "Not Selected";
-    }
+        if (dateInput) {
+            dateInput.value = state.date || "";
+        }
 
-    if (el("s_payment")) {
-        el("s_payment").innerText = state.payment || "Not Selected";
-    }
-}
+        if (timeInput) {
+            timeInput.value = state.time || "";
+        }
 
-// VALIDATION
-function checkForm() {
-    let valid =
-        el("name")?.value &&
-        el("phone")?.value &&
-        el("age")?.value &&
-        el("gender")?.value &&
-        state.payment &&
-        state.date &&
-        state.time;
+        if (paymentInput) {
+            paymentInput.value = state.payment || "";
+        }
+    };
 
-    const btn = el("confirmBtn");
+    window.clearServiceScheduleSelection = function () {
+        const state = window.ServiceBookingState;
 
-    if (btn) {
-        btn.disabled = !valid;
+        state.date = null;
+        state.time = null;
 
-        btn.style.opacity = valid ? "1" : "0.5";
-    }
-}
+        document
+            .querySelectorAll(".service-date-card")
+            .forEach(function (slot) {
+                slot.classList.remove("active");
+            });
+
+        updateServiceHiddenInputs();
+    };
+
+    window.clearServicePaymentSelection = function () {
+        const state = window.ServiceBookingState;
+
+        state.payment = null;
+
+        document
+            .querySelectorAll(".service-pay-btn, .service-pay-btn-online")
+            .forEach(function (button) {
+                button.classList.remove("active");
+            });
+
+        updateServiceHiddenInputs();
+    };
+})(window);
