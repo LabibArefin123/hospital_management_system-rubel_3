@@ -117,7 +117,6 @@ class SystemUserController extends Controller
     {
         // Optional extra safety
         abort_unless(auth()->user()->hasRole('admin'), 403);
-
         return view('backend.system_users.change_password', compact('user'));
     }
 

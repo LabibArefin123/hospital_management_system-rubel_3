@@ -46,7 +46,7 @@
 
             <h3 class="profile-username font-weight-bold">
 
-                Dr. {{ $doctor->name }}
+               {{ $doctor->name }}
 
             </h3>
 

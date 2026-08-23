@@ -345,6 +345,7 @@ return [
             'text' => 'Doctor Workspace',
             'route' => 'dashboard.doctor',
             'can' => 'dashboard.doctor',
+            'can' => 'dashboard.doctor',
             'icon' => 'fas fa-user-md',
             'icon_color' => 'info',
         ],
@@ -355,6 +356,7 @@ return [
         [
             'text' => 'Patient Portal',
             'route' => 'dashboard.user',
+            'can' => 'dashboard.user',
             'icon' => 'fas fa-user-circle',
             'icon_color' => 'success',
         ],

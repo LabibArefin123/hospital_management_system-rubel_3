@@ -1,0 +1,52 @@
+/* =========================================
+   APPOINTMENT ACTION BUTTONS
+========================================= */
+
+.appointment-actions {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 6px;
+}
+
+.appointment-action-form {
+    display: flex;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.appointment-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    height: 34px;
+    padding: 5px 8px;
+    white-space: nowrap;
+    border-radius: 5px;
+}
+
+.appointment-action-btn i {
+    font-size: 13px;
+    line-height: 1;
+    margin: 0;
+}
+
+.appointment-action-btn span {
+    font-size: 13px;
+    line-height: 1;
+}
+
+.appointment-action-btn:hover {
+    transform: translateY(-1px);
+}
+
+.appointment-action-btn {
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}

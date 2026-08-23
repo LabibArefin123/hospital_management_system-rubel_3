@@ -6,6 +6,7 @@ use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AppointmentController extends Controller
 {
@@ -14,13 +15,33 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appointments = Appointment::with([
-            'doctor',
-            'service',
-            'user'
-        ])
-            ->latest()
-            ->get();
+        $user = Auth::user();
+
+        if ($user->hasRole('admin')) {
+            $appointments = Appointment::with([
+                'doctor',
+                'service',
+                'user'
+            ])
+                ->latest()
+                ->get();
+        } else {
+            $doctor = Doctor::where('user_id', $user->id)->first();
+
+            if (!$doctor) {
+                abort(403, 'Doctor profile not found.');
+            }
+
+            $appointments = Appointment::with([
+                'doctor',
+                'service',
+                'user'
+            ])
+                ->where('type', 'doctor')
+                ->where('doctor_id', $doctor->id)
+                ->latest()
+                ->get();
+        }
 
         $doctorAppointments = $appointments
             ->where('type', 'doctor');
@@ -37,20 +58,45 @@ class AppointmentController extends Controller
             )
         );
     }
-
+    
     public function show($id)
     {
+        $user = Auth::user();
+
         $appointment = Appointment::with([
             'doctor',
             'service',
             'user'
-        ])
-            ->findOrFail($id);
+        ])->findOrFail($id);
 
-        return view(
-            'backend.appointment_section.show',
-            compact('appointment')
-        );
+        if ($user->hasRole('admin')) {
+            return view(
+                'backend.appointment_section.show',
+                compact('appointment')
+            );
+        }
+
+        if ($user->hasRole('doctor')) {
+            $doctor = Doctor::where('user_id', $user->id)->first();
+
+            if (!$doctor) {
+                abort(403, 'Doctor profile not found.');
+            }
+
+            if (
+                $appointment->type !== 'doctor' ||
+                $appointment->doctor_id !== $doctor->id
+            ) {
+                abort(403, 'You are not authorized to view this appointment.');
+            }
+
+            return view(
+                'backend.appointment_section.show',
+                compact('appointment')
+            );
+        }
+
+        abort(403, 'Unauthorized access.');
     }
 
     public function destroy($id)

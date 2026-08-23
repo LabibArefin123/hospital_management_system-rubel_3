@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Doctor;
 use App\Models\DoctorSchedule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DoctorScheduleController extends Controller
 {
@@ -13,9 +14,26 @@ class DoctorScheduleController extends Controller
      */
     public function index()
     {
-        $schedules = DoctorSchedule::with('doctor')
-            ->latest()
-            ->get();
+        $user = Auth::user();
+
+        if ($user->hasRole('admin')) {
+            $schedules = DoctorSchedule::with('doctor')
+                ->latest()
+                ->get();
+        } elseif ($user->hasRole('doctor')) {
+            $doctor = Doctor::where('user_id', $user->id)->first();
+
+            if (!$doctor) {
+                abort(403, 'Doctor profile not found.');
+            }
+
+            $schedules = DoctorSchedule::with('doctor')
+                ->where('doctor_id', $doctor->id)
+                ->latest()
+                ->get();
+        } else {
+            abort(403, 'Unauthorized access.');
+        }
 
         return view(
             'backend.schedule_section.index',

@@ -75,20 +75,25 @@
                  </div>
 
                  <div class="card-footer bg-white border-0">
-                     <div class="d-flex justify-content-between">
-                         <a href="{{ route('appointments.show', $appointment->id) }}" class="btn btn-info btn-sm">
+                     <div class="appointment-actions">
+                         <a href="{{ route('appointments.show', $appointment->id) }}"
+                             class="btn btn-info btn-sm appointment-action-btn">
                              <i class="fas fa-eye"></i>
+                             <span>View</span>
                          </a>
                          <a href="{{ route('appointments.cancel', $appointment->id) }}"
-                             class="btn btn-secondary btn-sm">
+                             class="btn btn-secondary btn-sm appointment-action-btn">
                              <i class="fas fa-ban"></i>
+                             <span>Cancel</span>
                          </a>
-                         <form action="{{ route('appointments.destroy', $appointment->id) }}" method="POST">
+                         <form action="{{ route('appointments.destroy', $appointment->id) }}" method="POST"
+                             class="appointment-action-form">
                              @csrf
                              @method('DELETE')
-                             <button class="btn btn-danger btn-sm" onclick="return confirm('Delete appointment?')">
-
+                             <button type="submit" class="btn btn-danger btn-sm appointment-action-btn"
+                                 onclick="return confirm('Delete appointment?')">
                                  <i class="fas fa-trash"></i>
+                                 <span>Delete</span>
                              </button>
                          </form>
                      </div>
