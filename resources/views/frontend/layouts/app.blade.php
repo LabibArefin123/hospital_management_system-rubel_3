@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Scripts -->
-    
+
     <link rel="stylesheet" href="{{ asset('css/frontend/frontend.css') }}">
     {{-- Global system search --}}
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search.css') }}">
@@ -44,7 +44,7 @@
         <div id="scrollProgress"
             style="position: fixed; top: 0; left: 0; width: 0%; height: 4px; background-color: #ff6b6b; z-index: 9999; transition: width 0.25s ease;">
         </div>
-    
+
         <main class="">
             @yield('content')
         </main>
@@ -92,12 +92,38 @@
     <script src="{{ asset('js/custom_frontend/system_search/system_search_init.js') }}"></script>
     {{--  System Search End --}}
 
+    {{--  Doctor Booking Form Start --}}
+    <script src="{{ asset('js/custom_frontend/doctor_show/booking-core.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/doctor_show/booking-pagination.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/doctor_show/booking-selection-restore.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/doctor_show/booking-date-selection.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/doctor_show/booking-payment-selection.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/doctor_show/booking-validation.js') }}"></script>
+    {{--  Doctor Booking Form End --}}
+
     {{--  Doctor Slot Part in Doctor Show Page Start --}}
     <script src="{{ asset('js/custom_frontend/doctor_show/doctor_slot_error.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/doctor_show/doctor_slot_form_data.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/doctor_show/doctor_slot_mark_occupied.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/doctor_show/doctor_time_slot_occupied.js') }}"></script>
     {{--  Doctor Slot Part in Doctor Show Page End --}}
+
+    {{--  Doctor Booking Form Start --}}
+    <script src="{{ asset('js/custom_frontend/service_page/show/service-state.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_page/show/service-summary.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_page/show/service-booking/service-booking-helpers.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_page/show/service-booking/service-booking-summary.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_page/show/service-booking/service-booking-schedule.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_page/show/service-booking/service-booking-payment.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_page/show/service-booking/service-booking-form.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_page/show/service-booking/service-booking-init.js') }}"></script>
+    {{--  Doctor Booking Form End --}}
+
+    {{--  Service Slot Part in Service Show Page Start --}}
+    <script src="{{ asset('js/custom_frontend/service_page/show/service-booking/service-time-occupied-mark.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_page/show/service-booking/service-time-occupied-detect.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_page/show/service-booking/service-time-occupied-init.js') }}"></script>
+    {{--  Service Slot Part in Service Show Page End --}}
 
     <script src="{{ asset('js/custom_frontend/payment_page/payment_toggle.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/phone_validation.js') }}"></script>
