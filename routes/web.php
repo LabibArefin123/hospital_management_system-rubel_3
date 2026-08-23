@@ -11,8 +11,8 @@ use App\Http\Controllers\DoctorScheduleController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServiceScheduleController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\Auth\LoginController;
 
 use App\Http\Controllers\PermissionController;
@@ -47,9 +47,7 @@ Route::post('/newsletter/subscribe', [FrontendController::class, 'newsletter_sto
 
 //Frontend Profile Part
 Route::middleware('auth')->group(function () {
-
     Route::get('/my-profile', function () {
-
         return view('frontend.profile');
     })->name('frontend.profile');
 });
@@ -58,10 +56,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 Route::middleware('guest')->group(function () {
-
-    Route::get('/login', [LoginController::class, 'showLoginForm'])
-        ->name('login');
-
+    Route::get('/login', [LoginController::class, 'showLoginForm']) ->name('login');
     Route::post('/login', [LoginController::class, 'login']);
 });
 
@@ -73,12 +68,7 @@ Route::post('/logout', function () {
     return redirect('/');
 })->name('logout');
 
-/*
-|--------------------------------------------------------------------------
-| AUTHENTICATED ROUTES
-|--------------------------------------------------------------------------
-*/
-
+/* AUTHENTICATED ROUTES*/
 Route::group(['middleware' => ['auth', 'permission']], function () {
     //Dashboard Routes
     Route::get('/dashboard', [DashboardController::class, 'default_dashboard'])->name('dashboard.default');
@@ -96,6 +86,7 @@ Route::group(['middleware' => ['auth', 'permission']], function () {
 
     //Service Menu
     Route::resource('services', ServiceController::class);
+    Route::resource('service-schedules', ServiceScheduleController::class);
 
     //Appointment Menu
     Route::get('appointments/cancel/{id}', [AppointmentController::class, 'appointment_cancel'])->name('appointments.cancel');

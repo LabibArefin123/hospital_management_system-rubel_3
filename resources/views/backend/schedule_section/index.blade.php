@@ -23,6 +23,7 @@
 @stop
 
 @section('content')
+    <link rel="stylesheet" href="{{ asset('css/backend/schedule_management/doctor_schedule/doctor_schedule_action.css') }}">
     <div class="row">
         @php
             $groupedSchedules = $schedules->groupBy('doctor_id');
@@ -111,24 +112,25 @@
                                                 </div>
                                             </div>
                                             <hr>
-                                            <div class="d-flex justify-content-between">
+                                            <div class="doctor-schedule-actions">
                                                 <a href="{{ route('doctor-schedules.show', $schedule->id) }}"
-                                                    class="btn btn-info btn-sm">
+                                                    class="btn btn-info btn-sm doctor-schedule-action-btn">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
 
                                                 <a href="{{ route('doctor-schedules.edit', $schedule->id) }}"
-                                                    class="btn btn-warning btn-sm">
+                                                    class="btn btn-warning btn-sm doctor-schedule-action-btn">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
 
                                                 <form action="{{ route('doctor-schedules.destroy', $schedule->id) }}"
-                                                    method="POST" class="d-inline">
+                                                    method="POST" class="doctor-schedule-action-form">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"
-                                                        onclick="return confirm('Delete schedule?')">
 
+                                                    <button type="submit"
+                                                        class="btn btn-danger btn-sm doctor-schedule-action-btn"
+                                                        onclick="return confirm('Delete schedule?')">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -149,4 +151,5 @@
             </div>
         @endforelse
     </div>
+    <div style="height:5px"></div>
 @stop
