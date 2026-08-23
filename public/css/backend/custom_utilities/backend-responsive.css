@@ -1,7 +1,6 @@
 /* =========================================================
    FILE: backend-responsive.css
 ========================================================= */
-
 @media (max-width: 768px) {
 
     .main-header.navbar {
@@ -15,10 +14,5 @@
 
     .navbar-right-time {
         font-size: 13px;
-    }
-
-    .brand-link .brand-image,
-    .brand-link .bidtrack-logo {
-        max-height: 42px;
     }
 }
