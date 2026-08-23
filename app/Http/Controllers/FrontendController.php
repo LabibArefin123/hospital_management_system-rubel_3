@@ -232,19 +232,12 @@ class FrontendController extends Controller
     {
         $request->validate([
             'type' => 'required|in:doctor,service',
-
             'name' => 'required|string|max:255',
-
             'age' => 'required|integer|min:1',
-
             'phone' => 'required|string|max:50',
-
             'gender' => 'required|in:Male,Female',
-
             'payment_method' => 'required|in:Online,Cash',
-
             'appointment_date' => 'required|date',
-
             'appointment_time' => 'required',
 
             'email' => $request->payment_method === 'Online'
@@ -261,36 +254,21 @@ class FrontendController extends Controller
 
         ], [
             'email.required' => 'Email is required for online payment.',
-
             'payment_method.required' => 'Please select a payment method.',
-
             'payment_method.in' => 'Invalid payment method selected.',
-
             'doctor_id.required' => 'Doctor is required.',
-
             'doctor_id.exists' => 'Selected doctor was not found.',
-
             'service_id.required' => 'Service is required.',
-
             'service_id.exists' => 'Selected service was not found.',
         ]);
 
 
         DB::beginTransaction();
-
         try {
-
             $appointment = null;
 
-
-            /*
-        |--------------------------------------------------------------------------
-        | DOCTOR APPOINTMENT
-        |--------------------------------------------------------------------------
-        */
-
+            /* DOCTOR APPOINTMENT  */
             if ($request->type === 'doctor') {
-
                 $doctor = Doctor::findOrFail($request->doctor_id);
 
 
@@ -313,9 +291,7 @@ class FrontendController extends Controller
 
 
                 if (!$doctorSchedule) {
-
                     DB::rollBack();
-
                     return back()
                         ->withInput()
                         ->withErrors([
@@ -323,72 +299,34 @@ class FrontendController extends Controller
                         ]);
                 }
 
-
-                /*
-            |--------------------------------------------------------------------------
-            | CREATE APPOINTMENT
-            |--------------------------------------------------------------------------
-            */
-
+                /*CREATE DOCTOR APPOINTMENT  */
                 $appointment = Appointment::create([
-
                     'type' => 'doctor',
-
                     'doctor_id' => $doctor->id,
-
                     'service_id' => null,
-
                     'name' => $request->name,
-
                     'age' => $request->age,
-
                     'phone' => $request->phone,
-
                     'gender' => $request->gender,
-
                     'email' => $request->email,
-
                     'appointment_date' => $request->appointment_date,
-
                     'appointment_time' => $request->appointment_time,
-
                     'payment_method' => $request->payment_method,
-
                     'amount' => $doctor->consultation_fee,
-
                     'status' => 'pending',
                 ]);
 
-
-                /*
-            |--------------------------------------------------------------------------
-            | MARK DOCTOR SCHEDULE AS BOOKED
-            |--------------------------------------------------------------------------
-            */
-
+                /* MARK DOCTOR SCHEDULE AS BOOKED */
                 $doctorSchedule->update([
                     'is_booked' => true,
                 ]);
             }
 
-
-            /*
-        |--------------------------------------------------------------------------
-        | SERVICE APPOINTMENT
-        |--------------------------------------------------------------------------
-        */
-
+            /*SERVICE APPOINTMENT */
             if ($request->type === 'service') {
-
                 $service = Service::findOrFail($request->service_id);
 
-
-                /*
-            |--------------------------------------------------------------------------
-            | FIND AVAILABLE SERVICE SCHEDULE
-            |--------------------------------------------------------------------------
-            */
-
+                /* FIND AVAILABLE SERVICE SCHEDULE  */
                 $serviceSchedule = ServiceSchedule::where('service_id', $service->id)
                     ->whereDate('date', $request->appointment_date)
                     ->whereTime('time', $request->appointment_time)
@@ -398,9 +336,7 @@ class FrontendController extends Controller
 
 
                 if (!$serviceSchedule) {
-
                     DB::rollBack();
-
                     return back()
                         ->withInput()
                         ->withErrors([
@@ -408,65 +344,32 @@ class FrontendController extends Controller
                         ]);
                 }
 
-
-                /*
-            |--------------------------------------------------------------------------
-            | CREATE APPOINTMENT
-            |--------------------------------------------------------------------------
-            */
-
+                /*CREATE SERVICE APPOINTMENT*/
                 $appointment = Appointment::create([
-
                     'type' => 'service',
-
                     'doctor_id' => null,
-
                     'service_id' => $service->id,
-
                     'name' => $request->name,
-
                     'age' => $request->age,
-
                     'phone' => $request->phone,
-
                     'gender' => $request->gender,
-
                     'email' => $request->email,
-
                     'appointment_date' => $request->appointment_date,
-
                     'appointment_time' => $request->appointment_time,
-
                     'payment_method' => $request->payment_method,
-
                     'amount' => $service->price,
-
                     'status' => 'pending',
                 ]);
 
-
-                /*
-            |--------------------------------------------------------------------------
-            | MARK SERVICE SCHEDULE AS BOOKED
-            |--------------------------------------------------------------------------
-            */
-
+                /* MARK SERVICE SCHEDULE AS BOOKED*/
                 $serviceSchedule->update([
                     'is_booked' => true,
                 ]);
             }
 
-
-            /*
-        |--------------------------------------------------------------------------
-        | SAFETY CHECK
-        |--------------------------------------------------------------------------
-        */
-
+            /* SAFETY CHECK  */
             if (!$appointment) {
-
                 DB::rollBack();
-
                 return back()
                     ->withInput()
                     ->withErrors([
@@ -475,38 +378,19 @@ class FrontendController extends Controller
             }
 
 
-            /*
-        |--------------------------------------------------------------------------
-        | COMMIT
-        |--------------------------------------------------------------------------
-        */
-
+            /* COMMIT  */
             DB::commit();
 
-
-            /*
-        |--------------------------------------------------------------------------
-        | ONLINE PAYMENT
-        |--------------------------------------------------------------------------
-        */
-
+            /* ONLINE PAYMENT   */
             if ($request->payment_method === 'Online') {
-
                 return redirect()
                     ->route('payment.page', [
                         'id' => $appointment->id
                     ]);
             }
 
-
-            /*
-        |--------------------------------------------------------------------------
-        | CASH - DOCTOR
-        |--------------------------------------------------------------------------
-        */
-
+            /* CASH - DOCTOR  */
             if ($appointment->type === 'doctor') {
-
                 return redirect()
                     ->route('doctor.show', $appointment->doctor_id)
                     ->with(
@@ -515,13 +399,7 @@ class FrontendController extends Controller
                     );
             }
 
-
-            /*
-        |--------------------------------------------------------------------------
-        | CASH - SERVICE
-        |--------------------------------------------------------------------------
-        */
-
+            /*CASH - SERVICE */
             return redirect()
                 ->route('service.show', $appointment->service_id)
                 ->with(

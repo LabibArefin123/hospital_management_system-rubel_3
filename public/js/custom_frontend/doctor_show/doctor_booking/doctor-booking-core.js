@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
     window.bookingElements.prevBtn = document.getElementById("prevSchedule");
     window.bookingElements.nextBtn = document.getElementById("nextSchedule");
     window.bookingElements.confirmBtn = document.getElementById("confirmBtn");
-    window.bookingElements.form = document.querySelector(
-        'form[action*="appointment"]',
+    window.bookingElements.form = document.getElementById(
+        "doctorAppointmentForm",
     );
     window.bookingElements.formDate = document.getElementById("formDate");
     window.bookingElements.formTime = document.getElementById("formTime");

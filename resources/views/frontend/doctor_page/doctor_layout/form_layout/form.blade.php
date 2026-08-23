@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('appointment.store') }}" id="appointmentForm">
+<form method="POST" action="{{ route('appointment.store') }}" id="doctorAppointmentForm">
     @csrf
     {{-- Hidden Fields --}}
     @include('frontend.doctor_page.doctor_layout.form_layout.partials.hidden_fields')

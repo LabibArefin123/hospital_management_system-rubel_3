@@ -74,10 +74,12 @@
             errors: @json($errors->all())
         };
     </script>
+
     {{-- End of SweetAlert2 notifications --}}
     <script>
         window.systemSearchUrl = @json(route('search.data'));
     </script>
+    
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     {{--  System Search Start --}}
@@ -112,7 +114,7 @@
 
     {{-- Service Booking Form Start --}}
     <script src="{{ asset('js/custom_frontend/service_page/show/service_booking/service-state.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/service_page/show/service_booking/service-summary.js') }}"></script>
+    {{-- <script src="{{ asset('js/custom_frontend/service_page/show/service_booking/service-summary.js') }}"></script> --}}
     <script src="{{ asset('js/custom_frontend/service_page/show/service_booking/service-booking-helpers.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/service_page/show/service_booking/service-booking-summary.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/service_page/show/service_booking/service-booking-schedule.js') }}"></script>

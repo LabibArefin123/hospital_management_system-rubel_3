@@ -1,7 +1,4 @@
-{{-- ==========================================================
-    VALIDATION ERRORS
-========================================================== --}}
-
+{{-- VALIDATION ERRORS--}}
 @if ($errors->any())
     <div class="service-booking-alert alert alert-danger">
         <ul class="mb-0">
