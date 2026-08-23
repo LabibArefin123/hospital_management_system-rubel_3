@@ -44,6 +44,11 @@
     @include('frontend.custom_layout.footer')
     <script src="{{ asset('js/custom_frontend/service_page/show/service-state.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/service_page/show/service-summary.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/service_page/show/service-booking.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_page/show/service-booking/service-booking-helpers.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_page/show/service-booking/service-booking-summary.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_page/show/service-booking/service-booking-schedule.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_page/show/service-booking/service-booking-payment.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_page/show/service-booking/service-booking-form.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_page/show/service-booking/service-booking-init.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/service_page/show/service_time_occupied.js') }}"></script>
 @endsection
