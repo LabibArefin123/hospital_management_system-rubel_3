@@ -3,9 +3,7 @@
         <label>Full Name *</label>
         <input type="text" name="name" id="name" value="{{ old('name') }}">
         @error('name')
-            <small class="text-danger">
-                {{ $message }}
-            </small>
+            <small class="text-danger">{{ $message }}</small>
         @enderror
     </div>
 
@@ -14,20 +12,16 @@
         <input type="number" name="age" id="age" value="{{ old('age') }}">
 
         @error('age')
-            <small class="text-danger">
-                {{ $message }}
-            </small>
+            <small class="text-danger">{{ $message }}</small>
         @enderror
     </div>
 
     <div>
         <label> Mobile Number *</label>
-        <input type="text" name="phone" id="phone" class="global-mobile-input"   value="{{ old('phone') }}">
+        <input type="text" name="phone" id="phone" class="global-mobile-input" value="{{ old('phone') }}">
 
         @error('phone')
-            <small class="text-danger">
-                {{ $message }}
-            </small>
+            <small class="text-danger">{{ $message }}</small>
         @enderror
     </div>
 

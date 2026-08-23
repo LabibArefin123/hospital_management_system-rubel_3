@@ -3,7 +3,6 @@
 @section('title', 'Admin Dashboard')
 
 @section('content')
-
     <div class="container-fluid">
         @include('backend.dashboard.custom_header.admin')
         {{-- Card Box section --}}

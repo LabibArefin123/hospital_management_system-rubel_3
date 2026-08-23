@@ -40,17 +40,7 @@
                          </span>
 
                      </h2>
-
-                     <p class="mb-0 text-light" style="font-size:15px; opacity:0.9;">
-
-                         <i class="fas fa-stethoscope me-2"></i>
-
-                         {{ $doctor->speciality ?? 'System Developer' }}
-
-                     </p>
-
                  </div>
-
              </div>
 
              <!-- RIGHT SIDE -->

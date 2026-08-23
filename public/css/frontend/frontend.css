@@ -63,6 +63,7 @@
 @import url("./doctor_page/doctor_information/profile_right.css");
 @import url("./doctor_page/doctor_information/about_doctor.css");
 @import url("./doctor_page/doctor_information/booking_section.css");
+
 /* ================= BOOKING TIME SECTION (DOCTOR INFORMATION PAGE) ================= */
 @import url("./doctor_page/doctor_information/booking_time_section/title.css");
 @import url("./doctor_page/doctor_information/booking_time_section/time_slots.css");
@@ -70,7 +71,7 @@
 @import url("./doctor_page/doctor_information/booking_time_section/schedule_layout.css");
 @import url("./doctor_page/doctor_information/booking_time_section/schedule_pagination.css");
 @import url("./doctor_page/doctor_information/booking_time_section/booking_responsive.css");
-@import url("./doctor_page/doctor_information/booking-time-occupied.css");
+
 @import url("./doctor_page/doctor_information/booking-patient-form.css");
 @import url("./doctor_page/doctor_information/booking-summary-payment.css");
 @import url("./doctor_page/doctor_information/responsive.css");
@@ -128,28 +129,6 @@
 @import url("./custom_layout/footer/footer-newsletter.css");
 @import url("./custom_layout/footer/footer-bottom.css");
 @import url("./custom_layout/footer/footer-responsive.css");
-
-@keyframes bounce {
-    0% {
-        transform: translateY(0);
-    }
-
-    30% {
-        transform: translateY(-10px);
-    }
-
-    50% {
-        transform: translateY(0px);
-    }
-
-    70% {
-        transform: translateY(-5px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
 
 /*navbar stick part */
 .sticky-header {
