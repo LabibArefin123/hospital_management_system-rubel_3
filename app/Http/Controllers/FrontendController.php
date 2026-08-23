@@ -7,10 +7,12 @@ use App\Models\SystemProblem;
 use Illuminate\Http\Request;
 use App\Models\Newsletter;
 use App\Models\Service;
+use App\Models\ServiceSchedule;
 use App\Models\Payment;
 use App\Models\Contact;
 use App\Models\User;
 use App\Models\Doctor;
+use App\Models\DoctorSchedule;
 use App\Models\Appointment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -92,53 +94,29 @@ class FrontendController extends Controller
             }
         ])->findOrFail($id);
 
-        /*
-    |--------------------------------------------------------------------------
-    | Old booking values
-    |--------------------------------------------------------------------------
-    */
-
+        /*Old booking values */
         $oldDate = old('appointment_date');
         $oldTime = old('appointment_time');
 
-        /*
-    |--------------------------------------------------------------------------
-    | Prepare schedules for Blade
-    |--------------------------------------------------------------------------
-    */
-
+        /* Prepare schedules for Blade */
         $preparedSchedules = $service->schedules
             ->groupBy(function ($schedule) use ($oldDate, $oldTime) {
                 return $schedule->date->format('Y-m-d');
             })
             ->map(function ($schedules, $date) use ($oldDate, $oldTime) {
-
                 $firstSchedule = $schedules->first();
 
                 return [
                     'date' => $date,
-
                     'day_name' => $firstSchedule->date->format('l'),
-
                     'formatted_date' => $firstSchedule->date->format('d M Y'),
-
                     'schedules' => $schedules
                         ->map(function ($schedule) use ($oldDate, $oldTime) {
-
                             $slotDate = $schedule->date->format('Y-m-d');
-
-                            $slotTime = \Carbon\Carbon::parse(
-                                $schedule->time
-                            )->format('H:i:s');
-
+                            $slotTime = \Carbon\Carbon::parse($schedule->time)->format('H:i:s');
                             $isOccupied = (bool) $schedule->is_booked;
 
-                            /*
-                        |--------------------------------------------------------------------------
-                        | Previous booking failed because slot was booked
-                        |--------------------------------------------------------------------------
-                        */
-
+                            /* Previous booking failed because slot was booked*/
                             if (
                                 $oldDate === $slotDate &&
                                 $oldTime === $slotTime &&
@@ -148,12 +126,7 @@ class FrontendController extends Controller
                                 $isOccupied = true;
                             }
 
-                            /*
-                        |--------------------------------------------------------------------------
-                        | Selected old slot
-                        |--------------------------------------------------------------------------
-                        */
-
+                            /*Selected old slot  */
                             $isSelected =
                                 !$isOccupied &&
                                 $oldDate === $slotDate &&
@@ -161,17 +134,13 @@ class FrontendController extends Controller
 
                             return [
                                 'id' => $schedule->id,
-
                                 'date' => $slotDate,
-
                                 'time' => $slotTime,
-
                                 'formatted_time' => \Carbon\Carbon::parse(
                                     $schedule->time
                                 )->format('h:i A'),
 
                                 'is_occupied' => $isOccupied,
-
                                 'is_selected' => $isSelected,
                             ];
                         })
@@ -180,12 +149,7 @@ class FrontendController extends Controller
             })
             ->values();
 
-        /*
-    |--------------------------------------------------------------------------
-    | 3 dates per page
-    |--------------------------------------------------------------------------
-    */
-
+        /*3 dates per page   */
         $schedulePages = $preparedSchedules->chunk(3)->values();
 
         return view(
@@ -268,96 +232,241 @@ class FrontendController extends Controller
     {
         $request->validate([
             'type' => 'required|in:doctor,service',
+
             'name' => 'required|string|max:255',
+
             'age' => 'required|integer|min:1',
+
             'phone' => 'required|string|max:50',
+
             'gender' => 'required|in:Male,Female',
+
             'payment_method' => 'required|in:Online,Cash',
+
             'appointment_date' => 'required|date',
+
             'appointment_time' => 'required',
+
             'email' => $request->payment_method === 'Online'
                 ? 'required|email'
                 : 'nullable|email',
+
             'doctor_id' => $request->type === 'doctor'
                 ? 'required|exists:doctors,id'
                 : 'nullable',
+
             'service_id' => $request->type === 'service'
                 ? 'required|exists:services,id'
                 : 'nullable',
+
         ], [
             'email.required' => 'Email is required for online payment.',
+
             'payment_method.required' => 'Please select a payment method.',
+
             'payment_method.in' => 'Invalid payment method selected.',
+
             'doctor_id.required' => 'Doctor is required.',
+
             'doctor_id.exists' => 'Selected doctor was not found.',
+
             'service_id.required' => 'Service is required.',
+
             'service_id.exists' => 'Selected service was not found.',
         ]);
+
 
         DB::beginTransaction();
 
         try {
+
             $appointment = null;
 
+
+            /*
+        |--------------------------------------------------------------------------
+        | DOCTOR APPOINTMENT
+        |--------------------------------------------------------------------------
+        */
+
             if ($request->type === 'doctor') {
+
                 $doctor = Doctor::findOrFail($request->doctor_id);
 
-                $slotBooked = Appointment::where('type', 'doctor')
-                    ->where('doctor_id', $doctor->id)
-                    ->whereDate('appointment_date', $request->appointment_date)
-                    ->whereTime('appointment_time', $request->appointment_time)
-                    ->exists();
 
-                if ($slotBooked) {
+                /*
+            |--------------------------------------------------------------------------
+            | FIND AVAILABLE DOCTOR SCHEDULE
+            |--------------------------------------------------------------------------
+            |
+            | lockForUpdate() prevents two users from booking the same
+            | schedule at exactly the same time.
+            |
+            */
+
+                $doctorSchedule = DoctorSchedule::where('doctor_id', $doctor->id)
+                    ->whereDate('date', $request->appointment_date)
+                    ->whereTime('time', $request->appointment_time)
+                    ->where('is_booked', false)
+                    ->lockForUpdate()
+                    ->first();
+
+
+                if (!$doctorSchedule) {
+
                     DB::rollBack();
 
                     return back()
                         ->withInput()
                         ->withErrors([
-                            'appointment_time' => 'This time slot is already booked.'
+                            'appointment_time' => 'This doctor time slot is not available or has already been booked.'
                         ]);
                 }
 
+
+                /*
+            |--------------------------------------------------------------------------
+            | CREATE APPOINTMENT
+            |--------------------------------------------------------------------------
+            */
+
                 $appointment = Appointment::create([
+
                     'type' => 'doctor',
+
                     'doctor_id' => $doctor->id,
+
                     'service_id' => null,
+
                     'name' => $request->name,
+
                     'age' => $request->age,
+
                     'phone' => $request->phone,
+
                     'gender' => $request->gender,
+
                     'email' => $request->email,
+
                     'appointment_date' => $request->appointment_date,
+
                     'appointment_time' => $request->appointment_time,
+
                     'payment_method' => $request->payment_method,
+
                     'amount' => $doctor->consultation_fee,
+
                     'status' => 'pending',
                 ]);
+
+
+                /*
+            |--------------------------------------------------------------------------
+            | MARK DOCTOR SCHEDULE AS BOOKED
+            |--------------------------------------------------------------------------
+            */
+
+                $doctorSchedule->update([
+                    'is_booked' => true,
+                ]);
             }
+
+
+            /*
+        |--------------------------------------------------------------------------
+        | SERVICE APPOINTMENT
+        |--------------------------------------------------------------------------
+        */
 
             if ($request->type === 'service') {
+
                 $service = Service::findOrFail($request->service_id);
 
+
+                /*
+            |--------------------------------------------------------------------------
+            | FIND AVAILABLE SERVICE SCHEDULE
+            |--------------------------------------------------------------------------
+            */
+
+                $serviceSchedule = ServiceSchedule::where('service_id', $service->id)
+                    ->whereDate('date', $request->appointment_date)
+                    ->whereTime('time', $request->appointment_time)
+                    ->where('is_booked', false)
+                    ->lockForUpdate()
+                    ->first();
+
+
+                if (!$serviceSchedule) {
+
+                    DB::rollBack();
+
+                    return back()
+                        ->withInput()
+                        ->withErrors([
+                            'appointment_time' => 'This service time slot is not available or has already been booked.'
+                        ]);
+                }
+
+
+                /*
+            |--------------------------------------------------------------------------
+            | CREATE APPOINTMENT
+            |--------------------------------------------------------------------------
+            */
+
                 $appointment = Appointment::create([
+
                     'type' => 'service',
+
                     'doctor_id' => null,
+
                     'service_id' => $service->id,
+
                     'name' => $request->name,
+
                     'age' => $request->age,
+
                     'phone' => $request->phone,
+
                     'gender' => $request->gender,
+
                     'email' => $request->email,
+
                     'appointment_date' => $request->appointment_date,
+
                     'appointment_time' => $request->appointment_time,
+
                     'payment_method' => $request->payment_method,
+
                     'amount' => $service->price,
+
                     'status' => 'pending',
+                ]);
+
+
+                /*
+            |--------------------------------------------------------------------------
+            | MARK SERVICE SCHEDULE AS BOOKED
+            |--------------------------------------------------------------------------
+            */
+
+                $serviceSchedule->update([
+                    'is_booked' => true,
                 ]);
             }
 
-            DB::commit();
+
+            /*
+        |--------------------------------------------------------------------------
+        | SAFETY CHECK
+        |--------------------------------------------------------------------------
+        */
 
             if (!$appointment) {
+
+                DB::rollBack();
+
                 return back()
                     ->withInput()
                     ->withErrors([
@@ -365,21 +474,62 @@ class FrontendController extends Controller
                     ]);
             }
 
+
+            /*
+        |--------------------------------------------------------------------------
+        | COMMIT
+        |--------------------------------------------------------------------------
+        */
+
+            DB::commit();
+
+
+            /*
+        |--------------------------------------------------------------------------
+        | ONLINE PAYMENT
+        |--------------------------------------------------------------------------
+        */
+
             if ($request->payment_method === 'Online') {
+
                 return redirect()
-                    ->route('payment.page', ['id' => $appointment->id]);
+                    ->route('payment.page', [
+                        'id' => $appointment->id
+                    ]);
             }
 
+
+            /*
+        |--------------------------------------------------------------------------
+        | CASH - DOCTOR
+        |--------------------------------------------------------------------------
+        */
+
             if ($appointment->type === 'doctor') {
+
                 return redirect()
                     ->route('doctor.show', $appointment->doctor_id)
-                    ->with('success', 'Doctor appointment booked successfully.');
+                    ->with(
+                        'success',
+                        'Doctor appointment booked successfully.'
+                    );
             }
+
+
+            /*
+        |--------------------------------------------------------------------------
+        | CASH - SERVICE
+        |--------------------------------------------------------------------------
+        */
 
             return redirect()
                 ->route('service.show', $appointment->service_id)
-                ->with('success', 'Service appointment booked successfully.');
+                ->with(
+                    'success',
+                    'Service appointment booked successfully.'
+                );
         } catch (\Exception $e) {
+
             DB::rollBack();
 
             return back()

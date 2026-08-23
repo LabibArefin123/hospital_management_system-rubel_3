@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use App\Models\Service;
 use App\Models\ServiceSchedule;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class ServiceScheduleController extends Controller
             ->get();
 
         return view(
-            'backend.service_schedule_section.index',
+            'backend.schedule_section.service_schedule_section.index',
             compact('schedules')
         );
     }
@@ -28,10 +29,10 @@ class ServiceScheduleController extends Controller
      */
     public function create()
     {
-        $services = Service::orderBy('name')->get();
+        $services = Service::orderBy('title')->get();
 
         return view(
-            'backend.service_schedule_section.create',
+            'backend.schedule_section.service_schedule_section.create',
             compact('services')
         );
     }
@@ -68,7 +69,7 @@ class ServiceScheduleController extends Controller
             ->findOrFail($id);
 
         return view(
-            'backend.service_schedule_section.show',
+            'backend.schedule_section.service_schedule_section.show',
             compact('schedule')
         );
     }
@@ -79,11 +80,10 @@ class ServiceScheduleController extends Controller
     public function edit($id)
     {
         $schedule = ServiceSchedule::findOrFail($id);
-
-        $services = Service::orderBy('name')->get();
+        $services = Service::orderBy('title')->get();
 
         return view(
-            'backend.service_schedule_section.edit',
+            'backend.schedule_section.service_schedule_section.edit',
             compact('schedule', 'services')
         );
     }

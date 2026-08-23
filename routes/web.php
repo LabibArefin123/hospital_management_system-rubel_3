@@ -76,9 +76,9 @@ Route::group(['middleware' => ['auth', 'permission']], function () {
     Route::get('/doctor-dashboard', [DashboardController::class, 'doctor_dashboard'])->name('dashboard.doctor');
 
     //User Profile Routes
-    Route::get('/user_profile_show', [ProfileController::class, 'user_profile_show'])->name('user_profile_show');
-    Route::get('/user_profile_edit', [ProfileController::class, 'user_profile_edit'])->name('user_profile_edit');
-    Route::put('/user_profile_edit', [ProfileController::class, 'user_profile_update'])->name('user_profile_update');
+    Route::get('/user_profile_show', [ProfileController::class, 'user_profile_show'])->name('system_users.user_profile_show');
+    Route::get('/user_profile_edit', [ProfileController::class, 'user_profile_edit'])->name('system_users.user_profile_edit');
+    Route::put('/user_profile_edit', [ProfileController::class, 'user_profile_update'])->name('system_users.user_profile_update');
 
     //Doctor Menu
     Route::resource('doctors', DoctorController::class);

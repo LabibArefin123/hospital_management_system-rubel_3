@@ -36,12 +36,6 @@
         </div>
         @include('backend.dashboard.partials.status_modal')
         {{-- PAGINATION --}}
-        <div class="mt-4 d-flex justify-content-center">
-
-            {{ $appointments->links() }}
-
-        </div>
-
     </div>
     <script src="{{ asset('js/custom_backend/dashboard_page/admin/appointment_status.js') }}"></script>
     <script type="module" src="{{ asset('js/custom_backend/dashboard_page/admin/dashboard-init.js') }}"></script>

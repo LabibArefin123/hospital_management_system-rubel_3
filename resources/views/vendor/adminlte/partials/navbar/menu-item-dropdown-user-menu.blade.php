@@ -1,7 +1,7 @@
 @php
     $logout_url = View::getSection('logout_url') ?? config('adminlte.logout_url', 'logout');
     // Default to your 'profile' route instead of logout
-    $profile_url = View::getSection('profile_url') ?? 'user_profile_show';
+    $profile_url = View::getSection('profile_url') ?? 'system_users.user_profile_show';
 @endphp
 
 @if (config('adminlte.usermenu_profile_url', false))

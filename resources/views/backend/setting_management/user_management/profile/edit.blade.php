@@ -29,7 +29,7 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{ route('user_profile_update') }}" method="POST" enctype="multipart/form-data"
+            <form action="{{ route('system_users.user_profile_update') }}" method="POST" enctype="multipart/form-data"
                 id="profileUpdateForm">
                 @csrf
                 @method('PUT')
@@ -128,7 +128,7 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Update Profile</button>
-                <div class="mt-4" style="height:50px;"></div>
+                <div class="mt-1" style="height:10px;"></div>
             </form>
         </div>
 

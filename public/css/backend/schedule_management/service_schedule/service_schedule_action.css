@@ -1,0 +1,61 @@
+/* =========================================
+   SERVICE SCHEDULE ACTION BUTTONS
+========================================= */
+
+.service-schedule-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+}
+
+/* Individual action wrapper */
+.service-schedule-action-form {
+    display: flex;
+    flex: 1;
+    margin: 0;
+}
+
+/* All action buttons */
+.service-schedule-action-btn {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 32px;
+    padding: 5px 8px;
+
+    border-radius: 5px;
+}
+
+/* Links should behave exactly like buttons */
+.service-schedule-actions > .service-schedule-action-btn {
+    flex: 1;
+}
+
+/* Keep icons centered */
+.service-schedule-action-btn i {
+    margin: 0;
+    line-height: 1;
+}
+
+/* Optional: slightly better hover effect */
+.service-schedule-action-btn {
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.service-schedule-action-btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Prevent form from creating alignment issues */
+.service-schedule-action-form button {
+    margin: 0;
+}

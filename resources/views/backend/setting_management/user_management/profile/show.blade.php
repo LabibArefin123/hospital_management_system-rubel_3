@@ -5,7 +5,7 @@
 @section('content_header')
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1>User Profile</h1>
-        <a href="{{ route('user_profile_edit') }}" class="btn btn-warning" id="editProfileBtn">
+        <a href="{{ route('system_users.user_profile_edit') }}" class="btn btn-warning" id="editProfileBtn">
             <i class="fas fa-edit me-1"></i> Edit Profile
         </a>
     </div>
@@ -54,42 +54,8 @@
                 cancelButtonText: 'No, cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "{{ route('user_profile_edit') }}";
+                    window.location.href = "{{ route('system_users.user_profile_edit') }}";
                 }
-            });
-        });
-
-        // Update Password Confirmation
-        document.getElementById('updatePasswordBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'Do you want to update your password?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, update it!',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('updatePasswordForm').submit();
-                }
-            });
-        });
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.toggle-password').forEach(toggle => {
-                toggle.addEventListener('click', function() {
-                    const target = document.querySelector(this.dataset.target);
-                    const icon = this.querySelector('i');
-                    if (target.type === 'password') {
-                        target.type = 'text';
-                        icon.classList.remove('fa-eye');
-                        icon.classList.add('fa-eye-slash');
-                    } else {
-                        target.type = 'password';
-                        icon.classList.remove('fa-eye-slash');
-                        icon.classList.add('fa-eye');
-                    }
-                });
             });
         });
     </script>

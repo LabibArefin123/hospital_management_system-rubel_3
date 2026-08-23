@@ -373,27 +373,6 @@ return [
                     'can' => 'appointments.index',
                     'icon' => 'fas fa-list-ul',
                 ],
-
-                // [
-                //     'text' => 'Pending Appointments',
-                //     'route' => 'appointments.pending',
-                //     'can' => 'appointments.index',
-                //     'icon' => 'fas fa-clock',
-                // ],
-
-                // [
-                //     'text' => 'Confirmed Appointments',
-                //     'route' => 'appointments.confirmed',
-                //     'can' => 'appointments.index',
-                //     'icon' => 'fas fa-check-circle',
-                // ],
-
-                // [
-                //     'text' => 'Cancelled Appointments',
-                //     'route' => 'appointments.cancelled',
-                //     'can' => 'appointments.index',
-                //     'icon' => 'fas fa-times-circle',
-                // ],
             ],
         ],
 
@@ -482,6 +461,13 @@ return [
                     'route' => 'services.create',
                     'can' => 'services.create',
                     'icon' => 'fas fa-plus-circle',
+                ],
+
+                [
+                    'text'  => 'Service Schedule',
+                    'route' => 'service-schedules.index',
+                    'can'   => 'service-schedules.index',
+                    'icon'  => 'fas fa-calendar-alt',
                 ],
             ],
         ],
