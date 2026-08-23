@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    
     <link rel="stylesheet" href="{{ asset('css/frontend/frontend.css') }}">
     {{-- Global system search --}}
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search.css') }}">
@@ -44,15 +44,10 @@
         <div id="scrollProgress"
             style="position: fixed; top: 0; left: 0; width: 0%; height: 4px; background-color: #ff6b6b; z-index: 9999; transition: width 0.25s ease;">
         </div>
-        {{-- @if (auth()->check())
-            <span style="color:green">LOGGED IN</span>
-        @else
-            <span style="color:red">NOT LOGGED IN</span>
-        @endif --}}
+    
         <main class="">
             @yield('content')
         </main>
-
     </div>
     <!-- Bootstrap JS + dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
