@@ -7,7 +7,7 @@
     @include('frontend.custom_layout.header')
 
     <!-- INTRO -->
-    <section class="service-intro">
+    <section class="service-page-intro">
         <div class="container text-center">
             <h2>Our Diagnostic Services</h2>
             <p>Safe, accurate & reliable testing.</p>
@@ -15,30 +15,22 @@
     </section>
 
     <!-- SERVICE GRID -->
-    <section class="service-section">
+    <section class="service-page-layout-section">
         <div class="container">
-            <div class="service-grid">
-
+            <div class="service-page-layout-grid">
                 @forelse ($services as $service)
-                    <div class="service-card">
-
-                        <div class="service-content">
-                            <div class="service-icon">
+                    <div class="service-page-layout-card">
+                        <div class="service-page-layout-content">
+                            <div class="service-page-layout-image">
                                 <img src="{{ asset($service->image) }}" alt="{{ $service->title }}">
                             </div>
-
                             <h5>{{ $service->title }}</h5>
                         </div>
-
-                        <a href="{{ route('service.show', $service->id) }}" class="btn-book">
-                            Book Now
-                        </a>
-
+                        <a href="{{ route('service.show', $service->id) }}" class="btn-book"> Book Now </a>
                     </div>
                 @empty
                     <p class="text-center w-100">No services found.</p>
                 @endforelse
-
             </div>
         </div>
     </section>

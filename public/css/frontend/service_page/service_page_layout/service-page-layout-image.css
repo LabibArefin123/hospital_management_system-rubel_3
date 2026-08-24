@@ -1,0 +1,32 @@
+/* ==================================================
+SERVICE PAGE LAYOUT - IMAGE
+================================================== */
+
+.service-page-layout-image {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.service-page-layout-image img {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    display: block;
+}
+
+@media (max-width: 575px) {
+    .service-page-layout-image {
+        width: 250px;
+        height: 250px;
+    }
+
+    .service-page-layout-image img {
+        width: 250px;
+        height: 250px;
+    }
+}

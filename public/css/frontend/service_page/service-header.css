@@ -1,14 +1,64 @@
-/* ==================================================
-   SERVICE HEADER
-================================================== */
+/* =========================================================
+SERVICE PAGE INTRO - BASE
+========================================================= */
 
-.service-intro h2 {
-    font-size: 34px;
-    font-weight: 700;
-    color: #14532d;
+.service-page-intro {
+    position: relative;
+    padding: 55px 20px 50px;
+    background: linear-gradient(135deg, #f4fbfd 0%, #ffffff 55%, #f7fbff 100%);
+    border-bottom: 1px solid #edf2f5;
+    overflow: hidden;
 }
 
-.service-intro p {
-    color: #6b7280;
-    margin-top: 8px;
+/* =========================================================
+DECORATIVE BACKGROUND
+========================================================= */
+
+.service-page-intro::before {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    top: -110px;
+    right: 8%;
+    border-radius: 50%;
+    background: rgba(0, 160, 214, 0.06);
+}
+
+.service-page-intro::after {
+    content: "";
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    bottom: -90px;
+    left: 7%;
+    border-radius: 50%;
+    background: rgba(0, 160, 214, 0.04);
+}
+
+/* =========================================================
+CONTAINER
+========================================================= */
+
+.service-page-intro .container {
+    position: relative;
+    z-index: 1;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+/* =========================================================
+CONTENT
+========================================================= */
+
+.service-page-intro h2 {
+    margin-bottom: 10px;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.service-page-intro p {
+    margin: 0;
+    font-size: 17px;
+    color: #6c757d;
 }
