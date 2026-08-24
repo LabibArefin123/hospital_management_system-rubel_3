@@ -31,6 +31,8 @@
     {{-- Global system search --}}
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search/system_search.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search/system_search_results.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/system_search/system_search_common.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/system_search/system_search_doctor.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search/system_search_appointment.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search/system_search_page_result.css') }}">
     {{-- Dedicated search page --}}

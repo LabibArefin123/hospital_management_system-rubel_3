@@ -1,0 +1,22 @@
+/* =========================================
+   SYSTEM SEARCH - COMMON
+========================================= */
+
+.system-search-results,
+#systemSearchResults,
+#systemSearchPageResults {
+    padding: 6px;
+}
+
+.system-search-result-item {
+    position: relative;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+#systemSearchResults .system-search-result-item:last-child,
+#systemSearchPageResults .system-search-result-item:last-child {
+    margin-bottom: 0;
+}

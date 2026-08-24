@@ -474,27 +474,7 @@
     color: #ccc;
 }
 
-/* ============================================================
-   SEARCH INTRO
-============================================================ */
 
-.doctor-intro {
-    padding: 55px 0 45px;
-}
-
-.doctor-intro h2 {
-    font-weight: 700;
-
-    color: #222;
-
-    margin-bottom: 8px;
-}
-
-.doctor-intro p {
-    color: #777;
-
-    margin-bottom: 0;
-}
 
 /* ============================================================
    RESPONSIVE

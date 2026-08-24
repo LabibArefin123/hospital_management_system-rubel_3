@@ -1,0 +1,40 @@
+/* =========================================================
+   DOCTOR PAGE INTRO - TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+    .doctor-page-intro {
+        padding: 45px 18px 42px;
+    }
+
+    /* -----------------------------------------
+       HEADING
+    ----------------------------------------- */
+
+    .doctor-page-intro h2 {
+        font-size: 29px;
+    }
+
+    /* -----------------------------------------
+       SUBTITLE
+    ----------------------------------------- */
+
+    .doctor-page-intro .doctor-page-intro-subtitle {
+        margin-bottom: 16px;
+        font-size: 14px;
+    }
+
+    /* -----------------------------------------
+       SEARCH
+    ----------------------------------------- */
+
+    .doctor-page-search-wrapper {
+        max-width: 560px;
+    }
+
+    .doctor-page-search-input {
+        height: 50px;
+        padding: 0 17px;
+        font-size: 13px;
+    }
+}

@@ -1,0 +1,48 @@
+/* =========================================================
+   DOCTOR PAGE INTRO - BASE
+========================================================= */
+
+.doctor-page-intro {
+    position: relative;
+    padding: 55px 20px 50px;
+    background: linear-gradient(135deg, #f4fbfd 0%, #ffffff 55%, #f7fbff 100%);
+    border-bottom: 1px solid #edf2f5;
+    overflow: hidden;
+}
+
+/* =========================================================
+   DECORATIVE BACKGROUND
+========================================================= */
+
+.doctor-page-intro::before {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    top: -110px;
+    right: 8%;
+    border-radius: 50%;
+    background: rgba(0, 160, 214, 0.06);
+}
+
+.doctor-page-intro::after {
+    content: "";
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    bottom: -90px;
+    left: 7%;
+    border-radius: 50%;
+    background: rgba(0, 160, 214, 0.04);
+}
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.doctor-page-intro .container {
+    position: relative;
+    z-index: 1;
+    max-width: 850px;
+    margin: 0 auto;
+}

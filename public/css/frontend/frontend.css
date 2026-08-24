@@ -50,9 +50,14 @@
 @import url("./welcome_page/doctor_section/doctor-responsive.css");
 
 /* ================= DOCTOR PAGE ================= */
-
+/* ================= START OF HEADER ================= */
+@import url("./doctor_page/header_part/doctor-page-intro-base.css");
+@import url("./doctor_page/header_part/doctor-page-intro-heading.css");
+@import url("./doctor_page/header_part/doctor-page-intro-search.css");
+@import url("./doctor_page/header_part/doctor-page-intro-responsive.css");
+@import url("./doctor_page/header_part/doctor-page-intro-mobile.css");
+/* ================= END OF HEADER ================= */
 @import url("./doctor_page/doctor-layout.css");
-@import url("./doctor_page/doctor-header.css");
 @import url("./doctor_page/doctor-card.css");
 @import url("./doctor_page/doctor-button.css");
 @import url("./doctor_page/doctor-responsive.css");

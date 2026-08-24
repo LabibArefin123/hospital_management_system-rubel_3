@@ -7,53 +7,95 @@
     @include('frontend.custom_layout.header')
 
     <!-- TRANSPARENT INTRO -->
-    <section class="doctor-intro ">
+    <section class="doctor-page-intro">
         <div class="container text-center">
+
             <h2>Our Medical Experts</h2>
-            <p>Find your ideal doctor by name or specialization</p>
-            <input type="text" id="doctorSearch" placeholder="Search doctor or specialization...">
+
+            <p class="doctor-page-intro-subtitle">
+                Find your ideal doctor by name or specialization
+            </p>
+
+            <div class="doctor-page-search-wrapper">
+                <input type="text" id="doctorSearch" class="doctor-page-search-input"
+                    placeholder="Search doctor or specialization..." autocomplete="off">
+            </div>
+
         </div>
     </section>
 
     <!-- DOCTOR GRID -->
     <section class="doctor-section py-5">
         <div class="container">
+
             <div class="doctor-grid" id="doctorGrid">
+
                 @forelse($doctors as $doctor)
                     <div class="doctor-card">
+
                         <div class="doctor-img">
                             <img src="{{ asset($doctor->image ? $doctor->image : 'uploads/images/default.jpg') }}"
                                 alt="{{ $doctor->name }}">
                         </div>
 
                         <h5>{{ $doctor->name }}</h5>
+
                         <p>{{ $doctor->speciality }}</p>
-                        <span>{{ $doctor->experience_years }} Years Experience</span>
+
+                        <span>
+                            {{ $doctor->experience_years }} Years Experience
+                        </span>
 
                         <a href="{{ route('doctor.show', $doctor->id) }}" class="btn-book">
                             Book Now
                         </a>
+
                     </div>
+
                 @empty
-                    <p class="text-center w-100">No doctors found.</p>
+
+                    <p class="text-center w-100">
+                        No doctors found.
+                    </p>
                 @endforelse
 
             </div>
+
         </div>
     </section>
 
     @include('frontend.custom_layout.footer')
-
     {{-- LIVE SEARCH SCRIPT --}}
     <script>
-        document.getElementById('doctorSearch').addEventListener('keyup', function() {
-            let value = this.value.toLowerCase();
-            let cards = document.querySelectorAll('.doctor-card');
+        document.addEventListener('DOMContentLoaded', function() {
 
-            cards.forEach(card => {
-                let text = card.innerText.toLowerCase();
-                card.style.display = text.includes(value) ? 'block' : 'none';
+            const doctorSearch = document.getElementById('doctorSearch');
+            const doctorGrid = document.getElementById('doctorGrid');
+
+            if (!doctorSearch || !doctorGrid) {
+                return;
+            }
+
+            const doctorCards = doctorGrid.querySelectorAll('.doctor-card');
+
+            doctorSearch.addEventListener('input', function() {
+
+                const value = this.value.trim().toLowerCase();
+
+                doctorCards.forEach(function(card) {
+
+                    const text = card.innerText.toLowerCase();
+
+                    if (text.includes(value)) {
+                        card.classList.remove('doctor-card-hidden');
+                    } else {
+                        card.classList.add('doctor-card-hidden');
+                    }
+
+                });
+
             });
+
         });
     </script>
 @endsection

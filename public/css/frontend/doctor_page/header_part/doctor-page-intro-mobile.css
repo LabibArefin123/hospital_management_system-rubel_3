@@ -1,0 +1,83 @@
+/* =========================================================
+   DOCTOR PAGE INTRO - MOBILE
+========================================================= */
+
+@media (max-width: 576px) {
+    .doctor-page-intro {
+        padding: 38px 15px 36px;
+    }
+
+    /* -----------------------------------------
+       DECORATIVE BACKGROUND
+    ----------------------------------------- */
+
+    .doctor-page-intro::before {
+        width: 150px;
+        height: 150px;
+        top: -75px;
+        right: -45px;
+    }
+
+    .doctor-page-intro::after {
+        width: 110px;
+        height: 110px;
+        bottom: -60px;
+        left: -35px;
+    }
+
+    /* -----------------------------------------
+       HEADING
+    ----------------------------------------- */
+
+    .doctor-page-intro h2 {
+        margin-bottom: 7px;
+        font-size: 25px;
+        letter-spacing: -0.2px;
+    }
+
+    /* -----------------------------------------
+       SUBTITLE
+    ----------------------------------------- */
+
+    .doctor-page-intro .doctor-page-intro-subtitle {
+        max-width: 330px;
+        margin-bottom: 16px;
+        font-size: 13px;
+        line-height: 1.55;
+    }
+
+    /* -----------------------------------------
+       SEARCH
+    ----------------------------------------- */
+
+    .doctor-page-search-input {
+        height: 48px;
+        padding: 0 15px;
+        border-radius: 10px;
+        font-size: 13px;
+    }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 375px) {
+    .doctor-page-intro {
+        padding: 32px 12px 30px;
+    }
+
+    .doctor-page-intro h2 {
+        font-size: 22px;
+    }
+
+    .doctor-page-intro .doctor-page-intro-subtitle {
+        font-size: 12px;
+    }
+
+    .doctor-page-search-input {
+        height: 46px;
+        padding: 0 13px;
+        font-size: 12px;
+    }
+}

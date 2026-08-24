@@ -1,3 +1,7 @@
+/* =========================================
+   SYSTEM SEARCH - APPOINTMENT
+========================================= */
+
 .system-search-result-item[data-result-type="appointment"] {
     position: relative;
     display: block;
@@ -11,6 +15,7 @@
     transition: all 0.2s ease;
     overflow: hidden;
 }
+
 .system-search-result-item[data-result-type="appointment"]::before {
     content: "";
     position: absolute;
@@ -21,16 +26,19 @@
     background: #00a0d6;
     opacity: 0.8;
 }
+
 .system-search-result-item[data-result-type="appointment"]:hover {
     border-color: #cfeaf4;
     box-shadow: 0 7px 20px rgba(15, 23, 42, 0.09);
     transform: translateY(-1px);
 }
+
 .system-search-result-item[data-result-type="appointment"]
     .system-search-result-content {
     display: block;
     min-width: 0;
 }
+
 .system-search-result-item[data-result-type="appointment"]
     .system-search-result-name {
     display: block;
@@ -44,6 +52,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .system-search-result-item[data-result-type="appointment"]
     .system-search-result-type {
     display: inline-flex;
@@ -57,6 +66,7 @@
     text-transform: uppercase;
     color: #00a0d6;
 }
+
 .system-search-result-item[data-result-type="appointment"]
     .system-search-result-type::before {
     content: "";
@@ -65,6 +75,7 @@
     border-radius: 50%;
     background: #00a0d6;
 }
+
 .system-search-result-item[data-result-type="appointment"]
     .system-search-result-meta {
     display: flex;
@@ -75,6 +86,7 @@
     padding-top: 10px;
     border-top: 1px solid #f0f2f5;
 }
+
 .system-search-result-item[data-result-type="appointment"]
     .system-search-result-date,
 .system-search-result-item[data-result-type="appointment"]
@@ -90,6 +102,7 @@
     font-weight: 600;
     color: #596579;
 }
+
 .system-search-result-item[data-result-type="appointment"]
     .system-search-result-date
     i,
@@ -99,6 +112,7 @@
     font-size: 11px;
     color: #00a0d6;
 }
+
 .system-search-result-item[data-result-type="appointment"]
     .system-search-result-status {
     display: inline-flex;
@@ -114,6 +128,7 @@
     text-transform: uppercase;
     white-space: nowrap;
 }
+
 .system-search-result-item[data-result-type="appointment"]
     .system-search-result-status::before {
     content: "";
@@ -123,32 +138,24 @@
     border-radius: 50%;
     background: currentColor;
 }
+
 .system-search-result-item[data-result-type="appointment"]
     .system-search-result-status.confirmed {
     color: #15803d;
     background: #ecfdf3;
     border: 1px solid #c8f0d7;
 }
+
 .system-search-result-item[data-result-type="appointment"]
     .system-search-result-status.pending {
     color: #b45309;
     background: #fff8e8;
     border: 1px solid #f7dfaa;
 }
+
 .system-search-result-item[data-result-type="appointment"]
     .system-search-result-status.cancelled {
     color: #dc2626;
     background: #fff1f2;
     border: 1px solid #fecdd3;
-}
-.system-search-results,
-#systemSearchResults,
-#systemSearchPageResults {
-    padding: 6px;
-}
-#systemSearchResults
-    .system-search-result-item[data-result-type="appointment"]:last-child,
-#systemSearchPageResults
-    .system-search-result-item[data-result-type="appointment"]:last-child {
-    margin-bottom: 0;
 }
