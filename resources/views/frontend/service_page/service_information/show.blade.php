@@ -40,4 +40,12 @@
         </div>
     </section>
     @include('frontend.custom_layout.footer')
+    {{--  Service Slot Part in Service Show Page Start --}}
+    <script src="{{ asset('js/custom_frontend/service_show/service_time_slot_occupied/service_time_occupied_mark.js') }}">
+    </script>
+    <script src="{{ asset('js/custom_frontend/service_show/service_time_slot_occupied/service_time_occupied_detect.js') }}">
+    </script>
+    <script src="{{ asset('js/custom_frontend/service_show/service_time_slot_occupied/service_time_occupied_init.js') }}">
+    </script>
+    {{--  Service Slot Part in Service Show Page End --}}
 @endsection

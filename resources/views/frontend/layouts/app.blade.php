@@ -107,13 +107,6 @@
     <script src="{{ asset('js/custom_frontend/doctor_show/doctor_booking/doctor-booking-validation.js') }}"></script>
     {{--  Doctor Booking Form End --}}
 
-    {{--  Doctor Slot Part in Doctor Show Page Start --}}
-    <script src="{{ asset('js/custom_frontend/doctor_show/doctor_slot_error.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/doctor_show/doctor_slot_form_data.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/doctor_show/doctor_slot_mark_occupied.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/doctor_show/doctor_time_slot_occupied.js') }}"></script>
-    {{--  Doctor Slot Part in Doctor Show Page End --}}
-
     {{-- Service Booking Form Start --}}
     <script src="{{ asset('js/custom_frontend/service_show/service_booking/service-state.js') }}"></script>
     {{-- <script src="{{ asset('js/custom_frontend/service_show/service_booking/service-summary.js') }}"></script> --}}
@@ -125,19 +118,8 @@
     <script src="{{ asset('js/custom_frontend/service_show/service_booking/service-booking-init.js') }}"></script>
     {{-- Service Booking Form End --}}
 
-    {{--  Service Slot Part in Service Show Page Start --}}
-    <script
-        src="{{ asset('js/custom_frontend/service_show/service_time_slot_occupied/service_time_occupied_mark.js') }}">
-    </script>
-    <script
-        src="{{ asset('js/custom_frontend/service_show/service_time_slot_occupied/service_time_occupied_detect.js') }}">
-    </script>
-    <script
-        src="{{ asset('js/custom_frontend/service_show/service_time_slot_occupied/service_time_occupied_init.js') }}">
-    </script>
-    {{--  Service Slot Part in Service Show Page End --}}
-
     <script src="{{ asset('js/custom_frontend/payment_page/payment_toggle.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/payment_page/payment_page.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/phone_validation.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/password_toggle.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/sweet_alert.js') }}"></script>

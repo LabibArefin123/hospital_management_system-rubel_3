@@ -91,7 +91,7 @@
                                 <i class="fas fa-receipt"></i>
 
                                 <input type="text" id="transaction_id" name="transaction_id" value="{{ $transactionId }}"
-                                    placeholder="Enter your transaction ID" autocomplete="off" required readonly>
+                                    placeholder="Enter your transaction ID" autocomplete="off" readonly>
                             </div>
 
                             @error('transaction_id')
@@ -117,7 +117,7 @@
 
                                 <input type="text" id="payment_reference" name="payment_reference"
                                     value="{{ old('payment_reference') }}" placeholder="Enter your payment reference"
-                                    autocomplete="off" required>
+                                    autocomplete="off">
                             </div>
 
                             @error('payment_reference')
