@@ -1,4 +1,17 @@
 /*  BRAND / LEFT SIDE */
+.brand-content {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(18px);
+    border-radius: 34px;
+    padding: 55px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .brand-main {
     text-align: center;
 }

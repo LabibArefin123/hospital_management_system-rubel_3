@@ -1,25 +1,23 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/login-page-main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/login-page-layout.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/login-page-glass.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/form-actions.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/form-brand.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/form_input/form-input-base.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/form_input/form-input-field.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/form_input/form-input-password.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/form_input/form-input-error.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/form_input/form-input-responsive.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/form-logo.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/form-login-header.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/login-page-animation.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/login-page-responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/shared_layout/login-page-main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/shared_layout/login-page-layout.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/shared_layout/login-page-glass.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/shared_layout/login-page-animation.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/shared_layout/login-page-responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/left_part/brand_part/form-brand.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/left_part/brand_part/form-logo.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/right_part/form_box/form-login-header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/right_part/form_box/form-actions.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/right_part/form_input/form-input-field.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/right_part/form_input/form-input-password.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/right_part/form_input/form-input-error.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/right_part/form_input/form-input-base.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/right_part/form_input/form-input-responsive.css') }}">
 
     <div class="login-page">
-
         <div class="bg-overlay"></div>
-
         <div class="login-container">
             <!-- LEFT SIDE -->
             <div class="brand-side">
@@ -57,13 +55,10 @@
 
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
                         <div class="input-group-custom">
                             <label>Email or Username</label>
-
                             <div class="input-wrapper">
                                 <i class="fas fa-user"></i>
-
                                 <input type="text" name="login" placeholder="Enter your email or username"
                                     value="{{ old('login') }}">
                             </div>
@@ -77,12 +72,9 @@
 
                         <div class="input-group-custom">
                             <label>Password</label>
-
                             <div class="input-wrapper password-wrapper">
                                 <i class="fas fa-lock"></i>
-
                                 <input type="password" name="password" id="loginPassword" placeholder="Enter your password">
-
                                 <button type="button" class="password-toggle" id="passwordToggle"
                                     aria-label="Show password">
                                     <i class="fas fa-eye"></i>
