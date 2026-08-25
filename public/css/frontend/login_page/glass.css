@@ -1,19 +1,11 @@
 .brand-content {
     width: 100%;
-
     background: rgba(255, 255, 255, 0.10);
-
     backdrop-filter: blur(18px);
-
     border-radius: 34px;
-
     padding: 55px;
-
-    box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.15);
-
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
     border: 1px solid rgba(255,255,255,0.12);
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,22 +13,14 @@
 
 .login-card {
     width: 100%;
-
     background: rgba(255,255,255,0.96);
-
     border-radius: 34px;
-
     padding: 55px;
-
-    box-shadow:
-        0 20px 60px rgba(0,0,0,0.10);
-
+    box-shadow:0 20px 60px rgba(0,0,0,0.10);
     border: 1px solid rgba(255,255,255,0.7);
-
     display: flex;
     flex-direction: column;
     justify-content: center;
-
     position: relative;
     overflow: hidden;
 }
@@ -44,32 +28,22 @@
 /* FLOATING SHAPE */
 .login-card::before {
     content: "";
-
     position: absolute;
-
     width: 220px;
     height: 220px;
-
     background: rgba(13,110,253,0.05);
-
     border-radius: 50%;
-
     top: -80px;
     right: -80px;
 }
 
 .login-card::after {
     content: "";
-
     position: absolute;
-
     width: 160px;
     height: 160px;
-
     background: rgba(0,180,216,0.05);
-
     border-radius: 50%;
-
     bottom: -60px;
     left: -60px;
 }

@@ -1,0 +1,9 @@
+/* VALIDATION ERROR */
+.error-text {
+    display: block;
+    margin-top: 7px;
+    padding-left: 3px;
+    color: #dc3545;
+    font-size: 13px;
+    font-weight: 500;
+}

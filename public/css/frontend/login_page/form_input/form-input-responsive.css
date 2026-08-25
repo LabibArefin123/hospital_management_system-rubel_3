@@ -1,0 +1,30 @@
+/* FORM INPUT RESPONSIVE*/
+@media (max-width: 576px) {
+    /* INPUT GROUP */
+    .input-group-custom {
+        margin-bottom: 20px;
+    }
+
+    /* INPUT FIELD*/
+    .input-wrapper input {
+        height: 54px;
+        border-radius: 16px;
+        padding-left: 48px;
+        font-size: 14px;
+    }
+
+    /* PASSWORD INPUT */
+    .password-wrapper input {
+        padding-right: 52px;
+    }
+
+    /*  LEFT ICON */
+    .input-wrapper > i:first-child {
+        left: 16px;
+    }
+
+    /* PASSWORD TOGGLE */
+    .password-toggle {
+        right: 14px;
+    }
+}

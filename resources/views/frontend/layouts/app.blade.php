@@ -139,6 +139,7 @@
 
     <script src="{{ asset('js/custom_frontend/payment_page/payment_toggle.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/phone_validation.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/password_toggle.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/sweet_alert.js') }}"></script>
 </body>
 
