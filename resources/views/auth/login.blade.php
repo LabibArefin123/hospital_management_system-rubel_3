@@ -1,9 +1,9 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/layout.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/glass.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/login-page-main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/login-page-layout.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/login-page-glass.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/login_page/form-actions.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/login_page/form-brand.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/login_page/form_input/form-input-base.css') }}">
@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="{{ asset('css/frontend/login_page/form_input/form-input-responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/login_page/form-logo.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/login_page/form-login-header.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/animation.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/login-page-animation.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/login_page/login-page-responsive.css') }}">
 
     <div class="login-page">
 
