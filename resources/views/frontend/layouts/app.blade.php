@@ -115,25 +115,25 @@
     {{--  Doctor Slot Part in Doctor Show Page End --}}
 
     {{-- Service Booking Form Start --}}
-    <script src="{{ asset('js/custom_frontend/service_page/show/service_booking/service-state.js') }}"></script>
-    {{-- <script src="{{ asset('js/custom_frontend/service_page/show/service_booking/service-summary.js') }}"></script> --}}
-    <script src="{{ asset('js/custom_frontend/service_page/show/service_booking/service-booking-helpers.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/service_page/show/service_booking/service-booking-summary.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/service_page/show/service_booking/service-booking-schedule.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/service_page/show/service_booking/service-booking-payment.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/service_page/show/service_booking/service-booking-form.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/service_page/show/service_booking/service-booking-init.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_show/service_booking/service-state.js') }}"></script>
+    {{-- <script src="{{ asset('js/custom_frontend/service_show/service_booking/service-summary.js') }}"></script> --}}
+    <script src="{{ asset('js/custom_frontend/service_show/service_booking/service-booking-helpers.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_show/service_booking/service-booking-summary.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_show/service_booking/service-booking-schedule.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_show/service_booking/service-booking-payment.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_show/service_booking/service-booking-form.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/service_show/service_booking/service-booking-init.js') }}"></script>
     {{-- Service Booking Form End --}}
 
     {{--  Service Slot Part in Service Show Page Start --}}
     <script
-        src="{{ asset('js/custom_frontend/service_page/show/service_time_slot_occupied/service_time_occupied_mark.js') }}">
+        src="{{ asset('js/custom_frontend/service_show/service_time_slot_occupied/service_time_occupied_mark.js') }}">
     </script>
     <script
-        src="{{ asset('js/custom_frontend/service_page/show/service_time_slot_occupied/service_time_occupied_detect.js') }}">
+        src="{{ asset('js/custom_frontend/service_show/service_time_slot_occupied/service_time_occupied_detect.js') }}">
     </script>
     <script
-        src="{{ asset('js/custom_frontend/service_page/show/service_time_slot_occupied/service_time_occupied_init.js') }}">
+        src="{{ asset('js/custom_frontend/service_show/service_time_slot_occupied/service_time_occupied_init.js') }}">
     </script>
     {{--  Service Slot Part in Service Show Page End --}}
 
