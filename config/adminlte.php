@@ -266,7 +266,7 @@ return [
 
     'use_route_url' => true,
 
-    'dashboard_url' => 'dashboard.default',
+    'dashboard_url' => 'dashboard.admin',
 
     'logout_url' => 'logout',
 
@@ -332,8 +332,8 @@ return [
 ========================================================= */
         [
             'text' => 'Admin Panel',
-            'route' => 'dashboard.default',
-            'can' => 'dashboard.default',
+            'route' => 'dashboard.admin',
+            'can' => 'dashboard.admin',
             'icon' => 'fas fa-chart-line',
             'icon_color' => 'primary',
         ],

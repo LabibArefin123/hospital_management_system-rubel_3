@@ -13,47 +13,45 @@ class DashboardController extends Controller
     /**
      * Display a listing of the resource.
      */
-
     public function admin_dashboard()
     {
         $doctor = Auth::user();
 
-        // TOTAL APPOINTMENTS
+        /*TOTAL APPOINTMENTS  */
         $totalAppointments = Appointment::count();
 
-        // TOTAL EARNINGS (ONLY CONFIRMED)
+        /* TOTAL EARNINGS   */
         $totalEarnings = Appointment::where('status', 'confirmed')
             ->sum('amount');
 
-        // COMPLETED
+        /*COMPLETED APPOINTMENTS */
         $completedAppointments = Appointment::where('status', 'confirmed')
             ->count();
 
-        // CANCELLED
+        /* CANCELLED APPOINTMENTS  */
         $cancelledAppointments = Appointment::where('status', 'cancelled')
             ->count();
 
-        // LATEST APPOINTMENTS
-        $latestAppointments = Appointment::with(['doctor'])
+        /*LATEST APPOINTMENTS */
+        $latestAppointments = Appointment::with(['doctor', 'service'])
             ->latest()
             ->take(5)
             ->get();
 
-        // ALL APPOINTMENTS GRID
-        $appointments = Appointment::with(['doctor', 'service'])
-            ->latest()
-            ->get();
-
+        /* DOCTOR APPOINTMENTS */
         $doctorAppointments = Appointment::with(['doctor'])
+            ->whereNotNull('doctor_id')
             ->latest()
             ->get();
 
+        /* SERVICE APPOINTMENTS */
         $serviceAppointments = Appointment::with(['service'])
+            ->whereNotNull('service_id')
+            ->whereNull('doctor_id')
             ->latest()
             ->get();
 
-        
-
+        /* DASHBOARD VIEW  */
         return view('backend.dashboard_admin', compact(
             'doctor',
             'totalAppointments',
@@ -61,7 +59,8 @@ class DashboardController extends Controller
             'completedAppointments',
             'cancelledAppointments',
             'latestAppointments',
-            'appointments'
+            'doctorAppointments',
+            'serviceAppointments'
         ));
     }
 
