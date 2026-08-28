@@ -88,10 +88,14 @@
     <script src="{{ asset('js/custom_frontend/system_search/system_search_core.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/system_search_events.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/system_search_api.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search/system_search_render_status.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search/system_search_render_item.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search/system_search_render_containers.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search/system_search_render.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_status.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_item.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_containers.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_appointments.js') }}">
+    </script>
+    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_doctors.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_results.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_core.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/ui_part/system_search_ui_loading.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/ui_part/system_search_ui_empty.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/ui_part/system_search_ui_clear.js') }}"></script>

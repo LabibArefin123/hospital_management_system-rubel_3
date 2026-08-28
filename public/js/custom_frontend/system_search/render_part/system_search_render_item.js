@@ -1,9 +1,4 @@
-/**
- * ==========================================================
- * SUSTHOCARE SYSTEM SEARCH RESULT ITEM
- * ==========================================================
- */
-
+/* SYSTEM SEARCH RESULT ITEM */
 (function (window, $) {
     "use strict";
 
@@ -57,19 +52,12 @@
                                 : ""
                         }
 
-                        <span class="system-search-result-name">
-                            ${name}
-                        </span>
-
-                        <span class="system-search-result-type">
-                            Doctor
-                        </span>
-
+                        <span class="system-search-result-name">${name}</span>
+                        <span class="system-search-result-type">Doctor </span>
                         ${
                             speciality || experience || location
                                 ? `
                                     <span class="system-search-result-meta">
-
                                         ${
                                             speciality
                                                 ? `
@@ -109,23 +97,15 @@
                         }
 
                     </span>
-
                     <i class="fas fa-chevron-right system-search-result-arrow"></i>
-
                 </a>
             `;
         }
 
-        /* =====================================================
-           APPOINTMENT RESULT
-        ===================================================== */
-
+        /* APPOINTMENT RESULT */
         const statusClass = window.SystemSearch.getStatusClass(item.status);
-
         const statusLabel = window.SystemSearch.getStatusLabel(item.status);
-
         const date = window.SystemSearch.escape(item.date || "-");
-
         const time = window.SystemSearch.escape(item.time || "-");
 
         return `
@@ -134,15 +114,8 @@
                 data-result-type="appointment">
 
                 <span class="system-search-result-content">
-
-                    <span class="system-search-result-name">
-                        ${name}
-                    </span>
-
-                    <span class="system-search-result-type">
-                        Appointment
-                    </span>
-
+                    <span class="system-search-result-name">${name}</span>
+                    <span class="system-search-result-type">Appointment</span>
                     <span class="system-search-result-meta">
 
                         <span class="system-search-result-date">
@@ -158,11 +131,8 @@
                         <span class="system-search-result-status ${statusClass}">
                             ${statusLabel}
                         </span>
-
                     </span>
-
                 </span>
-
             </div>
         `;
     };
