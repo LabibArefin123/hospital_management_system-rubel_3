@@ -81,7 +81,7 @@
     <script>
         window.systemSearchUrl = @json(route('search.data'));
     </script>
-    
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     {{--  System Search Start --}}
@@ -92,7 +92,10 @@
     <script src="{{ asset('js/custom_frontend/system_search/system_search_render_item.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/system_search_render_containers.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/system_search_render.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search/system_search_ui.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/ui_part/system_search_ui_loading.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/ui_part/system_search_ui_empty.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/ui_part/system_search_ui_clear.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/ui_part/system_search_ui_helpers.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/system_search_init.js') }}"></script>
     {{--  System Search End --}}
 
