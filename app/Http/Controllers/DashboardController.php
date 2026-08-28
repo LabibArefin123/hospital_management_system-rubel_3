@@ -14,7 +14,7 @@ class DashboardController extends Controller
      * Display a listing of the resource.
      */
 
-    public function default_dashboard()
+    public function admin_dashboard()
     {
         $doctor = Auth::user();
 
@@ -42,7 +42,17 @@ class DashboardController extends Controller
         // ALL APPOINTMENTS GRID
         $appointments = Appointment::with(['doctor', 'service'])
             ->latest()
-            ->paginate(8);
+            ->get();
+
+        $doctorAppointments = Appointment::with(['doctor'])
+            ->latest()
+            ->get();
+
+        $serviceAppointments = Appointment::with(['service'])
+            ->latest()
+            ->get();
+
+        
 
         return view('backend.dashboard_admin', compact(
             'doctor',
