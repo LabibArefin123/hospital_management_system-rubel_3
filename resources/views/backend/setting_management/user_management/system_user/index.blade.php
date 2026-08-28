@@ -13,7 +13,7 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered" id="dataTables" width="100%">
+                <table class="table table-striped table-bordered" id="dataTables">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -64,7 +64,7 @@
                         <div class="modal-content shadow-lg">
                             <div class="modal-header">
                                 <h5 class="modal-title">Change Password – <span id="modalUserName"></span></h5>
-                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                                <button type="button" class="close" data-bs-dismiss="modal"><span>&times;</span></button>
                             </div>
                             <form method="POST" id="changePasswordForm">
                                 @csrf
@@ -93,7 +93,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-danger">Update Password</button>
                                 </div>
                             </form>
@@ -107,56 +107,6 @@
 @stop
 
 @section('js')
-    <script>
-        $(document).ready(function() {
-            if ($.fn.DataTable) {
-                if ($.fn.DataTable.isDataTable('#dataTables')) {
-                    $('#dataTables').DataTable().destroy();
-                }
-                $('#dataTables').DataTable({
-                    responsive: true,
-                    autoWidth: false,
-                    scrollX: true,
-                    pageLength: 10,
-                    lengthMenu: [
-                        [10, 25, 50, 100, -1],
-                        [10, 25, 50, 100, 'All']
-                    ],
-                    ordering: true,
-                    searching: true,
-                    paging: true,
-                    info: true,
-                    order: [
-                        [0, 'asc']
-                    ],
-                    columnDefs: [{
-                        orderable: false,
-                        targets: 8
-                    }]
-                });
-            }
-
-            $('.change-password-btn').on('click', function() {
-                const userId = $(this).data('user-id');
-                const userName = $(this).data('user-name');
-                $('#modalUserName').text(userName);
-                $('#changePasswordForm').attr('action', '/system-users/' + userId + '/change-password');
-                $('#changePasswordForm')[0].reset();
-                $('#changePasswordModal').modal('show');
-            });
-
-            $(document).on('click', '.toggle-password', function() {
-                const input = $('#' + $(this).data('target'));
-                const icon = $(this).find('i');
-                if (!input.length) return;
-                if (input.attr('type') === 'password') {
-                    input.attr('type', 'text');
-                    icon.removeClass('fa-eye').addClass('fa-eye-slash');
-                } else {
-                    input.attr('type', 'password');
-                    icon.removeClass('fa-eye-slash').addClass('fa-eye');
-                }
-            });
-        });
-    </script>
+    <script src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_user_password.js') }}"></script>
+    <script src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_user_password_toggle.js') }}"></script>
 @endsection

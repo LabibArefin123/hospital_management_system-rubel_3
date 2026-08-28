@@ -85,9 +85,9 @@
 
     </div>
 @stop
+@section('plugins.Datatables', true)
 
 {{--  DATATABLES PLUGIN --}}
-@section('plugins.Datatables', true)
 
 {{-- ADMINLTE JS --}}
 @section('adminlte_js')

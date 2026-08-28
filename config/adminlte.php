@@ -363,7 +363,7 @@ return [
         /*Appointment Menu*/
 
         [
-            'text' => 'Appointment Management',
+            'text' => 'Appointment Menu',
             'icon' => 'fas fa-calendar-check',
             'icon_color' => 'primary',
 
@@ -579,7 +579,7 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
