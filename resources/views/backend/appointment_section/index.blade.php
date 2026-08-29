@@ -56,5 +56,5 @@
 @stop
 
 @section('js')
-    <script src="{{ asset('js/custom_backend/aapointment_menu/index_page/appointment_filter.js') }}"></script>
+    <script src="{{ asset('js/custom_backend/appointment_menu/index_page/appointment_filter.js') }}"></script>
 @stop
