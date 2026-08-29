@@ -124,11 +124,7 @@ export function initAppointmentFilter() {
             }
         });
 
-        /*
-        |--------------------------------------------------------------------------
-        | UPDATE COUNTS
-        |--------------------------------------------------------------------------
-        */
+        /* UPDATE COUNTS*/
 
         if (doctorCountElement) {
             doctorCountElement.innerText = `${visibleDoctorCount} Appointments`;

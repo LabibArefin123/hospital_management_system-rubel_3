@@ -2,10 +2,12 @@
 
 @section('title', 'Doctor Dashboard')
 
-@section('content')
+@section('content_header')
+    @include('backend.dashboard.custom_header.doctor')
+@stop
 
+@section('content')
     <div class="container-fluid">
-        @include('backend.dashboard.custom_header.doctor')
         {{-- Card Box section --}}
         @include('backend.dashboard.custom_filter.doctor.top_filter')
         @include('backend.dashboard.partials.card-box')
@@ -87,5 +89,5 @@
 
         });
     </script>
-    <script src="{{ asset('js/custom_backend/dashboard_page/doctor/filter.js') }}"></script>
+    <script src="{{ asset('js/custom_backend/dashboard_page/doctor/doctor-filter.js') }}"></script>
 @endsection
