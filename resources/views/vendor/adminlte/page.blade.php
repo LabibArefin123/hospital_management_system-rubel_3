@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/3.0.2/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.5/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="{{ asset('css/backend/backend.css') }}">
+<link rel="stylesheet" href="{{ asset('css/custom_backend/dashboard_page/doctor_paginator.css') }}">
+<link rel="stylesheet" href="{{ asset('css/custom_backend/dashboard_page/service_paginator.css') }}">
 @section('classes_body', $layoutHelper->makeBodyClasses())
 
 @section('body_data', $layoutHelper->makeBodyData())

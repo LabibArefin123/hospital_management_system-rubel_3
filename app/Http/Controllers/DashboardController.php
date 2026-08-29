@@ -42,14 +42,14 @@ class DashboardController extends Controller
         $doctorAppointments = Appointment::with(['doctor'])
             ->whereNotNull('doctor_id')
             ->latest()
-            ->get();
+            ->paginate(8, ['*'], 'doctor_page');
 
         /* SERVICE APPOINTMENTS */
         $serviceAppointments = Appointment::with(['service'])
             ->whereNotNull('service_id')
             ->whereNull('doctor_id')
             ->latest()
-            ->get();
+            ->paginate(8, ['*'], 'service_page');
 
         /* DASHBOARD VIEW  */
         return view('backend.dashboard_admin', compact(
@@ -68,13 +68,14 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        /* FIND DOCTOR USING USER ID  */
+        /* FIND DOCTOR USING USER ID */
         $doctor = Doctor::where('user_id', $user->id)->first();
+
         if (!$doctor) {
             abort(403, 'Doctor profile not found.');
         }
 
-        /* TOTAL APPOINTMENTS    */
+        /* TOTAL APPOINTMENTS */
         $totalAppointments = Appointment::where('doctor_id', $doctor->id)->count();
 
         /* TOTAL EARNINGS */
@@ -82,27 +83,34 @@ class DashboardController extends Controller
             ->where('status', 'confirmed')
             ->sum('amount');
 
-        /*COMPLETED APPOINTMENTS COUNT*/
+        /* COMPLETED APPOINTMENTS COUNT */
         $completedAppointments = Appointment::where('doctor_id', $doctor->id)
             ->where('status', 'confirmed')
             ->count();
 
-        /* CANCELLED APPOINTMENTS COUNT*/
+        /* CANCELLED APPOINTMENTS COUNT */
         $cancelledAppointments = Appointment::where('doctor_id', $doctor->id)
             ->where('status', 'cancelled')
             ->count();
 
-        /* LATEST APPOINTMENTS  */
+        /* LATEST APPOINTMENTS */
         $latestAppointments = Appointment::with('doctor')
+            ->where('doctor_id', $doctor->id)
+            ->latest()
+            ->take(5)
+            ->get();
+
+        /* ALL APPOINTMENTS */
+        $appointments = Appointment::with('doctor')
             ->where('doctor_id', $doctor->id)
             ->latest()
             ->get();
 
-        /* APPOINTMENTS  */
-        $appointments = Appointment::with('doctor')
+        /* PAGINATED DOCTOR APPOINTMENTS */
+        $doctorAppointments = Appointment::with('doctor')
             ->where('doctor_id', $doctor->id)
             ->latest()
-            ->paginate(8);
+            ->paginate(8, ['*'], 'doctor_page');
 
         return view('backend.dashboard_doctor', compact(
             'doctor',
@@ -111,7 +119,8 @@ class DashboardController extends Controller
             'completedAppointments',
             'cancelledAppointments',
             'latestAppointments',
-            'appointments'
+            'appointments',
+            'doctorAppointments'
         ));
     }
 

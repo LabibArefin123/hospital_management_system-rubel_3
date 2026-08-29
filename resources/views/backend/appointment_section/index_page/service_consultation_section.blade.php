@@ -23,28 +23,17 @@
                  <div class="card-body">
                      <div class="d-flex justify-content-between">
                          <div>
-                             <h5 class="font-weight-bold mb-1">
-                                 {{ $appointment->name }}
-                             </h5>
-
-                             <small class="text-muted">
-                                 {{ $appointment->phone }}
-                             </small>
+                             <h5 class="font-weight-bold mb-1">{{ $appointment->name }}</h5>
+                             <small class="text-muted">{{ $appointment->phone }}</small>
                          </div>
 
                          <div>
                              @if ($appointment->status == 'pending')
-                                 <span class="badge badge-warning">
-                                     Pending
-                                 </span>
+                                 <span class="badge badge-warning">Pending</span>
                              @elseif($appointment->status == 'confirmed')
-                                 <span class="badge badge-success">
-                                     Confirmed
-                                 </span>
+                                 <span class="badge badge-success"> Confirmed</span>
                              @elseif($appointment->status == 'cancelled')
-                                 <span class="badge badge-danger">
-                                     Cancelled
-                                 </span>
+                                 <span class="badge badge-danger">Cancelled</span>
                              @endif
                          </div>
                      </div>
@@ -76,55 +65,32 @@
                  </div>
 
                  <div class="card-footer bg-white border-0">
-
                      <div class="d-flex justify-content-between">
-
                          <a href="{{ route('appointments.show', $appointment->id) }}" class="btn btn-info btn-sm">
-
                              <i class="fas fa-eye"></i>
-
                          </a>
 
                          <a href="{{ route('appointments.cancel', $appointment->id) }}"
                              class="btn btn-secondary btn-sm">
-
                              <i class="fas fa-ban"></i>
-
                          </a>
 
                          <form action="{{ route('appointments.destroy', $appointment->id) }}" method="POST">
-
                              @csrf
                              @method('DELETE')
-
                              <button class="btn btn-danger btn-sm" onclick="return confirm('Delete appointment?')">
-
                                  <i class="fas fa-trash"></i>
-
                              </button>
-
                          </form>
-
                      </div>
-
                  </div>
-
              </div>
-
          </div>
-
      @empty
-
          <div class="col-12">
-
              <div class="alert alert-light text-center shadow-sm">
-
                  No Service Appointment Found
-
              </div>
-
          </div>
      @endforelse
-
-
  </div>

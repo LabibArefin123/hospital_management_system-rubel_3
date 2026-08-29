@@ -9,8 +9,6 @@
      </span>
  </div>
 
-
-
  <div class="row appointment-wrapper">
      @forelse($doctorAppointments as $appointment)
          <div class="col-md-3 mb-4 appointment-card" data-type="{{ strtolower($appointment->type) }}"
@@ -33,17 +31,11 @@
                          </div>
                          <div>
                              @if ($appointment->status == 'pending')
-                                 <span class="badge badge-warning">
-                                     Pending
-                                 </span>
+                                 <span class="badge badge-warning">Pending</span>
                              @elseif($appointment->status == 'confirmed')
-                                 <span class="badge badge-success">
-                                     Confirmed
-                                 </span>
+                                 <span class="badge badge-success"> Confirmed</span>
                              @elseif($appointment->status == 'cancelled')
-                                 <span class="badge badge-danger">
-                                     Cancelled
-                                 </span>
+                                 <span class="badge badge-danger">Cancelled</span>
                              @endif
                          </div>
                      </div>
@@ -53,9 +45,7 @@
                      <p class="mb-2">
                          <i class="fas fa-user-md text-primary"></i>
 
-                         <strong>
-                             {{ $appointment->doctor->name ?? 'N/A' }}
-                         </strong>
+                         <strong>{{ $appointment->doctor->name ?? 'N/A' }}</strong>
                      </p>
 
                      <p class="mb-2">

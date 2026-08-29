@@ -2,9 +2,12 @@
 
 @section('title', 'Admin Dashboard')
 
+@section('content_header')
+    @include('backend.dashboard.custom_header.admin')
+@stop
+
 @section('content')
     <div class="container-fluid">
-        @include('backend.dashboard.custom_header.admin')
         {{-- Card Box section --}}
         @include('backend.dashboard.custom_filter.admin.top_filter')
 

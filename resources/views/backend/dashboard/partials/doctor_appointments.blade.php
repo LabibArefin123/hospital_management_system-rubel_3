@@ -6,7 +6,7 @@
             </h4>
 
             <span class="badge badge-primary px-3 py-2" id="doctorAppointmentCount">
-                {{ $doctorAppointments->count() }} Appointments
+                {{ $doctorAppointments->total() }} Appointments
             </span>
         </div>
         <hr>
@@ -109,4 +109,9 @@
             </div>
         </div>
     @endforeach
+    <div class="col-12">
+        <div class="doctor-appointment-paginator">
+            {{ $doctorAppointments->onEachSide(1)->links() }}
+        </div>
+    </div>
 @endif

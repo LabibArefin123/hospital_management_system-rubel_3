@@ -12,36 +12,12 @@
         {{-- Latest Appointment section --}}
         @include('backend.dashboard.partials.latest_appointment')
         <div class="row">
-
-            @php
-
-                $doctorAppointments = $appointments->filter(function ($appointment) {
-                    return $appointment->doctor;
-                });
-
-                $serviceAppointments = $appointments->filter(function ($appointment) {
-                    return $appointment->service && !$appointment->doctor;
-                });
-
-            @endphp
-
             {{-- Doctor appointment part --}}
             @include('backend.dashboard.partials.doctor_appointments')
             {{-- Service appointment part --}}
-            @include('backend.dashboard.partials.service_appointments')
 
         </div>
         @include('backend.dashboard.partials.status_modal')
-
-        {{-- =======================================================
-            PAGINATION
-        ======================================================== --}}
-        <div class="mt-4 d-flex justify-content-center">
-
-            {{ $appointments->links() }}
-
-        </div>
-
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {

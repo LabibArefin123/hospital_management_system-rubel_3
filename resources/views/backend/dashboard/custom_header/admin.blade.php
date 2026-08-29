@@ -3,17 +3,12 @@
         border-radius:20px;
        background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
     ">
-
      <div class="card-body px-4 py-4">
-
          <div class="d-flex justify-content-between align-items-center flex-wrap">
-
              <!-- LEFT SIDE -->
              <div class="d-flex align-items-center">
-
                  <!-- DOCTOR AVATAR -->
                  <div class="me-3">
-
                      <img src="{{ asset($doctor->image ?? 'uploads/images/default.jpg') }}" alt="Doctor Image"
                          class="shadow"
                          style="
@@ -28,17 +23,14 @@
             ">
 
                  </div>
-
-                 <!-- TEXT -->
+         
                  <div>
 
                      <h2 class="text-white font-weight-bold mb-1">
-
                          Welcome,
                          <span style="color:#ffd43b;">
                              {{ $doctor->name }}
                          </span>
-
                      </h2>
                  </div>
              </div>

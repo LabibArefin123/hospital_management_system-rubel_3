@@ -10,7 +10,7 @@
 
               <span class="badge badge-success px-3 py-2" id="serviceAppointmentCount">
 
-                  {{ $serviceAppointments->count() }} Bookings
+                  {{ $serviceAppointments->total() }} Bookings
 
               </span>
 
@@ -132,5 +132,9 @@
 
           </div>
       @endforeach
-
+      <div class="col-12">
+          <div class="service-appointment-paginator">
+              {{ $serviceAppointments->onEachSide(1)->links() }}
+          </div>
+      </div>
   @endif
