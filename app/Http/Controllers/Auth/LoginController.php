@@ -42,48 +42,25 @@ class LoginController extends Controller
     public function login(LoginRequest $request)
     {
         $request->ensureIsNotRateLimited();
-
         $loginInput = $request->input('login');
-
         $password = $request->input('password');
 
-        /*
-    |--------------------------------------------------------------------------
-    | LOGIN FIELD
-    |--------------------------------------------------------------------------
-    */
-
+        /* LOGIN FIELD */
         $field = filter_var($loginInput, FILTER_VALIDATE_EMAIL)
             ? 'email'
             : 'username';
 
-        /*
-    |--------------------------------------------------------------------------
-    | FIND USER
-    |--------------------------------------------------------------------------
-    */
-
+        /*| FIND USER*/
         $user = User::where($field, $loginInput)->first();
 
-        /*
-    |--------------------------------------------------------------------------
-    | USER NOT FOUND
-    |--------------------------------------------------------------------------
-    */
-
+        /*USER NOT FOUND */
         if (!$user) {
-
             return back()->withErrors([
                 'login' => trans('auth.failed'),
             ]);
         }
 
-        /*
-    |--------------------------------------------------------------------------
-    | PASSWORD CHECK
-    |--------------------------------------------------------------------------
-    */
-
+        /* PASSWORD CHECK */
         if (!Hash::check($password, $user->password)) {
 
             return back()->withErrors([
@@ -91,21 +68,11 @@ class LoginController extends Controller
             ]);
         }
 
-        /*
-    |--------------------------------------------------------------------------
-    | LOGIN USER
-    |--------------------------------------------------------------------------
-    */
-
+        /*LOGIN USER  */
         Auth::login($user, $request->boolean('remember'));
-
         $request->session()->regenerate();
 
-        /*
-    |--------------------------------------------------------------------------
-    | SUCCESS MESSAGE
-    |--------------------------------------------------------------------------
-    */
+        /*SUCCESS MESSAGE */
 
         session()->flash(
             'login_success',
@@ -120,7 +87,7 @@ class LoginController extends Controller
 
         if (Auth::user()->hasRole('admin')) {
 
-            return redirect()->route('dashboard.default');
+            return redirect()->route('dashboard.admin');
         }
 
         if (Auth::user()->hasRole('doctor')) {

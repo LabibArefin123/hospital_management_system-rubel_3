@@ -13,4 +13,21 @@
     <script src="{{ asset('js/custom_frontend/doctor_show/doctor_time_slot_occupied/doctor_time_slot_occupied.js') }}">
     </script>
     {{--  Doctor Slot Part in Doctor Show Page End --}}
+    <script>
+        window.SusthoCareUser = {
+            authenticated: @json(auth()->check()),
+            role: @json(auth()->check() ? auth()->user()->getRoleNames()->first() : null),
+
+            name: @json($userAppointment->name ?? null),
+            age: @json($userAppointment->age ?? null),
+            phone: @json($userAppointment->phone ?? null),
+            gender: @json($userAppointment->gender ?? null),
+            email: @json($userAppointment->email ?? null)
+        };
+    </script>
+
+    <script src="{{ asset('js/custom_frontend/user_appointment/user_form_config.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/user_appointment/user_form_helpers.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/user_appointment/user_form_fields.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/user_appointment/user_form_fill.js') }}"></script>
 @endsection

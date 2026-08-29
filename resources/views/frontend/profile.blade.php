@@ -33,7 +33,7 @@
 
                     <div class="mt-3">
 
-                        <form method="POST" action="{{ route('user.logout') }}">
+                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button class="btn btn-danger w-100">
                                 Logout

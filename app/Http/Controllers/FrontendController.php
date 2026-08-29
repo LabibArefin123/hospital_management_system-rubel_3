@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
-use App\Models\SystemProblem;
 use Illuminate\Http\Request;
 use App\Models\Newsletter;
 use App\Models\Service;
@@ -42,6 +41,15 @@ class FrontendController extends Controller
 
     public function doctor_show($id)
     {
+        /* LOGGED-IN USER APPOINTMENT DATA*/
+        $userAppointment = null;
+
+        if (Auth::check() && Auth::user()->hasRole('user')) {
+            $userAppointment = Appointment::where('user_id', Auth::id())
+                ->latest('id')
+                ->first();
+        }
+
         $doctor = Doctor::with([
             'schedules' => function ($query) {
                 $query->orderBy('date')
@@ -77,13 +85,23 @@ class FrontendController extends Controller
                 'doctor',
                 'groupedSchedules',
                 'schedulePages',
-                'bookedSlots'
+                'bookedSlots',
+                'userAppointment'
             )
         );
     }
 
     public function service_show($id)
     {
+
+        $userAppointment = null;
+
+        if (Auth::check() && Auth::user()->hasRole('user')) {
+            $userAppointment = Appointment::where('user_id', Auth::id())
+                ->latest('id')
+                ->first();
+        }
+
         $service = Service::with([
             'schedules' => function ($query) {
                 $query
@@ -156,7 +174,8 @@ class FrontendController extends Controller
             'frontend.service_page.service_information.show',
             compact(
                 'service',
-                'schedulePages'
+                'schedulePages',
+                'userAppointment'
             )
         );
     }
@@ -212,24 +231,87 @@ class FrontendController extends Controller
 
     public function appointment()
     {
+        $user = auth()->user();
         $doctorAppointments = Appointment::with('doctor')
-            ->whereNotNull('doctor_id')
-            ->latest()
-            ->get();
+            ->whereNotNull('doctor_id');
 
         $serviceAppointments = Appointment::with('service')
-            ->whereNotNull('service_id')
+            ->whereNotNull('service_id');
+
+        /*ADMIN (as they can see everything)*/
+        if ($user && $user->hasRole('admin')) {
+            
+        }
+
+        /* DOCTOR (as they can only see appointments assigned to them.) */ 
+        elseif ($user && $user->hasRole('doctor')) {
+            $doctor = $user->doctor;
+            if ($doctor) {
+                $doctorAppointments->where(
+                    'doctor_id',
+                    $doctor->id
+                );
+            } else {
+                $doctorAppointments->whereRaw('1 = 0');
+            }
+
+            // Doctor should not see service appointments.
+            $serviceAppointments->whereRaw('1 = 0');
+        }
+
+        /*USER (as can see only their own appointments.) */ 
+        elseif ($user && $user->hasRole('user')) {
+            $doctorAppointments->where('user_id', $user->id);
+            $serviceAppointments->where('user_id', $user->id);
+        }
+
+        /*GUEST ROLE*/ else {
+
+            // $doctorAppointments->whereRaw('1 = 0');
+            // $serviceAppointments->whereRaw('1 = 0');
+        }
+
+        /*EXECUTE */
+        $doctorAppointments = $doctorAppointments
             ->latest()
             ->get();
 
-        return view('frontend.appointment_page.appointment', compact(
-            'doctorAppointments',
-            'serviceAppointments'
-        ));
+        $serviceAppointments = $serviceAppointments
+            ->latest()
+            ->get();
+
+        return view(
+            'frontend.appointment_page.appointment',
+            compact(
+                'doctorAppointments',
+                'serviceAppointments'
+            )
+        );
     }
 
     public function appointment_store(Request $request)
     {
+        if (Auth::check()) {
+
+            $user = Auth::user();
+
+            if ($user->hasRole('admin')) {
+                return back()
+                    ->withInput()
+                    ->withErrors([
+                        'error' => 'Admin users are not allowed to book appointments.',
+                    ]);
+            }
+
+            if ($user->hasRole('doctor')) {
+                return back()
+                    ->withInput()
+                    ->withErrors([
+                        'error' => 'Doctors are not allowed to book appointments.',
+                    ]);
+            }
+        }
+
         $request->validate([
             'type' => 'required|in:doctor,service',
             'name' => 'required|string|max:255',
@@ -301,6 +383,7 @@ class FrontendController extends Controller
 
                 /*CREATE DOCTOR APPOINTMENT  */
                 $appointment = Appointment::create([
+                    'user_id' => Auth::id(),
                     'type' => 'doctor',
                     'doctor_id' => $doctor->id,
                     'service_id' => null,
@@ -346,6 +429,7 @@ class FrontendController extends Controller
 
                 /*CREATE SERVICE APPOINTMENT*/
                 $appointment = Appointment::create([
+                    'user_id' => Auth::id(),
                     'type' => 'service',
                     'doctor_id' => null,
                     'service_id' => $service->id,

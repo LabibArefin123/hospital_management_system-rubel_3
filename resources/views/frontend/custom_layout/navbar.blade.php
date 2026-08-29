@@ -57,7 +57,7 @@
 
             if ($user) {
                 if ($user->hasRole('admin')) {
-                    $dashboardRoute = 'dashboard.default';
+                    $dashboardRoute = 'dashboard.admin';
                 } elseif ($user->hasRole('doctor')) {
                     $dashboardRoute = 'dashboard.doctor';
                 }
@@ -125,7 +125,7 @@
 
                         {{-- ================= LOGOUT ================= --}}
                         <li>
-                            <form method="POST" action="{{ route('user.logout') }}">
+                            <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit" class="dropdown-item text-danger d-flex align-items-center gap-2">
 
@@ -134,7 +134,6 @@
                                 </button>
                             </form>
                         </li>
-
                     </ul>
                 </div>
             @endauth

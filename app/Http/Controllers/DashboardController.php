@@ -68,76 +68,37 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        /*
-        |--------------------------------------------------------------------------
-        | FIND DOCTOR USING USER ID
-        |--------------------------------------------------------------------------
-        */
-
+        /* FIND DOCTOR USING USER ID  */
         $doctor = Doctor::where('user_id', $user->id)->first();
-
         if (!$doctor) {
-
             abort(403, 'Doctor profile not found.');
         }
 
-        /*
-        |--------------------------------------------------------------------------
-        | TOTAL APPOINTMENTS
-        |--------------------------------------------------------------------------
-        */
+        /* TOTAL APPOINTMENTS    */
+        $totalAppointments = Appointment::where('doctor_id', $doctor->id)->count();
 
-        $totalAppointments = Appointment::where('doctor_id', $doctor->id)
-            ->count();
-
-        /*
-        |--------------------------------------------------------------------------
-        | TOTAL EARNINGS
-        |--------------------------------------------------------------------------
-        */
-
+        /* TOTAL EARNINGS */
         $totalEarnings = Appointment::where('doctor_id', $doctor->id)
             ->where('status', 'confirmed')
             ->sum('amount');
 
-        /*
-        |--------------------------------------------------------------------------
-        | COMPLETED
-        |--------------------------------------------------------------------------
-        */
-
+        /*COMPLETED APPOINTMENTS COUNT*/
         $completedAppointments = Appointment::where('doctor_id', $doctor->id)
             ->where('status', 'confirmed')
             ->count();
 
-        /*
-        |--------------------------------------------------------------------------
-        | CANCELLED
-        |--------------------------------------------------------------------------
-        */
-
+        /* CANCELLED APPOINTMENTS COUNT*/
         $cancelledAppointments = Appointment::where('doctor_id', $doctor->id)
             ->where('status', 'cancelled')
             ->count();
 
-        /*
-        |--------------------------------------------------------------------------
-        | LATEST APPOINTMENTS
-        |--------------------------------------------------------------------------
-        */
-
+        /* LATEST APPOINTMENTS  */
         $latestAppointments = Appointment::with('doctor')
             ->where('doctor_id', $doctor->id)
             ->latest()
-            ->take(5)
             ->get();
 
-        /*
-        |--------------------------------------------------------------------------
-        | APPOINTMENTS
-        |--------------------------------------------------------------------------
-        */
-
+        /* APPOINTMENTS  */
         $appointments = Appointment::with('doctor')
             ->where('doctor_id', $doctor->id)
             ->latest()
@@ -158,7 +119,7 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        // ================= APPOINTMENTS =================
+        // ================= APPOINTMENTS PART=================
         $totalAppointments = Appointment::where('user_id', $user->id)->count();
 
         $confirmedAppointments = Appointment::where('user_id', $user->id)
@@ -173,7 +134,7 @@ class DashboardController extends Controller
             ->where('status', 'cancelled')
             ->count();
 
-        // ================= PAYMENTS =================
+        // ================= PAYMENTS PART=================
         $totalPaid = Payment::where('user_id', $user->id)
             ->where('status', 'paid')
             ->sum('amount');
@@ -182,7 +143,6 @@ class DashboardController extends Controller
         $latestAppointments = Appointment::with(['doctor', 'service'])
             ->where('user_id', $user->id)
             ->latest()
-            ->take(5)
             ->get();
 
         // ================= ALL APPOINTMENTS =================
