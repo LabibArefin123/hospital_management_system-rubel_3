@@ -1,67 +1,38 @@
 document.addEventListener("DOMContentLoaded", function () {
-    /*
-    |--------------------------------------------------------------------------
-    | TOGGLE FILTER SECTION
-    |--------------------------------------------------------------------------
-    */
-
+    /*TOGGLE FILTER SECTION */
     const toggleBtn = document.getElementById("toggleFilterBtn");
-
     const filterSection = document.getElementById("contactFilterSection");
-
     const filterArrow = document.getElementById("filterArrow");
 
     if (toggleBtn && filterSection) {
         toggleBtn.addEventListener("click", function () {
             filterSection.classList.toggle("d-none");
-
             if (filterSection.classList.contains("d-none")) {
                 filterArrow.classList.remove("fa-chevron-up");
-
                 filterArrow.classList.add("fa-chevron-down");
             } else {
                 filterArrow.classList.remove("fa-chevron-down");
-
                 filterArrow.classList.add("fa-chevron-up");
             }
         });
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | FILTER ELEMENTS
-    |--------------------------------------------------------------------------
-    */
-
+    /*FILTER ELEMENTS */
     const searchFilter = document.getElementById("searchFilter");
-
     const departmentFilter = document.getElementById("departmentFilter");
-
     const serviceFilter = document.getElementById("serviceFilter");
-
     const dateFilter = document.getElementById("dateFilter");
-
     const rows = document.querySelectorAll(".contact-row");
-
     const totalCount = document.getElementById("totalMessageCount");
 
-    /*
-    |--------------------------------------------------------------------------
-    | FILTER FUNCTION
-    |--------------------------------------------------------------------------
-    */
+    /*FILTER FUNCTION  */
 
     function filterContacts() {
         const search = searchFilter.value.toLowerCase().trim();
-
         const department = departmentFilter.value.toLowerCase().trim();
-
         const service = serviceFilter.value.toLowerCase().trim();
-
         const date = dateFilter.value;
-
         let visibleCount = 0;
-
         rows.forEach(function (row) {
             const rowSearch = row.dataset.search || "";
 

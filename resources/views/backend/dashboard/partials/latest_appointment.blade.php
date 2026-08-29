@@ -21,15 +21,9 @@
                     <tr class="appointment-row" data-patient="{{ strtolower($appointment->name) }}"
                         data-status="{{ strtolower($appointment->status) }}"
                         data-date="{{ \Carbon\Carbon::parse($appointment->appointment_date)->format('Y-m-d') }}">
-                        <td>
-                            {{ $loop->iteration }}
-                        </td>
-                        <td>
-                            {{ $appointment->name }}
-                        </td>
-                        <td>
-                            {{ $appointment->type }}
-                        </td>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $appointment->name }}</td>
+                        <td>{{ $appointment->type }} </td>
                         <td>
                             {{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d M Y') }}
                         </td>
@@ -38,17 +32,11 @@
                         </td>
                         <td>
                             @if ($appointment->status == 'confirmed')
-                                <span class="badge badge-success">
-                                    Confirmed
-                                </span>
+                                <span class="badge badge-success">Confirmed</span>
                             @elseif($appointment->status == 'cancelled')
-                                <span class="badge badge-danger">
-                                    Cancelled
-                                </span>
+                                <span class="badge badge-danger">Cancelled</span>
                             @else
-                                <span class="badge badge-warning">
-                                    Pending
-                                </span>
+                                <span class="badge badge-warning">Pending</span>
                             @endif
                         </td>
                     </tr>
@@ -59,7 +47,6 @@
                         </td>
                     </tr>
                 @endforelse
-
             </tbody>
         </table>
     </div>

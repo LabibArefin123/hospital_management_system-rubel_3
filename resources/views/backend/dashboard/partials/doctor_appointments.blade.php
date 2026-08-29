@@ -1,23 +1,15 @@
 @if ($doctorAppointments->count())
-
     <div class="col-12 mb-4">
-
         <div class="d-flex align-items-center justify-content-between">
-
             <h4 class="font-weight-bold text-primary mb-0">
                 Doctor Consultations
             </h4>
 
             <span class="badge badge-primary px-3 py-2" id="doctorAppointmentCount">
-
                 {{ $doctorAppointments->count() }} Appointments
-
             </span>
-
         </div>
-
         <hr>
-
     </div>
 
     @foreach ($doctorAppointments as $appointment)
@@ -31,9 +23,7 @@
     ">
 
             <div class="card shadow-sm border-0 h-100 rounded-lg">
-
                 <div class="card-body">
-
                     {{-- PATIENT --}}
                     <div class="mb-3">
                         <h5 class="font-weight-bold mb-1">
@@ -47,7 +37,6 @@
 
                     {{-- DOCTOR SECTION (FIXED ALIGNMENT) --}}
                     <div class="d-flex align-items-center mb-3 p-2 rounded" style="background:#f8f9ff;">
-
                         {{-- IMAGE --}}
                         <div class="mr-3">
                             <img src="{{ asset($appointment->doctor->image ?? 'images/default-doctor.png') }}"
@@ -70,7 +59,6 @@
                                 {{ $appointment->doctor->speciality ?? 'N/A' }}
                             </small>
                         </div>
-
                     </div>
 
                     {{-- DATE + TIME --}}
@@ -91,12 +79,8 @@
 
                 </div>
 
-                {{-- STATUS (FIXED VISUAL ONLY, LOGIC UNCHANGED) --}}
                 <div class="card-footer bg-white border-0 pt-2">
-
                     <div class="d-flex justify-content-between align-items-center">
-
-                        {{-- BADGE (UNCHANGED LOGIC) --}}
                         <div>
                             @if ($appointment->status == 'confirmed')
                                 <span class="badge badge-success px-3 py-2">Confirmed</span>
@@ -110,28 +94,19 @@
                         {{-- SELECT (UNCHANGED LOGIC) --}}
                         <select class="form-control form-control-sm appointment-status" style="width: 120px;"
                             data-id="{{ $appointment->id }}" data-current="{{ $appointment->status }}">
-
                             <option value="pending" {{ $appointment->status == 'pending' ? 'selected' : '' }}>
                                 Pending
                             </option>
-
                             <option value="confirmed" {{ $appointment->status == 'confirmed' ? 'selected' : '' }}>
                                 Confirmed
                             </option>
-
                             <option value="cancelled" {{ $appointment->status == 'cancelled' ? 'selected' : '' }}>
                                 Cancelled
                             </option>
-
                         </select>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
     @endforeach
-
 @endif

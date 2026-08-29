@@ -4,8 +4,8 @@
 @inject('preloaderHelper', 'JeroenNoten\LaravelAdminLte\Helpers\PreloaderHelper')
 <link rel="icon" type="image/png" href="{{ asset('uploads/images/logo2.png') }}">
 {{-- DATATABLE CSS --}}
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/3.0.2/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.5/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="{{ asset('css/backend/backend.css') }}">
 @section('classes_body', $layoutHelper->makeBodyClasses())
 

@@ -3,27 +3,17 @@
 @section('title', 'Contact Messages')
 
 @section('content_header')
-
     <div class="d-flex justify-content-between align-items-center flex-wrap">
-
         <h1 class="font-weight-bold mb-2 mb-md-0">
-
             Contact Messages
-
         </h1>
 
         <button id="toggleFilterBtn" class="btn btn-primary">
-
             <i class="fas fa-filter mr-1"></i>
-
             Filter
-
             <i id="filterArrow" class="fas fa-chevron-down ml-1"></i>
-
         </button>
-
     </div>
-
 @stop
 
 @section('content')
@@ -34,5 +24,8 @@
 @stop
 
 @section('js')
-    <script src="{{ asset('js/custom_backend/contact_section/contact-filter.js') }}"></script>
+    <script src="{{ asset('js/custom_backend/contact_section/contact_filter_toggle.js') }}"></script>
+    <script src="{{ asset('js/custom_backend/contact_section/contact_filter_core.js') }}"></script>
+    <script src="{{ asset('js/custom_backend/contact_section/contact_filter_events.js') }}"></script>
+    <script src="{{ asset('js/custom_backend/contact_section/contact_filter_init.js') }}"></script>
 @stop
