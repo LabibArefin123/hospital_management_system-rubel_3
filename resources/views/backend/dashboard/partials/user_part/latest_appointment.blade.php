@@ -1,30 +1,26 @@
-    <div class="card border-0 shadow-sm mb-4">
-
+    <div class="card border-0">
         <div class="card-header bg-white">
             <h5 class="mb-0">Latest Appointments</h5>
         </div>
-
         <div class="card-body">
-
             @forelse ($latestAppointments as $appointment)
                 <div class="d-flex justify-content-between align-items-center border-bottom py-3">
-
-                    <div>
-                        <strong>
-                            {{ $appointment->doctor->name ?? 'N/A' }}
-                        </strong>
-                        <br>
-
-                        <small class="text-muted">
-                            {{ ucfirst($appointment->type) }}
-                        </small>
-
-                        @if ($appointment->appointment_date)
+                    <div class="d-flex align-items-center">
+                        <div class="mr-3" style="width:60px;height:60px;flex:0 0 60px;">
+                            <img src="{{ $appointment->doctor->image ? asset($appointment->doctor->image) : asset('images/default-doctor.png') }}"
+                                alt="{{ $appointment->doctor->name ?? 'Doctor' }}"
+                                style="width:60px;height:60px;object-fit:cover;border-radius:6px;">
+                        </div>
+                        <div>
+                            <strong>{{ $appointment->doctor->name ?? 'N/A' }}</strong>
                             <br>
-                            <small class="text-muted">
-                                {{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d M Y') }}
-                            </small>
-                        @endif
+                            <small class="text-muted">{{ ucfirst($appointment->type) }}</small>
+                            @if ($appointment->appointment_date)
+                                <br>
+                                <small
+                                    class="text-muted">{{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d M Y') }}</small>
+                            @endif
+                        </div>
                     </div>
 
                     <div class="text-right">
@@ -38,7 +34,6 @@
                             {{ ucfirst($appointment->status) }}
                         </span>
                     </div>
-
                 </div>
             @empty
                 <div class="text-center py-4">
@@ -46,7 +41,5 @@
                     <p class="text-muted mb-0">No appointments found.</p>
                 </div>
             @endforelse
-
         </div>
-
     </div>

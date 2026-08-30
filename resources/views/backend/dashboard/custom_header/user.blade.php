@@ -1,7 +1,5 @@
-<div class="card border-0 shadow-sm mb-4">
+<div class="card">
     <div class="card-body d-flex align-items-center">
-
-        {{-- LEFT CONTENT --}}
         <div class="flex-grow-1">
             <h4 class="mb-1">
                 Welcome, {{ $user->name }}
@@ -12,7 +10,6 @@
             </small>
         </div>
 
-        {{-- RIGHT AVATAR --}}
         <div class="ms-auto">
             @if ($user->avatar ?? false)
                 <img src="{{ $user->avatar }}" class="rounded-circle border shadow-sm"
@@ -22,6 +19,5 @@
                     class="rounded-circle border shadow-sm" style="width:60px;height:60px;object-fit:cover;">
             @endif
         </div>
-
     </div>
 </div>
