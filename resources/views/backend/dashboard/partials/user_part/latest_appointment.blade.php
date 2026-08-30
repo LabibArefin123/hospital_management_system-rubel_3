@@ -1,4 +1,4 @@
-    <div class="card border-0">
+    <div class="card ">
         <div class="card-header bg-white">
             <h5 class="mb-0">Latest Appointments</h5>
         </div>

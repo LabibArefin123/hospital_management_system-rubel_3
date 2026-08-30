@@ -1,9 +1,9 @@
- <div class="card border-0 shadow-sm">
+ <div class="card">
      <div class="card-header bg-white">
          <h5 class="mb-0">My All Appointments</h5>
      </div>
      <div class="card-body table-responsive">
-         <table class="table table-bordered table-hover mb-0">
+         <table class="table table-bordered table-hover" id="dataTables">
              <thead>
                  <tr>
                      <th>Doctor</th>

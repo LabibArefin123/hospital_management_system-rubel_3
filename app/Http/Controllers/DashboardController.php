@@ -48,7 +48,7 @@ class DashboardController extends Controller
             ->paginate(8, ['*'], 'service_page');
 
         /* DASHBOARD VIEW */
-        return view('backend.dashboard_admin', compact(
+        return view('backend.dashboard.dashboard_admin', compact(
             'user',
             'totalAppointments',
             'totalEarnings',
@@ -110,7 +110,7 @@ class DashboardController extends Controller
             ->latest()
             ->paginate(8, ['*'], 'doctor_page');
 
-        return view('backend.dashboard_doctor', compact(
+        return view('backend.dashboard.dashboard_doctor', compact(
             'doctor',
             'totalAppointments',
             'totalEarnings',
@@ -158,7 +158,7 @@ class DashboardController extends Controller
             ->latest()
             ->paginate(8);
 
-        return view('backend.dashboard_user', compact(
+        return view('backend.dashboard.dashboard_user', compact(
             'user',
             'totalAppointments',
             'confirmedAppointments',
@@ -168,52 +168,5 @@ class DashboardController extends Controller
             'latestAppointments',
             'appointments'
         ));
-    }
-    /**
-     * Show the form for creating a new resource
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }
