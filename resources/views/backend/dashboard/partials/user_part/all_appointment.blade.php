@@ -28,18 +28,12 @@
                                  <strong style="font-size:13px;">{{ $appointment->doctor->name ?? 'N/A' }}</strong>
                              </div>
                          </td>
-                         <td>
-                             {{ ucfirst($appointment->type) }}
-                         </td>
+                         <td>{{ ucfirst($appointment->type) }}</td>
                          <td>
                              {{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d M Y') }}
                          </td>
-                         <td>
-                             {{ $appointment->appointment_time }}
-                         </td>
-                         <td>
-                             ৳{{ number_format($appointment->amount, 2) }}
-                         </td>
+                         <td>{{ $appointment->appointment_time }}</td>
+                         <td>৳{{ number_format($appointment->amount, 2) }}</td>
                          <td>
                              <span
                                  class="badge

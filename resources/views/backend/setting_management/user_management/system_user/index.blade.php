@@ -43,8 +43,14 @@
                                         class="btn btn-warning btn-sm">Edit</a>
                                     @if (auth()->user()->hasRole('admin'))
                                         <button type="button" class="btn btn-danger btn-sm change-password-btn"
-                                            data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}">Change
-                                            Password</button>
+                                            data-bs-toggle="modal" data-bs-target="#changePasswordModal"
+                                            data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}"
+                                            data-user-email="{{ $user->email ?? '' }}"
+                                            data-user-role="{{ $user->roles->pluck('name')->join(', ') }}"
+                                            data-user-picture="{{ $user->hasRole('doctor') && $user->doctor && $user->doctor->image ? asset($user->doctor->image) : ($user->profile_picture ? asset($user->profile_picture) : asset('uploads/images/default.jpg')) }}">
+                                            <i class="fas fa-key mr-1"></i>
+                                            Change Password
+                                        </button>
                                         <form action="{{ route('system_users.destroy', $user->id) }}" method="POST"
                                             class="d-inline"
                                             onsubmit="return confirm('Are you sure you want to delete this user?');">
@@ -59,54 +65,17 @@
                     </tbody>
                 </table>
 
-                <div class="modal fade" id="changePasswordModal" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content shadow-lg">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Change Password – <span id="modalUserName"></span></h5>
-                                <button type="button" class="close" data-bs-dismiss="modal"><span>&times;</span></button>
-                            </div>
-                            <form method="POST" id="changePasswordForm">
-                                @csrf
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label>New Password</label>
-                                        <div class="input-group">
-                                            <input type="password" name="password" id="password" class="form-control"
-                                                required>
-                                            <div class="input-group-append">
-                                                <span class="input-group-text toggle-password" data-target="password"><i
-                                                        class="fas fa-eye"></i></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Confirm Password</label>
-                                        <div class="input-group">
-                                            <input type="password" name="password_confirmation" id="password_confirmation"
-                                                class="form-control" required>
-                                            <div class="input-group-append">
-                                                <span class="input-group-text toggle-password"
-                                                    data-target="password_confirmation"><i class="fas fa-eye"></i></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-danger">Update Password</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
 
+                @include('backend.setting_management.user_management.system_user.modal.change_password')
             </div>
         </div>
     </div>
 @stop
 
 @section('js')
-    <script src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_user_password.js') }}"></script>
-    <script src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_user_password_toggle.js') }}"></script>
+    <script src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_user_password.js') }}">
+    </script>
+    <script
+        src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_user_password_toggle.js') }}">
+    </script>
 @endsection
