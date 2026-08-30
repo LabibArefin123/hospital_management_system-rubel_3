@@ -5,58 +5,42 @@
 @section('content_header')
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1>User Profile</h1>
-        <a href="{{ route('system_users.user_profile_edit') }}" class="btn btn-warning" id="editProfileBtn">
+        <a id="editProfileBtn" data-profile-url="{{ route('system_users.user_profile_edit') }}" class="btn btn-warning"
+            id="editProfileBtn">
             <i class="fas fa-edit me-1"></i> Edit Profile
         </a>
     </div>
 @stop
 
 @section('content')
-    <div class="container-fluid">
-        <!-- Profile Card -->
-        <div class="card shadow-sm">
-            <div class="card-body row align-items-center">
-                <!-- Profile Image -->
-                <div class="col-md-3 text-center">
-                    <img src="{{ $user->profile_picture ? asset($user->profile_picture) : asset('uploads/images/default.jpg') }}"
-                        class="rounded-circle img-fluid shadow" alt="Profile Picture"
-                        style="width: 150px; height: 150px; object-fit: cover;">
-                </div>
+    <!-- Profile Card -->
+    <div class="card shadow-sm">
+        <div class="card-body row align-items-center">
+            <!-- Profile Image -->
+            <div class="col-md-3 text-center">
+                <img src="{{ $user->profile_picture ? asset($user->profile_picture) : asset('uploads/images/default.jpg') }}"
+                    class="rounded-circle img-fluid shadow" alt="Profile Picture"
+                    style="width: 150px; height: 150px; object-fit: cover;">
+            </div>
 
-                <!-- User Info -->
-                <div class="col-md-9">
-                    <h4 class="mb-3">{{ $user->name }}</h4>
-                    <div class="row">
-                        <div class="col-md-6 mb-2"><strong>Username:</strong> {{ $user->username }}</div>
-                        <div class="col-md-6 mb-2"><strong>Email:</strong> {{ $user->email }}</div>
-                        <div class="col-md-6 mb-2"><strong>Phone:</strong> {{ $user->phone ?? 'Not Provided' }}</div>
-                        <div class="col-md-6 mb-2"><strong>Phone 2:</strong> {{ $user->phone_2 ?? 'Not Provided' }}</div>
-                    </div>
+            <!-- User Info -->
+            <div class="col-md-9">
+                <h4 class="mb-3">{{ $user->name }}</h4>
+                <div class="row">
+                    <div class="col-md-6 mb-2"><strong>Username:</strong> {{ $user->username }}</div>
+                    <div class="col-md-6 mb-2"><strong>Email:</strong> {{ $user->email }}</div>
+                    <div class="col-md-6 mb-2"><strong>Phone:</strong> {{ $user->phone ?? 'Not Provided' }}</div>
+                    <div class="col-md-6 mb-2"><strong>Phone 2:</strong> {{ $user->phone_2 ?? 'Not Provided' }}</div>
                 </div>
             </div>
         </div>
     </div>
-
     </div>
+
 @endsection
 
 @section('js')
-
-    <script>
-        // Edit Profile Confirmation
-        document.getElementById('editProfileBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            Swal.fire({
-                title: 'Do you want to edit your profile?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, edit it!',
-                cancelButtonText: 'No, cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "{{ route('system_users.user_profile_edit') }}";
-                }
-            });
-        });
+    <script
+        src="{{ asset('js/custom_backend/setting_management/system_user/profile_page/show_page/edit_confirmation.js') }}">
     </script>
 @endsection

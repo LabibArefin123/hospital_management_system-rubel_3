@@ -58,7 +58,7 @@ class AppointmentController extends Controller
             )
         );
     }
-    
+
     public function show($id)
     {
         $user = Auth::user();
@@ -116,9 +116,7 @@ class AppointmentController extends Controller
     public function appointment_cancel($id)
     {
         $appointment = Appointment::findOrFail($id);
-
         $appointment->status = 'Cancelled';
-
         $appointment->save();
 
         return redirect()
@@ -130,67 +128,33 @@ class AppointmentController extends Controller
     {
         $appointment = Appointment::findOrFail($id);
 
-        /*
-    |--------------------------------------------------------------------------
-    | ROLE CHECK
-    |--------------------------------------------------------------------------
-    */
-
-        if (
-            !auth()->user()->hasRole('admin') &&
-            !auth()->user()->hasRole('doctor')
-        ) {
-
+        /* ROLE CHECK */
+        if (!auth()->user()->hasRole('admin') && !auth()->user()->hasRole('doctor')) {
             abort(403);
         }
 
-        /*
-    |--------------------------------------------------------------------------
-    | DOCTOR SECURITY
-    |--------------------------------------------------------------------------
-    */
-
+        /* DOCTOR SECURITY */
         if (auth()->user()->hasRole('doctor')) {
-
-            $doctorProfile = Doctor::where(
-                'email',
-                auth()->user()->email
-            )->first();
+            $doctorProfile = Doctor::where('user_id', auth()->id())->first();
 
             if (!$doctorProfile) {
-
                 abort(403);
             }
 
             if ($appointment->doctor_id != $doctorProfile->id) {
-
                 abort(403);
             }
         }
 
-        /*
-    |--------------------------------------------------------------------------
-    | VALIDATION
-    |--------------------------------------------------------------------------
-    */
-
+        /* VALIDATION */
         $request->validate([
             'status' => 'required|in:pending,confirmed,cancelled',
         ]);
 
-        /*
-    |--------------------------------------------------------------------------
-    | UPDATE
-    |--------------------------------------------------------------------------
-    */
-
+        /* UPDATE */
         $appointment->status = $request->status;
-
         $appointment->save();
 
-        return back()->with(
-            'success',
-            'Appointment status updated successfully.'
-        );
+        return back()->with('success', 'Appointment status updated successfully.');
     }
 }
