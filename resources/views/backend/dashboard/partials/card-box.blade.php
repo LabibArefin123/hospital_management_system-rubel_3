@@ -7,7 +7,7 @@
 
             <div class="inner">
 
-                <h3>
+                <h3 id="totalAppointmentCount">
                     {{ $totalAppointments }}
                 </h3>
 

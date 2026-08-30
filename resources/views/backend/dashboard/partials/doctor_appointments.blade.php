@@ -14,22 +14,15 @@
 
     @foreach ($doctorAppointments as $appointment)
         <div class="col-lg-3 col-md-6 mb-4 appointment-card" data-type="doctor"
-            data-status="{{ strtolower($appointment->status) }}"
+            data-patient="{{ strtolower($appointment->name) }}" data-status="{{ strtolower($appointment->status) }}"
             data-date="{{ \Carbon\Carbon::parse($appointment->appointment_date)->format('Y-m-d') }}"
-            data-search="
-        {{ strtolower($appointment->name) }}
-        {{ strtolower($appointment->doctor->name ?? '') }}
-        {{ strtolower($appointment->doctor->speciality ?? '') }}
-    ">
+            data-search="{{ strtolower($appointment->name . ' ' . ($appointment->doctor->name ?? '') . ' ' . ($appointment->doctor->speciality ?? '')) }}">
 
             <div class="card shadow-sm border-0 h-100 rounded-lg">
                 <div class="card-body">
                     {{-- PATIENT --}}
                     <div class="mb-3">
-                        <h5 class="font-weight-bold mb-1">
-                            {{ $appointment->name }}
-                        </h5>
-
+                        <h5 class="font-weight-bold mb-1">{{ $appointment->name }}</h5>
                         <p class="mb-0 text-muted">
                             {{ $appointment->age }} Years, {{ ucfirst($appointment->gender) }}
                         </p>

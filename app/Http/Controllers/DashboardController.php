@@ -15,27 +15,23 @@ class DashboardController extends Controller
      */
     public function admin_dashboard()
     {
-        $doctor = Auth::user();
+        $user = Auth::user();
 
-        /*TOTAL APPOINTMENTS  */
+        /* TOTAL APPOINTMENTS */
         $totalAppointments = Appointment::count();
 
-        /* TOTAL EARNINGS   */
-        $totalEarnings = Appointment::where('status', 'confirmed')
-            ->sum('amount');
+        /* TOTAL EARNINGS */
+        $totalEarnings = Appointment::where('status', 'confirmed')->sum('amount');
 
-        /*COMPLETED APPOINTMENTS */
-        $completedAppointments = Appointment::where('status', 'confirmed')
-            ->count();
+        /* CONFIRMED APPOINTMENTS */
+        $completedAppointments = Appointment::where('status', 'confirmed')->count();
 
-        /* CANCELLED APPOINTMENTS  */
-        $cancelledAppointments = Appointment::where('status', 'cancelled')
-            ->count();
+        /* CANCELLED APPOINTMENTS */
+        $cancelledAppointments = Appointment::where('status', 'cancelled')->count();
 
-        /*LATEST APPOINTMENTS */
+        /* LATEST APPOINTMENTS */
         $latestAppointments = Appointment::with(['doctor', 'service'])
             ->latest()
-            ->take(5)
             ->get();
 
         /* DOCTOR APPOINTMENTS */
@@ -51,9 +47,9 @@ class DashboardController extends Controller
             ->latest()
             ->paginate(8, ['*'], 'service_page');
 
-        /* DASHBOARD VIEW  */
+        /* DASHBOARD VIEW */
         return view('backend.dashboard_admin', compact(
-            'doctor',
+            'user',
             'totalAppointments',
             'totalEarnings',
             'completedAppointments',
@@ -68,47 +64,49 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        /* FIND DOCTOR USING USER ID */
+        /* FIND DOCTOR USING LOGGED-IN USER ID */
         $doctor = Doctor::where('user_id', $user->id)->first();
 
         if (!$doctor) {
             abort(403, 'Doctor profile not found.');
         }
 
-        /* TOTAL APPOINTMENTS */
-        $totalAppointments = Appointment::where('doctor_id', $doctor->id)->count();
+        /* DOCTOR ID */
+        $doctorId = $doctor->id;
 
-        /* TOTAL EARNINGS */
-        $totalEarnings = Appointment::where('doctor_id', $doctor->id)
+        /* TOTAL APPOINTMENTS FOR THIS DOCTOR ONLY */
+        $totalAppointments = Appointment::where('doctor_id', $doctorId)->count();
+
+        /* TOTAL EARNINGS FOR THIS DOCTOR ONLY */
+        $totalEarnings = Appointment::where('doctor_id', $doctorId)
             ->where('status', 'confirmed')
             ->sum('amount');
 
-        /* COMPLETED APPOINTMENTS COUNT */
-        $completedAppointments = Appointment::where('doctor_id', $doctor->id)
+        /* COMPLETED APPOINTMENTS FOR THIS DOCTOR ONLY */
+        $completedAppointments = Appointment::where('doctor_id', $doctorId)
             ->where('status', 'confirmed')
             ->count();
 
-        /* CANCELLED APPOINTMENTS COUNT */
-        $cancelledAppointments = Appointment::where('doctor_id', $doctor->id)
+        /* CANCELLED APPOINTMENTS FOR THIS DOCTOR ONLY */
+        $cancelledAppointments = Appointment::where('doctor_id', $doctorId)
             ->where('status', 'cancelled')
             ->count();
 
-        /* LATEST APPOINTMENTS */
+        /* LATEST APPOINTMENTS FOR THIS DOCTOR ONLY */
         $latestAppointments = Appointment::with('doctor')
-            ->where('doctor_id', $doctor->id)
+            ->where('doctor_id', $doctorId)
             ->latest()
-            ->take(5)
             ->get();
 
-        /* ALL APPOINTMENTS */
+        /* ALL APPOINTMENTS FOR THIS DOCTOR ONLY */
         $appointments = Appointment::with('doctor')
-            ->where('doctor_id', $doctor->id)
+            ->where('doctor_id', $doctorId)
             ->latest()
             ->get();
 
-        /* PAGINATED DOCTOR APPOINTMENTS */
+        /* PAGINATED APPOINTMENTS FOR THIS DOCTOR ONLY */
         $doctorAppointments = Appointment::with('doctor')
-            ->where('doctor_id', $doctor->id)
+            ->where('doctor_id', $doctorId)
             ->latest()
             ->paginate(8, ['*'], 'doctor_page');
 

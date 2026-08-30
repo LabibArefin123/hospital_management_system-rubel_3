@@ -3,8 +3,8 @@
         <h3 class="card-title"> Latest Appointments </h3>
     </div>
 
-    <div class="card-body p-0">
-        <table class="table table-hover">
+    <div class="card-body ">
+        <table class="table table-hover" id=dataTables>
             <thead>
                 <tr>
                     <th>SL</th>

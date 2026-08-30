@@ -29,7 +29,7 @@
                      <h2 class="text-white font-weight-bold mb-1">
                          Welcome,
                          <span style="color:#ffd43b;">
-                             {{ $doctor->name }}
+                             {{ $user->name }}
                          </span>
                      </h2>
                  </div>
