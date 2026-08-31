@@ -344,7 +344,6 @@ class FrontendController extends Controller
             'service_id.exists' => 'Selected service was not found.',
         ]);
 
-
         DB::beginTransaction();
         try {
             $appointment = null;

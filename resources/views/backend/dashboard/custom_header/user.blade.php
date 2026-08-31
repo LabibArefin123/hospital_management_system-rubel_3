@@ -1,23 +1,18 @@
-<div class="card">
-    <div class="card-body d-flex align-items-center">
-        <div class="flex-grow-1">
-            <h4 class="mb-1">
-                Welcome, {{ $user->name }}
-            </h4>
-
-            <small class="text-muted">
-                {{ $user->email }}
-            </small>
-        </div>
-
-        <div class="ms-auto">
-            @if ($user->avatar ?? false)
-                <img src="{{ $user->avatar }}" class="rounded-circle border shadow-sm"
-                    style="width:60px;height:60px;object-fit:cover;">
-            @else
-                <img src="{{ $user->profile_picture ? asset($user->profile_picture) : asset('uploads/images/default.jpg') }}"
-                    class="rounded-circle border shadow-sm" style="width:60px;height:60px;object-fit:cover;">
-            @endif
+<div class="card dashboard-header-user">
+    <div class="card-body dashboard-header-user-body">
+        <div class="dashboard-header-user-content">
+            <div class="dashboard-header-user-info">
+                <h4 class="dashboard-header-user-title">Welcome, {{ $user->name }}</h4>
+                <small class="dashboard-header-user-email">{{ $user->email }}</small>
+            </div>
+            <div class="dashboard-header-user-avatar-wrapper">
+                @if ($user->avatar ?? false)
+                    <img src="{{ $user->avatar }}" class="dashboard-header-user-avatar" alt="User">
+                @else
+                    <img src="{{ $user->profile_picture ? asset($user->profile_picture) : asset('uploads/images/default.jpg') }}"
+                        class="dashboard-header-user-avatar" alt="User">
+                @endif
+            </div>
         </div>
     </div>
 </div>

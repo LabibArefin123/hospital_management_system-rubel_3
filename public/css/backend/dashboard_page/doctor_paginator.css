@@ -5,14 +5,24 @@
 .doctor-appointment-paginator {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin-top: 8px;
     margin-bottom: 25px;
+    padding: 0 4px;
+}
+
+.doctor-appointment-paginator nav {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .doctor-appointment-paginator .pagination {
     margin: 0;
+    display: flex;
+    align-items: center;
     gap: 5px;
 }
 
@@ -29,6 +39,7 @@
     color: #0d6efd;
     font-size: 13px;
     font-weight: 600;
+    line-height: 1;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
     transition: all 0.2s ease;
 }
@@ -54,17 +65,67 @@
     color: #adb5bd;
     cursor: not-allowed;
     box-shadow: none;
+    transform: none;
 }
 
-@media (max-width: 575px) {
+.doctor-appointment-paginator .page-link[aria-label="Previous"],
+.doctor-appointment-paginator .page-link[aria-label="Next"] {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.doctor-appointment-paginator .page-link svg {
+    width: 14px;
+    height: 14px;
+}
+
+.doctor-appointment-paginator .pagination svg {
+    max-width: 14px;
+    max-height: 14px;
+}
+
+.doctor-appointment-paginator .pagination .relative {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.doctor-appointment-paginator .pagination > li:first-child .page-link,
+.doctor-appointment-paginator .pagination > li:last-child .page-link {
+    padding-left: 13px;
+    padding-right: 13px;
+}
+
+@media (max-width: 767.98px) {
+    .doctor-appointment-paginator {
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        margin-top: 12px;
+        margin-bottom: 20px;
+    }
+    .doctor-appointment-paginator nav {
+        justify-content: center;
+    }
     .doctor-appointment-paginator .pagination {
         gap: 3px;
     }
-
     .doctor-appointment-paginator .page-item .page-link {
         min-width: 34px;
         height: 34px;
         font-size: 12px;
         padding: 0 7px;
+    }
+}
+
+@media (max-width: 400px) {
+    .doctor-appointment-paginator .pagination {
+        gap: 2px;
+    }
+    .doctor-appointment-paginator .page-item .page-link {
+        min-width: 32px;
+        height: 32px;
+        padding: 0 6px;
+        font-size: 11px;
     }
 }

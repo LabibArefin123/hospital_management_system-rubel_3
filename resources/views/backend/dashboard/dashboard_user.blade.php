@@ -6,19 +6,23 @@
     @include('backend.dashboard.custom_header.user')
 @stop
 
+@section('adminlte_css')
+    <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/user_part/header_part/dashboard_header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/user_part/payment_part/payment_box.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/user_part/appointment_part/appointment_box.css') }}">
+@stop
+
 @section('content')
-{{-- ================= STATS CARD PART ================= --}}
-    @include('backend.dashboard.partials.user_part.card-box')
+    {{-- ================= STATS CARD PART ================= --}}
+    @include('backend.dashboard.partials.user_part.card_box')
     {{-- ================= PAYMENT PART================= --}}
-    <div class="card border-0 shadow-sm">
-        <div class="card-body">
-            <h5>Total Paid</h5>
-            <h3 class="text-success">৳{{ number_format($totalPaid, 2) }}</h3>
-        </div>
-    </div>
+    @include('backend.dashboard.partials.user_part.payment_box')
     {{-- ================= LATEST APPOINTMENTS ================= --}}
     @include('backend.dashboard.partials.user_part.latest_appointment')
-
     {{-- ================= ALL APPOINTMENTS ================= --}}
     @include('backend.dashboard.partials.user_part.all_appointment')
+@endsection
+
+@section('js')
+    <script src="{{ asset('js/custom_backend/dashboard_page/user/appointment_payment.js') }}"></script>
 @endsection

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Doctor;
 use App\Models\Payment;
 use App\Models\Appointment;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -25,6 +26,9 @@ class DashboardController extends Controller
 
         /* CONFIRMED APPOINTMENTS */
         $completedAppointments = Appointment::where('status', 'confirmed')->count();
+
+        /* PENDING APPOINTMENTS */
+        $pendingAppointments = Appointment::where('status', 'pending')->count();
 
         /* CANCELLED APPOINTMENTS */
         $cancelledAppointments = Appointment::where('status', 'cancelled')->count();
@@ -54,6 +58,7 @@ class DashboardController extends Controller
             'totalEarnings',
             'completedAppointments',
             'cancelledAppointments',
+            'pendingAppointments',
             'latestAppointments',
             'doctorAppointments',
             'serviceAppointments'
@@ -87,6 +92,10 @@ class DashboardController extends Controller
             ->where('status', 'confirmed')
             ->count();
 
+        $pendingAppointments = Appointment::where('doctor_id', $doctorId)
+            ->where('status', 'pending')
+            ->count();
+
         /* CANCELLED APPOINTMENTS FOR THIS DOCTOR ONLY */
         $cancelledAppointments = Appointment::where('doctor_id', $doctorId)
             ->where('status', 'cancelled')
@@ -115,6 +124,7 @@ class DashboardController extends Controller
             'totalAppointments',
             'totalEarnings',
             'completedAppointments',
+            'pendingAppointments',
             'cancelledAppointments',
             'latestAppointments',
             'appointments',
@@ -126,33 +136,43 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        // ================= APPOINTMENTS PART=================
-        $totalAppointments = Appointment::where('user_id', $user->id)->count();
+        /* APPOINTMENT COUNTS */
+        $userAppointments = Appointment::where('user_id', $user->id);
+        $totalAppointments = (clone $userAppointments)->count();
+        $confirmedAppointments = (clone $userAppointments)->where('status', 'confirmed')->count();
+        $pendingAppointments = (clone $userAppointments)->where('status', 'pending')->count();
+        $cancelledAppointments = (clone $userAppointments)->where('status', 'cancelled')->count();
 
-        $confirmedAppointments = Appointment::where('user_id', $user->id)
-            ->where('status', 'confirmed')
-            ->count();
-
-        $pendingAppointments = Appointment::where('user_id', $user->id)
-            ->where('status', 'pending')
-            ->count();
-
-        $cancelledAppointments = Appointment::where('user_id', $user->id)
-            ->where('status', 'cancelled')
-            ->count();
-
-        // ================= PAYMENTS PART=================
+        /* TOTAL PAID */
         $totalPaid = Payment::where('user_id', $user->id)
             ->where('status', 'paid')
             ->sum('amount');
 
-        // ================= LATEST APPOINTMENTS =================
+        /* PAID APPOINTMENT IDS */
+        $paidAppointmentIds = Payment::where('user_id', $user->id)
+            ->where('status', 'paid')
+            ->whereNotNull('appointment_id')
+            ->pluck('appointment_id')
+            ->unique();
+
+        /* CASH RECEIVED */
+        $cashReceived = Appointment::where('user_id', $user->id)
+            ->where('status', 'confirmed')
+            ->whereNotIn('id', $paidAppointmentIds)
+            ->sum('amount');
+
+        /* CASH PENDING */
+        $cashPending = Appointment::where('user_id', $user->id)
+            ->where('status', 'pending')
+            ->sum('amount');
+
+        /* LATEST APPOINTMENTS */
         $latestAppointments = Appointment::with(['doctor', 'service'])
             ->where('user_id', $user->id)
             ->latest()
             ->get();
 
-        // ================= ALL APPOINTMENTS =================
+        /* ALL APPOINTMENTS */
         $appointments = Appointment::with(['doctor', 'service'])
             ->where('user_id', $user->id)
             ->latest()
@@ -165,6 +185,9 @@ class DashboardController extends Controller
             'pendingAppointments',
             'cancelledAppointments',
             'totalPaid',
+            'cashReceived',
+            'cashPending',
+            'paidAppointmentIds',
             'latestAppointments',
             'appointments'
         ));
