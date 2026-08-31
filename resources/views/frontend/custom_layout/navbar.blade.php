@@ -1,15 +1,12 @@
 <nav class="navbar navbar-expand-lg premium-navbar sticky-header">
     <div class="container">
-
         <a class="navbar-brand d-flex align-items-center" href="{{ route('welcome') }}">
             <img src="{{ asset('uploads/images/original_logor.JPG') }}" class="brand-logo">
-
         </a>
 
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
             ☰
         </button>
-
         <div class="collapse navbar-collapse justify-content-center" id="navMenu">
             <ul class="navbar-nav nav-pill">
                 <li>
@@ -38,7 +35,6 @@
                         Appointments
                     </a>
                 </li>
-
           
                 <li>
                     <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}"
@@ -65,38 +61,29 @@
         @endphp
 
         <div class="nav-actions d-flex align-items-center gap-2">
-
             @auth
                 <div class="dropdown">
-
                     <button class="btn btn-light border dropdown-toggle d-flex align-items-center gap-2" type="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-
                         <i class="fas fa-user-circle"></i>
-
                         <span class="fw-semibold">
                             {{ auth()->user()->name }}
                         </span>
-
                     </button>
 
                     <ul class="dropdown-menu dropdown-menu-end shadow border-0 p-2">
-
                         {{-- ================= PUBLIC ================= --}}
                         <li class="px-2 py-1 text-muted small">
                             🌐 Public Area
                         </li>
-
                         <li>
                             <a class="dropdown-item" href="{{ route('frontend.profile') }}">
                                 👤 My Profile
                             </a>
                         </li>
-
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
                         {{-- ================= DASHBOARD ================= --}}
                         <li class="px-2 py-1 text-muted small">
                             ⚙️ Dashboard Area
@@ -105,9 +92,7 @@
                         <li>
                             <a class="dropdown-item d-flex justify-content-between align-items-center"
                                 href="{{ route($dashboardRoute) }}">
-
                                 <span>📊 Dashboard</span>
-
                                 @if ($user->hasRole('admin'))
                                     <span class="badge bg-danger">Admin</span>
                                 @elseif ($user->hasRole('doctor'))
@@ -115,7 +100,6 @@
                                 @else
                                     <span class="badge bg-success">User</span>
                                 @endif
-
                             </a>
                         </li>
 
@@ -123,7 +107,6 @@
                             <hr class="dropdown-divider">
                         </li>
 
-                        {{-- ================= LOGOUT ================= --}}
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -138,9 +121,7 @@
                 </div>
             @endauth
 
-
             @guest
-
                 <a href="{{ route('login') }}" class="btn btn-success">
                     Login
                 </a>
@@ -150,8 +131,6 @@
                     Search
                 </a>
             @endguest
-
         </div>
     </div>
-
 </nav>

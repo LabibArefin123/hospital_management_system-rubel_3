@@ -6,6 +6,10 @@
     @include('backend.dashboard.custom_header.admin')
 @stop
 
+@section('adminlte_css')
+    <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/admin_part/header_part/dashboard_header.css') }}">
+@stop
+
 @section('content')
     {{-- Filter section --}}
     @include('backend.dashboard.custom_filter.admin.top_filter')

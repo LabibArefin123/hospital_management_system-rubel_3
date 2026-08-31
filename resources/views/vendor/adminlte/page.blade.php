@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="{{ asset('css/backend/backend.css') }}">
 <link rel="stylesheet" href="{{ asset('css/custom_backend/dashboard_page/doctor_paginator.css') }}">
 <link rel="stylesheet" href="{{ asset('css/custom_backend/dashboard_page/service_paginator.css') }}">
+
 @section('classes_body', $layoutHelper->makeBodyClasses())
 
 @section('body_data', $layoutHelper->makeBodyData())

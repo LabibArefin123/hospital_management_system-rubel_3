@@ -1,0 +1,72 @@
+.dashboard-header {
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+    overflow: hidden;
+}
+
+.dashboard-header-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 3px solid rgba(255, 255, 255, 0.25);
+    padding: 2px;
+}
+
+.dashboard-header-title {
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.dashboard-header-name {
+    color: #ffd43b;
+}
+
+.dashboard-header-actions {
+    gap: 8px;
+}
+
+.dashboard-header-filter,
+.dashboard-header-badge {
+    color: #fff;
+    border-radius: 50rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: background 0.3s ease;
+}
+
+.dashboard-header-filter {
+    padding: 8px 24px;
+}
+
+.dashboard-header-filter:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.dashboard-header-filter .filter-arrow {
+    transition: transform 0.3s ease;
+}
+
+.dashboard-header-badge {
+    padding: 8px 24px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 767.98px) {
+    .dashboard-header-actions {
+        width: 100%;
+        margin-top: 16px;
+    }
+    .dashboard-header-filter,
+    .dashboard-header-badge {
+        padding: 8px 16px;
+    }
+    .dashboard-header-title {
+        font-size: 1.5rem;
+    }
+}

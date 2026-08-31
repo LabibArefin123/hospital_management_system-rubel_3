@@ -2,8 +2,6 @@
    FILE: backend-layout.css
 ========================================================= */
 
-/* ================= RESET ================= */
-
 html,
 body {
     width: 100%;
@@ -11,49 +9,36 @@ body {
     margin: 0 !important;
     padding: 0 !important;
     overflow-x: hidden;
+}
+body {
     background-color: #f4f6f9 !important;
 }
-
-/* ================= WRAPPER ================= */
-
 .wrapper {
     min-height: 100vh;
     width: 100%;
     background-color: #f4f6f9 !important;
 }
-
-/* ================= CONTENT WRAPPER ================= */
-
 .content-wrapper {
     background-color: #f4f6f9 !important;
-    min-height: 100vh;
+    min-height: 100vh !important;
+    height: auto !important;
+    overflow: visible !important;
 }
-
-/* ================= PAGE CONTENT ================= */
-
 .content {
     padding: 20px !important;
+    overflow: visible !important;
 }
-
-/* ================= CONTAINER ================= */
-
 .container-fluid {
     width: 100%;
     padding-left: 15px !important;
     padding-right: 15px !important;
+    overflow: visible !important;
 }
-
-/* ================= REMOVE MANUAL SIDEBAR MARGIN ================= */
-/* AdminLTE handles this automatically */
-
 .content-wrapper,
 .main-header,
 .main-footer {
     transition: margin-left 0.3s ease-in-out;
 }
-
-/* ================= MOBILE ================= */
-
 @media (max-width: 991.98px) {
     .content-wrapper,
     .main-header,
@@ -61,55 +46,35 @@ body {
         margin-left: 0 !important;
     }
 }
-
-/* ================= CARD ================= */
-
 .card {
     border-radius: 12px;
-    overflow: hidden;
     border: 0 !important;
 }
-
 .card-body {
+    overflow: visible;
+}
+.table-responsive {
     overflow-x: auto;
 }
-
-/* ================= HEADER ================= */
-
 .main-header {
     border-bottom: 1px solid #dee2e6;
     background: #fff;
 }
-
-/* ================= FOOTER ================= */
-
 .main-footer {
     margin-bottom: 0 !important;
     padding-bottom: 12px !important;
     background: #fff;
 }
-
-/* ================= SIDEBAR ================= */
-/* REMOVE INTERNAL SIDEBAR SCROLL */
-
 .main-sidebar {
-    height: 100%;
-    overflow-y: visible !important;
+    overflow-x: hidden !important;
 }
-
-/* REMOVE FIXED SIDEBAR BEHAVIOR */
-
 .layout-fixed .main-sidebar {
     position: fixed;
 }
-
-/* ================= REMOVE EXTRA HORIZONTAL SCROLL ================= */
-
 .row {
     margin-left: -7px;
     margin-right: -7px;
 }
-
 .row > [class*="col-"] {
     padding-left: 7px;
     padding-right: 7px;

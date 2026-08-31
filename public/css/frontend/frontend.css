@@ -1,9 +1,6 @@
-/* =========================================================
-   FRONTEND MAIN CSS IMPORT FILE
-========================================================= */
+/* FRONTEND MAIN CSS IMPORT FILE */
 
-/* ================= NAVBAR ================= */
-
+/* ================= NAVBAR PART ================= */
 @import url("./custom_layout/navbar/navbar-base.css");
 @import url("./custom_layout/navbar/navbar-pill.css");
 @import url("./custom_layout/navbar/navbar-brand.css");
@@ -13,11 +10,9 @@
 @import url("./custom_layout/navbar/navbar-responsive.css");
 
 /* ================= BACK TO TOP ================= */
-
 @import url("./custom_layout/custom_back_to_top.css");
 
 /* ================= WELCOME PAGE : BANNER ================= */
-
 @import url("./welcome_page/banner_section/banner-layout.css");
 @import url("./welcome_page/banner_section/banner-content.css");
 @import url("./welcome_page/banner_section/banner-feature.css");
@@ -26,7 +21,6 @@
 @import url("./welcome_page/banner_section/banner-image-responsive.css");
 
 /* ================= WELCOME PAGE : TRUST ================= */
-
 @import url("./welcome_page/trust_section/trust-layout.css");
 @import url("./welcome_page/trust_section/trust-header.css");
 @import url("./welcome_page/trust_section/trust-box-slider.css");
@@ -34,7 +28,6 @@
 @import url("./welcome_page/trust_section/trust-responsive.css");
 
 /* ================= WELCOME PAGE : CERTIFY ================= */
-
 @import url("./welcome_page/certify_section/certify-layout.css");
 @import url("./welcome_page/certify_section/certify-header.css");
 @import url("./welcome_page/certify_section/certify-card.css");
@@ -42,7 +35,6 @@
 @import url("./welcome_page/certify_section/certify-animation.css");
 
 /* ================= WELCOME PAGE : DOCTOR ================= */
-
 @import url("./welcome_page/doctor_section/doctor-layout.css");
 @import url("./welcome_page/doctor_section/doctor-header.css");
 @import url("./welcome_page/doctor_section/doctor-card.css");
@@ -50,6 +42,7 @@
 @import url("./welcome_page/doctor_section/doctor-responsive.css");
 
 /* ================= DOCTOR PAGE ================= */
+
 /* ================= START OF HEADER ================= */
 @import url("./doctor_page/header_part/doctor-page-intro-base.css");
 @import url("./doctor_page/header_part/doctor-page-intro-heading.css");
@@ -69,7 +62,7 @@
 @import url("./doctor_page/doctor_information/about_doctor.css");
 @import url("./doctor_page/doctor_information/booking_section.css");
 
-/* ================= BOOKING TIME SECTION (DOCTOR INFORMATION PAGE) ================= */
+/* ================= START OF BOOKING TIME SECTION (DOCTOR INFORMATION PAGE) ================= */
 @import url("./doctor_page/doctor_information/booking_time_section/title.css");
 @import url("./doctor_page/doctor_information/booking_time_section/time_slots.css");
 @import url("./doctor_page/doctor_information/booking_time_section/time_status.css");
@@ -80,9 +73,9 @@
 @import url("./doctor_page/doctor_information/booking-patient-form.css");
 @import url("./doctor_page/doctor_information/booking-summary-payment.css");
 @import url("./doctor_page/doctor_information/responsive.css");
+/* ================= END OF BOOKING TIME SECTION (DOCTOR INFORMATION PAGE) ================= */
 
 /* ================= SERVICE PAGE ================= */
-
 @import url("./service_page/service_page_layout/service-page-layout-card.css");
 @import url("./service_page/service_page_layout/service-page-layout-image.css");
 @import url("./service_page/service_page_layout/service-page-layout-section.css");
