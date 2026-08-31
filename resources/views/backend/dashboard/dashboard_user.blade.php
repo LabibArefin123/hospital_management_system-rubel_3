@@ -22,7 +22,3 @@
     {{-- ================= ALL APPOINTMENTS ================= --}}
     @include('backend.dashboard.partials.user_part.all_appointment')
 @endsection
-
-@section('js')
-    <script src="{{ asset('js/custom_backend/dashboard_page/user/appointment_payment.js') }}"></script>
-@endsection
