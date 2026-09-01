@@ -1,0 +1,51 @@
+/* =========================================================
+   PROFILE EDIT ACTIONS
+========================================================= */
+
+.profile-edit-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid #edf0f2;
+}
+
+.profile-edit-footer-left {
+    color: #868e96;
+    font-size: 11px;
+}
+
+.profile-edit-footer-left i {
+    margin-right: 4px;
+}
+
+.profile-edit-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profile-edit-cancel-btn,
+.profile-edit-save-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 42px;
+    padding: 8px 17px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.profile-edit-cancel-btn:hover,
+.profile-edit-save-btn:hover {
+    transform: translateY(-1px);
+}
+
+.profile-edit-save-btn {
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.18);
+}

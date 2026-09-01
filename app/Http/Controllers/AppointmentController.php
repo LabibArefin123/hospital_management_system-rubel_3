@@ -96,6 +96,13 @@ class AppointmentController extends Controller
             );
         }
 
+        if ($user->hasRole('user')) {
+            return view(
+                'backend.appointment_section.show',
+                compact('appointment')
+            );
+        }
+
         abort(403, 'Unauthorized access.');
     }
 

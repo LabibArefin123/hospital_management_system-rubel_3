@@ -13,6 +13,7 @@
                     <th>Time</th>
                     <th>Amount</th>
                     <th>Status</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,10 +64,17 @@
                                 <span class="badge badge-warning appointment-status">Pending</span>
                             @endif
                         </td>
+                           <td>
+                            <a href="{{ route('appointments.show', $appointment->id) }}"
+                                class="btn btn-info btn-sm appointment-action-btn">
+                                <i class="fas fa-eye"></i>
+                                <span>View Appointment</span>
+                            </a>
+                        </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="text-center appointment-empty">
+                        <td colspan="8" class="text-center appointment-empty">
                             <i class="fas fa-calendar-times fa-2x text-muted appointment-empty-icon"></i>
                             <div class="text-muted">You don't have any appointments yet.</div>
                         </td>
