@@ -16,13 +16,7 @@
                         <h3>{{ $service->name ?? $service->title }}</h3>
                         <div class="service-desc">{{ $service->description }}</div>
                     </div>
-
-                    {{-- PRICE --}}
-                    <div class="service-price">
-                        ৳ {{ number_format($service->price, 2) }}
-                    </div>
-
-                    {{-- PRE TEST INSTRUCTIONS --}}
+                    <div class="service-price">৳ {{ number_format($service->price, 2) }} </div>
                     @if (!empty($service->instructions))
                         <div class="pre-test-box">
                             <h5> Pre Test Instructions</h5>
@@ -40,14 +34,6 @@
         </div>
     </section>
     @include('frontend.custom_layout.footer')
-    {{--  Service Slot Part in Service Show Page Start --}}
-    <script src="{{ asset('js/custom_frontend/service_show/service_time_slot_occupied/service_time_occupied_mark.js') }}">
-    </script>
-    <script src="{{ asset('js/custom_frontend/service_show/service_time_slot_occupied/service_time_occupied_detect.js') }}">
-    </script>
-    <script src="{{ asset('js/custom_frontend/service_show/service_time_slot_occupied/service_time_occupied_init.js') }}">
-    </script>
-    {{--  Service Slot Part in Service Show Page End --}}
     <script>
         window.SusthoCareUser = {
             authenticated: @json(auth()->check()),
@@ -59,9 +45,18 @@
             email: @json($userAppointment->email ?? null)
         };
     </script>
-
+    {{--  Service Slot Part in Service Show Page Start --}}
+    <script src="{{ asset('js/custom_frontend/service_show/service_time_slot_occupied/service_time_occupied_mark.js') }}">
+    </script>
+    <script src="{{ asset('js/custom_frontend/service_show/service_time_slot_occupied/service_time_occupied_detect.js') }}">
+    </script>
+    <script src="{{ asset('js/custom_frontend/service_show/service_time_slot_occupied/service_time_occupied_init.js') }}">
+    </script>
+    {{--  Service Slot Part in Service Show Page End --}}
+    {{--  Auto User Fill Data in Doctor Show Page when Auth connected Start --}}
     <script src="{{ asset('js/custom_frontend/user_appointment/user_form_config.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/user_appointment/user_form_helpers.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/user_appointment/user_form_fields.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/user_appointment/user_form_fill.js') }}"></script>
+    {{--  Auto User Fill Data in Doctor Show Page when Auth connected End --}}
 @endsection

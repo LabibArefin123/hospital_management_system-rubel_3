@@ -1,7 +1,7 @@
 /**SYSTEM SEARCH RENDERER - RESULTS*/
 (function (window, $) {
     "use strict";
-    console.log("[System Search] STATE 4D: Result renderer module loaded.");
+    console.log("[System Search] STATE 4F: Result renderer module loaded.");
     if (!window.SystemSearch) {
         console.error(
             "[System Search] STATE 4D ERROR: SystemSearch core not loaded.",

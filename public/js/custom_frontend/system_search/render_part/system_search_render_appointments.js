@@ -2,7 +2,7 @@
 (function (window, $) {
     "use strict";
     console.log(
-        "[System Search] STATE 4B: Appointment renderer module loaded.",
+        "[System Search] STATE 4D: Appointment renderer module loaded.",
     );
 
     if (!window.SystemSearch) {

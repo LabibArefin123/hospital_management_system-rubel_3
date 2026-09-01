@@ -7,7 +7,7 @@
 (function (window, $) {
     "use strict";
 
-    console.log("[System Search] STATE 5A: UI loading module loaded.");
+    console.log("[System Search] STATE 6A: UI loading module loaded.");
 
     if (!window.SystemSearch) {
         console.error(
@@ -23,7 +23,7 @@
     */
 
     window.SystemSearch.showLoading = function () {
-        console.log("[System Search] STATE 7: Showing loading.");
+        console.log("[System Search] STATE 10: Loading results.");
 
         $("#searchPageLoading").removeClass("d-none");
 

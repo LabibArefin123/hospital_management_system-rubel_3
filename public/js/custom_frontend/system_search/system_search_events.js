@@ -29,7 +29,7 @@
                 clearTimeout(window.SystemSearch.timer);
 
                 console.log(
-                    "[System Search] STATE 2: Search input changed:",
+                    "[System Search] STATE 8: Search input changed:",
                     search,
                 );
 
@@ -43,7 +43,7 @@
             "click",
             "#systemSearchClear,#systemSearchPageClear",
             function () {
-                console.log("[System Search] STATE 10: Clear button clicked.");
+                console.log("[System Search] STATE 13: Clear button clicked.");
 
                 const input = $("#systemSearchPageInput").length
                     ? $("#systemSearchPageInput")
@@ -57,8 +57,7 @@
 
         $(document).on("keydown", function (event) {
             if (event.key === "Escape") {
-                console.log("[System Search] STATE 10: Escape pressed.");
-
+                console.log("[System Search] STATE 13: Escape pressed.");
                 window.SystemSearch.clear();
             }
         });

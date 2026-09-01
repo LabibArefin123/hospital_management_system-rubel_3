@@ -19,7 +19,7 @@
     window.SystemSearch.search = function (search, input) {
         if (!search) {
             console.log(
-                "[System Search] STATE 10: Empty search. Clearing results.",
+                "[System Search] STATE 13: Empty search. Clearing results.",
             );
 
             window.SystemSearch.clear();
@@ -29,7 +29,7 @@
 
         if (!window.systemSearchUrl) {
             console.error(
-                "[System Search] STATE 7 ERROR: Search URL is not defined.",
+                "[System Search] STATE 8 ERROR: Search URL is not defined.",
             );
 
             window.SystemSearch.showEmpty(input);
@@ -37,10 +37,10 @@
             return;
         }
 
-        console.log("[System Search] STATE 7: Search started:", search);
+        console.log("[System Search] STATE 8: Search started:", search);
 
         console.log(
-            "[System Search] STATE 7: Request URL:",
+            "[System Search] STATE 8: Request URL:",
             window.systemSearchUrl,
         );
 
@@ -55,11 +55,10 @@
             dataType: "json",
 
             success: function (response) {
-                console.log("[System Search] STATE 8: AJAX success.", response);
-
+                console.log("[System Search] STATE 9: AJAX success.", response);
                 if (!response || response.status !== true) {
                     console.warn(
-                        "[System Search] STATE 8 WARNING: Invalid response.",
+                        "[System Search] STATE 9 WARNING: Invalid response.",
                     );
 
                     window.SystemSearch.showEmpty(input);

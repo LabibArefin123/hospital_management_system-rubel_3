@@ -122,13 +122,18 @@ class AppointmentController extends Controller
      */
     public function appointment_cancel($id)
     {
-        $appointment = Appointment::findOrFail($id);
-        $appointment->status = 'Cancelled';
-        $appointment->save();
+        $appointment = Appointment::where('id', $id)
+            ->where('user_id', Auth::id())
+            ->where('status', 'pending')
+            ->firstOrFail();
+
+        $appointment->update([
+            'status' => 'cancelled',
+        ]);
 
         return redirect()
             ->back()
-            ->with('success', 'Appointment Cancelled Successfully');
+            ->with('success', 'Appointment cancelled successfully.');
     }
 
     public function appointment_change(Request $request, $id)
@@ -161,7 +166,6 @@ class AppointmentController extends Controller
         /* UPDATE */
         $appointment->status = $request->status;
         $appointment->save();
-
         return back()->with('success', 'Appointment status updated successfully.');
     }
 }

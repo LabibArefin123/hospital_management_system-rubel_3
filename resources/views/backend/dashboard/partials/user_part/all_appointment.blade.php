@@ -2,7 +2,7 @@
     <div class="card-header">
         <h5 class="mb-0">My All Appointments</h5>
     </div>
-    <div class="card-body table-responsive p-0">
+    <div class="card-body table-responsive">
         <table class="table table-bordered table-hover" id="dataTables">
             <thead>
                 <tr>
@@ -13,7 +13,7 @@
                     <th>Time</th>
                     <th>Amount</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,13 +63,26 @@
                             @else
                                 <span class="badge badge-warning appointment-status">Pending</span>
                             @endif
-                        </td>
-                           <td>
-                            <a href="{{ route('appointments.show', $appointment->id) }}"
-                                class="btn btn-info btn-sm appointment-action-btn">
-                                <i class="fas fa-eye"></i>
-                                <span>View Appointment</span>
-                            </a>
+                        <td>
+                            <div class="appointment-actions">
+                                <a href="{{ route('appointments.show', $appointment->id) }}"
+                                    class="btn btn-info btn-sm appointment-action-btn">
+                                    <i class="fas fa-eye"></i>
+                                    <span>View Appointment</span>
+                                </a>
+
+                                @if ($appointment->status === 'pending')
+                                    <form action="{{ route('appointments.cancel', $appointment->id) }}" method="POST"
+                                        class="d-inline appointment-cancel-form">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm appointment-action-btn"
+                                            onclick="return confirm('Are you sure you want to cancel this appointment?')">
+                                            <i class="fas fa-times-circle"></i>
+                                            <span>Cancel Appointment</span>
+                                        </button>
+                                    </form>
+                                @endif
+                            </div>
                         </td>
                     </tr>
                 @empty

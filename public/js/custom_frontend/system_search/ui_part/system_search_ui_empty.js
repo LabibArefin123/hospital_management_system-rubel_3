@@ -2,7 +2,7 @@
 (function (window, $) {
     "use strict";
 
-    console.log("[System Search] STATE 5B: UI empty module loaded.");
+    console.log("[System Search] STATE 6B: UI empty module loaded.");
 
     if (!window.SystemSearch) {
         console.error(
@@ -18,7 +18,7 @@
     */
 
     window.SystemSearch.showEmpty = function () {
-        console.log("[System Search] STATE 9: Showing empty result.");
+        console.log("[System Search] STATE 10: Showing empty result.");
 
         $("#searchPageEmpty").removeClass("d-none");
 

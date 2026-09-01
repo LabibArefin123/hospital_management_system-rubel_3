@@ -1,67 +1,56 @@
-/**
- * ==========================================================
- * SUSTHOCARE SYSTEM SEARCH INITIALIZER
- * ==========================================================
- */
 
+/**SYSTEM SEARCH INITIALIZER */
 $(function () {
     "use strict";
 
-    console.log("[System Search] STATE 6: DOM ready.");
+    console.log("[System Search] STATE 7A: DOM ready.");
 
     if (typeof jQuery === "undefined") {
         console.error(
-            "[System Search] STATE 6 ERROR: jQuery is not available.",
+            "[System Search] STATE 7A ERROR: jQuery is not available."
         );
-
         return;
     }
 
     if (!window.SystemSearch) {
         console.error(
-            "[System Search] STATE 6 ERROR: SystemSearch core is not loaded.",
+            "[System Search] STATE 7A ERROR: SystemSearch core is not loaded."
         );
-
         return;
     }
 
     if (!window.systemSearchUrl) {
         console.error(
-            "[System Search] STATE 6 ERROR: systemSearchUrl is not defined.",
+            "[System Search] STATE 7A ERROR: systemSearchUrl is not defined."
         );
-
         return;
     }
 
     if (typeof window.SystemSearch.bindEvents !== "function") {
         console.error(
-            "[System Search] STATE 6 ERROR: Event module is not loaded.",
+            "[System Search] STATE 7A ERROR: Event module is not loaded."
         );
-
         return;
     }
 
     if (typeof window.SystemSearch.search !== "function") {
         console.error(
-            "[System Search] STATE 6 ERROR: API module is not loaded.",
+            "[System Search] STATE 7A ERROR: API module is not loaded."
         );
-
         return;
     }
 
     if (typeof window.SystemSearch.render !== "function") {
         console.error(
-            "[System Search] STATE 6 ERROR: Renderer module is not loaded.",
+            "[System Search] STATE 7A ERROR: Renderer module is not loaded."
         );
-
         return;
     }
 
     if (typeof window.SystemSearch.clear !== "function") {
         console.error(
-            "[System Search] STATE 6 ERROR: UI module is not loaded.",
+            "[System Search] STATE 7A ERROR: UI module is not loaded."
         );
-
         return;
     }
 
@@ -70,6 +59,7 @@ $(function () {
     window.SystemSearch.initialized = true;
 
     console.log(
-        "[System Search] STATE 6: System search initialized successfully.",
+        "[System Search] STATE 7B: System search initialized successfully."
     );
 });
+

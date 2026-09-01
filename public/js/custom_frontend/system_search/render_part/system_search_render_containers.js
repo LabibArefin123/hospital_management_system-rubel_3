@@ -5,6 +5,7 @@
  */
 (function (window, $) {
     "use strict";
+    console.log("[System Search] STATE 4C: Container renderer module loaded.");
     if (!window.SystemSearch) {
         console.error(
             "[System Search] CONTAINER ERROR: SystemSearch core not loaded.",

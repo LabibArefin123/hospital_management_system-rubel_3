@@ -1,7 +1,7 @@
 /*SYSTEM SEARCH RENDERER - DOCTORS */
 (function (window, $) {
     "use strict";
-    console.log("[System Search] STATE 4C: Doctor renderer module loaded.");
+    console.log("[System Search] STATE 4E: Doctor renderer module loaded.");
 
     if (!window.SystemSearch) {
         console.error(

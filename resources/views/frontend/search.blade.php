@@ -47,4 +47,29 @@
         </div>
     </section>
     @include('frontend.custom_layout.footer')
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    {{--  System Search Start --}}
+    {{-- STATE 1 --}}
+    <script src="{{ asset('js/custom_frontend/system_search/system_search_core.js') }}"></script>
+    {{-- STATE 2 --}}
+    <script src="{{ asset('js/custom_frontend/system_search/system_search_events.js') }}"></script>
+    {{-- STATE 3 --}}
+    <script src="{{ asset('js/custom_frontend/system_search/system_search_api.js') }}"></script>
+    {{-- STATE 4A - 4D --}}
+    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_status.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_item.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_containers.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_appointments.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_doctors.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_results.js') }}"></script>
+    {{-- STATE 5 - Renderer Core --}}
+    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_core.js') }}"></script>
+    {{-- STATE 6A - 6D --}}
+    <script src="{{ asset('js/custom_frontend/system_search/ui_part/system_search_ui_loading.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/ui_part/system_search_ui_empty.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/ui_part/system_search_ui_clear.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/ui_part/system_search_ui_helpers.js') }}"></script>
+    {{-- STATE 7 --}}
+    <script src="{{ asset('js/custom_frontend/system_search/system_search_init.js') }}"></script>
+    {{--  System Search End --}}
 @endsection

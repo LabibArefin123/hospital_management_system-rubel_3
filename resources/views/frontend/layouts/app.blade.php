@@ -84,25 +84,6 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-    {{--  System Search Start --}}
-    <script src="{{ asset('js/custom_frontend/system_search/system_search_core.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search/system_search_events.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search/system_search_api.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_status.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_item.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_containers.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_appointments.js') }}">
-    </script>
-    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_doctors.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_results.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_core.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search/ui_part/system_search_ui_loading.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search/ui_part/system_search_ui_empty.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search/ui_part/system_search_ui_clear.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search/ui_part/system_search_ui_helpers.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/system_search/system_search_init.js') }}"></script>
-    {{--  System Search End --}}
-
     {{--  Doctor Booking Form Start --}}
     <script src="{{ asset('js/custom_frontend/doctor_show/doctor_booking/doctor-booking-core.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/doctor_show/doctor_booking/doctor-booking-pagination.js') }}"></script>
@@ -116,7 +97,6 @@
 
     {{-- Service Booking Form Start --}}
     <script src="{{ asset('js/custom_frontend/service_show/service_booking/service-state.js') }}"></script>
-    {{-- <script src="{{ asset('js/custom_frontend/service_show/service_booking/service-summary.js') }}"></script> --}}
     <script src="{{ asset('js/custom_frontend/service_show/service_booking/service-booking-helpers.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/service_show/service_booking/service-booking-summary.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/service_show/service_booking/service-booking-schedule.js') }}"></script>
@@ -127,9 +107,12 @@
 
     <script src="{{ asset('js/custom_frontend/payment_page/payment_toggle.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/payment_page/payment_page.js') }}"></script>
-    <script src="{{ asset('js/custom_frontend/phone_validation.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/password_toggle.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/sweet_alert.js') }}"></script>
+    
+    @if (request()->routeIs('doctor.show') || request()->routeIs('service.show'))
+        <script src="{{ asset('js/custom_frontend/phone_validation.js') }}"></script>
+    @endif
 </body>
 
 </html>

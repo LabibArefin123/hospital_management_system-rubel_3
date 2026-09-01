@@ -1,12 +1,6 @@
-/**
- * ==========================================================
- * SUSTHOCARE SYSTEM SEARCH CORE
- * ==========================================================
- */
-
+/*SYSTEM SEARCH CORE*/
 (function (window, $) {
     "use strict";
-
     console.log("[System Search] STATE 1: Core loaded.");
 
     if (!$) {

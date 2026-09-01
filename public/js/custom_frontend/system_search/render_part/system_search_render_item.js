@@ -1,7 +1,7 @@
 /* SYSTEM SEARCH RESULT ITEM */
 (function (window, $) {
     "use strict";
-
+    console.log("[System Search] STATE 4B: Item renderer module loaded.");
     if (!window.SystemSearch) {
         console.error(
             "[System Search] ITEM ERROR: SystemSearch core not loaded.",

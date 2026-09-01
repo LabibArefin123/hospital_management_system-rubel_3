@@ -37,8 +37,7 @@ Route::post('/appointment-store', [FrontendController::class, 'appointment_store
 Route::get('/payment/{id}', [FrontendController::class, 'payment_page'])->name('payment.page');
 Route::post('/payment-store', [FrontendController::class, 'payment_store'])->name('payment.store');
 
-Route::get('/search-data', [FrontendController::class, 'searchData'])
-    ->name('search.data');
+Route::get('/search-data', [FrontendController::class, 'searchData'])->name('search.data');
 
 //Contact Part
 Route::get('/contact-us', [FrontendController::class, 'contact'])->name('contact');
@@ -89,7 +88,7 @@ Route::group(['middleware' => ['auth', 'permission']], function () {
     Route::resource('service-schedules', ServiceScheduleController::class);
 
     //Appointment Menu
-    Route::get('appointments/cancel/{id}', [AppointmentController::class, 'appointment_cancel'])->name('appointments.cancel');
+    Route::post('appointments/cancel/{id}', [AppointmentController::class, 'appointment_cancel'])->name('appointments.cancel');
     Route::post('appointments/change-status/{id}', [AppointmentController::class, 'appointment_change'])->name('appointments.change');
     Route::resource('appointments', AppointmentController::class);
 

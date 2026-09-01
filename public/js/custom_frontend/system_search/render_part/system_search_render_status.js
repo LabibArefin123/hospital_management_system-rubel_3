@@ -5,6 +5,7 @@
  */
 (function (window, $) {
     "use strict";
+    console.log("[System Search] STATE 4A: Status renderer module loaded.");
     if (!window.SystemSearch) {
         console.error(
             "[System Search] STATUS ERROR: SystemSearch core not loaded.",

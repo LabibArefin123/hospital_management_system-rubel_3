@@ -2,7 +2,7 @@
 
 (function (window, $) {
     "use strict";
-    console.log("[System Search] STATE 5D: UI helpers module loaded.");
+    console.log("[System Search] STATE 6D: UI helpers module loaded.");
     if (!window.SystemSearch) {
         console.error(
             "[System Search] STATE 5D ERROR: SystemSearch core not loaded.",
