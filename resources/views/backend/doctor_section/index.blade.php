@@ -3,21 +3,30 @@
 @section('title', 'Doctors')
 
 @section('content_header')
-    <div class="d-flex justify-content-between align-items-center">
-        <h1 class="text-dark font-weight-bold">
-            <i class="fas fa-user-md text-primary"></i> Doctor Management
-        </h1>
+    <div class="d-flex align-items-center justify-content-between flex-wrap">
+        <div>
+            <h1 class="mb-1 font-weight-bold">
+                <i class="fas fa-user-md text-primary mr-2"></i>
+                Doctor Management
+            </h1>
+            <p class="text-muted mb-0">
+                Manage doctors, profiles, availability, and schedules.
+            </p>
+        </div>
 
-        <a href="{{ route('doctors.create') }}" class="btn btn-primary shadow-sm">
-            <i class="fas fa-plus-circle"></i> Add Doctor
-        </a>
+        <div class="mt-2 mt-md-0">
+            <a href="{{ route('doctors.create') }}" class="btn btn-primary px-4 shadow-sm">
+                <i class="fas fa-plus mr-2"></i>
+                Add Doctor
+            </a>
+        </div>
     </div>
 @stop
 
 @section('content')
     <div class="card">
         <div class="card-body table-responsive">
-            <table class="table table-striped table-hover align-middle" id="datatables">
+            <table class="table table-striped table-hover align-middle" id="dataTables">
                 <thead class="bg-light">
                     <tr>
                         <th>#</th>

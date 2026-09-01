@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\ServiceSchedule;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 
 class ServiceController extends Controller
 {
@@ -156,22 +159,45 @@ class ServiceController extends Controller
     /**
      * Delete service
      */
+
     public function destroy($id)
     {
-        $service = Service::findOrFail($id);
+        DB::beginTransaction();
+        try {
+            $service = Service::findOrFail($id);
+            $appointmentCount = Appointment::where('service_id', $service->id)->count();
+            $scheduleCount = ServiceSchedule::where('service_id', $service->id)->count();
 
-        if (
-            $service->image &&
-            File::exists(public_path($service->image))
-        ) {
+            if (
+                $service->image &&
+                File::exists(public_path($service->image))
+            ) {
+                File::delete(public_path($service->image));
+            }
 
-            File::delete(public_path($service->image));
+            Appointment::where('service_id', $service->id)->delete();
+            ServiceSchedule::where('service_id', $service->id)->delete();
+            $service->delete();
+            DB::commit();
+
+            if ($appointmentCount > 0 && $scheduleCount > 0) {
+                $message = 'Service, its appointments and schedules were removed successfully.';
+            } elseif ($appointmentCount > 0) {
+                $message = 'Service and its appointments were removed successfully.';
+            } elseif ($scheduleCount > 0) {
+                $message = 'Service and its schedules were removed successfully.';
+            } else {
+                $message = 'Service removed successfully.';
+            }
+
+            return redirect()
+                ->route('services.index')
+                ->with('success', $message);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()
+                ->route('services.index')
+                ->with('error', 'Unable to remove the service. ' . $e->getMessage());
         }
-
-        $service->delete();
-
-        return redirect()
-            ->route('services.index')
-            ->with('success', 'Service Deleted Successfully');
     }
 }

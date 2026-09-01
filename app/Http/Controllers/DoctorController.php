@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctor;
+use App\Models\DoctorSchedule;
 use App\Models\Appointment;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -258,11 +259,32 @@ class DoctorController extends Controller
             $doctor = Doctor::findOrFail($id);
             $user = User::find($doctor->user_id);
 
-            if ($doctor->image && File::exists(public_path($doctor->image))) {
+            $appointmentCount = Appointment::where(
+                'doctor_id',
+                $doctor->id
+            )->count();
+
+            $scheduleCount = DoctorSchedule::where(
+                'doctor_id',
+                $doctor->id
+            )->count();
+
+            if (
+                $doctor->image &&
+                File::exists(public_path($doctor->image))
+            ) {
                 File::delete(public_path($doctor->image));
             }
 
-            Appointment::where('doctor_id', $doctor->id)->delete();
+            Appointment::where(
+                'doctor_id',
+                $doctor->id
+            )->delete();
+
+            DoctorSchedule::where(
+                'doctor_id',
+                $doctor->id
+            )->delete();
 
             $doctor->delete();
 
@@ -272,15 +294,28 @@ class DoctorController extends Controller
 
             DB::commit();
 
+            if ($appointmentCount > 0 && $scheduleCount > 0) {
+                $message = 'Doctor, User appointments and schedules removed successfully.';
+            } elseif ($appointmentCount > 0) {
+                $message = 'Doctor, User and appointments removed successfully.';
+            } elseif ($scheduleCount > 0) {
+                $message = 'Doctor, User and schedules removed successfully.';
+            } else {
+                $message = 'Doctor and User removed successfully.';
+            }
+
             return redirect()
                 ->route('doctors.index')
-                ->with('success', 'Doctor, User and all related appointments deleted successfully.');
+                ->with('success', $message);
         } catch (\Exception $e) {
             DB::rollBack();
 
             return redirect()
                 ->back()
-                ->with('error', 'Unable to delete doctor: ' . $e->getMessage());
+                ->with(
+                    'error',
+                    'Unable to delete doctor: ' . $e->getMessage()
+                );
         }
     }
 }
