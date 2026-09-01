@@ -1,0 +1,53 @@
+/* =========================================================
+   PROFILE SECTION CARDS
+========================================================= */
+
+.profile-section-card {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.profile-section-header {
+    background: #fff;
+    border-bottom: 1px solid #edf0f2;
+    padding: 17px 20px;
+}
+
+.profile-section-title {
+    display: flex;
+    align-items: center;
+}
+
+.profile-section-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+}
+
+.profile-section-title h5 {
+    font-weight: 700;
+}
+
+.doctor-icon {
+    background: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+}
+
+.account-icon {
+    background: rgba(108, 117, 125, 0.1);
+    color: #495057;
+}
+
+@media (max-width: 450px) {
+    .profile-section-header {
+        padding: 14px;
+    }
+
+    .profile-section-title small {
+        display: none;
+    }
+}

@@ -2,38 +2,42 @@
 
 @section('title', 'User Profile')
 
+@section('adminlte_css')
+<link rel="stylesheet" href="{{ asset('css/backend/profile_page/show_page/profile_header.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/profile_page/show_page/profile_main.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/profile_page/show_page/profile_role.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/profile_page/show_page/profile_sections.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/profile_page/show_page/profile_info.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/profile_page/show_page/profile_details.css') }}">
+@stop
+
 @section('content_header')
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1>User Profile</h1>
-        <a id="editProfileBtn" data-profile-url="{{ route('system_users.user_profile_edit') }}" class="btn btn-warning"
-            id="editProfileBtn">
-            <i class="fas fa-edit me-1"></i> Edit Profile
+    <div class="profile-page-header">
+        <div>
+            <div class="d-flex align-items-center mb-1">
+                <div class="profile-header-icon">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div>
+                    <h1 class="mb-0 font-weight-bold">My Profile</h1>
+                    <small class="text-muted">Manage your account information and profile details</small>
+                </div>
+            </div>
+        </div>
+
+        <a id="editProfileBtn" data-profile-url="{{ route('system_users.user_profile_edit') }}"
+            class="btn btn-warning profile-edit-btn">
+            <i class="fas fa-edit mr-1"></i>
+            Edit Profile
         </a>
     </div>
 @stop
 
 @section('content')
-    <!-- Profile Card -->
-    <div class="card shadow-sm">
-        <div class="card-body row align-items-center">
-            <!-- Profile Image -->
-            <div class="col-md-3 text-center">
-                <img src="{{ $user->profile_picture ? asset($user->profile_picture) : asset('uploads/images/default.jpg') }}"
-                    class="rounded-circle img-fluid shadow" alt="Profile Picture"
-                    style="width: 150px; height: 150px; object-fit: cover;">
-            </div>
-
-            <!-- User Info -->
-            <div class="col-md-9">
-                <h4 class="mb-3">{{ $user->name }}</h4>
-                <div class="row">
-                    <div class="col-md-6 mb-2"><strong>Username:</strong> {{ $user->username }}</div>
-                    <div class="col-md-6 mb-2"><strong>Email:</strong> {{ $user->email }}</div>
-                    <div class="col-md-6 mb-2"><strong>Phone:</strong> {{ $user->phone ?? 'Not Provided' }}</div>
-                    <div class="col-md-6 mb-2"><strong>Phone 2:</strong> {{ $user->phone_2 ?? 'Not Provided' }}</div>
-                </div>
-            </div>
-        </div>
+    <div class="profile-page">
+        @include('backend.setting_management.user_management.profile.partials.profile_header')
+        @include('backend.setting_management.user_management.profile.partials.profile_professional')
+        @include('backend.setting_management.user_management.profile.partials.profile_account')
     </div>
 @endsection
 

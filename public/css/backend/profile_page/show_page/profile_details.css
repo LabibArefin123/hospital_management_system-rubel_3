@@ -1,0 +1,140 @@
+/* =========================================================
+   PROFILE ACCOUNT DETAILS & ROLE MESSAGE
+========================================================= */
+
+/* ================= ACCOUNT DETAILS ================= */
+
+.profile-detail-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px 16px;
+    min-height: 58px;
+    border: 1px solid #edf0f2;
+    border-radius: 11px;
+    background: #fff;
+    transition: all 0.2s ease;
+}
+
+.profile-detail-box:hover {
+    background: #f8f9fa;
+    border-color: #dee2e6;
+    transform: translateY(-1px);
+}
+
+.profile-detail-box span {
+    color: #6c757d;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.profile-detail-box span i {
+    color: #0d6efd;
+}
+
+.profile-detail-box strong {
+    color: #343a40;
+    font-size: 13px;
+    text-align: right;
+    word-break: break-word;
+}
+
+/* ================= ROLE MESSAGE ================= */
+
+.profile-role-message {
+    display: flex;
+    align-items: flex-start;
+    padding: 17px 20px;
+    border-radius: 14px;
+    border: 1px solid transparent;
+}
+
+.profile-message-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 13px;
+}
+
+.profile-role-message strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.profile-role-message p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #6c757d;
+}
+
+/* ================= ADMIN ================= */
+
+.profile-message-admin {
+    background: #fff5f5;
+    border-color: #f5c2c7;
+}
+
+.profile-message-admin .profile-message-icon {
+    background: #f8d7da;
+    color: #842029;
+}
+
+.profile-message-admin strong {
+    color: #842029;
+}
+
+/* ================= DOCTOR ================= */
+
+.profile-message-doctor {
+    background: #f0fbff;
+    border-color: #b6effb;
+}
+
+.profile-message-doctor .profile-message-icon {
+    background: #cff4fc;
+    color: #055160;
+}
+
+.profile-message-doctor strong {
+    color: #055160;
+}
+
+/* ================= USER ================= */
+
+.profile-message-user {
+    background: #f3fff8;
+    border-color: #badbcc;
+}
+
+.profile-message-user .profile-message-icon {
+    background: #d1e7dd;
+    color: #0f5132;
+}
+
+.profile-message-user strong {
+    color: #0f5132;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 767.98px) {
+    .profile-detail-box {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .profile-detail-box strong {
+        text-align: left;
+    }
+
+    .profile-role-message {
+        padding: 15px;
+    }
+}

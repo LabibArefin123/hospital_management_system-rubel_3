@@ -1,0 +1,96 @@
+/* =========================================================
+   MAIN PROFILE CARD
+========================================================= */
+
+.profile-main-card {
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.profile-cover {
+    height: 115px;
+    background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+}
+
+.profile-main-body {
+    padding: 0 28px 28px;
+    margin-top: -48px;
+}
+
+/* ================= AVATAR ================= */
+
+.profile-avatar-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-avatar {
+    width: 125px;
+    height: 125px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    background: #fff;
+}
+
+.profile-online-dot {
+    position: absolute;
+    right: 10px;
+    bottom: 13px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #28a745;
+    border: 3px solid #fff;
+}
+
+/* ================= INTRO ================= */
+
+.profile-name-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.profile-name {
+    color: #fff;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.profile-username,
+.profile-email {
+    color: #6c757d;
+    font-size: 14px;
+}
+
+@media (max-width: 767.98px) {
+    .profile-cover {
+        height: 90px;
+    }
+
+    .profile-main-body {
+        padding: 0 18px 22px;
+        margin-top: -40px;
+    }
+
+    .profile-avatar {
+        width: 105px;
+        height: 105px;
+    }
+
+    .profile-name {
+        font-size: 21px;
+    }
+
+    .profile-name-row {
+        justify-content: center;
+    }
+
+    .profile-username,
+    .profile-email {
+        text-align: center;
+    }
+}

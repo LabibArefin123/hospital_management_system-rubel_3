@@ -14,7 +14,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <table id="rolesTable" class="table table-bordered table-striped">
+            <table id="dataTables" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>SL</th>
@@ -52,14 +52,3 @@
     </div>
 
 @stop
-
-@section('js')
-    <script>
-        $(document).ready(function() {
-            $('#rolesTable').DataTable();
-        });
-    </script>
-   
-@stop
-
-@section('plugins.Datatables', true)

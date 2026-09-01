@@ -135,7 +135,6 @@ class DashboardController extends Controller
     public function user_dashboard()
     {
         $user = Auth::user();
-
         /* APPOINTMENT COUNTS */
         $userAppointments = Appointment::where('user_id', $user->id);
         $totalAppointments = (clone $userAppointments)->count();

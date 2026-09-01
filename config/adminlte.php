@@ -278,7 +278,7 @@ return [
 
     'password_email_url' => 'password.email',
 
-    'profile_url' => 'user_profile_show',
+    'profile_url' => 'system_users.user_profile_show',
 
     'disable_darkmode_routes' => false,
 
