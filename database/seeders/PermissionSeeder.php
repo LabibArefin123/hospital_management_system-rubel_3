@@ -16,18 +16,10 @@ class PermissionSeeder extends Seeder
         $permissions = [
             // Profile
             'dashboard',
-            'user_profile_show',
-            'user_profile_edit',
-            'user_profile_update',
+            'system_users.user_profile_show',
+            'system_users.user_profile_edit',
+            'system_users.user_profile_update',
         
-            'organizations.index',
-            'organizations.create',
-            'organizations.store',
-            'organizations.show',
-            'organizations.edit',
-            'organizations.update',
-            'organizations.destroy',
-
             // Permissions & Roles
             'permissions.index',
             'permissions.create',
@@ -51,12 +43,6 @@ class PermissionSeeder extends Seeder
             'system_users.edit',
             'system_users.update',
             'system_users.destroy',
-
-            'settings.index',
-            'progress.data',
-            'awarded.data',
-            'participate.data',
-
         ];
 
         foreach ($permissions as $permission) {

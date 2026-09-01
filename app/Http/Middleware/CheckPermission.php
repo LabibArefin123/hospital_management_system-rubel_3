@@ -15,28 +15,17 @@ class CheckPermission
     {
         $user = Auth::user();
 
-        // 1️⃣ Must be logged in
+        // Must be logged in
         if (!$user) {
             abort(403, 'Unauthorized');
         }
 
-        // 2️⃣ ADMIN ROLE → ACCESS EVERYTHING
+        // ADMIN ROLE → ACCESS EVERYTHING
         if ($user->hasRole('admin')) {
             return $next($request);
         }
 
-        // 3️⃣ USER ROLE → Redirect to user dashboard
-        if ($user->hasRole('user')) {
-
-            // Prevent redirect loop
-            if ($request->route()?->getName() !== 'dashboard.user') {
-                return redirect()->route('dashboard.user');
-            }
-
-            return $next($request);
-        }
-
-        // 4️⃣ Get route name
+        // Get route name
         $routeName = $request->route()?->getName();
 
         // If route has no name, allow it
@@ -44,15 +33,14 @@ class CheckPermission
             return $next($request);
         }
 
-        // 5️⃣ Permission must exist
+        // Permission must exist
         if (!Permission::where('name', $routeName)
             ->where('guard_name', 'web')
             ->exists()) {
-
             abort(403, "Permission '{$routeName}' does not exist.");
         }
 
-        // 6️⃣ Check permission for non-admin users
+        // Check permission for all non-admin users
         if (!$user->can($routeName)) {
             throw UnauthorizedException::forPermissions([$routeName]);
         }

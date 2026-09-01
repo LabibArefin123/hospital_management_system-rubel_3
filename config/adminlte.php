@@ -265,21 +265,13 @@ return [
     */
 
     'use_route_url' => true,
-
     'dashboard_url' => 'dashboard.admin',
-
     'logout_url' => 'logout',
-
     'login_url' => 'login',
-
     'register_url' => 'register',
-
     'password_reset_url' => 'password.request',
-
     'password_email_url' => 'password.email',
-
     'profile_url' => 'system_users.user_profile_show',
-
     'disable_darkmode_routes' => false,
 
     /*

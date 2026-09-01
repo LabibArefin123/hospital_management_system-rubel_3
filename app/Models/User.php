@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -21,11 +20,6 @@ class User extends Authenticatable
         'phone',
         'phone_2',
         'profile_picture',
-        'google_id',
-        'avatar',
-        'verification_code',
-        'verification_code_expires_at',
-        'phone_verified_at',
     ];
 
     protected $hidden = [
@@ -37,22 +31,11 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
-            'phone_verified_at' => 'datetime',
-            'verification_code_expires_at' => 'datetime',
             'password' => 'hashed',
         ];
     }
-
-    /* =========================
-       Two Factor Helpers
-    ========================== */
-
  
-    /* =========================
-       Profile Image Helpers
-    ========================== */
-
+    /* Profile Image Helpers*/
     public function getProfilePictureUrl()
     {
         return $this->profile_picture
@@ -78,5 +61,4 @@ class User extends Authenticatable
     {
         return $this->hasOne(Doctor::class);
     }
-
 }
