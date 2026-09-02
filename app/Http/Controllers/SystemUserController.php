@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Appointment;
+use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 
 class SystemUserController extends Controller
 {
@@ -15,8 +17,55 @@ class SystemUserController extends Controller
      */
     public function index()
     {
-        $users = User::all(); // Paginate with 10 items per page
-        return view('backend.setting_management.user_management.system_user.index', compact('users'));
+        $users = User::all();
+
+        /*
+        |--------------------------------------------------------------------------
+        | Patient appointments eligible for creating a patient account
+        |--------------------------------------------------------------------------
+        |
+        | Conditions:
+        |
+        | 1. Appointment must NOT already have user_id.
+        | 2. Appointment must have phone or email.
+        | 3. There must NOT already be a User with the same phone/email.
+        |
+        */
+        $patientAppointments = Appointment::query()
+            ->whereNull('user_id')
+            ->where(function ($query) {
+
+                $query->whereNotNull('phone')
+                    ->orWhereNotNull('email');
+            })
+            ->latest()
+            ->get()
+            ->filter(function ($appointment) {
+                $userQuery = User::query();
+                /*Check existing account by phone OR email */
+                if ($appointment->phone && $appointment->email) {
+                    $userQuery->where(function ($query) use ($appointment) {
+                        $query->where('phone', $appointment->phone)
+                            ->orWhere('email', $appointment->email);
+                    });
+                } elseif ($appointment->phone) {
+                    $userQuery->where('phone', $appointment->phone);
+                } elseif ($appointment->email) {
+                    $userQuery->where('email', $appointment->email);
+                }
+
+                /* Only return appointments where no account exists */
+                return !$userQuery->exists();
+            })
+            ->values();
+
+        return view(
+            'backend.setting_management.user_management.system_user.index',
+            compact(
+                'users',
+                'patientAppointments'
+            )
+        );
     }
 
     /**
@@ -58,6 +107,165 @@ class SystemUserController extends Controller
             ->with('success', 'User created successfully.');
     }
 
+    public function patient_user_find(Request $request)
+    {
+        $request->validate([
+            'appointment_id' => 'required|exists:appointments,id',
+            'phone' => 'nullable|string',
+            'email' => 'nullable|email',
+        ]);
+
+        $user = null;
+
+        /*First try phone*/
+        if ($request->filled('phone')) {
+            $user = User::where(
+                'phone',
+                $request->phone
+            )->first();
+        }
+
+        /*If phone did not find anything, try email  */
+        if (!$user && $request->filled('email')) {
+            $user = User::where(
+                'email',
+                $request->email
+            )->first();
+        }
+
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'No existing user found.',
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'phone' => $user->phone,
+                'email' => $user->email,
+            ],
+        ]);
+    }
+
+    public function patient_user_find_by_id($id)
+    {
+        $user = User::find($id);
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User not found.',
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'phone' => $user->phone,
+                'email' => $user->email,
+            ],
+        ]);
+    }
+
+    public function patient_user_store(Request $request)
+    {
+        $validated = $request->validate([
+            'appointment_id' => ['required', 'exists:appointments,id',],
+            'email' => ['nullable', 'email', 'max:255',],
+            'password' => ['required', 'string', 'min:8', 'confirmed',],
+        ], [
+            'appointment_id.required' => 'Please select a patient appointment.',
+            'email.email' => 'Please enter a valid email address.',
+            'password.required' => 'Please enter a new password.',
+            'password.min' => 'Password must be at least 8 characters.',
+            'password.confirmed' => 'Password confirmation does not match.',
+        ]);
+
+
+        DB::transaction(function () use ($validated) {
+            $appointment = Appointment::lockForUpdate()
+                ->findOrFail($validated['appointment_id']);
+
+            /* Appointment already has an account  */
+
+            if ($appointment->user_id) {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'appointment_id' =>
+                    'This patient already has an account.',
+                ]);
+            }
+
+            /* Determine email - If admin entered an email, use it. Otherwise use appointment email.*/
+            $email = !empty($validated['email']) ? $validated['email'] : $appointment->email;
+
+            /* Check existing user by phone */
+            $existingUser = null;
+            if ($appointment->phone) {
+                $existingUser = User::where('phone', $appointment->phone)->first();
+            }
+
+            /* Check existing user by email */
+            if (!$existingUser && $email) {
+                $existingUser = User::where('email', $email)->first();
+            }
+
+            /*Prevent duplicate patient account   */
+            if ($existingUser) {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'appointment_id' =>
+                    'This patient already has an account.',
+                ]);
+            }
+            /* Generate unique username*/
+            $baseUsername = Str::slug($appointment->name);
+
+            if (!$baseUsername) {
+                $baseUsername = 'patient';
+            }
+
+            $username = $baseUsername;
+            $counter = 1;
+
+            while (
+                User::where('username', $username)->exists()
+            ) {
+                $username = $baseUsername . $counter;
+                $counter++;
+            }
+
+            /* Create patient user*/
+            $user = User::create([
+                'name' => $appointment->name,
+                'email' => $email,
+                'username' => $username,
+                'password' => Hash::make($validated['password']),
+                'phone' => $appointment->phone,
+                'phone_2' => null,
+                'profile_picture' => null,
+            ]);
+
+            /*Assign patient role */
+            $user->assignRole('user');
+
+            /* Link appointment with new patient account */
+            $appointment->update([
+                'user_id' => $user->id,
+            ]);
+        });
+
+        return redirect()
+            ->route('system_users.index')
+            ->with(
+                'success',
+                'Patient user account created successfully.'
+            );
+    }
+    
     /**
      * Display the specified resource.
      */

@@ -5,7 +5,19 @@
 @section('content_header')
     <div class="d-flex justify-content-between align-items-center flex-wrap">
         <h1 class="mb-0">System Users</h1>
-        <a href="{{ route('system_users.create') }}" class="btn btn-success btn-sm">Add</a>
+        <div class="d-flex align-items-center gap-2">
+            {{-- Add Patient User --}}
+            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#patientUserModal">
+                <i class="fas fa-user-plus mr-1"></i>
+                Add Patient User
+            </button>
+
+            {{-- Add System User --}}
+            <a href="{{ route('system_users.create') }}" class="btn btn-success btn-sm">
+                <i class="fas fa-user-cog mr-1"></i>
+                Add System User
+            </a>
+        </div>
     </div>
 @stop
 
@@ -66,6 +78,7 @@
                 </table>
 
 
+                @include('backend.setting_management.user_management.system_user.modal.patient_user')
                 @include('backend.setting_management.user_management.system_user.modal.change_password')
             </div>
         </div>
@@ -73,6 +86,21 @@
 @stop
 
 @section('js')
+    <script
+        src="{{ asset('js/custom_backend/setting_management/system_user/index_page/patient_autofill/patient_autofill_core.js') }}">
+    </script>
+    <script
+        src="{{ asset('js/custom_backend/setting_management/system_user/index_page/patient_autofill/patient_autofill_fields.js') }}">
+    </script>
+    <script
+        src="{{ asset('js/custom_backend/setting_management/system_user/index_page/patient_autofill/patient_autofill_events.js') }}">
+    </script>
+    <script
+        src="{{ asset('js/custom_backend/setting_management/system_user/index_page/patient_autofill/patient_autofill_reset.js') }}">
+    </script>
+    <script
+        src="{{ asset('js/custom_backend/setting_management/system_user/index_page/patient_autofill/patient_autofill_init.js') }}">
+    </script>
     <script src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_user_password.js') }}">
     </script>
     <script

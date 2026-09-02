@@ -42,7 +42,7 @@ $(function () {
         /*  SET FORM ACTION  */
         $("#changePasswordForm").attr(
             "action",
-            "/system-users/" + userId + "/change-password",
+            "/system_users/" + userId + "/change-password",
         );
 
         /*  RESET PASSWORD FIELDS  */
