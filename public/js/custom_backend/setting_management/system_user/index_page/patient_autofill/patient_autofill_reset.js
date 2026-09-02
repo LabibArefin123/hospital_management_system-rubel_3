@@ -1,16 +1,19 @@
 /** PATIENT USER AUTO FILL RESET */
+
 (function (window, $) {
     "use strict";
+
     const PatientAutoFill = window.PatientAutoFill;
 
     PatientAutoFill.reset = function () {
-        this.elements.form[0].reset();
+        if (this.elements.form.length) {
+            this.elements.form[0].reset();
+        }
+
         this.clearFields();
 
-        this.elements.statusText
-            .removeClass("text-success text-danger")
-            .addClass("text-muted")
-            .text("Select an appointment first.");
+        $("#patientUserPassword").val("");
+        $("#patientUserPasswordConfirmation").val("");
 
         this.elements.infoBox
             .removeClass("alert-success alert-danger")
@@ -23,11 +26,6 @@
     };
 
     PatientAutoFill.showSelected = function () {
-        this.elements.statusText
-            .removeClass("text-muted text-danger")
-            .addClass("text-success")
-            .text("Patient information loaded.");
-
         this.elements.infoBox
             .removeClass("alert-info alert-danger")
             .addClass("alert-success").html(`

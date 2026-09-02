@@ -4,7 +4,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="patientUserModalLabel">
                     <i class="fas fa-user-plus mr-2"></i>
-                    Add Patient User
+                    Add Appointment Patient User
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                 </button>
@@ -14,31 +14,72 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group mb-3">
+
                         <label for="patientAppointment">
                             Select Patient Appointment
                             <span class="text-danger">*</span>
                         </label>
 
-                        <select name="appointment_id" id="patientAppointment" class="form-control">
-                            <option value="">Select an appointment</option>
+                        <select name="appointment_id" id="patientAppointment" class="form-control" required>
+
+                            <option value="">
+                                Select an appointment
+                            </option>
+
+                            @php
+                                $currentDate = null;
+                            @endphp
+
                             @foreach ($patientAppointments as $appointment)
+                                @php
+                                    $appointmentDate = \Carbon\Carbon::parse($appointment->appointment_date);
+
+                                    $dateKey = $appointmentDate->format('Y-m-d');
+                                @endphp
+
+                                @if ($currentDate !== $dateKey)
+                                    @if ($currentDate !== null)
+                                        </optgroup>
+                                    @endif
+
+                                    <optgroup label="{{ $appointmentDate->format('d F Y') }}">
+
+                                        @php
+                                            $currentDate = $dateKey;
+                                        @endphp
+                                @endif
+
                                 <option value="{{ $appointment->id }}" data-name="{{ $appointment->name }}"
                                     data-phone="{{ $appointment->phone }}" data-email="{{ $appointment->email }}">
-                                    #{{ $appointment->id }}
-                                    -
+
                                     {{ $appointment->name }}
-                                    @if ($appointment->phone)
-                                        - {{ $appointment->phone }}
+
+                                    @if ($appointment->type === 'doctor' && $appointment->doctor)
+                                        - Doctor:
+                                        {{ $appointment->doctor->name }}
+                                    @elseif ($appointment->type === 'service' && $appointment->service)
+                                        - Service:
+                                        {{ $appointment->service->title }}
                                     @endif
+
                                     -
-                                    {{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d M Y') }}
+                                    {{ \Carbon\Carbon::parse($appointment->appointment_time)->format('h:i A') }}
+
                                 </option>
                             @endforeach
+
+                            @if ($currentDate !== null)
+                                </optgroup>
+                            @endif
+
                         </select>
 
                         @error('appointment_id')
-                            <small class="text-danger">{{ $message }}</small>
+                            <small class="text-danger">
+                                {{ $message }}
+                            </small>
                         @enderror
+
                     </div>
 
                     <div class="row">

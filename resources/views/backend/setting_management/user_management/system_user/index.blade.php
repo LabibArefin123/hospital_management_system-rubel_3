@@ -78,7 +78,7 @@
                 </table>
 
 
-                @include('backend.setting_management.user_management.system_user.modal.patient_user')
+                @include('backend.setting_management.user_management.system_user.modal.appointment_user')
                 @include('backend.setting_management.user_management.system_user.modal.change_password')
             </div>
         </div>

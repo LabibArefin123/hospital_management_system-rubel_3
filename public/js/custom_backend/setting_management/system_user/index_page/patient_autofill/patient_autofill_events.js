@@ -2,6 +2,7 @@
 (function (window, $) {
     "use strict";
     const PatientAutoFill = window.PatientAutoFill;
+
     PatientAutoFill.bindAppointmentChange = function () {
         this.elements.appointmentSelect.on("change", function () {
             const selected = $(this).find("option:selected");
@@ -13,9 +14,9 @@
             }
 
             PatientAutoFill.fillFields({
-                name: selected.data("name") || "",
-                phone: selected.data("phone") || "",
-                email: selected.data("email") || "",
+                name: selected.attr("data-name") || "",
+                phone: selected.attr("data-phone") || "",
+                email: selected.attr("data-email") || "",
             });
 
             PatientAutoFill.showSelected();

@@ -22,40 +22,83 @@ class SystemUserController extends Controller
         /*
         |--------------------------------------------------------------------------
         | Patient appointments eligible for creating a patient account
-        |--------------------------------------------------------------------------
-        |
-        | Conditions:
+        |-  -------------------------------------------------------------------------
         |
         | 1. Appointment must NOT already have user_id.
         | 2. Appointment must have phone or email.
         | 3. There must NOT already be a User with the same phone/email.
+        | 4. Both doctor and service appointments are included.
         |
         */
+
         $patientAppointments = Appointment::query()
+            ->with([
+                'doctor',
+                'service',
+            ])
             ->whereNull('user_id')
             ->where(function ($query) {
 
                 $query->whereNotNull('phone')
                     ->orWhereNotNull('email');
             })
-            ->latest()
             ->get()
             ->filter(function ($appointment) {
+
                 $userQuery = User::query();
-                /*Check existing account by phone OR email */
+
+                /* Check existing account by phone OR email */
                 if ($appointment->phone && $appointment->email) {
+
                     $userQuery->where(function ($query) use ($appointment) {
+
                         $query->where('phone', $appointment->phone)
                             ->orWhere('email', $appointment->email);
                     });
                 } elseif ($appointment->phone) {
-                    $userQuery->where('phone', $appointment->phone);
+
+                    $userQuery->where(
+                        'phone',
+                        $appointment->phone
+                    );
                 } elseif ($appointment->email) {
-                    $userQuery->where('email', $appointment->email);
+
+                    $userQuery->where(
+                        'email',
+                        $appointment->email
+                    );
                 }
 
                 /* Only return appointments where no account exists */
                 return !$userQuery->exists();
+            })
+            ->sort(function ($a, $b) {
+
+                /* Appointment date latest first */
+                $dateCompare = strcmp(
+                    $b->appointment_date ?? '',
+                    $a->appointment_date ?? ''
+                );
+
+                if ($dateCompare !== 0) {
+                    return $dateCompare;
+                }
+
+                /* Same date: appointment time latest first */
+                $timeCompare = strcmp(
+                    $b->appointment_time ?? '',
+                    $a->appointment_time ?? ''
+                );
+
+                if ($timeCompare !== 0) {
+                    return $timeCompare;
+                }
+
+                /* Same date and time: patient name A-Z */
+                return strcasecmp(
+                    $a->name ?? '',
+                    $b->name ?? ''
+                );
             })
             ->values();
 
@@ -265,7 +308,7 @@ class SystemUserController extends Controller
                 'Patient user account created successfully.'
             );
     }
-    
+
     /**
      * Display the specified resource.
      */
