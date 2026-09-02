@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use App\Models\Doctor;
-use App\Models\Service;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -69,15 +69,26 @@ class AppointmentController extends Controller
             'user'
         ])->findOrFail($id);
 
+        $payment = Payment::where(
+            'appointment_id',
+            $appointment->id
+        )->first();
+
         if ($user->hasRole('admin')) {
             return view(
                 'backend.appointment_section.show',
-                compact('appointment')
+                compact(
+                    'appointment',
+                    'payment'
+                )
             );
         }
 
         if ($user->hasRole('doctor')) {
-            $doctor = Doctor::where('user_id', $user->id)->first();
+            $doctor = Doctor::where(
+                'user_id',
+                $user->id
+            )->first();
 
             if (!$doctor) {
                 abort(403, 'Doctor profile not found.');
@@ -87,19 +98,36 @@ class AppointmentController extends Controller
                 $appointment->type !== 'doctor' ||
                 $appointment->doctor_id !== $doctor->id
             ) {
-                abort(403, 'You are not authorized to view this appointment.');
+                abort(
+                    403,
+                    'You are not authorized to view this appointment.'
+                );
             }
 
             return view(
                 'backend.appointment_section.show',
-                compact('appointment')
+                compact(
+                    'appointment',
+                    'payment'
+                )
             );
         }
 
         if ($user->hasRole('user')) {
+
+            if ($appointment->user_id !== $user->id) {
+                abort(
+                    403,
+                    'You are not authorized to view this appointment.'
+                );
+            }
+
             return view(
                 'backend.appointment_section.show',
-                compact('appointment')
+                compact(
+                    'appointment',
+                    'payment'
+                )
             );
         }
 
