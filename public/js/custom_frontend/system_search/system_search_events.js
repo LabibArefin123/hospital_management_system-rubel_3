@@ -1,12 +1,6 @@
-/**
- * ==========================================================
- * SUSTHOCARE SYSTEM SEARCH EVENTS
- * ==========================================================
- */
-
+/** SYSTEM SEARCH EVENTS*/
 (function (window, $) {
     "use strict";
-
     console.log("[System Search] STATE 2: Event module loaded.");
 
     if (!window.SystemSearch) {

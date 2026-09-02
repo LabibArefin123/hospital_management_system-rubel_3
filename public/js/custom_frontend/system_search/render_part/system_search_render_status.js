@@ -1,8 +1,4 @@
-/**
- * ==========================================================
- * SUSTHOCARE SYSTEM SEARCH STATUS HELPERS
- * ==========================================================
- */
+/*SYSTEM SEARCH STATUS HELPERS*/
 (function (window, $) {
     "use strict";
     console.log("[System Search] STATE 4A: Status renderer module loaded.");

@@ -1,8 +1,4 @@
-/**
- * ==========================================================
- * SUSTHOCARE SYSTEM SEARCH CONTAINER RENDERER
- * ==========================================================
- */
+/**SYSTEM SEARCH CONTAINER RENDERER */
 (function (window, $) {
     "use strict";
     console.log("[System Search] STATE 4C: Container renderer module loaded.");

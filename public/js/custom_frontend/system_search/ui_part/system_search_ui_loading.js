@@ -1,12 +1,6 @@
-/**
- * ==========================================================
- * SYSTEM SEARCH UI - LOADING
- * ==========================================================
- */
-
+/** SYSTEM SEARCH UI - LOADING*/
 (function (window, $) {
     "use strict";
-
     console.log("[System Search] STATE 6A: UI loading module loaded.");
 
     if (!window.SystemSearch) {
@@ -16,29 +10,16 @@
         return;
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | SHOW LOADING
-    |--------------------------------------------------------------------------
-    */
-
+    /*SHOW LOADING*/
     window.SystemSearch.showLoading = function () {
         console.log("[System Search] STATE 10: Loading results.");
-
         $("#searchPageLoading").removeClass("d-none");
-
         $("#systemSearchLoading").removeClass("d-none");
     };
 
-    /*
-    |--------------------------------------------------------------------------
-    | HIDE LOADING
-    |--------------------------------------------------------------------------
-    */
-
+    /*HIDE LOADING*/
     window.SystemSearch.hideLoading = function () {
         $("#searchPageLoading").addClass("d-none");
-
         $("#systemSearchLoading").addClass("d-none");
     };
 })(window, jQuery);

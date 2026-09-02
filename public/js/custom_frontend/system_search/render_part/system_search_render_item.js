@@ -12,10 +12,7 @@
     window.SystemSearch.createResultHtml = function (item) {
         const name = window.SystemSearch.escape(item.name || "-");
 
-        /* =====================================================
-           DOCTOR RESULT
-        ===================================================== */
-
+        /* DOCTOR RESULT */
         if (item.type === "doctor") {
             const qualification = window.SystemSearch.escape(
                 item.qualification || "",
@@ -39,9 +36,7 @@
                 )}"
                     class="system-search-result-item"
                     data-result-type="doctor">
-
                     <span class="system-search-result-content">
-
                         ${
                             qualification
                                 ? `

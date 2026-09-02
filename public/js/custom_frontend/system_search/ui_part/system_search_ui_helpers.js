@@ -1,5 +1,4 @@
 /** SYSTEM SEARCH UI - HELPERS*/
-
 (function (window, $) {
     "use strict";
     console.log("[System Search] STATE 6D: UI helpers module loaded.");
