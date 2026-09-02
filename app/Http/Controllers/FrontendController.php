@@ -267,8 +267,6 @@ class FrontendController extends Controller
 
         /*GUEST ROLE*/ else {
 
-            // $doctorAppointments->whereRaw('1 = 0');
-            // $serviceAppointments->whereRaw('1 = 0');
         }
 
         /*EXECUTE */

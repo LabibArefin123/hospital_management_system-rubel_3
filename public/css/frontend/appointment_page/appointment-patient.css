@@ -1,0 +1,28 @@
+.patient-info {
+    background: #f8faf9;
+    border: 1px solid #edf2ee;
+    border-radius: 12px;
+    padding: 11px 13px;
+    margin: 0 0 15px;
+    font-size: 13px;
+    color: #374151;
+}
+
+.patient-info div {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    margin-bottom: 6px;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.patient-info div:last-child {
+    margin-bottom: 0;
+}
+
+.patient-info strong {
+    color: #14532d;
+    font-weight: 600;
+    flex-shrink: 0;
+}

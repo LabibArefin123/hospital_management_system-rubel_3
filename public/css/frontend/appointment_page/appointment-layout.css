@@ -1,16 +1,35 @@
-/* ==================================================
-   APPOINTMENT PAGE LAYOUT
-================================================== */
-
+/*  APPOINTMENT PAGE LAYOUT */
 .appointment-section {
-    padding: 60px 0;
+    padding: 55px 0;
     background: #f9fafb;
 }
 
-/* GRID */
-
 .appointment-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+    align-items: stretch;
+}
+
+@media (max-width: 1200px) {
+    .appointment-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 992px) {
+    .appointment-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .appointment-section {
+        padding: 40px 0;
+    }
+
+    .appointment-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
 }

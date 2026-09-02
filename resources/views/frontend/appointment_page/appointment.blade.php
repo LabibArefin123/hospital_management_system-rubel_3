@@ -3,95 +3,121 @@
 @section('title', 'My Appointments')
 
 @section('content')
+    @include('frontend.custom_layout.header')
+    <!-- ================= DOCTOR APPOINTMENTS ================= -->
+    <section class="appointment-section">
+        <div class="container">
+            <h3 class="section-title">All Doctor Appointments</h3>
+            @if ($doctorAppointments->count() == 0)
+                <p class="empty-text">No doctor appointments</p>
+            @endif
 
-@include('frontend.custom_layout.header')
+            <div class="appointment-grid">
+                @foreach ($doctorAppointments as $app)
+                    <div class="appointment-card">
+                        <div class="top-img">
+                            <img src="{{ asset($app->doctor->image) }}" alt="{{ $app->doctor->name }}">
+                        </div>
 
-<!-- ================= DOCTOR APPOINTMENTS ================= -->
-<section class="appointment-section">
-    <div class="container">
+                        <h4>{{ $app->doctor->name }}</h4>
+                        <p>{{ $app->doctor->speciality }}</p>
 
-        <h3 class="section-title">Your Doctor Appointments</h3>
+                        <div class="patient-info">
+                            <div>
+                                <strong>Patient:</strong>
+                                {{ $app->name }}
+                            </div>
 
-        @if($doctorAppointments->count() == 0)
-            <p class="empty-text">No doctor appointments</p>
-        @endif
+                            <div>
+                                <strong>Age:</strong>
+                                {{ $app->age }}
+                            </div>
 
-        <div class="appointment-grid">
+                            @if ($app->email)
+                                <div>
+                                    <strong>Email:</strong>
+                                    {{ $app->email }}
+                                </div>
+                            @endif
+                        </div>
 
-            @foreach($doctorAppointments as $app)
-                <div class="appointment-card">
+                        <div class="time-box">
+                            <span>{{ \Carbon\Carbon::parse($app->appointment_date)->format('d M Y') }}</span>
+                        </div>
 
-                    <div class="top-img">
-                        <img src="{{ asset($app->doctor->image) }}">
+                        <div class="time-box">
+                            <span>{{ \Carbon\Carbon::parse($app->appointment_time)->format('h:i A') }}</span>
+                        </div>
+
+                        <div class="bottom-info">
+                            <div class="payment">
+                                {{ $app->payment_method }}
+                            </div>
+
+                            <div class="status {{ $app->status }}">
+                                {{ ucfirst($app->status) }}
+                            </div>
+                        </div>
                     </div>
-
-                    <h4>{{ $app->doctor->name }}</h4>
-                    <p>{{ $app->doctor->speciality }}</p>
-
-                    <div class="time-box">
-                        <span>{{ \Carbon\Carbon::parse($app->appointment_date)->format('d M Y') }}</span>
-                    </div>
-
-                    <div class="time-box">
-                        <span>{{ \Carbon\Carbon::parse($app->appointment_time)->format('h:i A') }}</span>
-                    </div>
-
-                    <div class="bottom-info">
-                        <div class="payment">{{ $app->payment_method }}</div>
-                        <div class="status {{ $app->status }}">{{ ucfirst($app->status) }}</div>
-                    </div>
-
-                </div>
-            @endforeach
-
+                @endforeach
+            </div>
         </div>
+    </section>
 
-    </div>
-</section>
+    <!-- ================= SERVICE APPOINTMENTS ================= -->
+    <section class="appointment-section">
+        <div class="container">
+            <h3 class="section-title">All Booked Services</h3>
 
-<!-- ================= SERVICE APPOINTMENTS ================= -->
-<section class="appointment-section">
-    <div class="container">
+            @if ($serviceAppointments->count() == 0)
+                <p class="empty-text">No service booking found</p>
+            @endif
 
-        <h3 class="section-title">Your Booked Services</h3>
+            <div class="appointment-grid">
+                @foreach ($serviceAppointments as $app)
+                    <div class="appointment-card">
+                        <div class="top-img">
+                            <img src="{{ asset($app->service->image) }}" alt="{{ $app->service->title }}">
+                        </div>
 
-        @if($serviceAppointments->count() == 0)
-            <p class="empty-text">No service booking found</p>
-        @endif
+                        <h4>{{ $app->service->title }}</h4>
+                        <div class="patient-info">
+                            <div>
+                                <strong>Patient:</strong>
+                                {{ $app->name }}
+                            </div>
 
-        <div class="appointment-grid">
+                            <div>
+                                <strong>Age:</strong>
+                                {{ $app->age }}
+                            </div>
+                        </div>
 
-            @foreach($serviceAppointments as $app)
-                <div class="appointment-card">
+                        <div class="time-box">
+                            <span>
+                                {{ \Carbon\Carbon::parse($app->appointment_date)->format('d M Y') }}
+                            </span>
+                        </div>
 
-                    <div class="top-img">
-                        <img src="{{ asset($app->service->image) }}">
+                        <div class="time-box">
+                            <span>
+                                {{ \Carbon\Carbon::parse($app->appointment_time)->format('h:i A') }}
+                            </span>
+                        </div>
+
+                        <div class="bottom-info">
+                            <div class="payment">
+                                {{ $app->payment_method }}
+                            </div>
+
+                            <div class="status {{ $app->status }}">
+                                {{ ucfirst($app->status) }}
+                            </div>
+                        </div>
                     </div>
-
-                    <h4>{{ $app->service->title }}</h4>
-                    <p>{{ $app->service->description }}</p>
-
-                    <div class="time-box">
-                        <span>{{ \Carbon\Carbon::parse($app->appointment_date)->format('d M Y') }}</span>
-                    </div>
-
-                    <div class="time-box">
-                        <span>{{ \Carbon\Carbon::parse($app->appointment_time)->format('h:i A') }}</span>
-                    </div>
-
-                    <div class="bottom-info">
-                        <div class="payment">{{ $app->payment_method }}</div>
-                        <div class="status {{ $app->status }}">{{ ucfirst($app->status) }}</div>
-                    </div>
-
-                </div>
-            @endforeach
-
+                @endforeach
+            </div>
         </div>
-
-    </div>
-</section>
-
-@include('frontend.custom_layout.footer')
-
+    </section>
+    @include('frontend.custom_layout.footer')
 @endsection

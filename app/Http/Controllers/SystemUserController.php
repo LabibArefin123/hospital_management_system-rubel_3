@@ -22,7 +22,7 @@ class SystemUserController extends Controller
         /*
         |--------------------------------------------------------------------------
         | Patient appointments eligible for creating a patient account
-        |-  -------------------------------------------------------------------------
+        |--------------------------------------------------------------------------
         |
         | 1. Appointment must NOT already have user_id.
         | 2. Appointment must have phone or email.
@@ -32,21 +32,15 @@ class SystemUserController extends Controller
         */
 
         $patientAppointments = Appointment::query()
-            ->with([
-                'doctor',
-                'service',
-            ])
+            ->with(['doctor', 'service',])
             ->whereNull('user_id')
             ->where(function ($query) {
-
                 $query->whereNotNull('phone')
                     ->orWhereNotNull('email');
             })
             ->get()
             ->filter(function ($appointment) {
-
                 $userQuery = User::query();
-
                 /* Check existing account by phone OR email */
                 if ($appointment->phone && $appointment->email) {
 
@@ -56,28 +50,19 @@ class SystemUserController extends Controller
                             ->orWhere('email', $appointment->email);
                     });
                 } elseif ($appointment->phone) {
-
-                    $userQuery->where(
-                        'phone',
-                        $appointment->phone
-                    );
+                    $userQuery->where('phone', $appointment->phone);
                 } elseif ($appointment->email) {
-
-                    $userQuery->where(
-                        'email',
-                        $appointment->email
-                    );
+                    $userQuery->where('email', $appointment->email);
                 }
 
                 /* Only return appointments where no account exists */
                 return !$userQuery->exists();
             })
             ->sort(function ($a, $b) {
-
                 /* Appointment date latest first */
                 $dateCompare = strcmp(
-                    $b->appointment_date ?? '',
-                    $a->appointment_date ?? ''
+                    $b->appointment_date?->format('Y-m-d') ?? '',
+                    $a->appointment_date?->format('Y-m-d') ?? ''
                 );
 
                 if ($dateCompare !== 0) {
@@ -86,8 +71,8 @@ class SystemUserController extends Controller
 
                 /* Same date: appointment time latest first */
                 $timeCompare = strcmp(
-                    $b->appointment_time ?? '',
-                    $a->appointment_time ?? ''
+                    $b->appointment_time?->format('H:i:s') ?? '',
+                    $a->appointment_time?->format('H:i:s') ?? ''
                 );
 
                 if ($timeCompare !== 0) {
@@ -102,15 +87,31 @@ class SystemUserController extends Controller
             })
             ->values();
 
+        /* Group appointments by appointment date */
+        $patientAppointmentGroups = $patientAppointments
+            ->groupBy(function ($appointment) {
+
+                return $appointment->appointment_date
+                    ->format('Y-m-d');
+            })
+            ->map(function ($appointments, $date) {
+
+                return [
+                    'date' => $appointments->first()->appointment_date,
+                    'appointments' => $appointments->values(),
+                ];
+            })
+            ->values();
+
         return view(
             'backend.setting_management.user_management.system_user.index',
             compact(
                 'users',
-                'patientAppointments'
+                'patientAppointments',
+                'patientAppointmentGroups'
             )
         );
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -162,18 +163,12 @@ class SystemUserController extends Controller
 
         /*First try phone*/
         if ($request->filled('phone')) {
-            $user = User::where(
-                'phone',
-                $request->phone
-            )->first();
+            $user = User::where('phone', $request->phone)->first();
         }
 
         /*If phone did not find anything, try email  */
         if (!$user && $request->filled('email')) {
-            $user = User::where(
-                'email',
-                $request->email
-            )->first();
+            $user = User::where('email', $request->email)->first();
         }
 
         if (!$user) {
@@ -235,7 +230,6 @@ class SystemUserController extends Controller
                 ->findOrFail($validated['appointment_id']);
 
             /* Appointment already has an account  */
-
             if ($appointment->user_id) {
                 throw \Illuminate\Validation\ValidationException::withMessages([
                     'appointment_id' =>
@@ -260,8 +254,7 @@ class SystemUserController extends Controller
             /*Prevent duplicate patient account   */
             if ($existingUser) {
                 throw \Illuminate\Validation\ValidationException::withMessages([
-                    'appointment_id' =>
-                    'This patient already has an account.',
+                    'appointment_id' => 'This patient already has an account.',
                 ]);
             }
             /* Generate unique username*/
@@ -296,9 +289,7 @@ class SystemUserController extends Controller
             $user->assignRole('user');
 
             /* Link appointment with new patient account */
-            $appointment->update([
-                'user_id' => $user->id,
-            ]);
+            $appointment->update(['user_id' => $user->id,]);
         });
 
         return redirect()
