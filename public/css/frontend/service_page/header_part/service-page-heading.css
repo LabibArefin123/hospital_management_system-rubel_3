@@ -1,0 +1,23 @@
+/* SERVICE PAGE  - HEADING */
+.service-page-intro h2 {
+    margin: 0 0 9px;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+    color: #1f2937;
+    text-align: center;
+}
+
+/* SUBTITLE*/
+.service-page-intro .service-page-intro-subtitle {
+    max-width: 600px;
+    margin: 0 auto 16px;
+
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
+
+    color: #6b7280;
+    text-align: center;
+}

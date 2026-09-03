@@ -76,10 +76,12 @@
 /* ================= END OF BOOKING TIME SECTION (DOCTOR INFORMATION PAGE) ================= */
 
 /* ================= SERVICE PAGE ================= */
+@import url("./service_page/header_part/service-header.css");
+@import url("./service_page/header_part/service-page-heading.css");
+@import url("./service_page/header_part/service-page-search.css");
 @import url("./service_page/service_page_layout/service-page-layout-card.css");
 @import url("./service_page/service_page_layout/service-page-layout-image.css");
 @import url("./service_page/service_page_layout/service-page-layout-section.css");
-@import url("./service_page/service-header.css");
 @import url("./service_page/service-grid.css");
 @import url("./service_page/service-card.css");
 @import url("./service_page/service-media.css");

@@ -224,9 +224,12 @@ class FrontendController extends Controller
 
     public function service()
     {
-        $services = Service::all();
+        $services = Service::latest()->get();
 
-        return view('frontend.service_page.service', compact('services'));
+        return view(
+            'frontend.service_page.service',
+            compact('services')
+        );
     }
 
     public function appointment()

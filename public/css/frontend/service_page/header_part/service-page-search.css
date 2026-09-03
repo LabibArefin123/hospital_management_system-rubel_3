@@ -1,0 +1,77 @@
+/* =========================================================
+   DOCTOR PAGE INTRO - SEARCH
+========================================================= */
+
+.service-page-search-wrapper {
+    display: block;
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto;
+}
+
+/* =========================================================
+   SEARCH INPUT
+========================================================= */
+
+.service-page-search-input {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    height: 52px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    box-sizing: border-box;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1f2937;
+
+    background: #ffffff;
+    border: 1px solid #dfe7ec;
+    border-radius: 12px;
+
+    outline: none;
+
+    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.06);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+/* =========================================================
+   PLACEHOLDER
+========================================================= */
+
+.service-page-search-input::placeholder {
+    color: #9aa5b1;
+    font-weight: 400;
+}
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.service-page-search-input:hover {
+    border-color: #c7dce5;
+}
+
+/* =========================================================
+   FOCUS
+========================================================= */
+
+.service-page-search-input:focus {
+    border-color: #00a0d6;
+
+    box-shadow:
+        0 0 0 3px rgba(0, 160, 214, 0.1),
+        0 7px 22px rgba(15, 23, 42, 0.08);
+
+    transform: translateY(-1px);
+}
