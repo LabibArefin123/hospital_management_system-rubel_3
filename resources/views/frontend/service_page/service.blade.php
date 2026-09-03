@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Our Services - SusthoCare')
+@section('title', 'Our Services')
 
 @section('content')
     @include('frontend.custom_layout.header')
