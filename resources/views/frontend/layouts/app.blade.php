@@ -115,6 +115,7 @@
     @endif
 
     @if (request()->routeIs('appointment'))
+        {{-- Doctor Filter Start --}}
         <script src="{{ asset('js/custom_frontend/appointment_page/doctor_part/filter_doctor_appointment_core.js') }}">
         </script>
         <script src="{{ asset('js/custom_frontend/appointment_page/doctor_part/filter_doctor_appointment_modal.js') }}">
@@ -123,7 +124,9 @@
         <script src="{{ asset('js/custom_frontend/appointment_page/doctor_part/filter_doctor_appointment_ui.js') }}"></script>
         <script src="{{ asset('js/custom_frontend/appointment_page/doctor_part/filter_doctor_appointment_init.js') }}">
         </script>
+        {{-- Doctor Filter End --}}
 
+        {{-- Service Filter Start --}}
         <script src="{{ asset('js/custom_frontend/appointment_page/service_part/filter_service_appointment_core.js') }}">
         </script>
         <script src="{{ asset('js/custom_frontend/appointment_page/service_part/filter_service_appointment_modal.js') }}">
@@ -132,6 +135,7 @@
         </script>
         <script src="{{ asset('js/custom_frontend/appointment_page/service_part/filter_service_appointment_init.js') }}">
         </script>
+        {{-- Doctor Filter End --}}
     @endif
 </body>
 

@@ -1,0 +1,39 @@
+ <section class="appointment-section">
+     <div class="container">
+         <div class="section-title-row">
+             <h3 class="section-title">All Booked Services</h3>
+             <button type="button" id="serviceAppointmentFilterBtn" class="appointment-filter-btn"
+                 data-filter-url="{{ route('appointment.service.filter') }}" aria-label="Filter Service Appointments">
+                 <i class="fas fa-filter"></i>
+             </button>
+         </div>
+         @if ($serviceAppointments->count() == 0)
+             <p class="empty-text" id="serviceAppointmentEmpty">No service booking found</p>
+         @endif
+         <div class="service-appointment-grid" id="serviceAppointmentGrid">
+             @foreach ($serviceAppointments as $app)
+                 <div class="appointment-card">
+                     <div class="top-img">
+                         <img src="{{ asset($app->service->image) }}" alt="{{ $app->service->title }}">
+                     </div>
+                     <h4>{{ $app->service->title }}</h4>
+                     <div class="patient-info">
+                         <div><strong>Patient:</strong> {{ $app->name }}</div>
+                         <div><strong>Age:</strong> {{ $app->age }}</div>
+                         <div><strong>Email:</strong> {{ $app->email ?: 'N/A' }}</div>
+                     </div>
+                     <div class="time-box">
+                         <span>{{ \Carbon\Carbon::parse($app->appointment_date)->format('d M Y') }}</span>
+                     </div>
+                     <div class="time-box">
+                         <span>{{ \Carbon\Carbon::parse($app->appointment_time)->format('h:i A') }}</span>
+                     </div>
+                     <div class="bottom-info">
+                         <div class="payment">{{ $app->payment_method }}</div>
+                         <div class="status {{ $app->status }}">{{ ucfirst($app->status) }}</div>
+                     </div>
+                 </div>
+             @endforeach
+         </div>
+     </div>
+ </section>

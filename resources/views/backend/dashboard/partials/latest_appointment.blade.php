@@ -51,7 +51,23 @@
                             </div>
                         </td>
 
-                        <td>{{ $appointment->type }}</td>
+                        <td>
+                            @if ($appointment->type === 'doctor')
+                                <span class="badge badge-primary">
+                                    <i class="fas fa-user-md mr-1"></i>
+                                    Doctor
+                                </span>
+                            @elseif ($appointment->type === 'service')
+                                <span class="badge badge-success">
+                                    <i class="fas fa-concierge-bell mr-1"></i>
+                                    Service
+                                </span>
+                            @else
+                                <span class="badge badge-secondary">
+                                    {{ ucfirst($appointment->type) }}
+                                </span>
+                            @endif
+                        </td>
 
                         <td>
                             {{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d M Y') }}

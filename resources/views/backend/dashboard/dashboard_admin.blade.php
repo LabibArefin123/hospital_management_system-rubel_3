@@ -8,6 +8,7 @@
 
 @section('adminlte_css')
     <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/admin_part/header_part/dashboard_header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/admin_part/filter_part/admin_filter.css') }}">
 @stop
 
 @section('content')
@@ -17,7 +18,6 @@
     @include('backend.dashboard.partials.card-box')
     {{-- Latest Appointment section --}}
     @include('backend.dashboard.partials.latest_appointment')
-
     <div class="row">
         {{-- Doctor appointment part --}}
         @include('backend.dashboard.partials.doctor_appointments')

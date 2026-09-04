@@ -338,7 +338,6 @@ class FrontendController extends Controller
         }
 
         /* GUEST */ else {
-            $doctorAppointments->whereRaw('1 = 0');
         }
 
         /* STATUS */
@@ -384,7 +383,7 @@ class FrontendController extends Controller
             $serviceAppointments->where('user_id', $user->id);
         }
         /* OTHER ROLES */ else {
-            $serviceAppointments->whereRaw('1 = 0');
+            
         }
         /* STATUS */
         if ($request->filled('status')) {
