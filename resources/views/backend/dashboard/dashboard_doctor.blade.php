@@ -8,19 +8,20 @@
 
 @section('adminlte_css')
     <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/doctor_part/header_part/dashboard_header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/doctor_part/section_part/header_part.css') }}">
 @stop
 @section('content')
     {{-- Card Box section --}}
     @include('backend.dashboard.custom_filter.doctor.top_filter')
-    @include('backend.dashboard.partials.card-box')
+    @include('backend.dashboard.partials.doctor_part.card-box')
     {{-- Latest Appointment section --}}
-    @include('backend.dashboard.partials.latest_appointment')
+    @include('backend.dashboard.partials.doctor_part.latest_appointment')
     <div class="row">
         {{-- Doctor appointment part --}}
-        @include('backend.dashboard.partials.doctor_appointments')
+        @include('backend.dashboard.partials.doctor_part.doctor_appointments')
         {{-- Service appointment part --}}
     </div>
-    @include('backend.dashboard.partials.status_modal')
+    @include('backend.dashboard.partials.doctor_part.status_modal')
 @endsection
 
 @section('js')

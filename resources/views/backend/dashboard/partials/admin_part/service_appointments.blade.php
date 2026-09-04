@@ -1,23 +1,20 @@
   @if ($serviceAppointments->count())
-
       <div class="col-12 mt-5 mb-4">
-
-          <div class="d-flex align-items-center justify-content-between">
-
-              <h4 class="font-weight-bold text-success mb-0">
-                  Service Bookings
-              </h4>
-
-              <span class="badge badge-success px-3 py-2" id="serviceAppointmentCount">
-
-                  {{ $serviceAppointments->total() }} Bookings
-
-              </span>
-
+          <div class="appointment-section-header service-header">
+              <div class="appointment-section-title">
+                  <div class="appointment-section-icon">
+                      <i class="fas fa-concierge-bell"></i>
+                  </div>
+                  <div class="appointment-section-info">
+                      <h4>Service Bookings</h4>
+                      <p>Manage and review your booked healthcare services</p>
+                  </div>
+              </div>
+              <div class="appointment-section-count" id="serviceAppointmentCount">
+                  <i class="fas fa-calendar-check"></i>
+                  <span>{{ $serviceAppointments->total() }} Bookings</span>
+              </div>
           </div>
-
-          <hr>
-
       </div>
 
       @foreach ($serviceAppointments as $appointment)

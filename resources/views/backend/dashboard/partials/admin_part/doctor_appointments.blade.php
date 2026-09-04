@@ -1,17 +1,21 @@
 @if ($doctorAppointments->count())
     <div class="col-12 mb-4">
-        <div class="d-flex align-items-center justify-content-between">
-            <h4 class="font-weight-bold text-primary mb-0">
-                Doctor Consultations
-            </h4>
-
-            <span class="badge badge-primary px-3 py-2" id="doctorAppointmentCount">
-                {{ $doctorAppointments->total() }} Appointments
-            </span>
+        <div class="appointment-section-header">
+            <div class="appointment-section-title">
+                <div class="appointment-section-icon">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <div class="appointment-section-info">
+                    <h4>Doctor Consultations</h4>
+                    <p>Manage and review your doctor appointments</p>
+                </div>
+            </div>
+            <div class="appointment-section-count" id="doctorAppointmentCount">
+                <i class="fas fa-calendar-check"></i>
+                <span>{{ $doctorAppointments->total() }} Appointments</span>
+            </div>
         </div>
-        <hr>
     </div>
-
     @foreach ($doctorAppointments as $appointment)
         <div class="col-lg-3 col-md-6 mb-4 appointment-card" data-type="doctor"
             data-patient="{{ strtolower($appointment->name) }}" data-status="{{ strtolower($appointment->status) }}"
@@ -28,7 +32,6 @@
                         </p>
                     </div>
 
-                    {{-- DOCTOR SECTION (FIXED ALIGNMENT) --}}
                     <div class="d-flex align-items-center mb-3 p-2 rounded" style="background:#f8f9ff;">
                         {{-- IMAGE --}}
                         <div class="mr-3">
