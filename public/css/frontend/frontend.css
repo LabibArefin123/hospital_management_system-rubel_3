@@ -101,6 +101,10 @@
 
 @import url("./appointment_page/appointment-layout.css");
 @import url("./appointment_page/appointment-header.css");
+@import url("./appointment_page/appointment-doctor-filter.css");
+@import url("./appointment_page/appointment-service-filter.css");
+@import url("./appointment_page/modals/filter_doctor.css");
+@import url("./appointment_page/modals/filter_service.css");
 @import url("./appointment_page/appointment-card.css");
 @import url("./appointment_page/appointment-patient.css");
 @import url("./appointment_page/appointment-status.css");

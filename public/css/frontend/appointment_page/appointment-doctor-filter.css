@@ -1,0 +1,62 @@
+/* SECTION TITLE ROW */
+.section-title-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+/* SECTION TITLE */
+.section-title-row .section-title {
+    margin: 0;
+    flex: 1;
+}
+
+/* FILTER BUTTON */
+.appointment-filter-btn {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 10px;
+    background: #8b0000;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* FILTER BUTTON HOVER */
+.appointment-filter-btn:hover,
+.appointment-filter-btn.active {
+    background: #ff6b6b;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+/* FILTER BUTTON ICON */
+.appointment-filter-btn i {
+    font-size: 15px;
+    line-height: 1;
+}
+
+/* MOBILE */
+@media (max-width: 575.98px) {
+    .section-title-row {
+        margin-bottom: 15px;
+    }
+    .section-title {
+        font-size: 20px;
+    }
+    .appointment-filter-btn {
+        width: 38px;
+        height: 38px;
+        flex-basis: 38px;
+    }
+}

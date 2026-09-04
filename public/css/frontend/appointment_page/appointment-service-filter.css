@@ -1,0 +1,85 @@
+/* SERVICE FILTER UI */
+.service-filter-modal .filter-group {
+    width: 100%;
+    margin-bottom: 18px;
+}
+
+.service-filter-modal .filter-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.service-filter-modal .filter-group .form-control {
+    width: 100%;
+    height: 46px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 0 13px;
+    background: #fff;
+    color: #333;
+    outline: none;
+    box-shadow: none;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.service-filter-modal .filter-group .form-control:focus {
+    border-color: #00a0d6;
+    box-shadow: 0 0 0 3px rgba(0, 160, 214, 0.1);
+}
+
+.service-filter-modal input[type="date"] {
+    cursor: pointer;
+}
+
+.service-filter-modal select {
+    cursor: pointer;
+}
+
+.service-appointment-grid.filter-loading {
+    opacity: 0.45;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+.section-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.appointment-filter-btn {
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 10px;
+    background: #f3f7f9;
+    color: #8b0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.appointment-filter-btn:hover,
+.appointment-filter-btn.active {
+    background: #8b0000;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 576px) {
+    .section-title-row {
+        gap: 10px;
+    }
+    .appointment-filter-btn {
+        width: 40px;
+        height: 40px;
+    }
+}

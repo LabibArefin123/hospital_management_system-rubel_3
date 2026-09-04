@@ -109,9 +109,29 @@
     <script src="{{ asset('js/custom_frontend/payment_page/payment_page.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/password_toggle.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/sweet_alert.js') }}"></script>
-    
+
     @if (request()->routeIs('doctor.show') || request()->routeIs('service.show'))
         <script src="{{ asset('js/custom_frontend/phone_validation.js') }}"></script>
+    @endif
+
+    @if (request()->routeIs('appointment'))
+        <script src="{{ asset('js/custom_frontend/appointment_page/doctor_part/filter_doctor_appointment_core.js') }}">
+        </script>
+        <script src="{{ asset('js/custom_frontend/appointment_page/doctor_part/filter_doctor_appointment_modal.js') }}">
+        </script>
+        <script src="{{ asset('js/custom_frontend/appointment_page/doctor_part/filter_doctor_appointment_api.js') }}"></script>
+        <script src="{{ asset('js/custom_frontend/appointment_page/doctor_part/filter_doctor_appointment_ui.js') }}"></script>
+        <script src="{{ asset('js/custom_frontend/appointment_page/doctor_part/filter_doctor_appointment_init.js') }}">
+        </script>
+
+        <script src="{{ asset('js/custom_frontend/appointment_page/service_part/filter_service_appointment_core.js') }}">
+        </script>
+        <script src="{{ asset('js/custom_frontend/appointment_page/service_part/filter_service_appointment_modal.js') }}">
+        </script>
+        <script src="{{ asset('js/custom_frontend/appointment_page/service_part/filter_service_appointment_api.js') }}">
+        </script>
+        <script src="{{ asset('js/custom_frontend/appointment_page/service_part/filter_service_appointment_init.js') }}">
+        </script>
     @endif
 </body>
 

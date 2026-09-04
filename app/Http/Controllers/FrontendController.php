@@ -235,20 +235,21 @@ class FrontendController extends Controller
     public function appointment()
     {
         $user = auth()->user();
+
         $doctorAppointments = Appointment::with('doctor')
             ->whereNotNull('doctor_id');
 
         $serviceAppointments = Appointment::with('service')
             ->whereNotNull('service_id');
 
-        /*ADMIN (as they can see everything)*/
+        /* ADMIN */
         if ($user && $user->hasRole('admin')) {
-            
         }
 
-        /* DOCTOR (as they can only see appointments assigned to them.) */ 
-        elseif ($user && $user->hasRole('doctor')) {
+        /* DOCTOR */ elseif ($user && $user->hasRole('doctor')) {
+
             $doctor = $user->doctor;
+
             if ($doctor) {
                 $doctorAppointments->where(
                     'doctor_id',
@@ -258,21 +259,25 @@ class FrontendController extends Controller
                 $doctorAppointments->whereRaw('1 = 0');
             }
 
-            // Doctor should not see service appointments.
             $serviceAppointments->whereRaw('1 = 0');
         }
 
-        /*USER (as can see only their own appointments.) */ 
-        elseif ($user && $user->hasRole('user')) {
-            $doctorAppointments->where('user_id', $user->id);
-            $serviceAppointments->where('user_id', $user->id);
+        /* USER */ elseif ($user && $user->hasRole('user')) {
+
+            $doctorAppointments->where(
+                'user_id',
+                $user->id
+            );
+
+            $serviceAppointments->where(
+                'user_id',
+                $user->id
+            );
         }
 
-        /*GUEST ROLE*/ else {
-
+        /* GUEST */ else {
         }
 
-        /*EXECUTE */
         $doctorAppointments = $doctorAppointments
             ->latest()
             ->get();
@@ -281,13 +286,119 @@ class FrontendController extends Controller
             ->latest()
             ->get();
 
+        $doctors = Doctor::orderBy('name')->get();
+        $services = Service::orderBy('title')->get();
+
         return view(
             'frontend.appointment_page.appointment',
             compact(
                 'doctorAppointments',
-                'serviceAppointments'
+                'serviceAppointments',
+                'doctors',
+                'services'
             )
         );
+    }
+
+    public function doctor_appointment_filter(Request $request)
+    {
+        $user = auth()->user();
+
+        $doctorAppointments = Appointment::with('doctor')
+            ->whereNotNull('doctor_id');
+
+        /* ADMIN */
+        if ($user && $user->hasRole('admin')) {
+            if ($request->filled('doctor_id')) {
+                $doctorAppointments->where(
+                    'doctor_id',
+                    $request->doctor_id
+                );
+            }
+        }
+
+        /* DOCTOR */ elseif ($user && $user->hasRole('doctor')) {
+            $doctor = $user->doctor;
+
+            if ($doctor) {
+                $doctorAppointments->where(
+                    'doctor_id',
+                    $doctor->id
+                );
+            } else {
+                $doctorAppointments->whereRaw('1 = 0');
+            }
+        }
+
+        /* USER */ elseif ($user && $user->hasRole('user')) {
+            $doctorAppointments->where(
+                'user_id',
+                $user->id
+            );
+        }
+
+        /* GUEST */ else {
+            $doctorAppointments->whereRaw('1 = 0');
+        }
+
+        /* STATUS */
+        if ($request->filled('status')) {
+            $doctorAppointments->where(
+                'status',
+                $request->status
+            );
+        }
+
+        /* APPOINTMENT DATE */
+        if ($request->filled('appointment_date')) {
+            $doctorAppointments->whereDate(
+                'appointment_date',
+                $request->appointment_date
+            );
+        }
+
+        $doctorAppointments = $doctorAppointments
+            ->latest()
+            ->get();
+
+        return response()->json([
+            'html' => view(
+                'frontend.appointment_page.partials.doctor_appointment_cards',
+                compact('doctorAppointments')
+            )->render(),
+            'count' => $doctorAppointments->count(),
+        ]);
+    }
+
+    public function service_appointment_filter(Request $request)
+    {
+        $user = auth()->user();
+        $serviceAppointments = Appointment::with('service')->whereNotNull('service_id');
+        /* ADMIN */
+        if ($user && $user->hasRole('admin')) {
+            if ($request->filled('service_id')) {
+                $serviceAppointments->where('service_id', $request->service_id);
+            }
+        }
+        /* USER */ elseif ($user && $user->hasRole('user')) {
+            $serviceAppointments->where('user_id', $user->id);
+        }
+        /* OTHER ROLES */ else {
+            $serviceAppointments->whereRaw('1 = 0');
+        }
+        /* STATUS */
+        if ($request->filled('status')) {
+            $serviceAppointments->where('status', $request->status);
+        }
+        /* APPOINTMENT DATE */
+        if ($request->filled('appointment_date')) {
+            $serviceAppointments->whereDate('appointment_date', $request->appointment_date);
+        }
+        $serviceAppointments = $serviceAppointments->latest()->get();
+        return response()->json([
+            'html' => view('frontend.appointment_page.partials.service_appointment_cards', compact('serviceAppointments'))->render(),
+            'count' => $serviceAppointments->count(),
+        ]);
     }
 
     public function appointment_store(Request $request)

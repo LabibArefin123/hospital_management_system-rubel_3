@@ -31,6 +31,8 @@ Route::get('/service', [FrontendController::class, 'service'])->name('service');
 Route::get('/service/{id}', [FrontendController::class, 'service_show'])->name('service.show');
 
 Route::get('/our-appointments', [FrontendController::class, 'appointment'])->name('appointment');
+Route::get('appointments/doctor-filter', [FrontendController::class, 'doctor_appointment_filter'])->name('appointment.doctor.filter');
+Route::get('appointments/service-filter', [FrontendController::class, 'service_appointment_filter'])->name('appointment.service.filter');
 Route::post('/appointment-store', [FrontendController::class, 'appointment_store'])->name('appointment.store');
 
 //Payment Part (Optional but functional)

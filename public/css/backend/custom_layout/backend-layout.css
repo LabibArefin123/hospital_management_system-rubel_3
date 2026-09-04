@@ -1,7 +1,6 @@
-/* =========================================================
-   FILE: backend-layout.css
-========================================================= */
+/* FILE: backend-layout.css */
 
+/* GLOBAL */
 html,
 body {
     width: 100%;
@@ -10,35 +9,66 @@ body {
     padding: 0 !important;
     overflow-x: hidden;
 }
+
+html {
+    background: #f4f6f9 !important;
+}
+
 body {
-    background-color: #f4f6f9 !important;
+    background: #f4f6f9 !important;
 }
+
+/* MAIN WRAPPER */
 .wrapper {
-    min-height: 100vh;
     width: 100%;
-    background-color: #f4f6f9 !important;
-}
-.content-wrapper {
-    background-color: #f4f6f9 !important;
     min-height: 100vh !important;
+    background: #f4f6f9 !important;
+}
+
+/* CONTENT WRAPPER */
+.content-wrapper,
+.layout-fixed .content-wrapper,
+.layout-navbar-fixed .content-wrapper,
+.layout-footer-fixed .content-wrapper {
+    min-height: calc(100vh - 57px) !important;
     height: auto !important;
+    background: #f4f6f9 !important;
     overflow: visible !important;
 }
+
+/* CONTENT */
 .content {
+    width: 100%;
     padding: 20px !important;
+    background: transparent !important;
     overflow: visible !important;
 }
+
+/* CONTAINER */
 .container-fluid {
     width: 100%;
     padding-left: 15px !important;
     padding-right: 15px !important;
+    background: transparent !important;
     overflow: visible !important;
 }
+
+/* EMPTY BACKGROUND */
+.content-wrapper::before,
+.content-wrapper::after,
+.content::before,
+.content::after {
+    background: transparent !important;
+}
+
+/* LAYOUT TRANSITIONS */
 .content-wrapper,
 .main-header,
 .main-footer {
     transition: margin-left 0.3s ease-in-out;
 }
+
+/* MOBILE */
 @media (max-width: 991.98px) {
     .content-wrapper,
     .main-header,
@@ -46,35 +76,50 @@ body {
         margin-left: 0 !important;
     }
 }
+
+/* CARDS */
 .card {
     border-radius: 12px;
     border: 0 !important;
 }
+
 .card-body {
     overflow: visible;
 }
+
+/* TABLES */
 .table-responsive {
     overflow-x: auto;
 }
+
+/* HEADER */
 .main-header {
     border-bottom: 1px solid #dee2e6;
     background: #fff;
 }
+
+/* FOOTER */
 .main-footer {
     margin-bottom: 0 !important;
     padding-bottom: 12px !important;
     background: #fff;
 }
+
+/* SIDEBAR */
 .main-sidebar {
     overflow-x: hidden !important;
 }
+
 .layout-fixed .main-sidebar {
     position: fixed;
 }
+
+/* ROW AND COLUMN SPACING */
 .row {
     margin-left: -7px;
     margin-right: -7px;
 }
+
 .row > [class*="col-"] {
     padding-left: 7px;
     padding-right: 7px;

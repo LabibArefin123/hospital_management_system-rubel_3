@@ -1,0 +1,150 @@
+/* SERVICE FILTER MODAL */
+.service-filter-modal {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 99999 !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    overflow: hidden;
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.service-filter-modal.show {
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+.service-filter-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+.service-filter-box {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+    transform: translateY(-20px) scale(0.98);
+    transition: transform 0.25s ease;
+}
+
+.service-filter-modal.show .service-filter-box {
+    transform: translateY(0) scale(1);
+}
+
+.service-filter-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.service-filter-header h4 {
+    margin: 0 0 5px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #222;
+}
+
+.service-filter-header p {
+    margin: 0;
+    color: #777;
+    font-size: 14px;
+}
+
+.service-filter-close {
+    width: 38px;
+    height: 38px;
+    border: 0;
+    border-radius: 50%;
+    background: #f5f5f5;
+    color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.service-filter-close:hover {
+    background: #8b0000;
+    color: #fff;
+}
+
+.service-filter-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.service-filter-actions button {
+    flex: 1;
+    min-height: 45px;
+    border: 0;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.service-filter-modal .filter-reset-btn {
+    background: #f1f1f1;
+    color: #555;
+}
+
+.service-filter-modal .filter-reset-btn:hover {
+    background: #ddd;
+}
+
+.service-filter-modal .filter-apply-btn {
+    background: #8b0000;
+    color: #fff;
+}
+
+.service-filter-modal .filter-apply-btn:hover {
+    background: #6f0000;
+}
+
+.service-filter-modal .filter-apply-btn:disabled,
+.service-filter-modal .filter-reset-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+body.service-filter-open {
+    overflow: hidden;
+}
+
+@media (max-width: 576px) {
+    .service-filter-box {
+        margin: 15px;
+        padding: 20px;
+        border-radius: 15px;
+    }
+    .service-filter-actions {
+        flex-direction: column;
+    }
+    .service-filter-header h4 {
+        font-size: 18px;
+    }
+}
