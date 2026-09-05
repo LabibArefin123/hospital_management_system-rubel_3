@@ -1,34 +1,22 @@
- <div class="card border-0 shadow-lg rounded-4 mb-4">
+<div class="permission-action-card">
+    <div class="permission-action-content">
+        <div class="permission-action-icon">
+            <i class="fas fa-sliders-h"></i>
+        </div>
+        <div class="permission-action-text">
+            <h5>Permission Management</h5>
+            <p>Quickly assign or remove all permissions.</p>
+        </div>
+    </div>
+    <div class="permission-global-actions">
+        <button type="button" class="permission-select-all" id="selectAllPermissions">
+            <i class="fas fa-check-circle"></i>
+            <span>Select All</span>
+        </button>
+        <button type="button" class="permission-unselect-all" id="unselectAllPermissions">
+            <i class="fas fa-times-circle"></i>
+            <span>Unselect All</span>
+        </button>
+    </div>
+</div>
 
-     <div class="card-body d-flex justify-content-between align-items-center flex-wrap gap-3">
-
-         <div>
-             <h5 class="fw-bold text-primary mb-1">
-                 Permission Management
-             </h5>
-
-             <small class="text-muted">
-                 Quickly assign or remove all permissions.
-             </small>
-         </div>
-
-         <div class="ms-auto d-flex gap-2">
-
-             <button type="button" class="btn btn-primary rounded-pill px-4 shadow-sm" id="selectAllPermissions">
-
-                 <i class="fas fa-check-circle me-1"></i>
-                 Select All
-             </button>
-
-             <button type="button" class="btn btn-outline-danger rounded-pill px-4 shadow-sm"
-                 id="unselectAllPermissions">
-
-                 <i class="fas fa-times-circle me-1"></i>
-                 Unselect All
-             </button>
-
-         </div>
-
-     </div>
-
- </div>

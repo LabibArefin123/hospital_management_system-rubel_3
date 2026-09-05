@@ -1,34 +1,23 @@
-<div class="card-header bg-white border-0 py-3 px-4">
-
+<div class="permission-header-card">
     <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-
-        <div>
-            <h4 class="fw-bold text-primary mb-1">
-                Permission Management
-            </h4>
-
-            <small class="text-muted">
-                Configure role permissions from the scrollable permission manager.
-            </small>
+        <div class="permission-header-content">
+            <div class="permission-header-icon">
+                <i class="fas fa-key"></i>
+            </div>
+            <div class="permission-header-text">
+                <h4>Permission Management</h4>
+                <p>Configure role permissions from the permission manager.</p>
+            </div>
         </div>
-
-        <div class="d-flex gap-2">
-
-            <button type="button" class="btn btn-primary rounded-pill px-4 shadow-sm" id="selectAllPermissions">
-
-                <i class="fas fa-check-circle me-1"></i>
-                Select All
+        <div class="permission-header-actions">
+            <button type="button" class="permission-header-select" id="selectAllPermissions">
+                <i class="fas fa-check-circle"></i>
+                <span>Select All</span>
             </button>
-
-            <button type="button" class="btn btn-outline-danger rounded-pill px-4 shadow-sm"
-                id="unselectAllPermissions">
-
-                <i class="fas fa-times-circle me-1"></i>
-                Unselect All
+            <button type="button" class="permission-header-unselect" id="unselectAllPermissions">
+                <i class="fas fa-times-circle"></i>
+                <span>Unselect All</span>
             </button>
-
         </div>
-
     </div>
-
 </div>

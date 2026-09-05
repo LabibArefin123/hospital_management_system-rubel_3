@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        <a href="{{ route('system_users.index') }}" class="btn btn-warning system-user-back-btn">
+        <a href="{{ route('system_users.index') }}" class="btn btn-warning system-user-show-back-btn">
             <i class="fas fa-arrow-left"></i>
             <span>Go Back</span>
         </a>
