@@ -1,0 +1,93 @@
+/* This is for doctor page header */
+
+.doctor-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+}
+
+.doctor-header-content {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.doctor-header-icon {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #eaf4ff;
+    color: #007bff;
+    font-size: 19px;
+}
+
+.doctor-page-header h1 {
+    margin: 0;
+    color: #212529;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.doctor-page-header p {
+    margin: 4px 0 0;
+    color: #6c757d;
+    font-size: 13px;
+}
+
+.doctor-add-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 38px;
+    padding: 0 17px;
+    border-radius: 7px;
+    background: #007bff;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: all 0.2s ease;
+}
+
+.doctor-add-btn:hover {
+    background: #0069d9;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.doctor-add-btn i {
+    font-size: 11px;
+}
+
+@media (max-width: 767px) {
+    .doctor-page-header {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 17px;
+    }
+
+    .doctor-add-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .doctor-page-header h1 {
+        font-size: 19px;
+    }
+
+    .doctor-page-header p {
+        font-size: 11px;
+    }
+}

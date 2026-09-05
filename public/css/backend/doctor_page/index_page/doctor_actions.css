@@ -1,0 +1,101 @@
+/* This is for doctor action buttons */
+
+.doctor-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    min-height: 34px;
+}
+
+.doctor-actions form {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.doctor-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-width: 72px;
+    height: 32px;
+    margin: 0;
+    padding: 0 9px;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none !important;
+    white-space: nowrap;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: all 0.2s ease;
+}
+
+.doctor-action-btn i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 11px;
+    height: 11px;
+    font-size: 10px;
+    line-height: 1;
+}
+
+.doctor-action-btn span {
+    line-height: 1;
+}
+
+.doctor-view-btn {
+    background: #e8f4ff;
+    color: #007bff;
+}
+
+.doctor-view-btn:hover {
+    background: #007bff;
+    color: #fff;
+}
+
+.doctor-edit-btn {
+    background: #fff3cd;
+    color: #997404;
+}
+
+.doctor-edit-btn:hover {
+    background: #ffc107;
+    color: #212529;
+}
+
+.doctor-delete-btn {
+    background: #fdeaea;
+    color: #dc3545;
+}
+
+.doctor-delete-btn:hover {
+    background: #dc3545;
+    color: #fff;
+}
+
+.doctor-action-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.12);
+}
+
+@media (max-width: 767px) {
+    .doctor-action-btn {
+        min-width: 65px;
+        height: 31px;
+        padding: 0 7px;
+        font-size: 9px;
+    }
+
+    .doctor-action-btn i {
+        font-size: 9px;
+    }
+}
