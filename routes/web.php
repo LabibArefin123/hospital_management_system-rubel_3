@@ -107,6 +107,7 @@ Route::group(['middleware' => ['auth', 'permission']], function () {
     Route::get('system_users/patient-user/find/{id}', [SystemUserController::class, 'patient_user_find_by_id'])->name('system_users.patient_user_find_by_id');
     Route::get('system_users/patient-user/find', [SystemUserController::class, 'patient_user_find'])->name('system_users.patient_user_find');
     Route::post('system_users/patient-user/store', [SystemUserController::class, 'patient_user_store'])->name('system_users.patient_user_store');
+    Route::get('system_users/data',[SystemUserController::class, 'user_data'])->name('system_users.user_data');
     Route::resource('system_users', SystemUserController::class);
     Route::post('/system_users/{user}/change-password', [SystemUserController::class, 'updatePassword'])->name('system_users.password.update');
     Route::resource('newsletters', NewsletterController::class);

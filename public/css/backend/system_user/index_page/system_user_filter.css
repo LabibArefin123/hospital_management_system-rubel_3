@@ -1,0 +1,57 @@
+/* =========================================================
+   SYSTEM USER FILTER
+========================================================= */
+
+.system-user-table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.system-user-table-header h5 {
+    color: #343a40;
+}
+
+.system-user-table-header small {
+    display: block;
+    margin-top: 0.2rem;
+}
+
+.system-user-table-header .btn {
+    border-radius: 7px;
+    font-weight: 600;
+}
+
+.system-user-filter-modal {
+    border: 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.system-user-filter-modal .modal-header {
+    border-bottom: 1px solid #eeeeee;
+}
+
+.system-user-filter-modal .modal-footer {
+    border-top: 1px solid #eeeeee;
+}
+
+.system-user-filter-group label {
+    margin-bottom: 0.45rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #495057;
+}
+
+.system-user-filter-group select {
+    min-height: 44px;
+    border-radius: 7px;
+}
+
+#activeFilterBadge {
+    border-radius: 10px;
+    font-size: 0.7rem;
+}

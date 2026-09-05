@@ -17,22 +17,10 @@ class SystemUserController extends Controller
      */
     public function index()
     {
+        /* Patient appointments eligible for creating a patient account */
         $users = User::all();
-
-        /*
-        |--------------------------------------------------------------------------
-        | Patient appointments eligible for creating a patient account
-        |--------------------------------------------------------------------------
-        |
-        | 1. Appointment must NOT already have user_id.
-        | 2. Appointment must have phone or email.
-        | 3. There must NOT already be a User with the same phone/email.
-        | 4. Both doctor and service appointments are included.
-        |
-        */
-
         $patientAppointments = Appointment::query()
-            ->with(['doctor', 'service',])
+            ->with(['doctor', 'service'])
             ->whereNull('user_id')
             ->where(function ($query) {
                 $query->whereNotNull('phone')
@@ -41,25 +29,24 @@ class SystemUserController extends Controller
             ->get()
             ->filter(function ($appointment) {
                 $userQuery = User::query();
-                /* Check existing account by phone OR email */
                 if ($appointment->phone && $appointment->email) {
 
                     $userQuery->where(function ($query) use ($appointment) {
-
                         $query->where('phone', $appointment->phone)
                             ->orWhere('email', $appointment->email);
                     });
                 } elseif ($appointment->phone) {
+
                     $userQuery->where('phone', $appointment->phone);
                 } elseif ($appointment->email) {
+
                     $userQuery->where('email', $appointment->email);
                 }
 
-                /* Only return appointments where no account exists */
                 return !$userQuery->exists();
             })
             ->sort(function ($a, $b) {
-                /* Appointment date latest first */
+
                 $dateCompare = strcmp(
                     $b->appointment_date?->format('Y-m-d') ?? '',
                     $a->appointment_date?->format('Y-m-d') ?? ''
@@ -69,7 +56,6 @@ class SystemUserController extends Controller
                     return $dateCompare;
                 }
 
-                /* Same date: appointment time latest first */
                 $timeCompare = strcmp(
                     $b->appointment_time?->format('H:i:s') ?? '',
                     $a->appointment_time?->format('H:i:s') ?? ''
@@ -79,7 +65,6 @@ class SystemUserController extends Controller
                     return $timeCompare;
                 }
 
-                /* Same date and time: patient name A-Z */
                 return strcasecmp(
                     $a->name ?? '',
                     $b->name ?? ''
@@ -87,14 +72,12 @@ class SystemUserController extends Controller
             })
             ->values();
 
-        /* Group appointments by appointment date */
+        /*Group patient appointments  */
         $patientAppointmentGroups = $patientAppointments
             ->groupBy(function ($appointment) {
-
-                return $appointment->appointment_date
-                    ->format('Y-m-d');
+                return $appointment->appointment_date->format('Y-m-d');
             })
-            ->map(function ($appointments, $date) {
+            ->map(function ($appointments) {
 
                 return [
                     'date' => $appointments->first()->appointment_date,
@@ -103,14 +86,188 @@ class SystemUserController extends Controller
             })
             ->values();
 
+        /*System User Statistics*/
+        $userTotals = [
+            'admin' => User::role('admin')->count(),
+            'doctor' => User::role('doctor')->count(),
+            'patient_created' => User::role('user')->count(),
+            'patient_not_created' => $patientAppointments->count(),
+        ];
+
         return view(
             'backend.setting_management.user_management.system_user.index',
             compact(
-                'users',
                 'patientAppointments',
-                'patientAppointmentGroups'
+                'patientAppointmentGroups',
+                'userTotals',
+                'users'
             )
         );
+    }
+
+    public function user_data(Request $request)
+    {
+        $query = User::query()
+            ->with(['roles', 'doctor',]);
+
+        /*Role Filter   */
+        if ($request->filled('role')) {
+            $query->whereHas('roles', function ($roleQuery) use ($request) {
+                $roleQuery->where('name', $request->role);
+            });
+        }
+
+        /* DataTables  */
+        $draw = (int) $request->input('draw', 1);
+        $start = (int) $request->input('start', 0);
+        $length = (int) $request->input('length', 10);
+        $totalRecords = User::count();
+        $filteredRecords = (clone $query)->count();
+        $users = $query
+            ->latest('id')
+            ->skip($start)
+            ->take($length)
+            ->get();
+
+        $data = $users->map(function ($user, $index) use ($start) {
+
+            /* Profile Image  */
+
+            if (
+                $user->hasRole('doctor') &&
+                $user->doctor &&
+                $user->doctor->image
+            ) {
+
+                $image = asset($user->doctor->image);
+            } elseif ($user->profile_picture) {
+
+                $image = asset($user->profile_picture);
+            } else {
+
+                $image = asset('uploads/images/default.jpg');
+            }
+
+            /*Roles */
+            $roles = $user->roles
+                ->pluck('name')
+                ->map(function ($role) {
+
+                    return '<span class="system-user-role-badge">'
+                        . e(ucfirst($role))
+                        . '</span>';
+                })
+                ->implode(' ');
+
+            /*Actions */
+            $viewUrl = route('system_users.show', $user->id);
+            $editUrl = route('system_users.edit', $user->id);
+            $deleteUrl = route('system_users.destroy', $user->id);
+            $roleName = $user->roles
+                ->pluck('name')
+                ->join(', ');
+
+            $actions = '
+            <div class="system-user-actions">
+
+                <a href="' . $viewUrl . '"
+                   class="btn btn-info btn-sm">
+                    <i class="fas fa-eye mr-1"></i>
+                    View
+                </a>
+
+                <a href="' . $editUrl . '"
+                   class="btn btn-warning btn-sm">
+                    <i class="fas fa-edit mr-1"></i>
+                    Edit
+                </a>
+        ';
+
+            if (auth()->user()->hasRole('admin')) {
+
+                $actions .= '
+                <button type="button"
+                        class="btn btn-danger btn-sm change-password-btn"
+                        data-bs-toggle="modal"
+                        data-bs-target="#changePasswordModal"
+                        data-user-id="' . $user->id . '"
+                        data-user-name="' . e($user->name) . '"
+                        data-user-email="' . e($user->email ?? '') . '"
+                        data-user-role="' . e($roleName) . '"
+                        data-user-picture="' . e($image) . '">
+
+                    <i class="fas fa-key mr-1"></i>
+                    Change Password
+                </button>
+
+                <form action="' . $deleteUrl . '"
+                      method="POST"
+                      class="d-inline"
+                      onsubmit="return confirm(\'Are you sure you want to delete this user?\');">
+
+                    ' . csrf_field() . '
+
+                    <input type="hidden"
+                           name="_method"
+                           value="DELETE">
+
+                    <button type="submit"
+                            class="btn btn-secondary btn-sm">
+
+                        <i class="fas fa-trash mr-1"></i>
+                        Delete
+
+                    </button>
+
+                </form>
+            ';
+            }
+
+            $actions .= '</div>';
+
+            /* User Image  */
+            $userHtml = '
+            <div class="system-user-profile">
+
+                <div class="system-user-avatar">
+                    <img src="' . e($image) . '"
+                         alt="' . e($user->name) . '"
+                         loading="lazy">
+                </div>
+
+                <div class="system-user-name">
+                    ' . e($user->name) . '
+                </div>
+
+            </div>
+        ';
+
+            return [
+                'number' => $start + $index + 1,
+                'role' => $roles,
+                'name' => $userHtml,
+                'email' => $user->email
+                    ? e($user->email)
+                    : '<span class="text-muted">Not Provided</span>',
+                'phone' => $user->phone
+                    ? e($user->phone)
+                    : '<span class="text-muted">Not Provided</span>',
+                'phone_2' => $user->phone_2
+                    ? e($user->phone_2)
+                    : '<span class="text-muted">Not Provided</span>',
+                'username' => $user->username
+                    ? e($user->username)
+                    : '<span class="text-muted">Not Provided</span>',
+                'actions' => $actions,
+            ];
+        });
+
+        return response()->json([
+            'draw' => $draw,    
+            'recordsTotal' => $totalRecords,    
+            'recordsFiltered' => $filteredRecords,  
+            'data' => $data,
+        ]);
     }
     /**
      * Show the form for creating a new resource.

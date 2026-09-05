@@ -78,7 +78,7 @@
 
                     <div class="form-group col-md-6">
                         <label for="phone">Phone<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone"
+                        <input type="text" class="form-control global-mobile-input @error('phone') is-invalid @enderror" id="phone"
                             name="phone" value="{{ old('phone', $user->phone) }}">
                         @error('phone')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -87,7 +87,7 @@
 
                     <div class="form-group col-md-6">
                         <label for="phone_2">Phone 2<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('phone_2') is-invalid @enderror" id="phone_2"
+                        <input type="text" class="form-control global-mobile-input @error('phone_2') is-invalid @enderror" id="phone_2"
                             name="phone_2" value="{{ old('phone_2', $user->phone_2) }}">
                         @error('phone_2')
                             <div class="invalid-feedback">{{ $message }}</div>

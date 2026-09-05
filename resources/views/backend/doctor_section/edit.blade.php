@@ -52,7 +52,6 @@
                     @method('PUT')
 
                     <div class="doctor-create-body">
-
                         {{-- This is for validation errors --}}
                         @if ($errors->any())
                             <div class="doctor-error-box">

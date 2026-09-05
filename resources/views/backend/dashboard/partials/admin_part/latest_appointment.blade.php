@@ -24,27 +24,19 @@
                         data-status="{{ strtolower($appointment->status) }}"
                         data-date="{{ \Carbon\Carbon::parse($appointment->appointment_date)->format('Y-m-d') }}">
                         <td>{{ $loop->iteration }}</td>
-
                         <td>{{ $appointment->name }}</td>
-
                         <td>
                             <div class="d-flex align-items-center">
                                 @if ($appointment->type === 'doctor' && $appointment->doctor)
                                     <img src="{{ $appointment->doctor->image ? asset($appointment->doctor->image) : asset('images/default-doctor.png') }}"
                                         alt="{{ $appointment->doctor->name }}"
                                         style="width:40px;height:40px;object-fit:cover;border-radius:50%;margin-right:10px;">
-
-                                    <span>
-                                        {{ $appointment->doctor->name }}
-                                    </span>
+                                    <span>{{ $appointment->doctor->name }} </span>
                                 @elseif($appointment->type === 'service' && $appointment->service)
                                     <img src="{{ $appointment->service->image ? asset($appointment->service->image) : asset('images/default-service.png') }}"
                                         alt="{{ $appointment->service->title }}"
                                         style="width:40px;height:40px;object-fit:cover;border-radius:50%;margin-right:10px;">
-
-                                    <span>
-                                        {{ $appointment->service->title }}
-                                    </span>
+                                    <span>{{ $appointment->service->title }}</span>
                                 @else
                                     <span class="text-muted">N/A</span>
                                 @endif
@@ -63,20 +55,11 @@
                                     Service
                                 </span>
                             @else
-                                <span class="badge badge-secondary">
-                                    {{ ucfirst($appointment->type) }}
-                                </span>
+                                <span class="badge badge-secondary">{{ ucfirst($appointment->type) }}</span>
                             @endif
                         </td>
-
-                        <td>
-                            {{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d M Y') }}
-                        </td>
-
-                        <td>
-                            {{ \Carbon\Carbon::parse($appointment->appointment_time)->format('h:i A') }}
-                        </td>
-
+                        <td>{{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d M Y') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($appointment->appointment_time)->format('h:i A') }}</td>
                         <td>
                             @if ($appointment->status === 'confirmed')
                                 <span class="badge badge-success">Confirmed</span>
@@ -96,9 +79,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8" class="text-center">
-                            No appointments found
-                        </td>
+                        <td colspan="8" class="text-center">No appointments found</td>
                     </tr>
                 @endforelse
             </tbody>

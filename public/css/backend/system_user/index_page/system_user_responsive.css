@@ -1,0 +1,70 @@
+/* =========================================================
+   SYSTEM USER RESPONSIVE
+========================================================= */
+
+@media (max-width: 1200px) {
+    .system-user-total-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .system-user-header-content {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .system-user-header-actions {
+        width: 100%;
+    }
+
+    .system-user-header-actions .btn {
+        flex: 1;
+    }
+
+    .system-user-total-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .system-user-table-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .system-user-table-header .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .system-user-title {
+        font-size: 1.3rem;
+    }
+
+    .system-user-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .system-user-header-actions {
+        flex-direction: column;
+    }
+
+    .system-user-header-actions .btn {
+        width: 100%;
+    }
+
+    .system-user-total-card {
+        min-height: 82px;
+    }
+
+    .system-user-total-icon {
+        width: 42px;
+        height: 42px;
+        flex-basis: 42px;
+    }
+
+    .system-user-total-number {
+        font-size: 1.25rem;
+    }
+}

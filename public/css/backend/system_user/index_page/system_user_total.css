@@ -1,0 +1,89 @@
+/* =========================================================
+   SYSTEM USER TOTAL CARDS
+========================================================= */
+
+.system-user-total-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.system-user-total-card {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+
+    min-height: 92px;
+    padding: 1rem;
+
+    background: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.system-user-total-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+}
+
+.system-user-total-icon {
+    width: 48px;
+    height: 48px;
+
+    flex: 0 0 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 1.1rem;
+}
+
+.system-user-total-icon.admin {
+    background: #e8f0ff;
+    color: #0d6efd;
+}
+
+.system-user-total-icon.doctor {
+    background: #e9f8f0;
+    color: #198754;
+}
+
+.system-user-total-icon.patient {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.system-user-total-icon.pending {
+    background: #f8d7da;
+    color: #842029;
+}
+
+.system-user-total-content {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.system-user-total-label {
+    color: #6c757d;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.system-user-total-number {
+    margin-top: 0.1rem;
+    color: #212529;
+    font-size: 1.45rem;
+    line-height: 1.2;
+}

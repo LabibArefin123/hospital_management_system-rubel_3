@@ -2,6 +2,15 @@
 
 @section('title', 'System Users')
 
+@section('adminlte_css')
+    <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_total.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_filter.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_actions.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_responsive.css') }}">
+@stop
+
 @section('content_header')
     <div class="d-flex justify-content-between align-items-center flex-wrap">
         <h1 class="mb-0">System Users</h1>
@@ -21,11 +30,155 @@
     </div>
 @stop
 
+
+@section('content_header')
+
+    <div class="system-user-header">
+
+        <div class="system-user-header-content">
+
+            <div>
+                <h1 class="system-user-title">
+                    <i class="fas fa-users mr-2"></i>
+                    System Users
+                </h1>
+
+                <p class="system-user-subtitle">
+                    Manage system accounts, doctors and patient users.
+                </p>
+            </div>
+
+            <div class="system-user-header-actions">
+
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#patientUserModal">
+
+                    <i class="fas fa-user-plus mr-1"></i>
+                    Add Patient User
+
+                </button>
+
+                <a href="{{ route('system_users.create') }}" class="btn btn-success">
+
+                    <i class="fas fa-user-cog mr-1"></i>
+                    Add System User
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+@stop
+
+
 @section('content')
-    <div class="card">
+
+    {{-- USER TOTALS= --}}
+    <div class="system-user-total-wrapper">
+        {{-- ADMIN --}}
+        <div class="system-user-total-card">
+            <div class="system-user-total-icon admin">
+                <i class="fas fa-user-shield"></i>
+            </div>
+
+            <div class="system-user-total-content">
+                <span class="system-user-total-label">
+                    Total Admin Users
+                </span>
+
+                <strong class="system-user-total-number">
+                    {{ $userTotals['admin'] }}
+                </strong>
+            </div>
+        </div>
+
+
+        {{-- DOCTOR --}}
+        <div class="system-user-total-card">
+            <div class="system-user-total-icon doctor">
+                <i class="fas fa-user-md"></i>
+            </div>
+
+            <div class="system-user-total-content">
+                <span class="system-user-total-label">
+                    Total Doctor Users
+                </span>
+
+                <strong class="system-user-total-number">
+                    {{ $userTotals['doctor'] }}
+                </strong>
+            </div>
+        </div>
+
+
+        {{-- CREATED PATIENT --}}
+        <div class="system-user-total-card">
+            <div class="system-user-total-icon patient">
+                <i class="fas fa-user-check"></i>
+            </div>
+
+            <div class="system-user-total-content">
+                <span class="system-user-total-label">
+                    Patient Users Created
+                </span>
+
+                <strong class="system-user-total-number">
+                    {{ $userTotals['patient_created'] }}
+                </strong>
+            </div>
+        </div>
+
+
+        {{-- NOT CREATED PATIENT --}}
+        <div class="system-user-total-card">
+            <div class="system-user-total-icon pending">
+                <i class="fas fa-user-clock"></i>
+            </div>
+
+            <div class="system-user-total-content">
+                <span class="system-user-total-label">
+                    Patient Users Not Created
+                </span>
+
+                <strong class="system-user-total-number">
+                    {{ $userTotals['patient_not_created'] }}
+                </strong>
+            </div>
+        </div>
+    </div>
+
+
+    {{--  USER TABLE --}}
+    <div class="card system-user-card">
+        <div class="card-header system-user-table-header">
+            <div>
+                <h5 class="mb-0 font-weight-bold">
+                    <i class="fas fa-users mr-2"></i>
+                    All Users
+                </h5>
+
+                <small class="text-muted">
+                    Filter users by role
+                </small>
+            </div>
+
+
+            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                data-bs-target="#systemUserFilterModal">
+
+                <i class="fas fa-filter mr-1"></i>
+                Filter Users
+                <span id="activeFilterBadge" class="badge badge-primary ml-1 d-none">
+                    1
+                </span>
+            </button>
+        </div>
+
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered" id="dataTables">
+                <table class="table system-user-table" id="systemUsersTable" width="100%">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -76,16 +229,21 @@
                         @endforeach
                     </tbody>
                 </table>
-
-
-                @include('backend.setting_management.user_management.system_user.modal.appointment_user')
-                @include('backend.setting_management.user_management.system_user.modal.change_password')
             </div>
         </div>
     </div>
+
+    {{--  MODALS --}}
+    @include('backend.setting_management.user_management.system_user.modal.filter_part')
+    @include('backend.setting_management.user_management.system_user.modal.appointment_user')
+    @include('backend.setting_management.user_management.system_user.modal.change_password')
+
 @stop
 
 @section('js')
+    <script>
+        const systemUserDataUrl = @json(route('system_users.user_data'));
+    </script>
     <script
         src="{{ asset('js/custom_backend/setting_management/system_user/index_page/patient_autofill/patient_autofill_core.js') }}">
     </script>
@@ -105,5 +263,8 @@
     </script>
     <script
         src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_user_password_toggle.js') }}">
+    </script>
+    <script src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_user_table.js') }}"></script>
+    <script src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_user_filter.js') }}">
     </script>
 @endsection
