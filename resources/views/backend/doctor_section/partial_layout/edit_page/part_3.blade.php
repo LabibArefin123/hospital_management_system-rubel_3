@@ -1,35 +1,30 @@
- <div class="row">
-     <div class="col-md-4">
-         <div class="form-group">
-             <label>Success Rate</label>
-             <input type="number" name="success_rate" value="{{ $doctor->success_rate }}"
-                 class="form-control @error('success_rate') is-invalid @enderror">
-             @error('success_rate')
-                 <span class="text-danger">{{ $message }}</span>
-             @enderror
-         </div>
-     </div>
+<div class="doctor-form-section">
+    <div class="doctor-section-title">
+        <i class="fas fa-graduation-cap"></i>
+        Professional Information
+    </div>
 
-     <div class="col-md-4">
-         <div class="form-group">
-             <label>Experience</label>
-             <input type="number" name="experience_years" value="{{ $doctor->experience_years }}"
-                 class="form-control @error('experience_years') is-invalid @enderror">
-             @error('experience_years')
-                 <span class="text-danger">{{ $message }}</span>
-             @enderror
-         </div>
-     </div>
-
-     <div class="col-md-4">
-         <div class="form-group">
-             <label>Total Patients</label>
-             <input type="text" name="total_patients" value="{{ $doctor->total_patients }}"
-                 class="form-control @error('total_patients') is-invalid @enderror">
-             @error('total_patients')
-                 <span class="text-danger">{{ $message }}</span>
-             @enderror
-         </div>
-     </div>
-
- </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Qualification</label>
+                <input type="text" name="qualification"
+                    class="form-control @error('qualification') is-invalid @enderror" value="{{ old('qualification') }}"
+                    placeholder="MBBS, FCPS">
+                @error('qualification')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Location</label>
+                <input type="text" name="location" class="form-control @error('location') is-invalid @enderror"
+                    value="{{ old('location') }}" placeholder="Dhaka Medical Center">
+                @error('location')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+    </div>
+</div>
