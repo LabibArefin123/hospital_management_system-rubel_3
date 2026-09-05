@@ -1,57 +1,157 @@
-/* =========================================================
-   SYSTEM USER FILTER
-========================================================= */
+.system-user-filter-section {
+    border-bottom: 1px solid #e9ecef;
+    background: #f8fafc;
+    overflow: hidden;
+    transition: all 0.25s ease;
+}
+
+.system-user-filter-content {
+    padding: 1rem 1.25rem;
+}
+
+.system-user-filter-fields {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+.system-user-filter-item {
+    flex: 1;
+}
+
+.system-user-search-field {
+    min-width: 0;
+}
+
+.system-user-role-field {
+    max-width: 250px;
+}
+
+.system-user-filter-item label {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: #495057;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.system-user-filter-item label i {
+    color: #6c757d;
+}
+
+.system-user-filter-item .form-control {
+    min-height: 42px;
+    border: 1px solid #ced4da;
+    border-radius: 7px;
+    font-size: 0.85rem;
+    box-shadow: none;
+}
+
+.system-user-filter-item .form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.15rem rgba(0, 123, 255, 0.1);
+}
+
+.system-user-search-wrapper {
+    position: relative;
+}
+
+.system-user-search-wrapper input {
+    padding-right: 2.5rem;
+}
+
+.system-user-search-clear {
+    position: absolute;
+    top: 50%;
+    right: 0.65rem;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #6c757d;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.system-user-search-clear:hover {
+    color: #dc3545;
+}
+
+.system-user-filter-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.system-user-filter-actions .btn {
+    min-width: 110px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
 
 .system-user-table-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    background: #ffffff;
-    border-bottom: 1px solid #eeeeee;
-}
-
-.system-user-table-header h5 {
-    color: #343a40;
-}
-
-.system-user-table-header small {
-    display: block;
-    margin-top: 0.2rem;
+    gap: 1rem;
+    background: #fff;
+    border-bottom: 1px solid #e9ecef;
 }
 
 .system-user-table-header .btn {
     border-radius: 7px;
+    font-size: 0.8rem;
     font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.2s ease;
 }
 
-.system-user-filter-modal {
-    border: 0;
-    border-radius: 12px;
-    overflow: hidden;
+.system-user-table-header .btn-primary {
+    box-shadow: 0 2px 6px rgba(0, 123, 255, 0.15);
 }
 
-.system-user-filter-modal .modal-header {
-    border-bottom: 1px solid #eeeeee;
+@media (max-width: 768px) {
+    .system-user-filter-fields {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+
+    .system-user-role-field {
+        max-width: none;
+    }
+
+    .system-user-filter-actions {
+        justify-content: stretch;
+    }
+
+    .system-user-filter-actions .btn {
+        flex: 1;
+    }
 }
 
-.system-user-filter-modal .modal-footer {
-    border-top: 1px solid #eeeeee;
-}
+@media (max-width: 576px) {
+    .system-user-table-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
 
-.system-user-filter-group label {
-    margin-bottom: 0.45rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #495057;
-}
+    .system-user-table-header .btn {
+        width: 100%;
+    }
 
-.system-user-filter-group select {
-    min-height: 44px;
-    border-radius: 7px;
-}
+    .system-user-filter-content {
+        padding: 0.9rem;
+    }
 
-#activeFilterBadge {
-    border-radius: 10px;
-    font-size: 0.7rem;
+    .system-user-filter-actions {
+        flex-direction: column;
+    }
+
+    .system-user-filter-actions .btn {
+        width: 100%;
+    }
 }

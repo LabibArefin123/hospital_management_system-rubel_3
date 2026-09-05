@@ -1,0 +1,109 @@
+/* =========================================================
+   SYSTEM USER SHOW - PROFILE
+========================================================= */
+
+.system-user-show-profile {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+    background: #fff;
+}
+
+.system-user-show-avatar {
+    width: 86px;
+    height: 86px;
+    flex: 0 0 86px;
+    overflow: hidden;
+    border: 4px solid #f1f3f5;
+    border-radius: 50%;
+    background: #f8f9fa;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.system-user-show-avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.system-user-show-profile-info {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.system-user-show-profile-info h2 {
+    margin: 0 0 0.45rem;
+    color: #343a40;
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.system-user-show-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    margin-bottom: 0.7rem;
+}
+
+.system-user-show-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #6c757d;
+    font-size: 0.78rem;
+}
+
+.system-user-show-meta i {
+    color: #007bff;
+    font-size: 0.72rem;
+}
+
+.system-user-show-roles {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.system-user-show-role {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.65rem;
+    color: #007bff;
+    background: #eef6ff;
+    border: 1px solid #d9ebff;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.system-user-show-role i {
+    font-size: 0.62rem;
+}
+
+.system-user-show-role-muted {
+    color: #6c757d;
+    background: #f8f9fa;
+    border-color: #e9ecef;
+}
+
+.system-user-show-profile-action {
+    flex: 0 0 auto;
+}
+
+.system-user-show-edit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 105px;
+    height: 36px;
+    padding: 0 0.8rem;
+    border-radius: 7px;
+    font-size: 0.76rem;
+    font-weight: 600;
+}

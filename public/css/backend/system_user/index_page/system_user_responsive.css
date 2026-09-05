@@ -67,4 +67,14 @@
     .system-user-total-number {
         font-size: 1.25rem;
     }
+    
+    .system-user-table-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #toggleSystemUserFilter {
+        width: 100%;
+        margin-left: 0;
+    }
 }

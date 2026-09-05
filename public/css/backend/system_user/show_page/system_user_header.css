@@ -1,0 +1,62 @@
+/* =========================================================
+   SYSTEM USER SHOW - HEADER
+========================================================= */
+
+.system-user-show-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+}
+
+.system-user-show-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    min-width: 0;
+}
+
+.system-user-show-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    color: #fff;
+    background: #007bff;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.system-user-show-heading h1 {
+    margin: 0;
+    color: #343a40;
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.system-user-show-heading p {
+    margin: 0.2rem 0 0;
+    color: #6c757d;
+    font-size: 0.78rem;
+}
+
+.system-user-show-back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    min-width: 105px;
+    height: 36px;
+    padding: 0 0.8rem;
+    border-radius: 7px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.system-user-show-back-btn:hover {
+    transform: translateY(-1px);
+}

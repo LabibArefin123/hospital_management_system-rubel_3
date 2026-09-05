@@ -108,21 +108,37 @@ class SystemUserController extends Controller
     public function user_data(Request $request)
     {
         $query = User::query()
-            ->with(['roles', 'doctor',]);
+            ->with(['roles', 'doctor']);
 
-        /*Role Filter   */
+        /* Role Filter */
         if ($request->filled('role')) {
             $query->whereHas('roles', function ($roleQuery) use ($request) {
                 $roleQuery->where('name', $request->role);
             });
         }
 
-        /* DataTables  */
+        /* Search Filter */
+        if ($request->filled('search')) {
+            $search = trim($request->search);
+
+            $query->where(function ($searchQuery) use ($search) {
+                $searchQuery->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('phone', 'like', "%{$search}%")
+                    ->orWhere('phone_2', 'like', "%{$search}%")
+                    ->orWhere('username', 'like', "%{$search}%");
+            });
+        }
+
+        /* DataTables */
         $draw = (int) $request->input('draw', 1);
         $start = (int) $request->input('start', 0);
         $length = (int) $request->input('length', 10);
+
         $totalRecords = User::count();
+
         $filteredRecords = (clone $query)->count();
+
         $users = $query
             ->latest('id')
             ->skip($start)
@@ -130,61 +146,51 @@ class SystemUserController extends Controller
             ->get();
 
         $data = $users->map(function ($user, $index) use ($start) {
-
-            /* Profile Image  */
-
+            /* Profile Image */
             if (
                 $user->hasRole('doctor') &&
                 $user->doctor &&
                 $user->doctor->image
             ) {
-
                 $image = asset($user->doctor->image);
             } elseif ($user->profile_picture) {
-
                 $image = asset($user->profile_picture);
             } else {
-
                 $image = asset('uploads/images/default.jpg');
             }
 
-            /*Roles */
+            /* Roles */
             $roles = $user->roles
                 ->pluck('name')
                 ->map(function ($role) {
-
                     return '<span class="system-user-role-badge">'
                         . e(ucfirst($role))
                         . '</span>';
                 })
                 ->implode(' ');
 
-            /*Actions */
+            /* Actions */
             $viewUrl = route('system_users.show', $user->id);
             $editUrl = route('system_users.edit', $user->id);
             $deleteUrl = route('system_users.destroy', $user->id);
+
             $roleName = $user->roles
                 ->pluck('name')
                 ->join(', ');
 
             $actions = '
             <div class="system-user-actions">
-
-                <a href="' . $viewUrl . '"
-                   class="btn btn-info btn-sm">
+                <a href="' . $viewUrl . '" class="btn btn-info btn-sm">
                     <i class="fas fa-eye mr-1"></i>
                     View
                 </a>
-
-                <a href="' . $editUrl . '"
-                   class="btn btn-warning btn-sm">
+                <a href="' . $editUrl . '" class="btn btn-warning btn-sm">
                     <i class="fas fa-edit mr-1"></i>
                     Edit
                 </a>
         ';
 
             if (auth()->user()->hasRole('admin')) {
-
                 $actions .= '
                 <button type="button"
                         class="btn btn-danger btn-sm change-password-btn"
@@ -195,77 +201,73 @@ class SystemUserController extends Controller
                         data-user-email="' . e($user->email ?? '') . '"
                         data-user-role="' . e($roleName) . '"
                         data-user-picture="' . e($image) . '">
-
                     <i class="fas fa-key mr-1"></i>
                     Change Password
                 </button>
-
                 <form action="' . $deleteUrl . '"
                       method="POST"
                       class="d-inline"
                       onsubmit="return confirm(\'Are you sure you want to delete this user?\');">
-
                     ' . csrf_field() . '
-
-                    <input type="hidden"
-                           name="_method"
-                           value="DELETE">
-
-                    <button type="submit"
-                            class="btn btn-secondary btn-sm">
-
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-secondary btn-sm">
                         <i class="fas fa-trash mr-1"></i>
                         Delete
-
                     </button>
-
                 </form>
             ';
             }
 
             $actions .= '</div>';
 
-            /* User Image  */
+            /* User Image */
             $userHtml = '
             <div class="system-user-profile">
-
                 <div class="system-user-avatar">
                     <img src="' . e($image) . '"
                          alt="' . e($user->name) . '"
                          loading="lazy">
                 </div>
-
                 <div class="system-user-name">
                     ' . e($user->name) . '
                 </div>
-
             </div>
         ';
 
             return [
+                /*
+             * DataTables server-side equivalent of $loop->iteration
+             */
                 'number' => $start + $index + 1,
+
                 'role' => $roles,
+
                 'name' => $userHtml,
+
                 'email' => $user->email
                     ? e($user->email)
                     : '<span class="text-muted">Not Provided</span>',
+
                 'phone' => $user->phone
                     ? e($user->phone)
                     : '<span class="text-muted">Not Provided</span>',
+
                 'phone_2' => $user->phone_2
                     ? e($user->phone_2)
                     : '<span class="text-muted">Not Provided</span>',
+
                 'username' => $user->username
                     ? e($user->username)
                     : '<span class="text-muted">Not Provided</span>',
+
                 'actions' => $actions,
             ];
         });
 
         return response()->json([
-            'draw' => $draw,    
-            'recordsTotal' => $totalRecords,    
-            'recordsFiltered' => $filteredRecords,  
+            'draw' => $draw,
+            'recordsTotal' => $totalRecords,
+            'recordsFiltered' => $filteredRecords,
             'data' => $data,
         ]);
     }

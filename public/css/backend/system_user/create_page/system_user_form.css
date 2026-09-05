@@ -1,0 +1,137 @@
+.system-user-form-section label {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: #495057;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.system-user-form-section label .text-danger {
+    margin-left: 0.15rem;
+}
+
+.system-user-input-wrapper {
+    position: relative;
+}
+
+.system-user-input-wrapper > i {
+    position: absolute;
+    top: 50%;
+    left: 0.85rem;
+    z-index: 2;
+    color: #adb5bd;
+    font-size: 0.75rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.system-user-input-wrapper .form-control {
+    padding-left: 2.35rem;
+}
+
+.system-user-form-section .form-control {
+    height: 42px;
+    border: 1px solid #ced4da;
+    border-radius: 7px;
+    font-size: 0.82rem;
+    box-shadow: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.system-user-form-section .form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.15rem rgba(0, 123, 255, 0.1);
+}
+
+.system-user-form-section .form-control::placeholder {
+    color: #adb5bd;
+    font-size: 0.78rem;
+}
+
+.system-user-form-section select.form-control {
+    padding-left: 0.85rem;
+    cursor: pointer;
+}
+
+.system-user-form-section .is-invalid {
+    border-color: #dc3545 !important;
+}
+
+.system-user-form-section .invalid-feedback {
+    margin-top: 0.35rem;
+    font-size: 0.72rem;
+}
+
+.system-user-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+}
+
+.system-user-alert-icon {
+    flex: 0 0 auto;
+    padding-top: 0.05rem;
+}
+
+.system-user-alert ul {
+    margin: 0.3rem 0 0;
+    padding-left: 1.1rem;
+}
+
+.system-user-alert-danger {
+    color: #842029;
+    background: #f8d7da;
+    border: 1px solid #f5c2c7;
+}
+
+.system-user-alert-success {
+    color: #0f5132;
+    background: #d1e7dd;
+    border: 1px solid #badbcc;
+}
+
+.system-user-form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: #fafbfc;
+    border-top: 1px solid #e9ecef;
+}
+
+.system-user-required-note {
+    color: #6c757d;
+    font-size: 0.73rem;
+}
+
+.system-user-form-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.system-user-form-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 105px;
+    height: 36px;
+    border-radius: 7px;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.system-user-submit-btn {
+    box-shadow: 0 3px 8px rgba(0, 123, 255, 0.15);
+}
+
+.system-user-cancel-btn {
+    border: 1px solid #dee2e6;
+}

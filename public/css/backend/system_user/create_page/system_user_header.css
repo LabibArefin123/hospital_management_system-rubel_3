@@ -1,0 +1,56 @@
+.system-user-create-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.system-user-create-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.system-user-create-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    border-radius: 10px;
+    background: #007bff;
+    color: #fff;
+    box-shadow: 0 3px 10px rgba(0, 123, 255, 0.18);
+}
+
+.system-user-create-icon i {
+    font-size: 1rem;
+}
+
+.system-user-create-heading h1 {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #343a40;
+}
+
+.system-user-create-heading p {
+    margin: 0.2rem 0 0;
+    color: #6c757d;
+    font-size: 0.78rem;
+}
+
+.system-user-back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    min-width: 105px;
+    height: 36px;
+    border-radius: 7px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+}

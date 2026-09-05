@@ -1,6 +1,86 @@
 /* =========================================================
    SYSTEM USER TABLE
 ========================================================= */
+.system-user-table-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    padding:1rem 1.25rem;
+    background:#fff;
+    border-bottom:1px solid #e9ecef;
+}
+
+.system-user-table-header > div:first-child{
+    flex:1 1 auto;
+    min-width:0;
+}
+
+.system-user-table-header h5{
+    display:flex;
+    align-items:center;
+    margin:0;
+    color:#343a40;
+    font-size:1rem;
+}
+
+.system-user-table-header h5 i{
+    color:#007bff;
+    font-size:.9rem;
+}
+
+.system-user-table-header small{
+    display:block;
+    margin-top:.2rem;
+    font-size:.75rem;
+}
+
+#toggleSystemUserFilter{
+    flex:0 0 auto;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    margin-left:auto;
+    min-width:125px;
+    height:36px;
+    padding:0 .85rem;
+    border-radius:7px;
+    font-size:.8rem;
+    font-weight:600;
+    line-height:1;
+    white-space:nowrap;
+}
+
+#toggleSystemUserFilter i{
+    font-size:.72rem;
+}
+
+#toggleSystemUserFilter:hover{
+    transform:translateY(-1px);
+}
+
+@media(max-width:576px){
+    .system-user-table-header{
+        align-items:flex-start;
+        gap:.75rem;
+        padding:.9rem;
+    }
+
+    .system-user-table-header h5{
+        font-size:.9rem;
+    }
+
+    .system-user-table-header small{
+        font-size:.7rem;
+    }
+
+    #toggleSystemUserFilter{
+        flex:0 0 auto;
+        min-width:110px;
+        height:34px;
+        padding:0 .65rem;
+    }
+}
 
 .system-user-card {
     border: 1px solid #e9ecef;

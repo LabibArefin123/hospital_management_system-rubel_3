@@ -1,25 +1,103 @@
-/* =========================================================
-   SYSTEM USER ACTIONS
-========================================================= */
-
-.system-user-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-
-    white-space: nowrap;
+.system-user-action-cell{
+    min-width:390px;
+    width:1%;
+    padding-top:.65rem!important;
+    padding-bottom:.65rem!important;
+    vertical-align:middle!important;
+    white-space:nowrap;
 }
 
-.system-user-actions .btn {
-    border-radius: 6px;
-    font-size: 0.76rem;
-    font-weight: 600;
+.system-user-actions{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    gap:.35rem;
+    width:100%;
+    min-height:34px;
+    margin:0;
+    padding:0;
+    white-space:nowrap;
 }
 
-.system-user-actions form {
-    display: inline-flex;
+.system-user-actions .system-user-action-btn,
+.system-user-actions a.system-user-action-btn,
+.system-user-actions button.system-user-action-btn{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    vertical-align:middle!important;
+    position:relative;
+    top:0;
+    height:34px!important;
+    min-height:34px!important;
+    margin:0!important;
+    padding:0 .65rem!important;
+    border-radius:6px;
+    border-width:1px;
+    font-size:.75rem;
+    font-weight:600;
+    line-height:34px;
+    white-space:nowrap;
+    box-sizing:border-box;
+    text-decoration:none;
 }
 
-.system-user-actions .btn i {
-    font-size: 0.72rem;
+.system-user-actions .system-user-action-btn i{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    margin-right:.3rem;
+    font-size:.7rem;
+    line-height:1;
+}
+
+.system-user-delete-form{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    height:34px!important;
+    margin:0!important;
+    padding:0!important;
+    border:0!important;
+    vertical-align:middle!important;
+}
+
+.system-user-delete-form .system-user-action-btn{
+    flex:none;
+}
+
+.system-user-actions .system-user-action-btn:hover{
+    transform:translateY(-1px);
+}
+
+@media(max-width:992px){
+    .system-user-action-cell{
+        min-width:360px;
+    }
+
+    .system-user-actions .system-user-action-btn{
+        padding:0 .55rem!important;
+        font-size:.72rem;
+    }
+}
+
+@media(max-width:768px){
+    .system-user-action-cell{
+        min-width:340px;
+    }
+
+    .system-user-actions{
+        gap:.25rem;
+    }
+
+    .system-user-actions .system-user-action-btn,
+    .system-user-delete-form{
+        height:32px!important;
+        min-height:32px!important;
+    }
+
+    .system-user-actions .system-user-action-btn{
+        padding:0 .5rem!important;
+        line-height:32px;
+    }
 }

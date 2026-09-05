@@ -1,0 +1,113 @@
+@media (max-width: 768px) {
+    .system-user-create-header {
+        align-items: flex-start;
+    }
+
+    .system-user-create-heading h1 {
+        font-size: 1.15rem;
+    }
+
+    .system-user-create-heading p {
+        max-width: 420px;
+    }
+
+    .system-user-form-section {
+        padding: 1.15rem;
+    }
+
+    .system-user-form-section .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .system-user-form-section .row .form-group:last-child {
+        margin-bottom: 0;
+    }
+
+    .system-user-form-footer {
+        padding: 1rem 1.15rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .system-user-create-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .system-user-create-heading {
+        align-items: flex-start;
+    }
+
+    .system-user-create-icon {
+        width: 40px;
+        height: 40px;
+        flex-basis: 40px;
+    }
+
+    .system-user-create-heading h1 {
+        font-size: 1.05rem;
+    }
+
+    .system-user-create-heading p {
+        font-size: 0.7rem;
+    }
+
+    .system-user-back-btn {
+        width: 100%;
+    }
+
+    .system-user-form-section {
+        padding: 1rem;
+    }
+
+    .system-user-section-header {
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+
+    .system-user-section-icon {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
+    }
+
+    .system-user-section-header h3 {
+        font-size: 0.88rem;
+    }
+
+    .system-user-section-header p {
+        font-size: 0.68rem;
+    }
+
+    .system-user-form-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .system-user-required-note {
+        text-align: left;
+    }
+
+    .system-user-form-actions {
+        width: 100%;
+    }
+
+    .system-user-form-actions .btn {
+        flex: 1;
+        width: 50%;
+    }
+}
+
+@media (max-width: 400px) {
+    .system-user-form-actions {
+        flex-direction: column;
+    }
+
+    .system-user-form-actions .btn {
+        width: 100%;
+    }
+
+    .system-user-password-hint {
+        align-items: flex-start;
+    }
+}

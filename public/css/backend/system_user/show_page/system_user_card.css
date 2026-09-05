@@ -1,0 +1,12 @@
+/* =========================================================
+   SYSTEM USER SHOW - CARD
+========================================================= */
+
+.system-user-show-card {
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+}

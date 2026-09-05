@@ -1,52 +1,41 @@
-<div class="modal fade" id="systemUserFilterModal" tabindex="-1" aria-labelledby="systemUserFilterModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content system-user-filter-modal">
-            <div class="modal-header">
-                <div>
-                    <h5 class="modal-title font-weight-bold" id="systemUserFilterModalLabel">
-                        <i class="fas fa-filter mr-2"></i>
-                        Filter Users
-                    </h5>
-
-                    <small class="text-muted">
-                        Select a role to filter system users.
-                    </small>
-                </div>
-
-                <button type="button" class="close" data-bs-dismiss="modal">
-                    <span>&times;</span>
-                </button>
-            </div>
-
-
-            <div class="modal-body">
-                <div class="system-user-filter-group">
-                    <label for="systemUserRoleFilter">
-                        User Role
-                    </label>
-
-                    <select id="systemUserRoleFilter" class="form-control">
-                        <option value="">All Users </option>
-                        <option value="admin">Admin</option>
-                        <option value="doctor">Doctor</option>
-                        <option value="user">Patient User</option>
-                    </select>
+<div id="systemUserFilterSection" class="system-user-filter-section d-none">
+    <div class="system-user-filter-content">
+        <div class="system-user-filter-fields">
+            <div class="system-user-filter-item system-user-search-field">
+                <label for="systemUserSearch">
+                    <i class="fas fa-search mr-1"></i>
+                    Search Users
+                </label>
+                <div class="system-user-search-wrapper">
+                    <input type="text" id="systemUserSearch" class="form-control"
+                        placeholder="Search by name, email, phone or username...">
+                    <button type="button" id="clearSystemUserSearch" class="system-user-search-clear d-none">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
             </div>
-
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light" id="clearSystemUserFilter">
-                    <i class="fas fa-times mr-1"></i>
-                    Clear
-                </button>
-
-                <button type="button" class="btn btn-primary" id="applySystemUserFilter">
-                    <i class="fas fa-check mr-1"></i>
-                    Apply Filter
-                </button>
+            <div class="system-user-filter-item system-user-role-field">
+                <label for="systemUserRoleFilter">
+                    <i class="fas fa-user-tag mr-1"></i>
+                    User Role
+                </label>
+                <select id="systemUserRoleFilter" class="form-control">
+                    <option value="">All Users</option>
+                    <option value="admin">Admin</option>
+                    <option value="doctor">Doctor</option>
+                    <option value="user">Patient User</option>
+                </select>
             </div>
+        </div>
+        <div class="system-user-filter-actions">
+            <button type="button" class="btn btn-light" id="clearSystemUserFilter">
+                <i class="fas fa-undo mr-1"></i>
+                Clear
+            </button>
+            <button type="button" class="btn btn-primary" id="applySystemUserFilter">
+                <i class="fas fa-filter mr-1"></i>
+                Apply Filter
+            </button>
         </div>
     </div>
 </div>

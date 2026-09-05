@@ -1,0 +1,62 @@
+/* =========================================================
+   SYSTEM USER SHOW - SECURITY
+========================================================= */
+
+.system-user-show-security {
+    border-bottom: 0;
+}
+
+.system-user-security-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+}
+
+.system-user-security-notice-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    color: #28a745;
+    background: #eaf7ed;
+    border-radius: 8px;
+    font-size: 0.8rem;
+}
+
+.system-user-security-notice strong {
+    display: block;
+    margin-bottom: 0.15rem;
+    color: #343a40;
+    font-size: 0.78rem;
+}
+
+.system-user-security-notice p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.72rem;
+    line-height: 1.5;
+}
+
+.system-user-security-action {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.85rem;
+}
+
+.system-user-change-password-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 155px;
+    height: 36px;
+    padding: 0 0.85rem;
+    border-radius: 7px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
