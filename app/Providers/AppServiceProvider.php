@@ -1,16 +1,20 @@
 <?php
 
 namespace App\Providers;
-use App\Models\Organization;
+
+use App\Services\AppointmentService;
+use App\Services\PaymentService;
+use App\Services\SearchService;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        //
+        $this->app->singleton(AppointmentService::class);
+        $this->app->singleton(PaymentService::class);
+        $this->app->singleton(SearchService::class);
     }
 
     public function boot(): void

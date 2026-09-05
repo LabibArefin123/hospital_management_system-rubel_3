@@ -124,7 +124,7 @@
                         </span>
 
                         <span class="system-search-result-status ${statusClass}">
-                            ${statusLabel}
+                             ${statusLabel}
                         </span>
                     </span>
                 </span>

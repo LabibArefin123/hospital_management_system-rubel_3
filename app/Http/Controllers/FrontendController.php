@@ -9,7 +9,6 @@ use App\Models\Service;
 use App\Models\ServiceSchedule;
 use App\Models\Payment;
 use App\Models\Contact;
-use App\Models\User;
 use App\Models\Doctor;
 use App\Models\DoctorSchedule;
 use App\Models\Appointment;
@@ -17,7 +16,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use Carbon\Carbon;
 
 class FrontendController extends Controller
 {
@@ -25,6 +23,85 @@ class FrontendController extends Controller
     {
         $doctors = Doctor::all();
         return view('frontend.welcome', compact('doctors'));
+    }
+
+    public function searchData(Request $request)
+    {
+        $search = trim($request->query('search', ''));
+
+        if ($search === '') {
+            if ($request->ajax()) {
+                return response()->json([
+                    'status' => true,
+                    'appointments' => [],
+                    'doctors' => [],
+                    'count' => 0,
+                ]);
+            }
+
+            return view('frontend.search', [
+                'search' => '',
+            ]);
+        }
+
+        /*
+    |--------------------------------------------------------------------------
+    | APPOINTMENT SEARCH
+    |--------------------------------------------------------------------------
+    | Guest appointment information is stored directly in appointments.
+    | Everyone can search appointment/patient names.
+    |--------------------------------------------------------------------------
+    */
+
+        $appointments = Appointment::query()
+            ->where(function ($query) use ($search) {
+                $query->where('name', 'like', "%{$search}%")
+                    ->orWhere('phone', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%");
+            })
+            ->latest('id')
+            ->limit(20)
+            ->get();
+
+        /* DOCTOR SEARCH */
+        $doctors = Doctor::query()
+            ->where('name', 'like', "%{$search}%")
+            ->latest('id')
+            ->limit(20)
+            ->get();
+
+        /*| AJAX RESPONSE */
+        if ($request->ajax()) {
+            return response()->json([
+                'status' => true,
+
+                'appointments' => $appointments->map(function ($appointment) {
+                    return [
+                        'name' => $appointment->name ?? '-',
+                        'status' => $appointment->status ?? 'pending',
+                        'date' => $appointment->appointment_date
+                            ? \Carbon\Carbon::parse($appointment->appointment_date)->format('d M Y')
+                            : '-',
+                        'time' => $appointment->appointment_time
+                            ? \Carbon\Carbon::parse($appointment->appointment_time)->format('h:i A')
+                            : '-',
+                    ];
+                })->values(),
+
+                'doctors' => $doctors->map(function ($doctor) {
+                    return [
+                        'name' => $doctor->name ?? '-',
+                        'url' => route('doctor.show', $doctor->id),
+                    ];
+                })->values(),
+
+                'count' => $appointments->count() + $doctors->count(),
+            ]);
+        }
+
+        return view('frontend.search', [
+            'search' => $search,
+        ]);
     }
 
     public function doctor(Request $request)
@@ -612,6 +689,35 @@ class FrontendController extends Controller
         }
     }
 
+    public function payment_page($id)
+    {
+        $appointment = Appointment::with(['doctor', 'service'])
+            ->where('id', $id)
+            ->where('user_id', auth()->id())
+            ->firstOrFail();
+
+        if ($appointment->payment_method !== 'Online') {
+            return redirect()
+                ->back()
+                ->with('error', 'This appointment does not require online payment.');
+        }
+
+        $existingPayment = Payment::where('appointment_id', $appointment->id)->first();
+
+        if ($existingPayment) {
+            return redirect()
+                ->back()
+                ->with('error', 'Payment has already been submitted for this appointment.');
+        }
+
+        $transactionId = 'TXN' . strtoupper(Str::random(12));
+
+        return view(
+            'frontend.payment_page.payment',
+            compact('appointment', 'transactionId')
+        );
+    }
+
     public function payment_store(Request $request)
     {
         $request->validate([
@@ -716,114 +822,6 @@ class FrontendController extends Controller
                 ->withInput()
                 ->with('error', $e->getMessage());
         }
-    }
-
-    public function payment_page($id)
-    {
-        $appointment = Appointment::with(['doctor', 'service'])
-            ->where('id', $id)
-            ->where('user_id', auth()->id())
-            ->firstOrFail();
-
-        if ($appointment->payment_method !== 'Online') {
-            return redirect()
-                ->back()
-                ->with('error', 'This appointment does not require online payment.');
-        }
-
-        $existingPayment = Payment::where('appointment_id', $appointment->id)->first();
-
-        if ($existingPayment) {
-            return redirect()
-                ->back()
-                ->with('error', 'Payment has already been submitted for this appointment.');
-        }
-
-        $transactionId = 'TXN' . strtoupper(Str::random(12));
-
-        return view(
-            'frontend.payment_page.payment',
-            compact('appointment', 'transactionId')
-        );
-    }
-
-    public function searchData(Request $request)
-    {
-        $search = trim($request->query('search', ''));
-
-        if ($search === '') {
-            if ($request->ajax()) {
-                return response()->json([
-                    'status' => true,
-                    'appointments' => [],
-                    'doctors' => [],
-                    'count' => 0,
-                ]);
-            }
-
-            return view('frontend.search', [
-                'search' => '',
-            ]);
-        }
-
-        /*
-    |--------------------------------------------------------------------------
-    | APPOINTMENT SEARCH
-    |--------------------------------------------------------------------------
-    | Guest appointment information is stored directly in appointments.
-    | Everyone can search appointment/patient names.
-    |--------------------------------------------------------------------------
-    */
-
-        $appointments = Appointment::query()
-            ->where(function ($query) use ($search) {
-                $query->where('name', 'like', "%{$search}%")
-                    ->orWhere('phone', 'like', "%{$search}%")
-                    ->orWhere('email', 'like', "%{$search}%");
-            })
-            ->latest('id')
-            ->limit(20)
-            ->get();
-
-        /* DOCTOR SEARCH */
-        $doctors = Doctor::query()
-            ->where('name', 'like', "%{$search}%")
-            ->latest('id')
-            ->limit(20)
-            ->get();
-
-        /*| AJAX RESPONSE */
-        if ($request->ajax()) {
-            return response()->json([
-                'status' => true,
-
-                'appointments' => $appointments->map(function ($appointment) {
-                    return [
-                        'name' => $appointment->name ?? '-',
-                        'status' => $appointment->status ?? 'pending',
-                        'date' => $appointment->appointment_date
-                            ? \Carbon\Carbon::parse($appointment->appointment_date)->format('d M Y')
-                            : '-',
-                        'time' => $appointment->appointment_time
-                            ? \Carbon\Carbon::parse($appointment->appointment_time)->format('h:i A')
-                            : '-',
-                    ];
-                })->values(),
-
-                'doctors' => $doctors->map(function ($doctor) {
-                    return [
-                        'name' => $doctor->name ?? '-',
-                        'url' => route('doctor.show', $doctor->id),
-                    ];
-                })->values(),
-
-                'count' => $appointments->count() + $doctors->count(),
-            ]);
-        }
-
-        return view('frontend.search', [
-            'search' => $search,
-        ]);
     }
 
     public function newsletter_store(Request $request)
