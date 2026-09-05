@@ -12,9 +12,9 @@ class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->singleton(AppointmentService::class);
-        $this->app->singleton(PaymentService::class);
-        $this->app->singleton(SearchService::class);
+        // $this->app->singleton(AppointmentService::class);
+        // $this->app->singleton(PaymentService::class);
+        // $this->app->singleton(SearchService::class);
     }
 
     public function boot(): void

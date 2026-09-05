@@ -1,0 +1,85 @@
+.payment-patient-section {
+    border-top: 3px solid #007bff;
+}
+
+.payment-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.payment-info-item {
+    padding: 15px 16px;
+    background: #f8f9fa;
+    border: 1px solid #edf0f2;
+    border-radius: 9px;
+    min-width: 0;
+}
+
+.payment-info-label {
+    display: block;
+    margin-bottom: 7px;
+    color: #6c757d;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.payment-info-item strong {
+    display: block;
+    color: #212529;
+    font-size: 14px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.appointment-status-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 14px;
+    padding: 14px 16px;
+    background: #f8f9fa;
+    border: 1px solid #edf0f2;
+    border-radius: 9px;
+}
+
+.appointment-status-row .payment-info-label {
+    margin: 0;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-success {
+    background: #dff5e5;
+    color: #198754;
+}
+
+.status-warning {
+    background: #fff3cd;
+    color: #997404;
+}
+
+.status-secondary {
+    background: #e9ecef;
+    color: #495057;
+}
+
+@media (max-width: 767px) {
+    .payment-info-grid {
+        grid-template-columns: 1fr;
+    }
+    .appointment-status-row {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

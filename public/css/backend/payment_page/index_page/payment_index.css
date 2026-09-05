@@ -1,0 +1,102 @@
+/* This is for payment index layout */
+.payment-index-wrapper {
+    width: 100%;
+}
+
+.payment-table-card {
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+}
+
+.payment-table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 22px;
+    background: #fff;
+    border-bottom: 1px solid #edf0f2;
+}
+
+.payment-table-header h3 {
+    margin: 0;
+    color: #212529;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.payment-table-header p {
+    margin: 4px 0 0;
+    color: #8a9298;
+    font-size: 12px;
+}
+
+.payment-total-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 13px;
+    border-radius: 20px;
+    background: #e6f7ed;
+    color: #198754;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.payment-empty-state {
+    display: flex;
+    min-height: 260px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+    padding: 40px 20px;
+}
+
+.payment-empty-icon {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    border-radius: 50%;
+    background: #f1f3f5;
+    color: #adb5bd;
+    font-size: 22px;
+}
+
+.payment-empty-state strong {
+    color: #495057;
+    font-size: 15px;
+}
+
+.payment-empty-state span {
+    color: #8a9298;
+    font-size: 12px;
+}
+
+.payment-pagination {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 20px;
+    border-top: 1px solid #edf0f2;
+}
+
+.payment-pagination .pagination {
+    margin: 0;
+}
+
+@media (max-width: 767px) {
+    .payment-table-header {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px;
+    }
+    .payment-pagination {
+        justify-content: center;
+    }
+}

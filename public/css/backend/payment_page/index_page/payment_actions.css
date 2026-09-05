@@ -1,0 +1,148 @@
+/* This is for payment badges and actions */
+
+.payment-method-badge,
+.payment-status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.badge-primary {
+    background: #e7f1ff;
+    color: #0069d9;
+}
+
+.badge-warning {
+    background: #fff3cd;
+    color: #997404;
+}
+
+.badge-info {
+    background: #dff6fb;
+    color: #087990;
+}
+
+.badge-secondary {
+    background: #e9ecef;
+    color: #495057;
+}
+
+.payment-status-success {
+    background: #dff5e5;
+    color: #198754;
+}
+
+.payment-status-danger {
+    background: #f8d7da;
+    color: #b02a37;
+}
+
+.payment-status-warning {
+    background: #fff3cd;
+    color: #997404;
+}
+
+/* This is for payment action buttons */
+.payment-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 7px;
+    min-height: 36px;
+}
+
+.payment-actions form {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.payment-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    width: 112px;
+    height: 34px;
+    margin: 0;
+    padding: 0 10px;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none !important;
+    white-space: nowrap;
+    cursor: pointer;
+    vertical-align: middle;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: all 0.2s ease;
+}
+
+.payment-action-btn i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 12px;
+    width: 12px;
+    height: 12px;
+    margin: 0;
+    font-size: 11px;
+    line-height: 1;
+}
+
+.payment-action-btn span {
+    display: inline-block;
+    line-height: 1;
+}
+
+.payment-view-btn {
+    background: #e8f4ff;
+    color: #007bff;
+}
+
+.payment-view-btn:hover {
+    background: #007bff;
+    color: #fff;
+}
+
+.payment-delete-btn {
+    background: #fdeaea;
+    color: #dc3545;
+}
+
+.payment-delete-btn:hover {
+    background: #dc3545;
+    color: #fff;
+}
+
+.payment-action-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.12);
+}
+
+/* This is for smaller screens */
+@media (max-width: 767px) {
+    .payment-actions {
+        gap: 5px;
+    }
+
+    .payment-action-btn {
+        width: 105px;
+        height: 33px;
+        padding: 0 8px;
+        font-size: 10px;
+    }
+
+    .payment-action-btn i {
+        font-size: 10px;
+    }
+}

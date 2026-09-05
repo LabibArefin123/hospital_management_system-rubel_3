@@ -4,8 +4,8 @@
 @inject('preloaderHelper', 'JeroenNoten\LaravelAdminLte\Helpers\PreloaderHelper')
 <link rel="icon" type="image/png" href="{{ asset('uploads/images/logo.png') }}">
 {{-- DATATABLE CSS --}}
-<link rel="stylesheet" href="https://cdn.datatables.net/3.0.2/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.5/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/3.0.3/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.5/css/responsive.bootstrap5.min.css">
 
 @section('adminlte_css')
     <link rel="stylesheet" href="{{ asset('css/backend/backend.css') }}">
@@ -57,8 +57,6 @@
     </div>
 @stop
 @section('plugins.Datatables', true)
-
-{{--  DATATABLES PLUGIN --}}
 
 {{-- ADMINLTE JS --}}
 @section('adminlte_js')

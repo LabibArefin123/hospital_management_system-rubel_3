@@ -1,0 +1,85 @@
+.payment-information-section {
+    border-top: 3px solid #28a745;
+}
+
+.payment-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.payment-amount-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    background: #f1fbf4;
+    border: 1px solid #d7f0de;
+    border-radius: 10px;
+}
+
+.payment-amount-card span {
+    color: #5f6b63;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.payment-amount-card strong {
+    color: #198754;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.payment-method-badge,
+.payment-status-badge {
+    display: inline-flex;
+    align-items: center;
+    width: max-content;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-primary {
+    background: #e7f1ff;
+    color: #0069d9;
+}
+
+.badge-warning {
+    background: #fff3cd;
+    color: #997404;
+}
+
+.badge-info {
+    background: #dff6fb;
+    color: #087990;
+}
+
+.badge-secondary {
+    background: #e9ecef;
+    color: #495057;
+}
+
+.payment-status-success {
+    background: #dff5e5;
+    color: #198754;
+}
+
+.payment-status-danger {
+    background: #f8d7da;
+    color: #b02a37;
+}
+
+.payment-status-warning {
+    background: #fff3cd;
+    color: #997404;
+}
+
+@media (max-width: 576px) {
+    .payment-amount-card {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+    }
+}

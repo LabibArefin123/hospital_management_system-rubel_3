@@ -1,0 +1,66 @@
+.payment-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+}
+.payment-header-content {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.payment-header-icon {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #eaf4ff;
+    color: #007bff;
+    font-size: 19px;
+}
+.payment-page-header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #212529;
+}
+.payment-page-header p {
+    margin: 4px 0 0;
+    color: #6c757d;
+    font-size: 13px;
+}
+.payment-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 15px;
+    border-radius: 8px;
+    background: #f1f3f5;
+    color: #495057;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: 0.2s ease;
+}
+.payment-back-btn:hover {
+    background: #e2e6ea;
+    color: #212529;
+}
+@media (max-width: 576px) {
+    .payment-page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .payment-back-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

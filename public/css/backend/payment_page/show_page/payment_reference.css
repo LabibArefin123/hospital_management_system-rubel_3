@@ -1,0 +1,55 @@
+.payment-reference-section {
+    border-top: 3px solid #6f42c1;
+}
+
+.reference-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.reference-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px;
+    background: #faf9ff;
+    border: 1px solid #ebe7f7;
+    border-radius: 10px;
+}
+
+.reference-icon {
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background: #eee9ff;
+    color: #6f42c1;
+}
+
+.reference-card span {
+    display: block;
+    margin-bottom: 5px;
+    color: #6c757d;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.reference-card strong {
+    display: block;
+    color: #212529;
+    font-size: 14px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 767px) {
+    .reference-grid {
+        grid-template-columns: 1fr;
+    }
+}

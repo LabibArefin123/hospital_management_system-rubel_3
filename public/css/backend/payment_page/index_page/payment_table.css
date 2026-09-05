@@ -1,0 +1,97 @@
+/* This is for payment table */
+.payment-table {
+    margin: 0;
+    min-width: 1250px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.payment-table thead th {
+    padding: 13px 14px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    color: #6c757d;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.35px;
+    white-space: nowrap;
+}
+
+.payment-table tbody td {
+    padding: 13px 14px;
+    border-bottom: 1px solid #f0f1f2;
+    color: #343a40;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+.payment-table tbody tr {
+    transition: background 0.2s ease;
+}
+.payment-table tbody tr:hover {
+    background: #fafcff;
+}
+
+.payment-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.payment-table td strong {
+    font-weight: 600;
+}
+
+.appointment-number {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 9px;
+    border-radius: 6px;
+    background: #edf5ff;
+    color: #007bff;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.transaction-id {
+    display: inline-block;
+    max-width: 145px;
+    overflow: hidden;
+    color: #007bff;
+    font-size: 12px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.payment-reference {
+    display: inline-block;
+    max-width: 130px;
+    overflow: hidden;
+    color: #495057;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.payment-amount {
+    color: #198754 !important;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.payment-table td:nth-child(10) span {
+    color: #495057;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.payment-table td:nth-child(10) small {
+    margin-top: 2px;
+    font-size: 11px;
+}
+
+@media (max-width: 767px) {
+    .payment-table-card {
+        border-radius: 10px;
+    }
+}

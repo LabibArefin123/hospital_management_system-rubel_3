@@ -25,89 +25,64 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/backend/schedule_management/doctor_schedule/doctor_schedule_action.css') }}">
     <div class="row">
-        @php
-            $groupedSchedules = $schedules->groupBy('doctor_id');
-        @endphp
-        @forelse($groupedSchedules as $doctorId => $doctorSchedules)
-            @php
-                $doctor = $doctorSchedules->first()->doctor;
-                $availableCount = $doctorSchedules->where('is_booked', 0)->count();
-                $bookedCount = $doctorSchedules->where('is_booked', 1)->count();
-            @endphp
-
+        @forelse($doctorSchedules as $doctorSchedule)
             <div class="col-12 mb-4">
                 <div class="card shadow border-0">
-                    {{-- HEADER --}}
                     <div class="card-header bg-white border-0">
                         <div class="d-flex justify-content-between align-items-center flex-wrap">
                             <div class="d-flex align-items-center">
                                 <div class="rounded-circle d-flex align-items-center justify-content-center mr-3"
                                     style="width:60px;height:60px;">
-                                    @if ($doctor && !empty($doctor->image))
-                                        <img src="{{ asset($doctor->image) }}" class="img-circle elevation-2" width="55"
-                                            height="55" style="object-fit: cover;" alt="{{ $doctor->name ?? 'Doctor' }}">
+                                    @if ($doctorSchedule['doctor'] && !empty($doctorSchedule['doctor']->image))
+                                        <img src="{{ asset($doctorSchedule['doctor']->image) }}"
+                                            class="img-circle elevation-2" width="55" height="55"
+                                            style="object-fit:cover;" alt="{{ $doctorSchedule['doctor']->name ?? 'Doctor' }}">
                                     @else
                                         <img src="{{ asset('uploads/images/default.jpg') }}" class="img-circle elevation-2"
-                                            width="55" height="55" style="object-fit: cover;" alt="Default Doctor">
+                                            width="55" height="55" style="object-fit:cover;" alt="Default Doctor">
                                     @endif
                                 </div>
-
                                 <div>
-                                    <h4 class="font-weight-bold mb-1">
-                                        {{ $doctor->name ?? 'N/A' }}
-                                    </h4>
-
+                                    <h4 class="font-weight-bold mb-1">{{ $doctorSchedule['doctor']->name ?? 'N/A' }}</h4>
                                     <div class="d-flex flex-wrap">
-                                        <span class="badge badge-success mr-2 px-3 py-2">
-                                            {{ $availableCount }} Available
-                                        </span>
-
-                                        <span class="badge badge-danger px-3 py-2">
-                                            {{ $bookedCount }} Booked
-                                        </span>
+                                        <span
+                                            class="badge badge-success mr-2 px-3 py-2">{{ $doctorSchedule['available_count'] }}
+                                            Available</span>
+                                        <span class="badge badge-danger px-3 py-2">{{ $doctorSchedule['booked_count'] }}
+                                            Booked</span>
                                     </div>
                                 </div>
                             </div>
-
                             <button class="btn btn-light border" data-toggle="collapse"
-                                data-target="#doctorSchedule{{ $doctorId }}">
+                                data-target="#doctorSchedule{{ $doctorSchedule['doctor_id'] }}">
                                 <i class="fas fa-calendar-alt text-primary"></i>
                                 View Schedule
                             </button>
                         </div>
                     </div>
-
-                    {{-- BODY --}}
-                    <div id="doctorSchedule{{ $doctorId }}" class="collapse show">
+                    <div id="doctorSchedule{{ $doctorSchedule['doctor_id'] }}" class="collapse show">
                         <div class="card-body">
                             <div class="row">
-                                @foreach ($doctorSchedules as $schedule)
+                                @foreach ($doctorSchedule['schedules'] as $schedule)
                                     <div class="col-md-3 mb-3">
                                         <div
-                                            class="border rounded-lg p-3 h-100
-                                            {{ $schedule->is_booked ? 'border-danger bg-light' : 'border-success bg-white' }}">
+                                            class="border rounded-lg p-3 h-100 {{ $schedule->is_booked ? 'border-danger bg-light' : 'border-success bg-white' }}">
                                             <div class="d-flex justify-content-between align-items-start">
                                                 <div>
                                                     <h6 class="font-weight-bold mb-2">
                                                         <i class="fas fa-calendar text-info"></i>
                                                         {{ \Carbon\Carbon::parse($schedule->date)->format('d M Y') }}
                                                     </h6>
-
                                                     <p class="mb-2">
                                                         <i class="fas fa-clock text-success"></i>
                                                         {{ \Carbon\Carbon::parse($schedule->time)->format('h:i A') }}
                                                     </p>
                                                 </div>
-
                                                 <div>
                                                     @if ($schedule->is_booked)
-                                                        <span class="badge badge-danger px-3 py-2">
-                                                            Booked
-                                                        </span>
+                                                        <span class="badge badge-danger px-3 py-2">Booked</span>
                                                     @else
-                                                        <span class="badge badge-success px-3 py-2">
-                                                            Available
-                                                        </span>
+                                                        <span class="badge badge-success px-3 py-2">Available</span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -117,17 +92,14 @@
                                                     class="btn btn-info btn-sm doctor-schedule-action-btn">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
-
                                                 <a href="{{ route('doctor-schedules.edit', $schedule->id) }}"
                                                     class="btn btn-warning btn-sm doctor-schedule-action-btn">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-
                                                 <form action="{{ route('doctor-schedules.destroy', $schedule->id) }}"
                                                     method="POST" class="doctor-schedule-action-form">
                                                     @csrf
                                                     @method('DELETE')
-
                                                     <button type="submit"
                                                         class="btn btn-danger btn-sm doctor-schedule-action-btn"
                                                         onclick="return confirm('Delete schedule?')">
@@ -145,8 +117,12 @@
             </div>
         @empty
             <div class="col-12">
-                <div class="alert alert-light shadow-sm text-center">
-                    No Doctor Schedule Found
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body text-center py-5">
+                        <i class="fas fa-calendar-times fa-3x text-muted mb-3"></i>
+                        <h5 class="font-weight-bold">No Schedules Found</h5>
+                        <p class="text-muted mb-0">There are no doctor schedules available.</p>
+                    </div>
                 </div>
             </div>
         @endforelse

@@ -9,24 +9,17 @@ use Illuminate\Support\Facades\Auth;
 
 class DoctorScheduleController extends Controller
 {
-    /**
-     * Schedule List
-     */
+    /** Schedule List*/
     public function index()
     {
         $user = Auth::user();
-
         if ($user->hasRole('admin')) {
-            $schedules = DoctorSchedule::with('doctor')
-                ->latest()
-                ->get();
+            $schedules = DoctorSchedule::with('doctor')->latest()->get();
         } elseif ($user->hasRole('doctor')) {
             $doctor = Doctor::where('user_id', $user->id)->first();
-
             if (!$doctor) {
                 abort(403, 'Doctor profile not found.');
             }
-
             $schedules = DoctorSchedule::with('doctor')
                 ->where('doctor_id', $doctor->id)
                 ->latest()
@@ -35,15 +28,20 @@ class DoctorScheduleController extends Controller
             abort(403, 'Unauthorized access.');
         }
 
-        return view(
-            'backend.schedule_section.index',
-            compact('schedules')
-        );
+        $doctorSchedules = $schedules->groupBy('doctor_id')->map(function ($schedules, $doctorId) {
+            return [
+                'doctor_id' => $doctorId,
+                'doctor' => $schedules->first()->doctor,
+                'available_count' => $schedules->where('is_booked', 0)->count(),
+                'booked_count' => $schedules->where('is_booked', 1)->count(),
+                'schedules' => $schedules,
+            ];
+        });
+
+        return view('backend.schedule_section.index', compact('doctorSchedules'));
     }
 
-    /**
-     * Create Page
-     */
+    /**Create Page */
     public function create()
     {
         $doctors = Doctor::orderBy('name')->get();
@@ -54,9 +52,7 @@ class DoctorScheduleController extends Controller
         );
     }
 
-    /**
-     * Store Schedule
-     */
+    /** Store Schedule*/
     public function store(Request $request)
     {
         $request->validate([
