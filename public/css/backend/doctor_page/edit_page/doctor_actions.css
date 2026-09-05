@@ -1,0 +1,52 @@
+/* This is for doctor create actions */
+.doctor-cancel-btn,
+.doctor-save-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 36px;
+    padding: 0 16px;
+    border: 0;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none !important;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.doctor-cancel-btn {
+    background: #f1f3f5;
+    color: #495057;
+}
+
+.doctor-cancel-btn:hover {
+    background: #e2e6ea;
+    color: #212529;
+}
+
+.doctor-save-btn {
+    background: #007bff;
+    color: #fff;
+}
+
+.doctor-save-btn:hover {
+    background: #0069d9;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.doctor-cancel-btn i,
+.doctor-save-btn i {
+    font-size: 10px;
+}
+
+.doctor-cancel-btn:focus,
+.doctor-save-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.12);
+}

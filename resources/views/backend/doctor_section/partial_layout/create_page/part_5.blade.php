@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Doctor Email</label>
+            <label>Doctor Email <span class="text-danger">**</span></label>
             <input type="email" name="email" class="form-control" placeholder="Enter email" value="{{ old('email') }}">
             @error('email')
                 <span class="text-danger">{{ $message }}</span>
@@ -10,7 +10,7 @@
     </div>
     <div class="col-md-4">
         <div class="form-group">
-            <label>Doctor Username</label>
+            <label>Doctor Username <span class="text-danger">**</span></label>
             <input type="text" name="username" class="form-control" placeholder="Enter username"
                 value="{{ old('username') }}">
             @error('username')

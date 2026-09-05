@@ -1,0 +1,72 @@
+
+/* This is for doctor page header */
+.doctor-page-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    padding:20px 24px;
+    margin-bottom:20px;
+    background:#fff;
+    border:1px solid #e9ecef;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,.04);
+}
+
+.doctor-header-content{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.doctor-header-icon{
+    width:46px;
+    height:46px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+    background:#eaf4ff;
+    color:#007bff;
+    font-size:19px;
+}
+
+.doctor-page-header h1{
+    margin:0;
+    color:#212529;
+    font-size:24px;
+    font-weight:700;
+}
+
+.doctor-page-header p{
+    margin:4px 0 0;
+    color:#6c757d;
+    font-size:13px;
+}
+
+.doctor-back-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    min-height:38px;
+    padding:0 16px;
+    border-radius:7px;
+    background:#fff3cd;
+    color:#997404;
+    font-size:12px;
+    font-weight:600;
+    text-decoration:none!important;
+    transition:all .2s ease;
+}
+
+.doctor-back-btn:hover{
+    background:#ffc107;
+    color:#212529;
+    transform:translateY(-1px);
+}
+
+.doctor-back-btn i{
+    font-size:11px;
+}
+

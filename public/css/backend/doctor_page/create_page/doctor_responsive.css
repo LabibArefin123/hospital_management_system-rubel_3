@@ -1,0 +1,73 @@
+/* This is for doctor create responsive layout */
+@media (max-width: 767px) {
+    .doctor-page-header {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 17px;
+    }
+
+    .doctor-back-btn {
+        width: 100%;
+    }
+
+    .doctor-create-header {
+        align-items: flex-start;
+        padding: 17px;
+    }
+
+    .doctor-create-body {
+        padding: 18px 17px;
+    }
+
+    .doctor-create-footer {
+        padding: 14px 17px;
+    }
+
+    .doctor-image-preview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .doctor-image-preview-frame {
+        height: 240px;
+    }
+}
+
+@media (max-width: 576px) {
+    .doctor-page-header h1 {
+        font-size: 19px;
+    }
+
+    .doctor-page-header p {
+        font-size: 11px;
+    }
+
+    .doctor-create-header h3 {
+        font-size: 15px;
+    }
+
+    .doctor-create-header p {
+        font-size: 11px;
+    }
+
+    .doctor-create-footer {
+        flex-direction: column-reverse;
+    }
+
+    .doctor-cancel-btn,
+    .doctor-save-btn {
+        width: 100%;
+    }
+
+    .doctor-image-upload {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .doctor-image-upload-btn {
+        width: 100%;
+    }
+
+    .doctor-image-name {
+        width: 100%;
+    }
+}
