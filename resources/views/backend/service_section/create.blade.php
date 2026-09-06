@@ -2,10 +2,17 @@
 
 @section('title', 'Create Service')
 
-@section('content_header')
-    <div class="d-flex justify-content-between align-items-center">
-        <h3>Create Service</h3>
+@section('adminlte_css')
+    <link rel="stylesheet" href="{{ asset('css/backend/service_page/create_page/content_header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/service_page/create_page/content_form.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/service_page/create_page/content_image.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/service_page/create_page/content_instruction.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/service_page/create_page/doctor_responsive.css') }}">
+@stop
 
+@section('content_header')
+    <div class="service-create-header">
+        <h3>Create Service</h3>
         <a href="{{ route('services.index') }}" class="btn btn-secondary btn-sm back-btn">
             <i class="fas fa-arrow-left"></i>
             Back
@@ -34,8 +41,6 @@
                 @include('backend.service_section.partial_layout.create_page.part_2')
                 {{-- IMAGE --}}
                 @include('backend.service_section.partial_layout.create_page.part_3')
-
-
             </div>
 
             <div class="card-footer text-right">
@@ -45,17 +50,10 @@
                 </button>
             </div>
         </form>
-
-        @include('backend.service_section.custom_modal.create_page.image_upload_modal')
-
-        @include('backend.service_section.custom_modal.create_page.replace_upload_modal')
-
     </div>
-
-
 @stop
 
 @section('js')
+    <script src="{{ asset('js/custom_backend/service_section/create_page/image_preview.js') }}"></script>
     <script src="{{ asset('js/custom_backend/service_section/create_page/instruction-repeat.js') }}"></script>
-    <script src="{{ asset('js/custom_backend/service_section/create_page/image-validation-modal.js') }}"></script>
 @stop

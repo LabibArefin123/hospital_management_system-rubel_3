@@ -1,0 +1,85 @@
+/* CONTENT INSTRUCTIONS*/
+
+.service-instruction-section {
+    background: #fff;
+}
+
+.service-section-title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.service-section-title-row .service-section-help {
+    margin-bottom: 0;
+}
+
+.service-add-instruction-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    flex: 0 0 auto;
+    min-width: 65px;
+    height: 34px;
+    padding: 0 0.7rem;
+    border: 0;
+    border-radius: 7px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1;
+    transition: all 0.2s ease;
+}
+
+.service-add-instruction-btn i {
+    font-size: 0.65rem;
+}
+
+.service-add-instruction-btn:hover {
+    transform: translateY(-1px);
+}
+
+.service-instruction-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.instruction-item {
+    width: 100%;
+    margin: 0 !important;
+}
+
+.instruction-item .input-group {
+    display: flex;
+    width: 100%;
+}
+
+.instruction-item .form-control {
+    min-height: 38px;
+    border-radius: 7px 0 0 7px;
+}
+
+.instruction-item .input-group-append {
+    display: flex;
+    flex: 0 0 auto;
+}
+
+.instruction-item .removeInstructionBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    min-height: 38px;
+    padding: 0;
+    border-radius: 0 7px 7px 0;
+    font-size: 0.68rem;
+    line-height: 1;
+    transition: all 0.2s ease;
+}
+
+.instruction-item .removeInstructionBtn:hover {
+    transform: none;
+}

@@ -2,6 +2,14 @@
 
 @section('title', 'Edit Service')
 
+@section('adminlte_css')
+    <link rel="stylesheet" href="{{ asset('css/backend/service_page/edit_page/content_header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/service_page/edit_page/content_form.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/service_page/edit_page/content_image.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/service_page/edit_page/content_instruction.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/service_page/edit_page/doctor_responsive.css') }}">
+@stop
+
 @section('content_header')
     <div class="d-flex justify-content-between align-items-center">
         <h3>Edit Service</h3>
@@ -44,8 +52,6 @@
                 </div>
         </form>
     </div>
-    @include('backend.service_section.custom_modal.edit_page.image_upload_modal')
-    @include('backend.service_section.custom_modal.edit_page.replace_upload_modal')
 @stop
 
 @section('js')

@@ -1,0 +1,107 @@
+.service-index-card {
+    overflow: hidden;
+    margin-bottom: 1rem;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05) !important;
+}   
+
+.service-index-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.service-index-table {
+    width: 100%;
+    min-width: 700px;
+    margin: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.service-index-table thead th {
+    height: 48px;
+    padding: 0.75rem 0.9rem;
+    color: #6c757d;
+    background: #f8f9fa;
+    border-top: 0;
+    border-bottom: 1px solid #e9ecef;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.service-index-table thead th:first-child {
+    padding-left: 1rem;
+}
+
+.service-index-table tbody td {
+    height: 82px;
+    padding: 0.65rem 0.9rem;
+    color: #495057;
+    border-top: 0;
+    border-bottom: 1px solid #f0f1f2;
+    font-size: 0.76rem;
+    vertical-align: middle;
+}
+
+.service-index-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.service-index-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.service-index-table tbody tr:hover {
+    background: #f8fbff;
+}
+
+.service-index-number {
+    width: 45px;
+    color: #8a939b !important;
+    font-size: 0.7rem !important;
+    font-weight: 600;
+}
+
+.service-index-image-cell {
+    width: 90px;
+}
+
+.service-index-image {
+    display: block;
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    border: 1px solid #e5e9ed;
+    border-radius: 8px;
+    background: #f8f9fa;
+}
+
+.service-index-title {
+    color: #343a40;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.service-index-price {
+    color: #007bff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.service-index-action-cell {
+    width: 180px;
+    white-space: nowrap;
+}
+
+.service-index-empty {
+    padding: 3rem 1rem !important;
+    color: #8a939b;
+    text-align: center;
+}

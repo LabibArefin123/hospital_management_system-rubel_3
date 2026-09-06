@@ -1,0 +1,40 @@
+.service-show-instructions {
+    overflow: hidden;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.service-show-instruction {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    padding: 0.75rem 0.9rem;
+    color: #495057;
+    border-bottom: 1px solid #f0f1f2;
+    font-size: 0.75rem;
+    line-height: 1.55;
+    transition: background-color 0.2s ease;
+}
+
+.service-show-instruction:last-child {
+    border-bottom: 0;
+}
+
+.service-show-instruction:hover {
+    background: #f8fbff;
+}
+
+.service-show-instruction-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    flex: 0 0 22px;
+    margin-top: 0.05rem;
+    color: #28a745;
+    background: #eaf7ed;
+    border-radius: 50%;
+    font-size: 0.58rem;
+}

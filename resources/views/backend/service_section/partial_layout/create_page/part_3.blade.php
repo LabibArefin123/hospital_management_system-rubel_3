@@ -1,37 +1,72 @@
-<div class="form-group">
+ <div class="service-image-section">
 
-    <label class="font-weight-bold">
+     <div class="service-section-title">
+         <i class="fas fa-image"></i>
+         service Image
+     </div>
 
-        Service Image
+     <p class="service-image-help">
+         Upload a professional service image. The preview will appear instantly.
+     </p>
 
-    </label>
+     <div class="service-image-preview-grid">
 
-    <br>
+         {{-- This is for default image --}}
+         <div class="service-image-preview-card">
+             <div class="service-image-preview-header">
+                 <div>
+                     <strong>Default Image</strong>
+                     <span>Current placeholder</span>
+                 </div>
 
-    <button type="button" class="btn btn-primary" id="openImageModal">
+                 <span class="service-image-label default">
+                     <i class="fas fa-image"></i>
+                     Default
+                 </span>
+             </div>
 
-        <i class="fas fa-image mr-1"></i>
+             <div class="service-image-preview-frame">
+                 <img src="{{ asset('uploads/images/default.jpg') }}" alt="Default service Image">
+             </div>
+         </div>
 
-        Upload Image
+         {{-- This is for new image preview --}}
+         <div class="service-image-preview-card">
+             <div class="service-image-preview-header">
+                 <div>
+                     <strong>New Image</strong>
+                     <span>Uploaded service image</span>
+                 </div>
 
-    </button>
+                 <span class="service-image-label new">
+                     <i class="fas fa-camera"></i>
+                     Preview
+                 </span>
+             </div>
 
-    {{-- REAL FILE INPUT --}}
-    <input type="file" name="image" id="doctorImageInput" accept=".jpg,.jpeg,.png,.webp" class="d-none">
+             <div class="service-image-preview-frame service-new-image-frame">
+                 <img src="{{ asset('uploads/images/default.jpg') }}" id="serviceImagePreview" alt="New service Image">
+             </div>
+         </div>
 
-    @error('image')
-        <div class="text-danger mt-2">
+     </div>
 
-            {{ $message }}
+     {{-- This is for image upload --}}
+     <div class="service-image-upload">
+         <input type="file" name="image" id="serviceImageInput" class="service-image-input" accept="image/*">
 
-        </div>
-    @enderror
+         <label for="serviceImageInput" class="service-image-upload-btn">
+             <i class="fas fa-cloud-upload-alt"></i>
+             <span>Choose service Image</span>
+         </label>
 
-    {{-- FINAL PREVIEW --}}
-    <div class="mt-3">
+         <small id="serviceImageName" class="service-image-name">
+             No image selected
+         </small>
 
-        <img id="finalPreviewImage" class="img-fluid rounded border d-none" style="max-height:250px;">
+         @error('image')
+             <span class="service-field-error">{{ $message }}</span>
+         @enderror
+     </div>
 
-    </div>
-
-</div>
+ </div>

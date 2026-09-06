@@ -1,0 +1,70 @@
+.service-index-actions {
+    gap: 0.45rem;
+}
+
+.service-index-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    min-width: 105px;
+    height: 34px;
+    padding: 0 0.75rem;
+    border: 0;
+    border-radius: 7px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.service-index-actions .btn i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.68rem;
+    font-style: normal;
+}
+
+.service-index-actions .btn:hover {
+    transform: translateY(-1px);
+}
+
+.service-index-view-btn {
+    color: #fff !important;
+    background: #17a2b8;
+}
+
+.service-index-view-btn:hover {
+    color: #fff !important;
+    background: #138496;
+    box-shadow: 0 3px 8px rgba(23, 162, 184, 0.2);
+}
+
+.service-index-edit-btn {
+    color: #fff !important;
+    background: #ffc107;
+}
+
+.service-index-edit-btn:hover {
+    color: #fff !important;
+    background: #e0a800;
+    box-shadow: 0 3px 8px rgba(255, 193, 7, 0.2);
+}
+
+.service-index-delete-btn {
+    color: #fff !important;
+    background: #dc3545;
+}
+
+.service-index-delete-btn:hover {
+    color: #fff !important;
+    background: #c82333;
+    box-shadow: 0 3px 8px rgba(220, 53, 69, 0.2);
+}
+
+.service-index-delete-form {
+    display: flex;
+    margin: 0;
+}

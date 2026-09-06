@@ -2,160 +2,108 @@
 
 @section('title', 'Service Details')
 
+@section('adminlte_css')
+    <link rel="stylesheet" href="{{ asset('css/backend/service_page/show_page/content_header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/service_page/show_page/content_image.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/service_page/show_page/content_details.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/service_page/show_page/content_instruction.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/service_page/show_page/content_responsive.css') }}">
+@stop
+
 @section('content_header')
-
-    <div class="d-flex justify-content-between align-items-center">
-
-        <h3 class="mb-0 font-weight-normal">
-
-            Service Details
-
-        </h3>
-
-        <div>
-
-            <a href="{{ route('services.index') }}" class="btn btn-outline-secondary btn-sm">
-
-                <i class="fas fa-arrow-left mr-1"></i>
-
-                Back
-
-            </a>
-
-            <a href="{{ route('services.edit', $service->id) }}" class="btn btn-primary btn-sm">
-
-                <i class="fas fa-edit mr-1"></i>
-
-                Edit
-
-            </a>
-
+    <div class="service-show-header">
+        <div class="service-show-header-content">
+            <h3>
+                <i class="fas fa-concierge-bell"></i>
+                Service Details
+            </h3>
         </div>
-
+        <div class="service-show-header-actions">
+            <a href="{{ route('services.index') }}" class="btn service-show-back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back
+            </a>
+            <a href="{{ route('services.edit', $service->id) }}" class="btn service-show-edit-btn">
+                <i class="fas fa-edit"></i>
+                Edit
+            </a>
+        </div>
     </div>
-
 @stop
 
 @section('content')
-
     <div class="row">
-
-        {{-- IMAGE SECTION --}}
-        <div class="col-lg-4 col-md-5">
-
-            <div class="card shadow-sm border-0">
-
-                <div class="card-body text-center">
-
+        <div class="col-lg-4 col-md-5 mb-3 mb-md-0">
+            <div class="card service-show-image-card">
+                <div class="service-show-image-header">
+                    <span class="service-show-image-header-icon">
+                        <i class="fas fa-image"></i>
+                    </span>
+                    <strong>Service Image</strong>
+                </div>
+                <div class="service-show-image-body">
                     @if ($service->image)
-                        <img src="{{ asset($service->image) }}" alt="Service Image" class="img-fluid rounded border"
-                            style="
-                                max-height:320px;
-                                width:100%;
-                                object-fit:cover;
-                             ">
+                        <img src="{{ asset($service->image) }}" alt="{{ $service->title }}" class="service-show-image">
                     @else
-                        <div class="border rounded py-5 text-muted">
-
-                            <i class="fas fa-image fa-3x mb-3"></i>
-
-                            <p class="mb-0">
-
-                                No Image Available
-
-                            </p>
-
+                        <div class="service-show-no-image">
+                            <i class="fas fa-image"></i>
+                            <p>No Image Available</p>
                         </div>
                     @endif
-
                 </div>
-
             </div>
-
         </div>
-
-        {{-- DETAILS SECTION --}}
         <div class="col-lg-8 col-md-7">
-
-            <div class="card shadow-sm border-0">
-
-                <div class="card-body">
-
-                    {{-- TITLE --}}
-                    <div class="mb-4">
-
-                        <h2 class="font-weight-bold mb-2">
-
+            <div class="card service-show-details-card">
+                <div class="service-show-details-body">
+                    <div class="service-show-title-section">
+                        <h2 class="service-show-title">
                             {{ $service->title }}
-
                         </h2>
-
-                        <h4 class="text-muted mb-0">
-
+                        <div class="service-show-price">
+                            <i class="fas fa-tag"></i>
                             ৳ {{ number_format($service->price, 2) }}
-
-                        </h4>
-
-                    </div>
-
-                    {{-- DESCRIPTION --}}
-                    <div class="mb-4">
-
-                        <h5 class="mb-3">
-
-                            Description
-
-                        </h5>
-
-                        <div class="border rounded p-3 bg-light">
-
-                            {!! nl2br(e($service->description)) !!}
-
                         </div>
-
                     </div>
-
-                    {{-- INSTRUCTIONS --}}
-                    <div>
-
-                        <h5 class="mb-3">
-
-                            Instructions
-
+                    <div class="service-show-section">
+                        <h5 class="service-show-section-title">
+                            <i class="fas fa-align-left"></i>
+                            Description
                         </h5>
-
-                        @if ($service->instructions && count($service->instructions))
-
-                            <div class="border rounded">
-
-                                @foreach ($service->instructions as $instruction)
-                                    <div class="p-3 border-bottom">
-
-                                        <i class="fas fa-check text-success mr-2"></i>
-
-                                        {{ $instruction }}
-
-                                    </div>
-                                @endforeach
-
+                        @if ($service->description)
+                            <div class="service-show-description">
+                                {!! nl2br(e($service->description)) !!}
                             </div>
                         @else
-                            <div class="text-muted">
-
-                                No instructions available.
-
+                            <div class="service-show-empty">
+                                No description available.
                             </div>
-
                         @endif
-
                     </div>
-
+                    <div class="service-show-section">
+                        <h5 class="service-show-section-title">
+                            <i class="fas fa-list-ul"></i>
+                            Instructions
+                        </h5>
+                        @if ($service->instructions && count($service->instructions))
+                            <div class="service-show-instructions">
+                                @foreach ($service->instructions as $instruction)
+                                    <div class="service-show-instruction">
+                                        <span class="service-show-instruction-icon">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                        <span>{{ $instruction }}</span>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @else
+                            <div class="service-show-empty">
+                                No instructions available.
+                            </div>
+                        @endif
+                    </div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 @stop
