@@ -1,0 +1,93 @@
+/* =========================================================
+   ROLE INDEX - ACTIONS
+========================================================= */
+
+.role-action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 7px;
+}
+
+.role-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-width: 72px;
+    padding: 7px 10px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.role-action-btn:hover {
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.role-view-btn {
+    color: #856404;
+    background: #fff8df;
+    border-color: #f4df9b;
+}
+
+.role-view-btn:hover {
+    color: #664d03;
+    background: #fff3c4;
+    border-color: #e8cd72;
+}
+
+.role-edit-btn {
+    color: #005f7a;
+    background: #e8f7fc;
+    border-color: #bde5f0;
+}
+
+.role-edit-btn:hover {
+    color: #004b61;
+    background: #d9f2fa;
+    border-color: #9ed7e5;
+}
+
+.role-delete-btn {
+    color: #842029;
+    background: #fff0f1;
+    border-color: #f2c5c9;
+}
+
+.role-delete-btn:hover {
+    color: #6f1820;
+    background: #ffe0e3;
+    border-color: #e9aeb4;
+}
+
+.role-delete-form {
+    display: inline-flex;
+    margin: 0;
+}
+
+.role-action-btn i {
+    font-size: 11px;
+}
+
+@media (max-width: 767.98px) {
+    .role-action-buttons {
+        justify-content: flex-start;
+    }
+
+    .role-action-btn {
+        min-width: 36px;
+        width: 36px;
+        height: 34px;
+        padding: 0;
+    }
+
+    .role-action-btn span {
+        display: none;
+    }
+}

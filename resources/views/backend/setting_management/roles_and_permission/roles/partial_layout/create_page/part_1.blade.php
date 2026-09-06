@@ -1,37 +1,29 @@
-<div class="card border-0 shadow-lg rounded-4 mb-4">
-
-    <div class="card-header bg-white border-0 pt-4 px-4">
-
-        <h4 class="fw-bold text-primary mb-1">
-            Role Information
-        </h4>
-
-        <p class="text-muted mb-0">
-            Enter role details and configure permissions.
-        </p>
-
+<div class="role-info-card">
+    <div class="role-card-header">
+        <div class="role-card-icon">
+            <i class="fas fa-user-tag"></i>
+        </div>
+        <div>
+            <h4>Role Information</h4>
+            <p>Enter the role name and configure access permissions.</p>
+        </div>
     </div>
 
-    <div class="card-body px-4 pb-4">
+    <div class="role-card-body">
+        <div class="role-field">
+            <label for="roleName">Role Name</label>
 
-        <div class="mb-3">
+            <div class="role-input-wrapper">
+                <i class="fas fa-shield-alt"></i>
 
-            <label class="form-label fw-semibold">
-                Role Name
-            </label>
-
-            <input type="text" name="name"
-                class="form-control form-control-lg rounded-3 shadow-sm @error('name') is-invalid @enderror"
-                placeholder="Enter role name" value="{{ old('name') }}">
+                <input type="text" id="roleName" name="name"
+                    class="role-input @error('name') is-invalid @enderror" placeholder="Enter role name"
+                    value="{{ old('name') }}">
+            </div>
 
             @error('name')
-                <small class="text-danger">
-                    {{ $message }}
-                </small>
+                <span class="role-input-error">{{ $message }}</span>
             @enderror
-
         </div>
-
     </div>
-
 </div>

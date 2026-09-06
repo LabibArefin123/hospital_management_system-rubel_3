@@ -1,0 +1,110 @@
+/* ROLE INFORMATION */
+.role-info-card {
+    margin-bottom: 24px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #e8edf3;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+}
+
+.role-card-header {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 18px 22px;
+    border-bottom: 1px solid #edf1f5;
+}
+
+.role-card-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #8b0000;
+    background: rgba(139, 0, 0, 0.08);
+    border-radius: 10px;
+}
+
+.role-card-header h4 {
+    margin: 0 0 3px;
+    color: #1f2937;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.role-card-header p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 12px;
+}
+
+.role-card-body {
+    padding: 22px;
+}
+
+.role-field {
+    margin-bottom: 0;
+}
+
+.role-field label {
+    display: block;
+    margin-bottom: 8px;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.role-input-wrapper {
+    position: relative;
+}
+
+.role-input-wrapper > i {
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    z-index: 2;
+    color: #8b0000;
+    font-size: 13px;
+    transform: translateY(-50%);
+}
+
+.role-input {
+    width: 100%;
+    height: 44px;
+    padding: 0 14px 0 40px;
+    color: #374151;
+    background: #f8fafc;
+    border: 1px solid #e1e6ec;
+    border-radius: 9px;
+    outline: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.role-input:focus {
+    border-color: #c8d0da;
+    box-shadow: none;
+}
+
+.role-input[readonly] {
+    cursor: default;
+}
+
+@media (max-width: 767.98px) {
+    .role-card-header,
+    .role-card-body {
+        padding: 17px;
+    }
+
+    .role-field {
+        margin-bottom: 16px;
+    }
+
+    .col-md-6:last-child .role-field {
+        margin-bottom: 0;
+    }
+}

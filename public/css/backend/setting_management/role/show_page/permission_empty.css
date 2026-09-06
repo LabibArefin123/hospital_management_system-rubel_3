@@ -1,0 +1,58 @@
+/* =========================================================
+   ROLE SHOW - EMPTY PERMISSION STATE
+========================================================= */
+
+.permission-empty-state {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 55px 20px;
+    text-align: center;
+}
+
+.permission-empty-icon {
+    width: 62px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    color: #9ca3af;
+    background: #f3f4f6;
+    border-radius: 16px;
+    font-size: 23px;
+}
+
+.permission-empty-state h5 {
+    margin: 0 0 6px;
+    color: #374151;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.permission-empty-state p {
+    margin: 0 0 18px;
+    color: #9ca3af;
+    font-size: 13px;
+}
+
+.permission-empty-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 15px;
+    color: #ffffff;
+    background: #8b0000;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.permission-empty-btn:hover {
+    color: #ffffff;
+    background: #a50000;
+    text-decoration: none;
+    transform: translateY(-1px);
+}

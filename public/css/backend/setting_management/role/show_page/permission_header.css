@@ -1,0 +1,80 @@
+/* PERMISSION HEADER */
+
+.permission-manager-card {
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #e8edf3;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+}
+
+.permission-header-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 22px;
+    border-bottom: 1px solid #edf1f5;
+}
+
+.permission-header-content {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.permission-header-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #00a0d6;
+    background: rgba(0, 160, 214, 0.09);
+    border-radius: 10px;
+}
+
+.permission-header-text h4 {
+    margin: 0 0 3px;
+    color: #1f2937;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.permission-header-text p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 12px;
+}
+
+.permission-total-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 12px;
+    color: #005f7a;
+    background: #e8f7fc;
+    border: 1px solid #bde5f0;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.permission-total-badge i {
+    font-size: 11px;
+}
+
+@media (max-width: 767.98px) {
+    .permission-header-card {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 17px;
+    }
+
+    .permission-total-badge {
+        width: 100%;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,204 @@
+.permission-manager-card {
+    overflow: hidden;
+    margin-bottom: 24px;
+    background: #fff;
+    border: 1px solid #e8edf5;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+.permission-manager-header {
+    padding: 22px 26px;
+    border-bottom: 1px solid #edf1f7;
+    background: linear-gradient(180deg, #fff, #fbfcfe);
+}
+.permission-manager-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.permission-manager-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #eff6ff;
+    color: #2563eb;
+    font-size: 16px;
+}
+.permission-manager-title h4 {
+    margin: 0 0 4px;
+    color: #172033;
+    font-size: 17px;
+    font-weight: 700;
+}
+.permission-manager-title p {
+    margin: 0;
+    color: #7b8798;
+    font-size: 13px;
+}
+.permission-main-body {
+    padding: 26px;
+}
+.permission-main-scroll {
+    max-height: 650px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+.permission-main-scroll::-webkit-scrollbar {
+    width: 7px;
+}
+.permission-main-scroll::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+.permission-main-scroll::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+.permission-main-scroll::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+.permission-group {
+    margin-bottom: 30px;
+}
+.permission-group:last-child {
+    margin-bottom: 0;
+}
+.permission-group-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #edf1f7;
+}
+.permission-group-title h5 {
+    margin: 0 0 4px;
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+.permission-group-title p {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 12px;
+}
+.permission-group-actions {
+    display: flex;
+    gap: 8px;
+}
+.permission-group-select,
+.permission-group-unselect {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    border-radius: 9px;
+    background: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.permission-group-select {
+    border: 1px solid #bfdbfe;
+    color: #2563eb;
+}
+.permission-group-select:hover {
+    background: #eff6ff;
+    border-color: #93c5fd;
+}
+.permission-group-unselect {
+    border: 1px solid #fecaca;
+    color: #dc2626;
+}
+.permission-group-unselect:hover {
+    background: #fef2f2;
+    border-color: #fca5a5;
+}
+.permission-box {
+    height: 100%;
+    padding: 15px 16px;
+    border: 1px solid #e6ebf2;
+    border-radius: 13px;
+    background: #fbfcfe;
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.025);
+    transition: all 0.2s ease;
+}
+.permission-box:hover {
+    border-color: #bfdbfe;
+    background: #fff;
+    box-shadow: 0 7px 18px rgba(37, 99, 235, 0.07);
+    transform: translateY(-1px);
+}
+.permission-box .form-check {
+    min-height: 24px;
+    margin: 0;
+}
+.permission-box .form-check-input {
+    width: 17px;
+    height: 17px;
+    margin: 0 11px 0 0;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: none;
+}
+.permission-box .form-check-input:checked {
+    border-color: #2563eb;
+    background-color: #2563eb;
+}
+.permission-box .form-check-input:focus {
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+.permission-box .form-check-label {
+    margin: 0;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    cursor: pointer;
+}
+.permission-group-divider {
+    height: 1px;
+    margin: 30px 0 0;
+    border: 0;
+    background: #edf1f7;
+}
+.role-submit-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin: 22px 0 40px;
+}
+.role-submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-width: 170px;
+    min-height: 46px;
+    padding: 11px 24px;
+    border: 0;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(22, 163, 74, 0.2);
+    transition: all 0.25s ease;
+}
+.role-submit-btn:hover {
+    background: linear-gradient(135deg, #15803d, #166534);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 11px 24px rgba(22, 163, 74, 0.27);
+}
+.role-submit-btn:active {
+    transform: translateY(0);
+}

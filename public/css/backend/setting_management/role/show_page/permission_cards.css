@@ -1,0 +1,59 @@
+/*  PERMISSION CARDS */
+.permission-box {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-height: 58px;
+    padding: 11px 13px;
+    background: #ffffff;
+    border: 1px solid #e4e9ef;
+    border-radius: 9px;
+    transition: all 0.2s ease;
+}
+
+.permission-box:hover {
+    background: #fafcfe;
+    border-color: #cfd8e2;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+}
+
+.permission-box-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #198754;
+    background: rgba(25, 135, 84, 0.1);
+    border-radius: 7px;
+    font-size: 11px;
+}
+
+.permission-box-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.permission-box-content span {
+    overflow: hidden;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.permission-box-content small {
+    color: #9ca3af;
+    font-size: 10px;
+}
+
+@media (max-width: 767.98px) {
+    .permission-box-content span {
+        white-space: normal;
+    }
+}

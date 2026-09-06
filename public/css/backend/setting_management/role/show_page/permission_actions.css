@@ -1,0 +1,65 @@
+/* =========================================================
+   ROLE SHOW - BOTTOM ACTIONS
+========================================================= */
+
+.role-bottom-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 24px;
+    margin-bottom: 30px;
+}
+
+.role-secondary-btn,
+.role-edit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 17px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.role-secondary-btn {
+    color: #4b5563;
+    background: #ffffff;
+    border: 1px solid #d9dee5;
+}
+
+.role-secondary-btn:hover {
+    color: #1f2937;
+    background: #f8fafc;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.role-edit-btn {
+    color: #ffffff;
+    background: #8b0000;
+    border: 1px solid #8b0000;
+}
+
+.role-edit-btn:hover {
+    color: #ffffff;
+    background: #a50000;
+    border-color: #a50000;
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 14px rgba(139, 0, 0, 0.18);
+}
+
+@media (max-width: 767.98px) {
+    .role-bottom-actions {
+        flex-direction: column-reverse;
+    }
+
+    .role-secondary-btn,
+    .role-edit-btn {
+        width: 100%;
+    }
+}

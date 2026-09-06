@@ -1,0 +1,85 @@
+/* =========================================================
+   ROLE SHOW - PERMISSION GROUPS
+========================================================= */
+
+.permission-manager-body {
+    padding: 22px;
+}
+
+.permission-group {
+    margin-bottom: 4px;
+}
+
+.permission-group-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding: 13px 15px;
+    background: #f8fafc;
+    border: 1px solid #e8edf3;
+    border-radius: 10px;
+}
+
+.permission-group-title {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.permission-group-icon {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #8b0000;
+    background: rgba(139, 0, 0, 0.07);
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.permission-group-title h5 {
+    margin: 0 0 2px;
+    color: #1f2937;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.permission-group-title p {
+    margin: 0;
+    color: #9ca3af;
+    font-size: 11px;
+}
+
+.permission-group-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 28px;
+    padding: 0 8px;
+    color: #ffffff;
+    background: #00a0d6;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.permission-group-divider {
+    margin: 22px 0;
+    border: 0;
+    border-top: 1px solid #edf1f5;
+}
+
+@media (max-width: 767.98px) {
+    .permission-manager-body {
+        padding: 17px;
+    }
+
+    .permission-group-header {
+        align-items: flex-start;
+    }
+}
