@@ -25,6 +25,21 @@ class FrontendController extends Controller
         return view('frontend.welcome', compact('doctors'));
     }
 
+    public function profile()
+    {
+        $user = auth()->user();
+        $role = $user->getRoleNames()->first() ?? 'user';
+        $isDoctor = $user->hasRole('doctor');
+        $isAdmin = $user->hasRole('admin');
+        $profileImage = 'uploads/images/default.jpg';
+        if ($isDoctor && $user->doctor && $user->doctor->image) {
+            $profileImage = $user->doctor->image;
+        } elseif ($user->profile_picture) {
+            $profileImage = $user->profile_picture;
+        }
+        return view('frontend.profile', compact('user', 'role', 'isDoctor', 'isAdmin', 'profileImage'));
+    }
+
     public function searchData(Request $request)
     {
         $search = trim($request->query('search', ''));

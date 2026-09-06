@@ -1,13 +1,26 @@
-/* =========================
+/* =========================================================
    CERTIFIED ANIMATION
-========================= */
+========================================================= */
 
-@keyframes scrollLeft {
-    0% {
-        transform: translateX(0);
-    }
-
+@keyframes certificationPulse {
+    0%,
     100% {
-        transform: translateX(-50%);
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+.certified-badge {
+    animation: certificationPulse 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .certified-track {
+        animation: none;
+    }
+    .certified-badge {
+        animation: none;
     }
 }

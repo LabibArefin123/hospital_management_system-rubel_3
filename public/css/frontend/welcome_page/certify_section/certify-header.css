@@ -1,25 +1,73 @@
-/* =========================
+/* =========================================================
    CERTIFIED HEADER
-========================= */
+========================================================= */
+
+.certified-header {
+    max-width: 700px;
+    margin: 0 auto 45px;
+}
+
+.certified-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 14px;
+    padding: 6px 12px 6px 7px;
+    color: #15803d;
+    background: #f0fdf4;
+    border: 1px solid #dcfce7;
+    border-radius: 30px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+.certified-eyebrow-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    color: #fff;
+    background: #16a34a;
+    border-radius: 50%;
+    font-size: 10px;
+}
 
 .certified-header h2 {
-    font-size: 32px;
-    font-weight: 700;
+    margin: 0 0 12px;
     color: #14532d;
+    font-size: 34px;
+    font-weight: 750;
+    line-height: 1.2;
+    letter-spacing: -0.7px;
+    text-transform: none;
 }
 
 .certified-header p {
+    max-width: 620px;
+    margin: 0 auto;
     color: #6b7280;
-    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.7;
 }
 
 .certified-badge {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
     margin-top: 20px;
-    padding: 8px 20px;
-    background: #22c55e;
-    color: #fff;
-    font-size: 13px;
+    padding: 8px 15px;
+    color: #15803d;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
     border-radius: 30px;
-    letter-spacing: 1px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+}
+
+.certified-badge i {
+    font-size: 12px;
 }

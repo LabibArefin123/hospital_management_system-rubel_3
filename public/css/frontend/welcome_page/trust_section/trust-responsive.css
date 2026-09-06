@@ -1,16 +1,130 @@
-/* =========================
+/* =========================================================
    TRUST RESPONSIVE
-========================= */
+========================================================= */
 
-@media (max-width: 768px) {
+@media (max-width: 991.98px) {
+    .trust-header {
+        margin-bottom: 32px;
+    }
+
+    .trust-box {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .trust-section {
+        padding-top: 45px !important;
+        padding-bottom: 45px !important;
+    }
+
+    .trust-title {
+        font-size: 28px;
+    }
+
+    .trust-subtitle {
+        padding: 0 10px;
+        font-size: 13px;
+    }
+
+    .trust-header {
+        margin-bottom: 28px;
+    }
+
+    .trust-box {
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .trust-box-header {
+        margin-bottom: 18px;
+    }
 
     .trust-slider {
-        height: auto;
+        min-height: 0;
     }
 
     .trust-slide {
+        position: absolute;
+    }
+
+    .trust-slide.active {
         position: relative;
-        opacity: 1;
-        transform: none;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .trust-title {
+        font-size: 25px;
+        letter-spacing: -0.4px;
+    }
+
+    .trust-subtitle {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    .trust-eyebrow {
+        font-size: 9px;
+    }
+
+    .trust-box {
+        padding: 17px;
+        border-radius: 18px;
+    }
+
+    .trust-box-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 11px;
+        font-size: 15px;
+    }
+
+    .trust-group-title {
+        font-size: 15px;
+    }
+
+    .trust-box-label {
+        font-size: 9px;
+    }
+
+    .trust-verified {
+        padding: 5px 7px;
+        font-size: 9px;
+    }
+
+    .trust-card {
+        padding: 14px;
+    }
+
+    .avatar {
+        width: 38px;
+        height: 38px;
+        font-size: 13px;
+    }
+
+    .user-info strong {
+        font-size: 12px;
+    }
+
+    .trust-message {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 400px) {
+    .trust-box-header {
+        align-items: flex-start;
+    }
+
+    .trust-verified span {
+        display: none;
+    }
+
+    .trust-verified {
+        width: 26px;
+        height: 26px;
+        justify-content: center;
+        padding: 0;
     }
 }

@@ -33,6 +33,7 @@
 @import url("./welcome_page/certify_section/certify-card.css");
 @import url("./welcome_page/certify_section/certify-slider.css");
 @import url("./welcome_page/certify_section/certify-animation.css");
+@import url("./welcome_page/certify_section/certify-responsive.css");
 
 /* ================= WELCOME PAGE : DOCTOR ================= */
 @import url("./welcome_page/doctor_section/doctor-layout.css");
@@ -98,20 +99,24 @@
 @import url("./service_page/service_information/service-info.css");
 
 /* ================= APPOINTMENT PAGE ================= */
-
 @import url("./appointment_page/appointment-layout.css");
 @import url("./appointment_page/appointment-header.css");
-@import url("./appointment_page/appointment-doctor-filter.css");
-@import url("./appointment_page/appointment-service-filter.css");
-@import url("./appointment_page/modals/filter_doctor.css");
-@import url("./appointment_page/modals/filter_service.css");
 @import url("./appointment_page/appointment-card.css");
 @import url("./appointment_page/appointment-patient.css");
 @import url("./appointment_page/appointment-status.css");
 @import url("./appointment_page/appointment-responsive.css");
+@import url("./appointment_page/modals/filter_doctor.css");
+@import url("./appointment_page/modals/filter_service.css");
+@import url("./appointment_page/appointment-doctor-filter.css");
+@import url("./appointment_page/appointment-service-filter.css");
+
+/* ================= PAYMENT PAGE ================= */
+@import url("./payment_page/payment-layout.css");
+@import url("./payment_page/payment-summary.css");
+@import url("./payment_page/payment-header.css");
+@import url("./payment_page/payment-methods.css");
 
 /* ================= CONTACT PAGE ================= */
-
 @import url("./contact_page/contact-base.css");
 @import url("./contact_page/contact-intro.css");
 @import url("./contact_page/contact-layout.css");
@@ -119,15 +124,17 @@
 @import url("./contact_page/contact-sidebar.css");
 @import url("./contact_page/contact-responsive.css");
 
-/* ================= PAYMENT PAGE ================= */
-
-@import url("./payment_page/payment-layout.css");
-@import url("./payment_page/payment-summary.css");
-@import url("./payment_page/payment-header.css");
-@import url("./payment_page/payment-methods.css");
+/* ================= PROFILE PAGE ================= */
+@import url("./profile_page/profile_layout.css");
+@import url("./profile_page/profile_header.css");
+@import url("./profile_page/profile_card.css");
+@import url("./profile_page/profile_welcome.css");
+@import url("./profile_page/profile_info.css");
+@import url("./profile_page/profile_actions.css");
+@import url("./profile_page/profile_security.css");
+@import url("./profile_page/profile_responsive.css");
 
 /* ================= FOOTER ================= */
-
 @import url("./custom_layout/footer/footer-base.css");
 @import url("./custom_layout/footer/footer-brand.css");
 @import url("./custom_layout/footer/footer-contact.css");

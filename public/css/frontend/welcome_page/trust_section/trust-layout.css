@@ -1,7 +1,117 @@
-/* =========================
+/* =========================================================
    TRUST SECTION LAYOUT
-========================= */
+========================================================= */
 
 .trust-section {
-    background: linear-gradient(135deg, #f0fff7, #ecfdf5);
+    background: #f9fafb;
+    position: relative;
+    overflow: hidden;
+}
+
+.trust-grid {
+    margin-top: 10px;
+}
+
+.trust-box {
+    position: relative;
+    height: 100%;
+    padding: 26px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 24px;
+    box-shadow:
+        0 12px 35px rgba(15, 23, 42, 0.06),
+        0 2px 8px rgba(15, 23, 42, 0.03);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.trust-box:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.09),
+        0 4px 12px rgba(15, 23, 42, 0.04);
+}
+
+.doctor-trust-box {
+    border-top: 3px solid #16a34a;
+}
+
+.patient-trust-box {
+    border-top: 3px solid #00a0d6;
+}
+
+.trust-box-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.trust-box-heading {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-width: 0;
+}
+
+.trust-box-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    font-size: 18px;
+}
+
+.doctor-icon {
+    color: #15803d;
+    background: #ecfdf3;
+}
+
+.patient-icon {
+    color: #0089b8;
+    background: #eaf9fd;
+}
+
+.trust-box-label {
+    display: block;
+    margin-bottom: 3px;
+    color: #9ca3af;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.trust-group-title {
+    margin: 0;
+    color: #172033;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.trust-verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+    padding: 6px 9px;
+    color: #15803d;
+    background: #f0fdf4;
+    border: 1px solid #dcfce7;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.trust-verified i {
+    font-size: 11px;
 }

@@ -1,0 +1,50 @@
+.profile-welcome-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: linear-gradient(135deg, #14532d, #166534);
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(20, 83, 45, 0.14);
+}
+
+.profile-welcome-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+    color: #166534;
+    background: #dcfce7;
+    border-radius: 13px;
+    font-size: 17px;
+}
+
+.profile-welcome-card > div:last-child {
+    min-width: 0;
+}
+
+.profile-welcome-card span {
+    display: block;
+    margin-bottom: 3px;
+    color: #bbf7d0;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+}
+
+.profile-welcome-card h2 {
+    margin: 0 0 3px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.profile-welcome-card p {
+    margin: 0;
+    color: #dcfce7;
+    font-size: 12px;
+    line-height: 1.5;
+}

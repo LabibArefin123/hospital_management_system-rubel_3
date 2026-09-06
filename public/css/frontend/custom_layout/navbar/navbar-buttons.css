@@ -1,38 +1,110 @@
 /* =========================================================
-   FILE: navbar-buttons.css
+   NAVBAR ACTIONS
 ========================================================= */
 
-/* BUTTON WRAPPER */
-
-.nav-actions .btn {
-    font-size: 12px;
-    padding: 5px 10px;
-}
-
-/* OUTLINE BUTTON */
-
-.btn-light-outline {
-    border: 1px solid #16a34a;
-    color: #16a34a;
+.nav-search-link {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 10px;
+    color: #52605a !important;
     border-radius: 30px;
-    transition: 0.3s ease;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition:
+        background 0.25s ease,
+        color 0.25s ease;
 }
 
-.btn-light-outline:hover {
-    background: #16a34a;
-    color: #fff;
+.nav-search-link:hover,
+.nav-search-link.active {
+    color: #15803d !important;
+    background: #f0fdf4;
 }
 
-/* SUCCESS BUTTON */
+.nav-search-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    color: #15803d;
+    background: #f0fdf4;
+    border-radius: 50%;
+    font-size: 10px;
+}
 
-.btn-success-solid {
+.login-button {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 16px;
+    color: #fff !important;
     background: linear-gradient(135deg, #22c55e, #16a34a);
-    color: #fff;
+    border: 0;
     border-radius: 30px;
-    border: none;
-    transition: 0.3s ease;
+    box-shadow: 0 5px 15px rgba(22, 163, 74, 0.2);
+    font-size: 11px;
+    font-weight: 700;
+    text-decoration: none !important;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
-.btn-success-solid:hover {
-    box-shadow: 0 6px 18px rgba(34, 197, 94, 0.3);
+.login-button:hover {
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(22, 163, 74, 0.28);
+}
+
+.user-menu-button {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 9px 4px 5px;
+    color: #374151;
+    background: #fff;
+    border: 1px solid #e5eee8;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.user-menu-button:hover,
+.user-menu-button[aria-expanded="true"] {
+    background: #f8fdf9;
+    border-color: #bbf7d0;
+    box-shadow: 0 5px 15px rgba(15, 23, 42, 0.06);
+}
+
+.user-menu-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    background: linear-gradient(135deg, #22c55e, #15803d);
+    border-radius: 50%;
+    font-size: 11px;
+}
+
+.user-menu-name {
+    max-width: 105px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-menu-arrow {
+    margin-left: 2px;
+    color: #9ca3af;
+    font-size: 8px;
 }

@@ -1,0 +1,100 @@
+/* =========================================================
+   CERTIFIED RESPONSIVE
+========================================================= */
+
+@media (max-width: 991.98px) {
+    .certified-section {
+        padding: 65px 18px;
+    }
+    .certified-card {
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .certified-section {
+        padding: 55px 15px;
+    }
+    .certified-header {
+        margin-bottom: 32px;
+    }
+    .certified-header h2 {
+        font-size: 28px;
+    }
+    .certified-header p {
+        font-size: 13px;
+    }
+    .certified-slider::before,
+    .certified-slider::after {
+        width: 45px;
+    }
+    .certified-track {
+        gap: 15px;
+        animation-duration: 28s;
+    }
+    .cert-card {
+        min-width: 185px;
+        height: 175px;
+        padding: 14px;
+    }
+    .cert-img {
+        height: 65px;
+    }
+    .cert-img img {
+        max-width: 105px;
+        max-height: 58px;
+    }
+    .certified-footer {
+        gap: 12px;
+        margin-top: 28px;
+    }
+    .certified-footer-divider {
+        height: 12px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .certified-section {
+        padding: 48px 12px;
+    }
+    .certified-header h2 {
+        font-size: 25px;
+    }
+    .certified-header p {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+    .certified-eyebrow {
+        font-size: 9px;
+    }
+    .certified-badge {
+        font-size: 9px;
+    }
+    .cert-card {
+        min-width: 170px;
+        height: 165px;
+        border-radius: 15px;
+    }
+    .cert-status {
+        font-size: 7px;
+    }
+    .cert-card-content h5 {
+        font-size: 11px;
+    }
+    .cert-card-content span {
+        font-size: 8px;
+    }
+    .certified-footer-item {
+        font-size: 9px;
+    }
+    .certified-footer-item i {
+        font-size: 11px;
+    }
+    .certified-footer-divider {
+        display: none;
+    }
+    .certified-footer {
+        flex-wrap: wrap;
+        gap: 12px 18px;
+    }
+}

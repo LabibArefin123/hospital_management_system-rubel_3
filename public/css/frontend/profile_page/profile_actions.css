@@ -1,0 +1,116 @@
+.profile-action-list {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.profile-action {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px;
+    color: #374151;
+    border-radius: 11px;
+    text-decoration: none !important;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.profile-action:hover {
+    color: #15803d;
+    background: #f0fdf4;
+    transform: translateX(2px);
+}
+
+.profile-action-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    color: #16a34a;
+    background: #f0fdf4;
+    border-radius: 9px;
+    font-size: 11px;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.profile-action:hover .profile-action-icon {
+    color: #fff;
+    background: #16a34a;
+    transform: scale(1.04);
+}
+
+.profile-action > span:nth-child(2) {
+    min-width: 0;
+    flex: 1;
+}
+
+.profile-action strong {
+    display: block;
+    margin-bottom: 2px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.profile-action small {
+    display: block;
+    color: #9ca3af;
+    font-size: 8px;
+    line-height: 1.4;
+}
+
+.profile-action > i {
+    color: #cbd5e1;
+    font-size: 8px;
+    transition:
+        transform 0.2s ease,
+        color 0.2s ease;
+}
+
+.profile-action:hover > i {
+    color: #16a34a;
+    transform: translateX(2px);
+}
+
+.profile-admin-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: #fffbeb;
+    border: 1px solid #fef3c7;
+    border-radius: 11px;
+}
+
+.profile-admin-message .profile-action-icon {
+    color: #d97706;
+    background: #fef3c7;
+}
+
+.profile-admin-message > span:nth-child(2) {
+    min-width: 0;
+    flex: 1;
+}
+
+.profile-admin-message strong {
+    display: block;
+    margin-bottom: 3px;
+    color: #92400e;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.profile-admin-message small {
+    display: block;
+    color: #a16207;
+    font-size: 12px;
+    line-height: 1.4;
+}

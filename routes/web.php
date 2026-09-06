@@ -45,13 +45,7 @@ Route::get('/search-data', [FrontendController::class, 'searchData'])->name('sea
 Route::get('/contact-us', [FrontendController::class, 'contact'])->name('contact');
 Route::post('/contact-store', [FrontendController::class, 'contact_store'])->name('contact.store');
 Route::post('/newsletter/subscribe', [FrontendController::class, 'newsletter_store'])->name('newsletter.store');
-
-//Frontend Profile Part
-Route::middleware('auth')->group(function () {
-    Route::get('/my-profile', function () {
-        return view('frontend.profile');
-    })->name('frontend.profile');
-});
+Route::get('/my-profile', [FrontendController::class, 'profile'])->name('frontend.profile');
 
 //Auth Routes
 require __DIR__ . '/auth.php';

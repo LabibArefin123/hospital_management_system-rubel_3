@@ -1,18 +1,24 @@
-/* =========================
+/* =========================================================
    CERTIFIED SLIDER
-========================= */
+========================================================= */
 
-/* SLIDER WRAPPER */
-.certified-slider {
-    margin-top: 50px;
-    overflow: hidden;
-    position: relative;
-}
-
-/* TRACK */
 .certified-track {
     display: flex;
-    gap: 25px;
+    align-items: stretch;
+    gap: 20px;
     width: max-content;
-    animation: scrollLeft 30s linear infinite;
+    animation: scrollLeft 32s linear infinite;
+}
+
+.certified-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-50% - 10px));
+    }
 }

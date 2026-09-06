@@ -1,53 +1,56 @@
-/* =========================================================
-   CENTER NAV PILL CONTAINER
-========================================================= */
-
+/* NAVIGATION PILL */
 .nav-pill {
-    background: rgba(34, 197, 94, 0.08);
-    padding: 8px 18px;
-    border-radius: 50px;
     display: flex;
     align-items: center;
-    gap: 8px;
-}
-
-/* REMOVE DEFAULT SPACING */
-.nav-pill .nav-link {
+    gap: 3px;
     margin: 0;
+    padding: 5px;
+    background: #f4fbf7;
+    border: 1px solid #e7f4ec;
+    border-radius: 50px;
+    box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.025);
 }
-
-/* =========================================================
-   NAV ITEM BASE STYLE (PILL BUTTON LOOK)
-========================================================= */
 
 .nav-pill .nav-link {
-    padding: 8px 16px;
-    border-radius: 30px;
-    transition: 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 7px;
     position: relative;
-    color: #14532d !important;
+    margin: 0;
+    padding: 9px 14px;
+    color: #52605a !important;
+    border-radius: 40px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    transition:
+        color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
 }
-
-/* =========================================================
-   HOVER EFFECT (SOFT GREEN PILL)
-========================================================= */
 
 .nav-pill .nav-link:hover {
-    background: rgba(34, 197, 94, 0.15);
-    color: #16a34a !important;
+    color: #15803d !important;
+    background: #eaf8ef;
 }
-
-/* =========================================================
-   ACTIVE MENU (IMPORTANT PART)
-========================================================= */
 
 .nav-pill .nav-link.active {
-    background: linear-gradient(135deg, #22c55e, #16a34a);
     color: #fff !important;
-    box-shadow: 0 6px 18px rgba(34, 197, 94, 0.25);
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    box-shadow: 0 5px 14px rgba(22, 163, 74, 0.22);
 }
 
-/* ACTIVE HOVER (KEEP SAME STYLE) */
 .nav-pill .nav-link.active:hover {
     color: #fff !important;
+    transform: translateY(-1px);
+}
+
+.nav-icon {
+    font-size: 10px;
+    opacity: 0.8;
+}
+
+.nav-pill .nav-link.active .nav-icon {
+    opacity: 1;
 }
