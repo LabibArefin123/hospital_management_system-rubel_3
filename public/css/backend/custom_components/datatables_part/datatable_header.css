@@ -1,0 +1,87 @@
+/*GLOBAL DATATABLE - HEADER*/
+.dataTables_wrapper table.dataTable {
+    width: 100% !important;
+    margin: 0 !important;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.dataTables_wrapper table.dataTable thead th {
+    position: relative;
+    padding: 14px 16px;
+    color: #4b5563;
+    background: #f8fafc;
+    border-top: 0 !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.45px;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+/* First header cell */
+
+.dataTables_wrapper table.dataTable thead th:first-child {
+    border-left: 0;
+}
+
+/* Last header cell */
+
+.dataTables_wrapper table.dataTable thead th:last-child {
+    border-right: 0;
+}
+
+/* =========================================================
+   SORTING
+========================================================= */
+
+.dataTables_wrapper table.dataTable thead .sorting,
+.dataTables_wrapper table.dataTable thead .sorting_asc,
+.dataTables_wrapper table.dataTable thead .sorting_desc {
+    color: #374151;
+}
+
+.dataTables_wrapper table.dataTable thead .sorting:hover,
+.dataTables_wrapper table.dataTable thead .sorting_asc:hover,
+.dataTables_wrapper table.dataTable thead .sorting_desc:hover {
+    color: #8b0000;
+}
+
+/* =========================================================
+   SORTING ICON
+========================================================= */
+
+.dataTables_wrapper table.dataTable thead .sorting:before,
+.dataTables_wrapper table.dataTable thead .sorting:after,
+.dataTables_wrapper table.dataTable thead .sorting_asc:before,
+.dataTables_wrapper table.dataTable thead .sorting_asc:after,
+.dataTables_wrapper table.dataTable thead .sorting_desc:before,
+.dataTables_wrapper table.dataTable thead .sorting_desc:after {
+    color: #9ca3af;
+    opacity: 0.7;
+}
+
+.dataTables_wrapper table.dataTable thead .sorting_asc:after,
+.dataTables_wrapper table.dataTable thead .sorting_desc:after {
+    color: #8b0000;
+    opacity: 1;
+}
+
+/* =========================================================
+   HEADER ALIGNMENT
+========================================================= */
+
+.dataTables_wrapper table.dataTable thead th.text-center {
+    text-align: center;
+}
+
+.dataTables_wrapper table.dataTable thead th.text-right {
+    text-align: right;
+}

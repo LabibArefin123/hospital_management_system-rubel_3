@@ -1,0 +1,73 @@
+/*  STATUS MODAL HEADER */
+#statusChangeModal .status-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px;
+    background: #8b0000;
+}
+
+#statusChangeModal .status-modal-header-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#statusChangeModal .status-modal-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+}
+
+#statusChangeModal .status-modal-icon i {
+    font-size: 16px;
+}
+
+#statusChangeModal .status-modal-header h5 {
+    margin: 0 0 3px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+#statusChangeModal .status-modal-header p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+#statusChangeModal .status-modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.8);
+    background: transparent;
+    border: 0;
+    border-radius: 7px;
+    transition: all 0.2s ease;
+}
+
+#statusChangeModal .status-modal-close:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.14);
+}
+
+@media (max-width: 575px) {
+    #statusChangeModal .status-modal-header {
+        padding: 16px 18px;
+    }
+
+    #statusChangeModal .status-modal-header p {
+        display: none;
+    }
+}

@@ -102,8 +102,10 @@
                           </div>
 
                           {{-- SELECT --}}
-                          <select class="form-control form-control-sm appointment-status" style="width:120px;"
-                              data-id="{{ $appointment->id }}" data-current="{{ $appointment->status }}">
+                          <select class="form-control form-control-sm appointment-status"
+                              data-id="{{ $appointment->id }}" data-current="{{ $appointment->status }}"
+                              data-patient="{{ $appointment->name }}" data-age="{{ $appointment->age }}"
+                              data-gender="{{ ucfirst($appointment->gender) }}" style="width:120px;">
 
                               <option value="pending" {{ $appointment->status == 'pending' ? 'selected' : '' }}>
                                   Pending

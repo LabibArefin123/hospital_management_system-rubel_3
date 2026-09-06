@@ -1,0 +1,74 @@
+/*  VALIDATION MODAL ACTIONS */
+#backConfirmModal .validation-modal-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+#backConfirmModal .validation-modal-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-width: 105px;
+    height: 40px;
+    padding: 8px 18px;
+    border: 0;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 24px;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+#backConfirmModal .validation-modal-actions .btn:hover {
+    transform: translateY(-1px);
+}
+
+#backConfirmModal .validation-modal-actions .btn:active {
+    transform: translateY(0);
+}
+
+#backConfirmModal .validation-stay-btn {
+    color: #ffffff;
+    background: #198754;
+    box-shadow: 0 4px 12px rgba(25, 135, 84, 0.18);
+}
+
+#backConfirmModal .validation-stay-btn:hover {
+    color: #ffffff;
+    background: #157347;
+    box-shadow: 0 6px 16px rgba(25, 135, 84, 0.24);
+}
+
+#backConfirmModal .validation-leave-btn {
+    color: #ffffff;
+    background: #8b0000;
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.18);
+}
+
+#backConfirmModal .validation-leave-btn:hover {
+    color: #ffffff;
+    background: #700000;
+    box-shadow: 0 6px 16px rgba(139, 0, 0, 0.24);
+}
+
+@media (max-width: 575px) {
+    #backConfirmModal .validation-modal-actions {
+        gap: 8px;
+    }
+
+    #backConfirmModal .validation-modal-actions .btn {
+        min-width: 100px;
+        height: 38px;
+        padding: 7px 15px;
+        font-size: 12px;
+    }
+}

@@ -7,12 +7,23 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/3.0.3/css/dataTables.bootstrap5.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.5/css/responsive.bootstrap5.min.css">
 
-@section('adminlte_css')
-    <link rel="stylesheet" href="{{ asset('css/backend/backend.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/doctor_paginator.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/service_paginator.css') }}">
-@stop
-
+{{-- Global  CSS Start  --}}
+<link rel="stylesheet" href="{{ asset('css/backend/backend.css') }}">
+{{-- Dashboard Paginator CSS Start  --}}
+<link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/doctor_paginator.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/service_paginator.css') }}">
+{{-- Dashboard Paginator CSS End  --}}
+{{-- Validation Modal CSS Start  --}}
+<link rel="stylesheet" href="{{ asset('css/backend/custom_components/validation_part/validation_modal.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/custom_components/validation_part/validation_modal_icon.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/custom_components/validation_part/validation_modal_actions.css') }}">
+{{-- Validation Modal CSS End  --}}
+{{-- Appointment Status Start  --}}
+<link rel="stylesheet" href="{{ asset('css/backend/custom_components/appointment_status/status_modal.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/custom_components/appointment_status/status_modal_header.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/custom_components/appointment_status/status_modal_patient.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/custom_components/appointment_status/status_modal_actions.css') }}">
+{{-- Appointment Status End  --}}
 @section('classes_body', $layoutHelper->makeBodyClasses())
 
 @section('body_data', $layoutHelper->makeBodyData())

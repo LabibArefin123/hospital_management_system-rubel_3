@@ -6,10 +6,11 @@
 @import url("./custom_layout/backend-navbar.css");
 @import url("./custom_layout/backend-sidebar.css");
 @import url("./custom_layout/backend-brand.css");
-
 @import url("./custom_components/backend-hover.css");
-@import url("./custom_components/backend-search.css");
-@import url("./custom_components/backend-datatable.css");
+@import url("./custom_components/datatables_part/datatable_header.css");
+@import url("./custom_components/datatables_part/datatable_base.css");
+@import url("./custom_components/datatables_part/datatable_body.css");
+@import url("./custom_components/datatables_part/datatable_pagination.css");
 @import url("./custom_components/backend-animation.css");
 
 @import url("./custom_utilities/backend-responsive.css");

@@ -1,0 +1,74 @@
+/* STATUS MODAL ACTIONS*/
+#statusChangeModal .status-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 22px 20px;
+    border-top: 1px solid #edf0f3;
+}
+
+#statusChangeModal .status-modal-footer form {
+    margin: 0;
+}
+
+#statusChangeModal .status-modal-footer button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-width: 120px;
+    height: 40px;
+    padding: 8px 16px;
+    border: 0;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 600;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+#statusChangeModal .status-modal-footer button:hover {
+    transform: translateY(-1px);
+}
+
+#statusChangeModal .status-modal-footer button:active {
+    transform: translateY(0);
+}
+
+#statusChangeModal .status-cancel-btn {
+    color: #4b5563;
+    background: #f1f3f5;
+}
+
+#statusChangeModal .status-cancel-btn:hover {
+    color: #374151;
+    background: #e5e7eb;
+}
+
+#statusChangeModal .status-confirm-btn {
+    color: #ffffff;
+    background: #198754;
+    box-shadow: 0 4px 12px rgba(25, 135, 84, 0.18);
+}
+
+#statusChangeModal .status-confirm-btn:hover {
+    color: #ffffff;
+    background: #157347;
+    box-shadow: 0 6px 16px rgba(25, 135, 84, 0.25);
+}
+
+@media (max-width: 575px) {
+    #statusChangeModal .status-modal-footer {
+        padding: 14px 18px 18px;
+    }
+
+    #statusChangeModal .status-modal-footer button {
+        min-width: 105px;
+        height: 38px;
+        padding: 7px 12px;
+        font-size: 11px;
+    }
+}

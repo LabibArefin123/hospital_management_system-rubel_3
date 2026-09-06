@@ -30,5 +30,6 @@
 
 @section('js')
     <script src="{{ asset('js/custom_backend/dashboard_page/admin/appointment_status.js') }}"></script>
+    <script src="{{ asset('js/custom_backend/dashboard_page/admin/appointment_info_status.js') }}"></script>
     <script type="module" src="{{ asset('js/custom_backend/dashboard_page/admin/dashboard-init.js') }}"></script>
 @endsection

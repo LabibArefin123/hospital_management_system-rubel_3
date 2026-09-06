@@ -24,7 +24,17 @@
                         data-status="{{ strtolower($appointment->status) }}"
                         data-date="{{ \Carbon\Carbon::parse($appointment->appointment_date)->format('Y-m-d') }}">
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $appointment->name }}</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="{{ $appointment->user && $appointment->user->profile_picture
+                                    ? asset($appointment->user->profile_picture)
+                                    : asset('uploads/images/default.jpg') }}"
+                                    alt="{{ $appointment->name }}"
+                                    style="width:40px;height:40px;object-fit:cover;border-radius:50%;margin-right:10px;">
+
+                                <span>{{ $appointment->name }}</span>
+                            </div>
+                        </td>
                         <td>
                             <div class="d-flex align-items-center">
                                 @if ($appointment->type === 'doctor' && $appointment->doctor)

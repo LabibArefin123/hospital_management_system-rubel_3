@@ -1,0 +1,43 @@
+/* VALIDATION MODAL ICON */
+#backConfirmModal .validation-modal-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+}
+
+#backConfirmModal .validation-warning-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    color: #f59e0b;
+    font-size: 52px;
+    line-height: 1;
+    filter: drop-shadow(0 5px 10px rgba(245, 158, 11, 0.22));
+    animation: validationIconPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes validationIconPulse {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@media (max-width: 575px) {
+    #backConfirmModal .validation-warning-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 46px;
+    }
+
+    #backConfirmModal .validation-modal-icon {
+        margin-bottom: 15px;
+    }
+}
