@@ -9,6 +9,7 @@
 @section('adminlte_css')
     <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/doctor_part/header_part/dashboard_header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/doctor_part/section_part/header_part.css') }}">
+     <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/doctor_part/section_part/appointment_patient.css') }}">
 @stop
 @section('content')
     {{-- Card Box section --}}
@@ -26,5 +27,6 @@
 
 @section('js')
     <script src="{{ asset('js/custom_backend/dashboard_page/doctor/appointment_status.js') }}"></script>
+    <script src="{{ asset('js/custom_backend/dashboard_page/doctor/appointment_info_status.js') }}"></script>
     <script src="{{ asset('js/custom_backend/dashboard_page/doctor/doctor_filter.js') }}"></script>
 @endsection

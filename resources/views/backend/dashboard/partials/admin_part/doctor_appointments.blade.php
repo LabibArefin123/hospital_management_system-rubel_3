@@ -25,11 +25,30 @@
             <div class="card shadow-sm border-0 h-100 rounded-lg">
                 <div class="card-body">
                     {{-- PATIENT --}}
-                    <div class="mb-3">
-                        <h5 class="font-weight-bold mb-1">{{ $appointment->name }}</h5>
-                        <p class="mb-0 text-muted">
-                            {{ $appointment->age }} Years, {{ ucfirst($appointment->gender) }}
-                        </p>
+                    <div class="appointment-patient-info">
+                        <div class="appointment-patient-left">
+
+                            <img src="{{ $appointment->user && $appointment->user->profile_picture
+                                ? asset($appointment->user->profile_picture)
+                                : asset('uploads/images/default.jpg') }}"
+                                alt="{{ $appointment->name }}" class="appointment-patient-image">
+
+                            <div class="appointment-patient-details">
+                                <h5>{{ $appointment->name }}</h5>
+
+                                <p>
+                                    <i class="fas fa-venus-mars"></i>
+                                    {{ ucfirst($appointment->gender) }}
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="appointment-patient-age">
+                            <span>Age</span>
+                            <strong>{{ $appointment->age }}</strong>
+                            <small>Years</small>
+                        </div>
                     </div>
 
                     <div class="d-flex align-items-center mb-3 p-2 rounded" style="background:#f8f9ff;">

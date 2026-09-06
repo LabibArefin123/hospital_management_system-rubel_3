@@ -23,20 +23,33 @@
               data-date="{{ \Carbon\Carbon::parse($appointment->appointment_date)->format('Y-m-d') }}"
               data-status="{{ strtolower($appointment->status) }}"
               data-search="{{ strtolower($appointment->name . ' ' . ($appointment->service->title ?? '')) }}">
-
               <div class="card shadow-sm border-0 h-100 rounded-lg">
-
                   <div class="card-body">
-
                       {{-- PATIENT --}}
-                      <div class="mb-3">
-                          <h5 class="font-weight-bold mb-1">
-                              {{ $appointment->name }}
-                          </h5>
+                      <div class="appointment-patient-info">
+                          <div class="appointment-patient-left">
 
-                          <p class="mb-0 text-muted">
-                              {{ $appointment->age }} Years, {{ ucfirst($appointment->gender) }}
-                          </p>
+                              <img src="{{ $appointment->user && $appointment->user->profile_picture
+                                  ? asset($appointment->user->profile_picture)
+                                  : asset('uploads/images/default.jpg') }}"
+                                  alt="{{ $appointment->name }}" class="appointment-patient-image">
+
+                              <div class="appointment-patient-details">
+                                  <h5>{{ $appointment->name }}</h5>
+
+                                  <p>
+                                      <i class="fas fa-venus-mars"></i>
+                                      {{ ucfirst($appointment->gender) }}
+                                  </p>
+                              </div>
+
+                          </div>
+
+                          <div class="appointment-patient-age">
+                              <span>Age</span>
+                              <strong>{{ $appointment->age }}</strong>
+                              <small>Years</small>
+                          </div>
                       </div>
 
                       {{-- SERVICE PROFILE BLOCK (FIXED LIKE DOCTOR STYLE) --}}
@@ -77,19 +90,13 @@
                               {{ \Carbon\Carbon::parse($appointment->appointment_time)->format('h:i A') }}
                           </span>
                       </div>
-
                       {{-- AMOUNT --}}
-                      <h5 class="text-success font-weight-bold mb-3">
-                          ৳{{ number_format($appointment->amount, 2) }}
-                      </h5>
-
+                      <h5 class="text-success font-weight-bold mb-3">৳{{ number_format($appointment->amount, 2) }}</h5>
                   </div>
 
                   {{-- STATUS FOOTER (LOGIC UNCHANGED, ONLY UI FIXED) --}}
                   <div class="card-footer bg-white border-0 pt-2">
-
                       <div class="d-flex justify-content-between align-items-center">
-
                           {{-- BADGE --}}
                           <div>
                               @if ($appointment->status == 'confirmed')
@@ -102,29 +109,23 @@
                           </div>
 
                           {{-- SELECT --}}
-                          <select class="form-control form-control-sm appointment-status" style="width:120px;"
-                              data-id="{{ $appointment->id }}" data-current="{{ $appointment->status }}">
-
+                          <select class="form-control form-control-sm appointment-status"
+                              data-id="{{ $appointment->id }}" data-current="{{ $appointment->status }}"
+                              data-patient="{{ $appointment->name }}" data-age="{{ $appointment->age }}"
+                              data-gender="{{ ucfirst($appointment->gender) }}" style="width:120px;">
                               <option value="pending" {{ $appointment->status == 'pending' ? 'selected' : '' }}>
                                   Pending
                               </option>
-
                               <option value="confirmed" {{ $appointment->status == 'confirmed' ? 'selected' : '' }}>
                                   Confirmed
                               </option>
-
                               <option value="cancelled" {{ $appointment->status == 'cancelled' ? 'selected' : '' }}>
                                   Cancelled
                               </option>
-
                           </select>
-
                       </div>
-
                   </div>
-
               </div>
-
           </div>
       @endforeach
       <div class="col-12">
