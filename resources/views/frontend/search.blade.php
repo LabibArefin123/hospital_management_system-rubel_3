@@ -18,11 +18,11 @@
                 <i class="fas fa-search"></i>
 
                 <input type="text" id="systemSearchPageInput" value="{{ $search ?? '' }}"
-                    placeholder="Search patient or doctor..." autocomplete="off">
+                    placeholder="Search patient or doctor..." autocomplete="off" spellcheck="false">
 
-                <button type="button" id="systemSearchPageClear">
-                    <i class="fas fa-times"></i>
-                </button>
+                    <button type="button" id="systemSearchPageClear">
+                        <i class="fas fa-times"></i>
+                    </button>
             </div>
         </div>
     </section>
@@ -48,6 +48,9 @@
     </section>
     @include('frontend.custom_layout.footer')
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        window.systemSearchDefaultImage = @json(asset('uploads/images/default.jpg'));
+    </script>
     {{--  System Search Start --}}
     {{-- STATE 1 --}}
     <script src="{{ asset('js/custom_frontend/system_search/system_search_core.js') }}"></script>

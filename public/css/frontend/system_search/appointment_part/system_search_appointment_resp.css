@@ -1,0 +1,55 @@
+/* ==========================================================
+   APPOINTMENT SEARCH - MOBILE
+========================================================== */
+
+@media (max-width: 767px) {
+    .appointment-search-inner {
+        min-height: 115px;
+    }
+
+    .appointment-search-image-wrapper {
+        flex: 0 0 82px;
+        width: 82px;
+    }
+
+    .appointment-search-image {
+        width: 58px;
+        height: 58px;
+    }
+
+    .appointment-search-information {
+        padding: 14px 12px;
+    }
+
+    .appointment-search-heading {
+        gap: 8px;
+    }
+
+    .appointment-search-name {
+        font-size: 14px;
+    }
+
+    .system-search-result-item[data-result-type="appointment"]
+        .system-search-result-status {
+        font-size: 8px;
+        padding: 5px 7px;
+    }
+
+    .appointment-search-footer {
+        display: block;
+    }
+
+    .appointment-search-date,
+    .appointment-search-time {
+        margin-bottom: 5px;
+    }
+
+    .appointment-search-label {
+        font-size: 8px;
+    }
+
+    .appointment-search-date strong,
+    .appointment-search-time strong {
+        font-size: 10px;
+    }
+}

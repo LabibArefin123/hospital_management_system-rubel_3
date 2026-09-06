@@ -1,8 +1,7 @@
-/*SYSTEM SEARCH CORE*/
+/* SYSTEM SEARCH CORE */
 (function (window, $) {
     "use strict";
     console.log("[System Search] STATE 1: Core loaded.");
-
     if (!$) {
         console.error("[System Search] STATE 1 ERROR: jQuery not loaded.");
         return;
@@ -12,6 +11,8 @@
         timer: null,
         delay: 300,
         initialized: false,
+        defaultImage:
+            window.systemSearchDefaultImage || "/uploads/images/default.jpg",
     };
 
     console.log("[System Search] STATE 1: SystemSearch object created.");

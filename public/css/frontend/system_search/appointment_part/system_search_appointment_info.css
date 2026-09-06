@@ -1,0 +1,53 @@
+/* APPOINTMENT SEARCH - INFORMATION*/
+.appointment-search-information {
+    flex: 1;
+    min-width: 0;
+    padding: 17px 20px 14px;
+}
+
+/* ==========================================================
+   HEADING
+========================================================== */
+
+.appointment-search-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.appointment-search-type {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+    color: #00a0d6;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+.appointment-search-type i {
+    font-size: 10px;
+}
+
+.appointment-search-name {
+    margin: 0;
+    color: #1f2937;
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.35;
+}
+
+/* ==========================================================
+   GLOBAL DROPDOWN INFORMATION
+========================================================== */
+
+#systemSearchResults .appointment-search-information {
+    padding: 13px 15px;
+}
+
+#systemSearchResults .appointment-search-name {
+    font-size: 14px;
+}

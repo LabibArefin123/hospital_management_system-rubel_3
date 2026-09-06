@@ -48,12 +48,10 @@ class FrontendController extends Controller
     |--------------------------------------------------------------------------
     | APPOINTMENT SEARCH
     |--------------------------------------------------------------------------
-    | Guest appointment information is stored directly in appointments.
-    | Everyone can search appointment/patient names.
-    |--------------------------------------------------------------------------
     */
 
         $appointments = Appointment::query()
+            ->with('user')
             ->where(function ($query) use ($search) {
                 $query->where('name', 'like', "%{$search}%")
                     ->orWhere('phone', 'like', "%{$search}%")
@@ -63,35 +61,89 @@ class FrontendController extends Controller
             ->limit(20)
             ->get();
 
-        /* DOCTOR SEARCH */
+        /*DOCTOR SEARCH */
         $doctors = Doctor::query()
             ->where('name', 'like', "%{$search}%")
             ->latest('id')
             ->limit(20)
             ->get();
 
-        /*| AJAX RESPONSE */
+        /* AJAX RESPONSE */
         if ($request->ajax()) {
             return response()->json([
                 'status' => true,
 
+                /*APPOINTMENTS  */
                 'appointments' => $appointments->map(function ($appointment) {
+
+                    /* Appointment / User Image */
+                    $profilePicture = optional($appointment->user)->profile_picture;
+
+                    if (!empty($profilePicture)) {
+                        /*
+                     * Adjust this path if your profile pictures
+                     * are stored somewhere else.
+                     */
+                        $image = asset(
+                            'uploads/images/users/' . $profilePicture
+                        );
+                    } else {
+
+                        $image = asset(
+                            'uploads/images/default.jpg'
+                        );
+                    }
+
                     return [
                         'name' => $appointment->name ?? '-',
+
                         'status' => $appointment->status ?? 'pending',
+
                         'date' => $appointment->appointment_date
-                            ? \Carbon\Carbon::parse($appointment->appointment_date)->format('d M Y')
+                            ? \Carbon\Carbon::parse(
+                                $appointment->appointment_date
+                            )->format('d M Y')
                             : '-',
+
                         'time' => $appointment->appointment_time
-                            ? \Carbon\Carbon::parse($appointment->appointment_time)->format('h:i A')
+                            ? \Carbon\Carbon::parse(
+                                $appointment->appointment_time
+                            )->format('h:i A')
                             : '-',
+
+                        'image' => $image,
                     ];
                 })->values(),
 
+                /* DOCTORS  */
                 'doctors' => $doctors->map(function ($doctor) {
+
+                    $doctorImage = !empty($doctor->image)
+                        ? asset(
+                            $doctor->image
+                        )
+                        : asset(
+                            'uploads/images/default.jpg'
+                        );
+
                     return [
+                        'id' => $doctor->id,
                         'name' => $doctor->name ?? '-',
-                        'url' => route('doctor.show', $doctor->id),
+                        'email' => $doctor->email ?? '',
+                        'speciality' => $doctor->speciality ?? '',
+                        'image' => $doctorImage,
+                        'success_rate' => $doctor->success_rate ?? null,
+                        'experience_years' => $doctor->experience_years ?? null,
+                        'total_patients' => $doctor->total_patients ?? null,
+                        'qualification' => $doctor->qualification ?? '',
+                        'location' => $doctor->location ?? '',
+                        'consultation_fee' => $doctor->consultation_fee ?? null,
+                        'availability' => $doctor->availability ?? '',
+                        'about' => $doctor->about ?? '',
+                        'url' => route(
+                            'doctor.show',
+                            $doctor->id
+                        ),
                     ];
                 })->values(),
 
@@ -460,7 +512,6 @@ class FrontendController extends Controller
             $serviceAppointments->where('user_id', $user->id);
         }
         /* OTHER ROLES */ else {
-            
         }
         /* STATUS */
         if ($request->filled('status')) {
@@ -542,14 +593,14 @@ class FrontendController extends Controller
 
 
                 /*
-            |--------------------------------------------------------------------------
-            | FIND AVAILABLE DOCTOR SCHEDULE
-            |--------------------------------------------------------------------------
-            |
-            | lockForUpdate() prevents two users from booking the same
-            | schedule at exactly the same time.
-            |
-            */
+                |--------------------------------------------------------------------------
+                | FIND AVAILABLE DOCTOR SCHEDULE
+                |--------------------------------------------------------------------------
+                |
+                | lockForUpdate() prevents two users from booking the same
+                | schedule at exactly the same time.
+                |
+                */
 
                 $doctorSchedule = DoctorSchedule::where('doctor_id', $doctor->id)
                     ->whereDate('date', $request->appointment_date)

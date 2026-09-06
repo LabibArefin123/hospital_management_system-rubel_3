@@ -1,59 +1,49 @@
-/* ==========================================================
-   GLOBAL SEARCH RESULTS
-========================================================== */
-
+/* GLOBAL SEARCH RESULTS*/
 #systemSearchResults {
     position: absolute;
     top: calc(100% + 8px);
     left: 0;
     right: 0;
     z-index: 9999;
-    overflow: hidden;
-    background: #fff;
+    max-height: 650px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #ffffff;
     border: 1px solid #e5ebf0;
-    border-radius: 14px;
-    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.13);
+    border-radius: 16px;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.14);
 }
-#systemSearchResults
-    .system-search-result-item:not([data-result-type="appointment"]) {
-    display: flex;
-    align-items: center;
-    min-height: 48px;
-    padding: 11px 16px;
-    background: #fff;
-    border-bottom: 1px solid #f0f2f4;
-    cursor: pointer;
-    transition:
-        background 0.2s ease,
-        padding-left 0.2s ease;
+
+/* Scrollbar */
+
+#systemSearchResults::-webkit-scrollbar {
+    width: 5px;
 }
-#systemSearchResults
-    .system-search-result-item:not(
-        [data-result-type="appointment"]
-    ):last-child {
-    border-bottom: 0;
+
+#systemSearchResults::-webkit-scrollbar-track {
+    background: transparent;
 }
-#systemSearchResults
-    .system-search-result-item:not([data-result-type="appointment"]):hover {
-    background: #f9fbfc;
-    padding-left: 20px;
+
+#systemSearchResults::-webkit-scrollbar-thumb {
+    background: #d5dbe2;
+    border-radius: 10px;
 }
-#systemSearchResults .system-search-result-name {
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-}
+
+/* Empty */
+
 .system-search-empty {
-    padding: 18px;
+    padding: 25px 18px;
     text-align: center;
     color: #888;
     font-size: 13px;
 }
+
+/* Loading */
 #systemSearchLoading {
     position: absolute;
     right: 18px;
     top: 50%;
-    transform: translateY(-50%);
     z-index: 3;
     color: #8b0000;
+    transform: translateY(-50%);
 }

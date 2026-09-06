@@ -1,0 +1,59 @@
+/* APPOINTMENT SEARCH - STATUS */
+.system-search-result-item[data-result-type="appointment"]
+    .system-search-result-status {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 29px;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.appointment-status-dot {
+    width: 6px;
+    height: 6px;
+    margin-right: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+/* ==========================================================
+   CONFIRMED
+========================================================== */
+
+.system-search-result-item[data-result-type="appointment"]
+    .system-search-result-status.confirmed {
+    color: #15803d;
+    background: #ecfdf3;
+    border: 1px solid #c8f0d7;
+}
+
+/* ==========================================================
+   PENDING
+========================================================== */
+
+.system-search-result-item[data-result-type="appointment"]
+    .system-search-result-status.pending {
+    color: #b45309;
+    background: #fff8e8;
+    border: 1px solid #f7dfaa;
+}
+
+/* ==========================================================
+   CANCELLED
+========================================================== */
+
+.system-search-result-item[data-result-type="appointment"]
+    .system-search-result-status.cancelled {
+    color: #dc2626;
+
+    background: #fff1f2;
+
+    border: 1px solid #fecdd3;
+}

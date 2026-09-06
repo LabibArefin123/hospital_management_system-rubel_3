@@ -32,9 +32,31 @@
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search/system_search.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search/system_search_results.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search/system_search_common.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/system_search/system_search_doctor.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search/system_search_appointment.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search/system_search_page_result.css') }}">
+    {{-- System Search Appointment Start --}}
+    <link rel="stylesheet"
+        href="{{ asset('css/frontend/system_search/appointment_part/system_search_appointment_card.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/frontend/system_search/appointment_part/system_search_appointment_image.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/frontend/system_search/appointment_part/system_search_appointment_info.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/frontend/system_search/appointment_part/system_search_appointment_status.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/frontend/system_search/appointment_part/system_search_appointment_footer.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/frontend/system_search/appointment_part/system_search_appointment_resp.css') }}">
+    {{-- System Search Appointment End --}}
+    {{-- System Search Doctor Start --}}
+    <link rel="stylesheet" href="{{ asset('css/frontend/system_search/doctor_part/system_search_doctor_card.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/system_search/doctor_part/system_search_doctor_image.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/system_search/doctor_part/system_search_doctor_info.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/system_search/doctor_part/system_search_doctor_view.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/frontend/system_search/doctor_part/system_search_doctor_details.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/system_search/doctor_part/system_search_doctor_resp.css') }}">
+    {{-- System Search Doctor End --}}
     {{-- Dedicated search page --}}
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search/system_search_page.css') }}">
 

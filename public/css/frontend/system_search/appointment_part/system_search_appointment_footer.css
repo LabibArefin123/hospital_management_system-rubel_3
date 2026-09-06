@@ -1,0 +1,87 @@
+/* ==========================================================
+   APPOINTMENT SEARCH - FOOTER
+========================================================== */
+
+.appointment-search-footer {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 13px;
+    padding-top: 11px;
+
+    border-top: 1px solid #edf0f3;
+}
+
+.appointment-search-date,
+.appointment-search-time {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+.appointment-search-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    color: #8a94a6;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.appointment-search-label i {
+    color: #00a0d6;
+}
+
+.appointment-search-date strong,
+.appointment-search-time strong {
+    color: #344054;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+/* ==========================================================
+   GLOBAL DROPDOWN
+========================================================== */
+
+#systemSearchResults
+    .system-search-result-item[data-result-type="appointment"] {
+    margin-bottom: 0;
+
+    border-radius: 0;
+
+    box-shadow: none;
+}
+
+#systemSearchResults .appointment-search-inner {
+    min-height: 95px;
+}
+
+#systemSearchResults .appointment-search-image-wrapper {
+    flex: 0 0 82px;
+    width: 82px;
+}
+
+#systemSearchResults .appointment-search-image {
+    width: 57px;
+    height: 57px;
+    border-width: 3px;
+}
+
+#systemSearchResults .appointment-search-footer {
+    margin-top: 8px;
+    padding-top: 8px;
+}

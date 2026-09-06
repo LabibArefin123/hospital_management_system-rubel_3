@@ -1,0 +1,44 @@
+/* SYSTEM SEARCH - APPOINTMENT CARD */
+
+.system-search-result-item[data-result-type="appointment"] {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 0;
+    background: #ffffff;
+    border: 1px solid #e7ebef;
+    border-radius: 16px;
+    box-shadow: 0 3px 15px rgba(15, 23, 42, 0.05);
+    overflow: hidden;
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
+}
+
+.system-search-result-item[data-result-type="appointment"]::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #00a0d6;
+}
+
+.system-search-result-item[data-result-type="appointment"]:hover {
+    transform: translateY(-2px);
+    border-color: #cfeaf4;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.09);
+}
+
+/* ==========================================================
+   INNER
+========================================================== */
+
+.appointment-search-inner {
+    display: flex;
+    align-items: stretch;
+    min-height: 125px;
+}

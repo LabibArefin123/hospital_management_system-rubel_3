@@ -1,0 +1,58 @@
+/* ==========================================================
+   DOCTOR SEARCH - MOBILE
+========================================================== */
+
+@media (max-width: 767px) {
+    .doctor-search-card-inner {
+        display: block;
+    }
+
+    .doctor-search-image-wrapper {
+        width: 100%;
+        min-height: 125px;
+        height: 125px;
+    }
+
+    .doctor-search-image {
+        width: 92px;
+        height: 92px;
+    }
+
+    .doctor-search-online-dot {
+        right: calc(50% - 55px);
+        bottom: 17px;
+    }
+
+    .doctor-search-information {
+        padding: 17px;
+    }
+
+    .doctor-search-heading {
+        gap: 10px;
+    }
+
+    .doctor-search-name {
+        font-size: 18px;
+    }
+
+    .doctor-search-view {
+        padding: 6px 8px;
+        font-size: 9px;
+    }
+
+    .doctor-search-about {
+        font-size: 11px;
+    }
+
+    .doctor-search-details {
+        gap: 6px;
+    }
+
+    .doctor-search-detail {
+        flex: 1 1 calc(50% - 6px);
+    }
+
+    .doctor-search-location {
+        max-width: 100%;
+    }
+}

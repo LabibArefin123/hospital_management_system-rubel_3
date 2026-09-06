@@ -1,0 +1,124 @@
+/* DOCTOR SEARCH - DETAILS */
+.doctor-search-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    padding-top: 13px;
+
+    border-top: 1px solid #edf0f3;
+}
+
+.doctor-search-detail {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 43px;
+    padding: 6px 11px;
+    background: #f8fafc;
+    border: 1px solid #edf0f4;
+    border-radius: 10px;
+    color: #667085;
+}
+
+.doctor-search-detail > i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 7px;
+    background: #eeeeff;
+    color: #6366f1;
+    font-size: 10px;
+}
+
+.doctor-search-detail strong {
+    color: #344054;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.doctor-search-detail small {
+    color: #98a2b3;
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.doctor-search-location {
+    max-width: 260px;
+}
+
+.doctor-search-location strong {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ==========================================================
+   GLOBAL SEARCH DROPDOWN
+========================================================== */
+
+#systemSearchResults .system-search-result-item[data-result-type="doctor"] {
+    margin-bottom: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+#systemSearchResults .doctor-search-card-inner {
+    min-height: 125px;
+}
+
+#systemSearchResults .doctor-search-image-wrapper {
+    flex: 0 0 95px;
+    width: 95px;
+    min-height: 125px;
+}
+
+#systemSearchResults .doctor-search-image {
+    width: 72px;
+    height: 72px;
+    border-width: 3px;
+}
+
+#systemSearchResults .doctor-search-online-dot {
+    width: 11px;
+    height: 11px;
+    right: 13px;
+    bottom: 22px;
+    border-width: 2px;
+}
+
+#systemSearchResults .doctor-search-information {
+    padding: 15px 17px;
+}
+
+#systemSearchResults .doctor-search-name {
+    font-size: 15px;
+}
+
+#systemSearchResults .doctor-search-about {
+    display: none;
+}
+
+#systemSearchResults .doctor-search-details {
+    padding-top: 8px;
+    border-top: 0;
+}
+
+#systemSearchResults .doctor-search-detail {
+    min-height: 28px;
+    padding: 4px 7px;
+}
+
+#systemSearchResults .doctor-search-detail > i {
+    width: auto;
+    height: auto;
+    background: transparent;
+}
+
+#systemSearchResults .doctor-search-detail small {
+    display: none;
+}

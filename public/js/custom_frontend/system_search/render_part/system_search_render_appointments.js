@@ -1,18 +1,19 @@
-/** SYSTEM SEARCH RENDERER - APPOINTMENTS*/
+/** SYSTEM SEARCH RENDERER - APPOINTMENTS */
 (function (window, $) {
     "use strict";
+
     console.log(
         "[System Search] STATE 4D: Appointment renderer module loaded.",
     );
 
     if (!window.SystemSearch) {
         console.error(
-            "[System Search] STATE 4B ERROR: SystemSearch core not loaded.",
+            "[System Search] STATE 4D ERROR: SystemSearch core not loaded.",
         );
         return;
     }
 
-    /* NORMALIZE APPOINTMENTS */
+    /*NORMALIZE APPOINTMENTS */
     window.SystemSearch.normalizeAppointments = function (appointments) {
         if (!Array.isArray(appointments)) {
             return [];
@@ -25,6 +26,7 @@
                 status: item.status || "pending",
                 date: item.date || "-",
                 time: item.time || "-",
+                image: item.image || window.SystemSearch.defaultImage,
                 url: null,
             };
         });

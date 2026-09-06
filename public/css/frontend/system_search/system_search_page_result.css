@@ -1,38 +1,65 @@
-/* ==========================================================
-   SEARCH PAGE RESULTS
-========================================================== */
+/* SEARCH PAGE RESULTS */
 
 #systemSearchPageResults {
     max-width: 1500px;
+
     margin: 0 auto;
-    background: #fff;
+
+    padding: 14px;
+
+    background: #f8fafc;
+
     border: 1px solid #e8edf1;
-    border-radius: 14px;
+
+    border-radius: 18px;
+
     overflow: hidden;
-    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
 }
-#systemSearchPageResults
-    .system-search-result-item:not([data-result-type="appointment"]) {
-    min-height: 52px;
-    padding: 14px 18px;
-    border-bottom: 1px solid #f0f2f4;
-    transition:
-        background 0.2s ease,
-        padding-left 0.2s ease;
-}
-#systemSearchPageResults
-    .system-search-result-item:not(
-        [data-result-type="appointment"]
-    ):last-child {
+
+/* Remove old compact-row styling */
+
+#systemSearchPageResults .system-search-result-item {
     border-bottom: 0;
 }
-#systemSearchPageResults
-    .system-search-result-item:not([data-result-type="appointment"]):hover {
-    background: #fafcfd;
-    padding-left: 23px;
+
+/* Doctor card */
+
+#systemSearchPageResults .system-search-result-item[data-result-type="doctor"] {
+    min-height: 205px;
 }
-#systemSearchPageResults .system-search-result-name {
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
+
+/* Appointment card */
+
+#systemSearchPageResults
+    .system-search-result-item[data-result-type="appointment"] {
+    min-height: 125px;
+}
+
+/* Last item */
+
+#systemSearchPageResults .system-search-result-item:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 767px) {
+    #systemSearchPageResults {
+        padding: 8px;
+        border-radius: 14px;
+    }
+
+    #systemSearchPageResults
+        .system-search-result-item[data-result-type="doctor"] {
+        min-height: auto;
+    }
+
+    #systemSearchPageResults
+        .system-search-result-item[data-result-type="appointment"] {
+        min-height: auto;
+    }
 }
