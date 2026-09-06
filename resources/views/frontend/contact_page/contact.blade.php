@@ -6,10 +6,13 @@
     @include('frontend.custom_layout.header')
 
     <!-- INTRO -->
-    <section class="contact-intro">
+    <section class="contact-page-intro">
         <div class="container text-center">
             <h2>Contact Our Clinic</h2>
-            <p>Fill the form — we'll connect you instantly via WhatsApp</p>
+            <p class="contact-page-intro-subtitle">
+                Have a question or need assistance? Our healthcare team is here to help you with appointments, services, and
+                general enquiries.
+            </p>
         </div>
     </section>
 
@@ -140,9 +143,33 @@
                     <!-- Visit -->
                     <div class="info-card">
                         <h5>Visit Our Clinic</h5>
-                        <p>📍 Dhaka, Bangladesh</p>
-                        <p>📞 017XXXXXXXX</p>
-                        <p>✉ info@susthocare.com</p>
+                        <div class="contact-detail">
+                            <span class="contact-detail-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </span>
+                            <div>
+                                <strong>Clinic Location</strong>
+                                <p>Dhaka, Bangladesh</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <span class="contact-detail-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </span>
+                            <div>
+                                <strong>Phone Support</strong>
+                                <p>017XXXXXXXX</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <span class="contact-detail-icon">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                            <div>
+                                <strong>Email Support</strong>
+                                <p>info@susthocare.com</p>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Map -->
@@ -154,10 +181,16 @@
                     </div>
 
                     <!-- Hours -->
-                    <div class="info-card">
+                    <div class="info-card contact-hours-card">
                         <h5>Clinic Hours</h5>
-                        <p>Mon - Sat</p>
-                        <strong>9:00 AM - 6:00 PM</strong>
+                        <div class="hours-row">
+                            <span><i class="far fa-clock"></i> Mon - Sat</span>
+                            <strong>9:00 AM - 6:00 PM</strong>
+                        </div>
+                        <div class="hours-status">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Appointments available</span>
+                        </div>
                     </div>
 
                 </div>

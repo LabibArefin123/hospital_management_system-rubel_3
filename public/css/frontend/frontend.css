@@ -100,7 +100,9 @@
 
 /* ================= APPOINTMENT PAGE ================= */
 @import url("./appointment_page/appointment-layout.css");
-@import url("./appointment_page/appointment-header.css");
+@import url("./appointment_page/header_part/appointment-header.css");
+@import url("./appointment_page/header_part/appointment-page-heading.css");
+@import url("./appointment_page/header_part/appointment-page-search.css");
 @import url("./appointment_page/appointment-card.css");
 @import url("./appointment_page/appointment-patient.css");
 @import url("./appointment_page/appointment-status.css");
@@ -118,7 +120,7 @@
 
 /* ================= CONTACT PAGE ================= */
 @import url("./contact_page/contact-base.css");
-@import url("./contact_page/contact-intro.css");
+@import url("./contact_page/contact-header.css");
 @import url("./contact_page/contact-layout.css");
 @import url("./contact_page/contact-form.css");
 @import url("./contact_page/contact-sidebar.css");

@@ -136,6 +136,8 @@
     @endif
 
     @if (request()->routeIs('appointment'))
+        <script src="{{ asset('js/custom_frontend/appointment_page/appointment_filter.js') }}">
+        </script>
         {{-- Doctor Filter Start --}}
         <script src="{{ asset('js/custom_frontend/appointment_page/doctor_part/filter_doctor_appointment_core.js') }}">
         </script>

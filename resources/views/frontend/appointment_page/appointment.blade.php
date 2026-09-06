@@ -4,6 +4,7 @@
 
 @section('content')
     @include('frontend.custom_layout.header')
+    @include('frontend.appointment_page.partials.appointment_header')
     @include('frontend.appointment_page.modals.doctor_filter')
     @if (!auth()->user() || !auth()->user()->hasRole('doctor'))
         @include('frontend.appointment_page.modals.service_filter')

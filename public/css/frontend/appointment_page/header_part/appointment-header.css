@@ -1,0 +1,58 @@
+/* =========================================================
+appointment PAGE INTRO - BASE
+========================================================= */
+
+.appointment-page-intro {
+    position: relative;
+    padding: 55px 20px 50px;
+    background: linear-gradient(135deg, #f4fbfd 0%, #ffffff 55%, #f7fbff 100%);
+    border-bottom: 1px solid #edf2f5;
+    overflow: hidden;
+}
+
+/* =========================================================
+DECORATIVE BACKGROUND
+========================================================= */
+
+.appointment-page-intro::before {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    top: -110px;
+    right: 8%;
+    border-radius: 50%;
+    background: rgba(0, 160, 214, 0.06);
+}
+
+.appointment-page-intro::after {
+    content: "";
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    bottom: -90px;
+    left: 7%;
+    border-radius: 50%;
+    background: rgba(0, 160, 214, 0.04);
+}
+
+/* =========================================================
+CONTAINER
+========================================================= */
+
+.appointment-page-intro .container {
+    position: relative;
+    z-index: 1;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+/* =========================================================
+CONTENT
+========================================================= */
+
+.appointment-page-intro p {
+    margin: 0;
+    font-size: 17px;
+    color: #6c757d;
+}

@@ -1,93 +1,117 @@
-/* =========================================================
-   CONTACT FORM
-========================================================= */
-
-.contact-form-box {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 40px;
-    border-radius: 28px;
-    box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.06),
-        0 3px 10px rgba(34, 197, 94, 0.05);
-
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(10px);
-}
-
 .contact-form-box h4 {
-    font-size: 30px;
-    font-weight: 700;
+    margin: 0 0 25px;
     color: #14532d;
-    margin-bottom: 28px;
+    font-size: 20px;
+    font-weight: 800;
 }
 
-/* ROW */
+.contact-form-box form {
+    display: flex;
+    flex-direction: column;
+}
 
-.form-row {
+.contact-form-box .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 18px;
+    margin: 0;
 }
 
-/* GROUP */
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 5px;
+.contact-form-box .form-group {
+    margin-bottom: 20px;
+    padding: 0;
 }
 
-.form-group label {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #374151;
-}
-
-/* INPUT */
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 15px 18px;
-    border-radius: 14px;
-    border: 1px solid #d1d5db;
-    outline: none;
-    background: #fff;
-    transition: 0.3s ease;
+.contact-form-box label {
+    display: block;
+    margin-bottom: 9px;
+    color: #334155;
     font-size: 15px;
-    color: #111827;
-}
-
-.form-group textarea {
-    resize: none;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    border-color: #22c55e;
-    box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.12);
-}
-
-/* BUTTON */
-
-.btn-whatsapp {
-    width: 100%;
-    padding: 16px;
-    border-radius: 50px;
-    background: linear-gradient(135deg, #22c55e, #16a34a);
-    color: #fff;
-    border: none;
     font-weight: 700;
-    font-size: 15px;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: 0.3s ease;
 }
 
-.btn-whatsapp:hover {
+.contact-form-box .form-control {
+    width: 100%;
+    min-height: 50px;
+    padding: 12px 15px;
+    color: #1f2937;
+    background: #fbfdfc;
+    border: 1px solid #dce9e1;
+    border-radius: 12px;
+    font-size: 15px;
+    line-height: 1.5;
+    box-shadow: none;
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.contact-form-box textarea.form-control {
+    min-height: 125px;
+    resize: vertical;
+}
+
+.contact-form-box .form-control::placeholder {
+    color: #94a3b8;
+    opacity: 1;
+}
+
+.contact-form-box .form-control:hover {
+    border-color: #b7d8c3;
+    background: #fff;
+}
+
+.contact-form-box .form-control:focus {
+    color: #1f2937;
+    background: #fff;
+    border-color: #22c55e;
+    outline: 0;
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+}
+
+.contact-form-box select.form-control {
+    cursor: pointer;
+}
+
+.contact-form-box .text-danger {
+    display: block;
+    margin-top: 7px;
+    color: #dc2626 !important;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.contact-form-box .alert {
+    margin-bottom: 22px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.contact-form-box .btn-success {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    min-height: 52px;
+    padding: 12px 25px;
+    color: #fff;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    border: 0;
+    border-radius: 13px;
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(22, 163, 74, 0.2);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.contact-form-box .btn-success:hover {
+    color: #fff;
+    background: linear-gradient(135deg, #16a34a, #15803d);
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(34, 197, 94, 0.25);
+    box-shadow: 0 12px 25px rgba(22, 163, 74, 0.28);
 }
