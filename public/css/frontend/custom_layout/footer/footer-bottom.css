@@ -1,9 +1,45 @@
-/* =========================================================
-   FILE: footer-bottom.css
-========================================================= */
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
 
 .footer-bottom p {
     margin: 0;
-    font-size: 14px;
+    font-size: 13px;
+    color: #4b7568;
+}
+
+.footer-bottom p strong {
     color: #047857;
+    font-weight: 700;
+}
+
+.footer-bottom-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #6b8f84;
+}
+
+.footer-bottom-links i {
+    font-size: 11px;
+    color: #10b981;
+}
+
+@media (max-width: 576px) {
+    .footer-bottom {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 8px;
+    }
+    .footer-bottom p {
+        font-size: 12px;
+    }
+    .footer-bottom-links {
+        font-size: 11px;
+    }
 }

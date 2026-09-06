@@ -1,43 +1,32 @@
-/* =========================================================
-   FILE: footer-responsive.css
-========================================================= */
-
 @media (max-width: 991px) {
-
-    .premium-footer {
-        padding-top: 70px;
-    }
-
     .footer-brand {
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
-
     .footer-widget {
-        margin-top: 10px;
+        margin-top: 8px;
     }
 }
 
 @media (max-width: 768px) {
-
-    .premium-footer {
-        padding: 60px 0 25px;
+    .footer-brand {
+        margin-bottom: 8px;
     }
-
-    .footer-brand .footer-brand-logo {
-        width: 60px;
-        height: 60px;
-        border-radius: 14px;
+    .footer-widget {
+        margin-top: 5px;
     }
-
-    .footer-brand .footer-logo-text h4 {
-        font-size: 24px;
-    }
-
-    .footer-brand .footer-logo-text span {
-        font-size: 13px;
-    }
-
     .footer-widget h5 {
-        font-size: 20px;
+        font-size: 18px;
+    }
+    .footer-widget p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-widget h5 {
+        font-size: 17px;
+    }
+    .footer-widget ul li {
+        margin-bottom: 10px;
     }
 }

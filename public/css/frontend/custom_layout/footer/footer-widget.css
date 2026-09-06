@@ -1,31 +1,33 @@
-/* =========================================================
-   FILE: footer-widget.css
-========================================================= */
+.footer-widget {
+    height: 100%;
+}
 
 .footer-widget h5 {
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 17px;
+    font-weight: 750;
     color: #064e3b;
-    margin-bottom: 28px;
+    margin: 3px 0 27px;
     position: relative;
+    display: inline-block;
+    letter-spacing: 0.1px;
 }
 
 .footer-widget h5::after {
     content: "";
-    width: 45px;
-    height: 3px;
-    background: #10b981;
     position: absolute;
+    width: 32px;
+    height: 3px;
+    background: linear-gradient(90deg, #10b981, #34d399);
     left: 0;
     bottom: -10px;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .footer-widget p {
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.8;
-    color: #065f46;
-    margin-bottom: 20px;
+    color: #386b5b;
+    margin: 0 0 20px;
 }
 
 .footer-widget ul {
@@ -35,17 +37,31 @@
 }
 
 .footer-widget ul li {
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
 .footer-widget ul li a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
     text-decoration: none;
-    color: #065f46;
-    transition: 0.3s ease;
-    font-size: 15px;
+    color: #386b5b;
+    font-size: 14px;
+    line-height: 1.5;
+    transition: all 0.25s ease;
+}
+
+.footer-widget ul li a i {
+    font-size: 10px;
+    color: #10b981;
+    transition: transform 0.25s ease;
 }
 
 .footer-widget ul li a:hover {
-    color: #16a34a;
-    padding-left: 6px;
+    color: #047857;
+    transform: translateX(4px);
+}
+
+.footer-widget ul li a:hover i {
+    transform: translateX(2px);
 }

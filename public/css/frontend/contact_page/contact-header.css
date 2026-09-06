@@ -1,5 +1,5 @@
 /* =========================================================
-contact PAGE INTRO - BASE
+CONTACT PAGE INTRO - BASE
 ========================================================= */
 
 .contact-page-intro {
@@ -72,11 +72,9 @@ CONTENT
 .contact-page-intro .contact-page-intro-subtitle {
     max-width: 600px;
     margin: 0 auto 16px;
-
     font-size: 15px;
     font-weight: 400;
     line-height: 1.6;
-
     color: #6b7280;
     text-align: center;
 }

@@ -1,146 +1,88 @@
-/* =========================================================
-   FOOTER BRAND SECTION
-========================================================= */
-
 .footer-brand {
-    border-radius: 28px;
-    padding: 0px;
-    backdrop-filter: blur(12px);
+    padding-right: 35px;
 }
-
-/* =========================================================
-   LOGO WRAPPER
-========================================================= */
 
 .footer-logo-wrap {
     display: flex;
     align-items: center;
-    gap: 18px;
     margin-bottom: 24px;
 }
 
-/* =========================================================
-   LOGO BOX
-========================================================= */
-
-/* =========================================================
-   LOGO BOX
-========================================================= */
-
 .footer-logo-box {
     width: 220px;
-    height: 120px;
-    border-radius: 24px;
+    height: 72px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 12px 20px;
+    justify-content: flex-start;
     overflow: hidden;
-
     flex-shrink: 0;
-
-    transition: 0.3s ease;
 }
-
-.footer-logo-box:hover {
-    transform: translateY(-3px);
-}
-
-/* =========================================================
-   LOGO IMAGE
-========================================================= */
 
 .footer-brand-logo {
     width: 200px;
-    height: auto;
-
+    height: 50px;
+    min-width: 200px;
+    min-height: 50px;
+    max-width: 200px;
+    max-height: 50px;
     object-fit: contain;
-
+    object-position: left center;
     display: block;
-
-    transition: 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .footer-logo-box:hover .footer-brand-logo {
     transform: scale(1.03);
 }
 
-/* =========================================================
-   LOGO IMAGE
-========================================================= */
-
-.footer-brand-logo {
-    width: 300px;
-    height: 75px;
-    object-fit: contain;
-    transition: 0.3s ease;
-}
-
-.footer-logo-box:hover .footer-brand-logo {
-    transform: scale(1.05);
-}
-
-/* =========================================================
-   TEXT
-========================================================= */
-
-.footer-logo-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.footer-logo-text h4 {
-    margin: 0;
-    font-size: 30px;
-    font-weight: 800;
-    color: #064e3b;
-    line-height: 1.1;
-}
-
-.footer-logo-text span {
-    margin-top: 6px;
-    font-size: 14px;
-    color: #059669;
-    letter-spacing: 0.3px;
-}
-
-/* =========================================================
-   DESCRIPTION
-========================================================= */
-
 .footer-description {
     font-size: 15px;
     line-height: 1.9;
-    color: #065f46;
-    margin-bottom: 28px;
+    color: #386b5b;
+    margin: 0 0 24px;
+    max-width: 510px;
 }
 
-/* =========================================================
-   MOBILE
-========================================================= */
+.footer-brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 14px;
+    border: 1px solid rgba(16, 185, 129, 0.16);
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.65);
+    color: #047857;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 5px 18px rgba(6, 95, 70, 0.05);
+}
+
+.footer-brand-badge i {
+    font-size: 13px;
+    color: #10b981;
+}
+
+@media (max-width: 991px) {
+    .footer-brand {
+        padding-right: 0;
+    }
+}
 
 @media (max-width: 768px) {
-    .footer-brand {
-        padding: 24px;
-    }
-
     .footer-logo-box {
-        width: 72px;
-        height: 72px;
-        border-radius: 18px;
+        width: 220px;
+        height: 65px;
     }
-
     .footer-brand-logo {
-        width: 56px;
-        height: 56px;
+        width: 200px;
+        height: 50px;
+        min-width: 200px;
+        min-height: 50px;
+        max-width: 200px;
+        max-height: 50px;
     }
-
-    .footer-logo-text h4 {
-        font-size: 24px;
-    }
-
-    .footer-logo-text span {
-        font-size: 12px;
+    .footer-description {
+        font-size: 14px;
+        line-height: 1.8;
     }
 }
