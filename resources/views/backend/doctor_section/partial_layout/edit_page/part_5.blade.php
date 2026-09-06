@@ -1,14 +1,33 @@
-<div class="doctor-form-section">
+ <div class="row">
+     <div class="col-md-4">
+         <div class="form-group">
+             <label>Doctor Email</label>
 
-    <div class="doctor-section-title">
-        <i class="fas fa-file-medical"></i>
-        About Doctor
-    </div>
+             <input type="email" name="email" class="form-control" value="{{ old('email', $doctor->user->email) }}"
+                 placeholder="Enter email">
+         </div>
+     </div>
 
-    <div class="form-group">
-        <label>Doctor Profile</label>
+     <div class="col-md-4">
+         <div class="form-group">
+             <label>Doctor Username</label>
 
-        <textarea name="about" rows="5" class="form-control" placeholder="Write a short professional profile...">{{ old('about', $doctor->about) }}</textarea>
-    </div>
+             <input type="text" name="username" class="form-control"
+                 value="{{ old('username', $doctor->user->username) }}" placeholder="Enter username">
+         </div>
+     </div>
 
-</div>
+     <div class="col-md-4">
+         <label for="password">Password</label>
+         <div class="input-group">
+
+             <input type="password" name="password" id="password" class="form-control" value="{{ old('password') }}">
+
+             <button type="button" class="btn btn-outline-secondary toggle-password" data-target="password">
+
+                 <i class="fa fa-eye"></i>
+
+             </button>
+         </div>
+     </div>
+ </div>

@@ -76,9 +76,9 @@
                         @include('backend.doctor_section.partial_layout.edit_page.part_3')
                         {{-- This is for consultation information --}}
                         @include('backend.doctor_section.partial_layout.edit_page.part_4')
-                        {{-- This is for doctor about information --}}
-                        @include('backend.doctor_section.partial_layout.edit_page.part_5')
                         {{-- This is for doctor account information --}}
+                        @include('backend.doctor_section.partial_layout.edit_page.part_5')
+                        {{-- This is for doctor about information --}}
                         @include('backend.doctor_section.partial_layout.edit_page.part_6')
                         {{-- This is for doctor image --}}
                         @include('backend.doctor_section.partial_layout.edit_page.part_7')
