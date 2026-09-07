@@ -10,26 +10,3 @@
 }
 
 /* BRAND CONTAINER */
-
-.brand-link {
-    display: flex;
-    align-items: center;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    background-color: #ffffff !important;
-    border-bottom: 1px solid #eee;
-}
-
-/* LOGO */
-
-.brand-link .brand-image,
-.brand-link {
-    max-height: 50px;
-    height: auto;
-    max-width: 220px;
-    width: auto;
-    display: block;
-    margin: 0 auto;
-    object-fit: contain;
-    box-shadow: none;
-}

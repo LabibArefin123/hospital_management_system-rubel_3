@@ -62,12 +62,12 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
-    'logo' => '<b>SusthoCare</b>',
-    'logo_img' => null,
-    'logo_img_class' => null,
+    'logo' => '<span class="brand-text brand-text-hidden">SusthoCare</span>',
+    'logo_img' => 'uploads/images/original_logor.JPG',
+    'logo_img_class' => 'brand-logo', // <- use your custom class
     'logo_img_xl' => null,
-    'logo_img_xl_class' => null,
-    'logo_img_alt' => null,
+    'logo_img_xl_class' => 'brand-image-xs',
+    'logo_img_alt' => 'SusthoCare Logo',
 
     /*
     |--------------------------------------------------------------------------
@@ -522,7 +522,7 @@ return [
     */
 
     'plugins' => [
-      
+
         'Select2' => [
             'active' => false,
             'files' => [

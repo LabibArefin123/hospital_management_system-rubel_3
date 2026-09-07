@@ -4,8 +4,8 @@
         <div class="row align-items-center">
             <div class="col-lg-3 col-md-4 text-center">
                 <div class="profile-avatar-wrapper">
-                    <img src="{{ $user->profile_picture ? asset($user->profile_picture) : asset('uploads/images/default.jpg') }}"
-                        alt="{{ $user->name }}" class="profile-avatar">
+                    <img src="{{ $profileImage }}" alt="{{ $user->name }}" class="profile-avatar">
+
                     <span class="profile-online-dot"></span>
                 </div>
             </div>

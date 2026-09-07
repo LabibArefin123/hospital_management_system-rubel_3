@@ -1,0 +1,35 @@
+/* =========================================================
+   PROFILE IMAGE EDIT - HEADER
+========================================================= */
+
+.profile-image-edit-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.profile-image-edit-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #ffffff;
+    background: #ff9900;
+    border-radius: 12px;
+    font-size: 18px;
+}
+
+.profile-image-edit-heading h5 {
+    margin: 0 0 3px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #263238;
+}
+
+.profile-image-edit-heading small {
+    color: #7b8790;
+    font-size: 13px;
+}

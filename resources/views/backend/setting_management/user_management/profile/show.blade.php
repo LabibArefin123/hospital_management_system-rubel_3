@@ -35,9 +35,9 @@
 
 @section('content')
     <div class="profile-page">
-        @include('backend.setting_management.user_management.profile.partials.profile_header')
-        @include('backend.setting_management.user_management.profile.partials.profile_professional')
-        @include('backend.setting_management.user_management.profile.partials.profile_account')
+        @include('backend.setting_management.user_management.profile.partials.show_page.profile_header')
+        @include('backend.setting_management.user_management.profile.partials.show_page.profile_professional')
+        @include('backend.setting_management.user_management.profile.partials.show_page.profile_account')
     </div>
 @endsection
 

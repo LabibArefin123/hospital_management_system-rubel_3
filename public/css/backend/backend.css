@@ -9,6 +9,7 @@
 @import url("./custom_components/custom_navbar/dropdown_user_menu/user_menu_profile.css");
 @import url("./custom_components/custom_navbar/dropdown_user_menu/user_menu_actions.css");
 
+@import url("./custom_layout/brand-logo.css");
 @import url("./custom_layout/backend-color.css");
 @import url("./custom_layout/backend-navbar.css");
 @import url("./custom_layout/backend-sidebar.css");

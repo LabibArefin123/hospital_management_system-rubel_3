@@ -1,0 +1,148 @@
+/* =========================================================
+   DOCTOR DASHBOARD FILTER
+========================================================= */
+
+#filterSection {
+    border: 0;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+    animation: filterSlideDown 0.25s ease;
+}
+
+#filterSection .card-body {
+    padding: 22px 24px;
+}
+
+#filterSection .row {
+    align-items: flex-end;
+}
+
+#filterSection .form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #343a40;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#filterSection .input-group {
+    height: 46px;
+}
+
+#filterSection .input-group-text {
+    min-width: 46px;
+    justify-content: center;
+    border: 1px solid #dee2e6;
+    border-right: 0;
+    border-radius: 10px 0 0 10px;
+    background: #f8f9fa;
+    color: #8b0000;
+    font-size: 15px;
+}
+
+#filterSection .form-control {
+    height: 46px;
+    border: 1px solid #dee2e6;
+    border-radius: 0 10px 10px 0;
+    background: #fff;
+    color: #343a40;
+    font-size: 14px;
+    box-shadow: none;
+    transition: all 0.2s ease;
+}
+
+#filterSection .form-control:focus {
+    border-color: #8b0000;
+    box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.08);
+}
+
+#filterSection .input-group:focus-within .input-group-text {
+    border-color: #8b0000;
+    background: #fff7f7;
+    color: #8b0000;
+}
+
+#filterSection select.form-control {
+    cursor: pointer;
+    padding-right: 34px;
+}
+
+#filterSection input[type="date"] {
+    cursor: pointer;
+}
+
+#resetFilter {
+    width: 100%;
+    min-height: 46px;
+    border: 0;
+    border-radius: 10px !important;
+    background: #8b0000;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15);
+    transition: all 0.2s ease;
+}
+
+#resetFilter:hover {
+    background: #a50000;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(139, 0, 0, 0.2);
+}
+
+#resetFilter:active {
+    transform: translateY(0);
+}
+
+#resetFilter i {
+    margin-right: 5px;
+}
+
+@keyframes filterSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 767.98px) {
+    #filterSection .card-body {
+        padding: 18px;
+    }
+
+    #filterSection .row > div {
+        margin-bottom: 14px;
+    }
+
+    #filterSection .row > div:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 575.98px) {
+    #filterSection {
+        border-radius: 12px;
+    }
+
+    #filterSection .card-body {
+        padding: 15px;
+    }
+
+    #filterSection .form-label {
+        font-size: 13px;
+    }
+
+    #filterSection .input-group,
+    #filterSection .form-control,
+    #resetFilter {
+        min-height: 44px;
+        height: 44px;
+    }
+}

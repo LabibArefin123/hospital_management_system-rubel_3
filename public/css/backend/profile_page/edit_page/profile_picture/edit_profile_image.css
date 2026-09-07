@@ -1,0 +1,40 @@
+/* =========================================================
+   PROFILE IMAGE EDIT - MAIN
+========================================================= */
+
+.profile-image-edit-section {
+    width: 100%;
+    padding: 24px;
+    background: #ffffff;
+    border: 1px solid #e8edf1;
+    border-radius: 16px;
+}
+
+.profile-image-edit-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: stretch;
+}
+
+.profile-image-label {
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #37474f;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 767.98px) {
+    .profile-image-edit-section {
+        padding: 18px;
+    }
+
+    .profile-image-edit-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}

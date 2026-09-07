@@ -1,150 +1,89 @@
-/*  DOCTOR APPOINTMENT FILTER  */
-
+/* =========================================================
+   DOCTOR DASHBOARD FILTER - CORE
+========================================================= */
 document.addEventListener("DOMContentLoaded", function () {
     "use strict";
 
-    const toggleBtn = document.getElementById("toggleFilterBtn");
-    const filterSection = document.getElementById("filterSection");
-    const filterArrow = document.getElementById("filterArrow");
-    const patientInput = document.getElementById("searchPatient");
-    const dateInput = document.getElementById("searchDate");
-    const resetBtn = document.getElementById("resetFilter");
-    const countElement = document.getElementById("doctorAppointmentCount");
+    /* ELEMENTS */
+    window.DoctorFilter = {
+        toggleBtn: document.getElementById("toggleFilterBtn"),
+        filterSection: document.getElementById("filterSection"),
+        filterArrow: document.getElementById("filterArrow"),
 
-    /*  GET ONLY DOCTOR APPOINTMENT CARDS  */
-    const rows = document.querySelectorAll(
-        ".appointment-card[data-type='doctor']",
-    );
+        patientInput: document.getElementById("searchPatient"),
+        dateInput: document.getElementById("searchDate"),
+        statusInput: document.getElementById("searchStatus"),
+        resetBtn: document.getElementById("resetFilter"),
 
-    /*  STORE SERVER TOTAL  */
-    let serverTotal = 0;
+        countElement: document.getElementById("doctorAppointmentCount"),
+        dataTable: document.getElementById("dataTables"),
 
-    if (countElement) {
-        const text = countElement.textContent.trim();
+        doctorAppointments: document.querySelectorAll(
+            ".appointment-card[data-type='doctor']",
+        ),
+
+        latestAppointments: document.querySelectorAll(
+            "#dataTables tbody tr.appointment-row",
+        ),
+
+        serverTotal: 0,
+    };
+
+    /* SERVER TOTAL */
+    if (DoctorFilter.countElement) {
+        const text = DoctorFilter.countElement.textContent.trim();
         const match = text.match(/\d+/);
 
         if (match) {
-            serverTotal = parseInt(match[0], 10);
+            DoctorFilter.serverTotal = parseInt(match[0], 10);
         }
     }
 
-    /*  TOGGLE FILTER SECTION  */
+    /* FILTER VALUES */
+    DoctorFilter.getValues = function () {
+        return {
+            patient:
+                DoctorFilter.patientInput?.value.toLowerCase().trim() || "",
+            date: DoctorFilter.dateInput?.value || "",
+            status: DoctorFilter.statusInput?.value.toLowerCase().trim() || "",
+        };
+    };
 
-    if (toggleBtn && filterSection) {
-        toggleBtn.addEventListener("click", function () {
-            filterSection.classList.toggle("d-none");
+    /* FILTER ACTIVE */
+    DoctorFilter.isActive = function () {
+        const filters = DoctorFilter.getValues();
+        return (
+            filters.patient !== "" ||
+            filters.date !== "" ||
+            filters.status !== ""
+        );
+    };
 
-            if (filterArrow) {
-                if (filterSection.classList.contains("d-none")) {
-                    filterArrow.classList.remove("fa-chevron-up");
-                    filterArrow.classList.add("fa-chevron-down");
-                } else {
-                    filterArrow.classList.remove("fa-chevron-down");
-                    filterArrow.classList.add("fa-chevron-up");
-                }
-            }
-        });
-    }
+    /* MATCH APPOINTMENT */
+    DoctorFilter.matches = function (element, filters) {
+        const patient = (element.dataset.patient || "").toLowerCase().trim();
+        const date = element.dataset.date || "";
+        const status = (element.dataset.status || "").toLowerCase().trim();
+        const matchPatient =
+            filters.patient === "" || patient.includes(filters.patient);
+        const matchDate = filters.date === "" || date === filters.date;
+        const matchStatus = filters.status === "" || status === filters.status;
+        return matchPatient && matchDate && matchStatus;
+    };
 
-    /*  UPDATE APPOINTMENT COUNT  */
+    /* APPLY FILTER */
+    DoctorFilter.apply = function () {
+        const filters = DoctorFilter.getValues();
 
-    function updateAppointmentCount(count) {
-        if (!countElement) {
-            return;
-        }
+        document.dispatchEvent(
+            new CustomEvent("doctorFilterChanged", {
+                detail: filters,
+            }),
+        );
+    };
 
-        countElement.textContent =
-            count + (count === 1 ? " Appointment" : " Appointments");
-    }
-
-    /*  CHECK WHETHER FILTER IS ACTIVE  */
-
-    function isFilterActive() {
-        const patientValue = patientInput?.value.trim() || "";
-        const dateValue = dateInput?.value || "";
-
-        return patientValue !== "" || dateValue !== "";
-    }
-
-    /*  FILTER APPOINTMENTS  */
-
-    function filterAppointments() {
-        const patientValue = patientInput?.value.toLowerCase().trim() || "";
-        const dateValue = dateInput?.value || "";
-
-        let visibleCount = 0;
-
-        rows.forEach(function (row) {
-            const patient = (row.dataset.patient || "").toLowerCase();
-            const date = row.dataset.date || "";
-
-            const matchPatient = patient.includes(patientValue);
-            const matchDate = dateValue === "" || date === dateValue;
-
-            const visible = matchPatient && matchDate;
-
-            if (visible) {
-                row.style.display = "";
-                visibleCount++;
-            } else {
-                row.style.display = "none";
-            }
-        });
-
-        /*  ONLY CHANGE COUNT WHEN FILTER IS ACTIVE  */
-
-        if (isFilterActive()) {
-            updateAppointmentCount(visibleCount);
-        } else {
-            updateAppointmentCount(serverTotal);
-        }
-    }
-
-    /*  PATIENT SEARCH  */
-
-    if (patientInput) {
-        patientInput.addEventListener("input", function () {
-            filterAppointments();
-        });
-    }
-
-    /*  DATE SEARCH  */
-
-    if (dateInput) {
-        dateInput.addEventListener("change", function () {
-            filterAppointments();
-        });
-    }
-
-    /*  RESET FILTER  */
-
-    if (resetBtn) {
-        resetBtn.addEventListener("click", function () {
-            if (patientInput) {
-                patientInput.value = "";
-            }
-
-            if (dateInput) {
-                dateInput.value = "";
-            }
-
-            /*  RESTORE ALL CURRENT PAGE APPOINTMENTS  */
-
-            rows.forEach(function (row) {
-                row.style.display = "";
-            });
-
-            /*  RESTORE SERVER TOTAL  */
-
-            updateAppointmentCount(serverTotal);
-        });
-    }
-
-    /*  INITIAL LOAD - DO NOT RECALCULATE SERVER TOTAL  */
-
-    rows.forEach(function (row) {
-        row.style.display = "";
-    });
-
-    updateAppointmentCount(serverTotal);
+    /* INPUT EVENTS */
+    DoctorFilter.patientInput?.addEventListener("input", DoctorFilter.apply);
+    DoctorFilter.dateInput?.addEventListener("change", DoctorFilter.apply);
+    DoctorFilter.statusInput?.addEventListener("change", DoctorFilter.apply);
 });
