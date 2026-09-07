@@ -50,5 +50,3 @@
           showInfo(@json(session('info')));
       </script>
   @endif
-
-  <script src="{{ asset('js/custom_backend/doctor_management/doctor_image_info.js') }}"></script>

@@ -1,0 +1,43 @@
+/* =========================================================
+SYSTEM DELETE MODAL - RESPONSIVE
+========================================================= */
+
+@media(max-width:575.98px){
+.system-delete-modal .modal-dialog{
+width:auto;
+max-width:none;
+margin:12px
+}
+
+.system-delete-modal-header{
+padding:24px 20px 8px
+}
+
+.system-delete-modal-icon{
+width:58px;
+height:58px;
+font-size:22px
+}
+
+.system-delete-modal-body{
+padding:12px 20px 18px
+}
+
+.system-delete-modal-body h4{
+font-size:18px
+}
+
+.system-delete-modal-footer{
+flex-direction:column;
+padding:15px 20px
+}
+
+.system-delete-modal-footer form,
+.system-delete-btn{
+width:100%
+}
+
+.system-delete-modal-footer form{
+display:block
+}
+}

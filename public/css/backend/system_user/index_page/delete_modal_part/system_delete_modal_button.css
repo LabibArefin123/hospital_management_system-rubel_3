@@ -1,0 +1,68 @@
+/* =========================================================
+SYSTEM DELETE MODAL - BUTTONS
+========================================================= */
+
+.system-delete-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 9px;
+    padding: 17px 24px;
+    background: #fafbfc;
+    border-top: 1px solid #edf1f4;
+}
+
+.system-delete-modal-footer form {
+    margin: 0;
+}
+
+.system-delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-width: 105px;
+    padding: 9px 15px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.system-delete-btn i {
+    font-size: 11px;
+}
+
+.system-delete-btn-cancel {
+    color: #56636b;
+    background: #fff;
+    border: 1px solid #dfe5e8;
+}
+
+.system-delete-btn-cancel:hover {
+    color: #263238;
+    background: #f2f4f5;
+    border-color: #d3dadd;
+}
+
+.system-delete-btn-confirm {
+    color: #fff;
+    background: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+.system-delete-btn-confirm:hover {
+    color: #fff;
+    background: #c82333;
+    border-color: #bd2130;
+}
+
+.system-delete-btn-confirm:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.system-delete-btn-confirm.is-loading {
+    pointer-events: none;
+}

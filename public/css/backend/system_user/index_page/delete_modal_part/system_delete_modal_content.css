@@ -1,0 +1,111 @@
+/* =========================================================
+SYSTEM DELETE MODAL - CONTENT
+========================================================= */
+
+.system-delete-modal-body {
+    padding: 12px 28px 20px;
+    text-align: center;
+}
+
+.system-delete-modal-body h4 {
+    margin: 0 0 8px;
+    color: #263238;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.system-delete-modal-message {
+    margin: 0 0 18px;
+    color: #74818a;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.system-delete-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    padding: 13px 14px;
+    margin-bottom: 18px;
+    text-align: left;
+    background: #fff8f8;
+    border: 1px solid #f8dada;
+    border-radius: 11px;
+    color: #7b4b4b;
+}
+
+.system-delete-warning > i {
+    margin-top: 2px;
+    color: #dc3545;
+    font-size: 14px;
+}
+
+.system-delete-warning div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.system-delete-warning strong {
+    color: #b52b37;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.system-delete-warning span {
+    color: #8c6969;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.system-delete-account-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    text-align: left;
+    background: #f8fafb;
+    border: 1px solid #e7edf1;
+    border-radius: 12px;
+}
+
+.system-delete-account-avatar {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #e1e7ea;
+}
+
+.system-delete-account-avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.system-delete-account-details {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.system-delete-account-details strong {
+    overflow: hidden;
+    color: #263238;
+    font-size: 13px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.system-delete-account-details span {
+    overflow: hidden;
+    margin-top: 2px;
+    color: #8a969d;
+    font-size: 11px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

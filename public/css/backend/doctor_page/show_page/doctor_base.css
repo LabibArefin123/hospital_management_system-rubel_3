@@ -1,0 +1,31 @@
+/* =========================================================
+DOCTOR SHOW - BASE
+========================================================= */
+
+.doctor-show-page {
+    padding: 0 0 30px;
+}
+
+.doctor-show-overview {
+    display: grid;
+    grid-template-columns: 330px minmax(0, 1fr);
+    gap: 22px;
+    align-items: stretch;
+    margin-bottom: 22px;
+}
+
+.doctor-show-section {
+    width: 100%;
+}
+
+@media (max-width: 991.98px) {
+    .doctor-show-overview {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .doctor-show-page {
+        padding-bottom: 20px;
+    }
+}

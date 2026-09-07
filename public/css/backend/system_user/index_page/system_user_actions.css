@@ -1,5 +1,5 @@
 .system-user-action-cell {
-    min-width: 430px;
+    min-width: 486px;
     width: 1%;
     padding-top: 0.65rem !important;
     padding-bottom: 0.65rem !important;
@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: flex-start;
     gap: 0.4rem;
-    width: 100%;
+    width: max-content;
     min-height: 36px;
     margin: 0;
     padding: 0;
@@ -23,14 +23,13 @@
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    vertical-align: middle !important;
-    position: relative;
-    top: 0;
-    width: 96px;
+    flex: 0 0 110px !important;
+    width: 110px !important;
+    min-width: 110px !important;
+    max-width: 110px !important;
     height: 36px !important;
-    min-width: 96px !important;
-    max-width: 96px !important;
     min-height: 36px !important;
+    max-height: 36px !important;
     margin: 0 !important;
     padding: 0 0.5rem !important;
     border-radius: 7px;
@@ -41,96 +40,104 @@
     white-space: nowrap;
     box-sizing: border-box;
     text-decoration: none;
-    flex: 0 0 96px;
+    vertical-align: middle !important;
+    position: relative;
+    top: 0;
 }
 
 .custom-action-btn i {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    flex: 0 0 14px;
     width: 14px;
     min-width: 14px;
-    margin-right: 0.35rem;
+    height: 14px;
+    margin: 0 0.35rem 0 0;
     font-size: 0.7rem;
     line-height: 1;
 }
 
 .custom-action-btn span {
     display: inline-block;
+    width: auto;
+    margin: 0;
+    padding: 0;
     line-height: 1;
     white-space: nowrap;
-}
-
-.system-user-delete-form {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 96px;
-    height: 36px !important;
-    min-width: 96px !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 0 !important;
-    vertical-align: middle;
-}
-.system-user-delete-form .custom-action-btn {
-    flex: 0 0 96px;
 }
 
 .custom-action-btn:hover {
     transform: translateY(-1px);
 }
 
+.custom-action-btn:focus {
+    outline: none;
+}
+
+.system-user-delete-btn {
+    display: inline-flex !important;
+}
+
 @media (max-width: 992px) {
     .system-user-action-cell {
-        min-width: 410px;
+        min-width: 468px;
     }
+
     .system-user-actions {
         gap: 0.3rem;
+        min-height: 34px;
     }
+
     .custom-action-btn {
-        width: 90px;
-        min-width: 90px;
-        max-width: 90px;
+        flex: 0 0 106px !important;
+        width: 106px !important;
+        min-width: 106px !important;
+        max-width: 106px !important;
         height: 34px !important;
         min-height: 34px !important;
-        flex-basis: 90px;
+        max-height: 34px !important;
         font-size: 0.7rem;
         padding: 0 0.4rem !important;
     }
-    .system-user-delete-form {
-        width: 90px;
-        min-width: 90px;
-        height: 34px !important;
-    }
-    .system-user-delete-form .custom-action-btn {
-        flex-basis: 90px;
+
+    .custom-action-btn i {
+        flex-basis: 13px;
+        width: 13px;
+        min-width: 13px;
+        height: 13px;
+        font-size: 0.66rem;
     }
 }
 
 @media (max-width: 768px) {
     .system-user-action-cell {
-        min-width: 390px;
+        min-width: 450px;
     }
+
     .system-user-actions {
         gap: 0.25rem;
+        min-height: 32px;
     }
+
     .custom-action-btn {
-        width: 86px;
-        min-width: 86px;
-        max-width: 86px;
+        flex: 0 0 102px !important;
+        width: 102px !important;
+        min-width: 102px !important;
+        max-width: 102px !important;
         height: 32px !important;
         min-height: 32px !important;
-        flex-basis: 86px;
+        max-height: 32px !important;
         font-size: 0.68rem;
         padding: 0 0.3rem !important;
     }
-    .system-user-delete-form {
-        width: 86px;
-        min-width: 86px;
-        height: 32px !important;
-    }
-    .system-user-delete-form .custom-action-btn {
-        flex-basis: 86px;
+
+    .custom-action-btn i {
+        flex-basis: 12px;
+        width: 12px;
+        min-width: 12px;
+        height: 12px;
+        font-size: 0.63rem;
+        margin-right: 0.3rem;
     }
 }

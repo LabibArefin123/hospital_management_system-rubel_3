@@ -1,0 +1,121 @@
+/* =========================================================
+DOCTOR SHOW - PROFESSIONAL
+========================================================= */
+
+.doctor-professional-card {
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e6ecf0;
+    border-radius: 18px;
+    box-shadow: 0 8px 28px rgba(31, 45, 61, 0.07);
+    overflow: hidden;
+}
+
+.doctor-professional-header {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 18px 22px;
+    border-bottom: 1px solid #edf1f4;
+}
+
+.doctor-professional-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    background: #eef7ff;
+    color: #3c8dbc;
+    font-size: 16px;
+}
+
+.doctor-professional-title {
+    margin: 0;
+    color: #263238;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.doctor-professional-body {
+    padding: 20px 22px;
+}
+
+.doctor-professional-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.doctor-professional-item {
+    height: 100%;
+    padding: 22px 18px;
+    text-align: center;
+    background: #fafcfd;
+    border: 1px solid #e7edf1;
+    border-radius: 15px;
+    transition: all 0.2s ease;
+}
+
+.doctor-professional-item:hover {
+    transform: translateY(-3px);
+    border-color: #dce5ea;
+    box-shadow: 0 8px 20px rgba(31, 45, 61, 0.07);
+}
+
+.doctor-professional-item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    font-size: 19px;
+}
+
+.doctor-professional-item-icon.blue {
+    background: #eef7ff;
+    color: #3c8dbc;
+}
+
+.doctor-professional-item-icon.red {
+    background: #fff0f0;
+    color: #dc3545;
+}
+
+.doctor-professional-item-icon.green {
+    background: #effaf2;
+    color: #28a745;
+}
+
+.doctor-professional-item-title {
+    margin: 0;
+    color: #263238;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.doctor-professional-item-value {
+    margin: 8px 0 0;
+    color: #74818a;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.doctor-professional-fee {
+    color: #28a745;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+@media (max-width: 767.98px) {
+    .doctor-professional-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .doctor-professional-body {
+        padding: 16px;
+    }
+}

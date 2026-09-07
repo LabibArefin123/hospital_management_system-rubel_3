@@ -1,7 +1,7 @@
 $(document).ready(function () {
     window.SystemUserTable = $("#systemUsersTable").DataTable({
         processing: true,
-        serverSide: true,
+        serverSide: false,
         searching: false,
         lengthChange: false,
         pageLength: 10,

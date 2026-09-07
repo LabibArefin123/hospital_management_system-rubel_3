@@ -9,6 +9,14 @@
     <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_actions.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_responsive.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal_content.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal_button.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal_responsive.css') }}">
 @stop
 
 @section('content_header')
@@ -139,16 +147,17 @@
                                                 <i class="fas fa-key"></i>
                                                 <span>Change Password</span>
                                             </button>
-                                            <form action="{{ route('system_users.destroy', $user->id) }}" method="POST"
-                                                class="system-user-delete-form"
-                                                onsubmit="return confirm('Are you sure you want to delete this user?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-secondary btn-sm custom-action-btn">
-                                                    <i class="fas fa-trash"></i>
-                                                    <span>Delete</span>
-                                                </button>
-                                            </form>
+
+                                            <button type="button"
+                                                class="btn btn-secondary btn-sm custom-action-btn system-user-delete-btn"
+                                                data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}"
+                                                data-user-email="{{ $user->email ?? '' }}"
+                                                data-user-role="{{ $user->roles->pluck('name')->join(', ') }}"
+                                                data-user-picture="{{ $user->hasRole('doctor') && $user->doctor && $user->doctor->image ? asset($user->doctor->image) : ($user->profile_picture ? asset($user->profile_picture) : asset('uploads/images/default.jpg')) }}"
+                                                data-delete-url="{{ route('system_users.destroy', $user->id) }}">
+                                                <i class="fas fa-trash"></i>
+                                                <span>Delete</span>
+                                            </button>
                                         @endif
                                     </div>
                                 </td>
@@ -161,10 +170,9 @@
     </div>
 
     {{--  MODALS --}}
-
     @include('backend.setting_management.user_management.system_user.modal.appointment_user')
     @include('backend.setting_management.user_management.system_user.modal.change_password')
-
+    @include('backend.setting_management.user_management.system_user.modal.delete_modal')
 @stop
 
 @section('js')
@@ -191,7 +199,9 @@
     <script
         src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_user_password_toggle.js') }}">
     </script>
+    <script src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_delete_modal.js') }}">
+    </script>
     <script src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_user_table.js') }}"></script>
     <script src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_user_filter.js') }}">
     </script>
-@endsection
+@stop
