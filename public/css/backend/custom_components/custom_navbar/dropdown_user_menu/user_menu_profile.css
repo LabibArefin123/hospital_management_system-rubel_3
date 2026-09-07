@@ -1,0 +1,30 @@
+/* =========================================================
+   USER MENU PROFILE
+========================================================= */
+.user-menu-profile-image {
+    position: relative;
+}
+
+.user-menu-profile-image::after {
+    content: "";
+    position: absolute;
+    right: 1px;
+    bottom: 1px;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    background: #28a745;
+}
+
+.user-menu-profile-info {
+    flex: 1;
+}
+
+.user-menu-profile-info strong {
+    letter-spacing: -0.1px;
+}
+
+.user-menu-profile-info span {
+    text-transform: capitalize;
+}

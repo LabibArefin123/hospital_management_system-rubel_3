@@ -1,0 +1,25 @@
+/* =========================================================
+   ADMINLTE BACKGROUND
+========================================================= */
+html,
+body {
+    min-height: 100%;
+    background: #f4f6f9 !important;
+}
+.content-wrapper {
+    min-height: 100vh !important;
+    background: transparent !important;
+}
+.content-wrapper > .content {
+    background: transparent !important;
+}
+.content {
+    background: transparent !important;
+}
+.wrapper {
+    min-height: 100vh !important;
+    background: transparent !important;
+}
+.main-footer {
+    background: #f4f6f9 !important;
+}

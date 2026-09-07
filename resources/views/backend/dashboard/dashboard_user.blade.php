@@ -9,6 +9,7 @@
 @section('adminlte_css')
     <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/user_part/header_part/dashboard_header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/user_part/payment_part/payment_box.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/user_part/appointment_part/appointment_empty.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/user_part/appointment_part/appointment_box.css') }}">
 @stop
 
@@ -21,4 +22,8 @@
     @include('backend.dashboard.partials.user_part.latest_appointment')
     {{-- ================= ALL APPOINTMENTS ================= --}}
     @include('backend.dashboard.partials.user_part.all_appointment')
+@endsection
+
+@section('js')
+    <script src="{{ asset('js/custom_backend/dashboard_page/user/appointment_empty.js') }}"></script>
 @endsection

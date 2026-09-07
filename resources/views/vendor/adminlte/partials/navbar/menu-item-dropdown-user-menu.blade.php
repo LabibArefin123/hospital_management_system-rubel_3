@@ -1,11 +1,29 @@
 @php
+    $user = Auth::user();
     $logout_url = View::getSection('logout_url') ?? config('adminlte.logout_url', 'logout');
-    // Default to your 'profile' route instead of logout
     $profile_url = View::getSection('profile_url') ?? 'system_users.user_profile_show';
+    $userRole = $user->getRoleNames()->first();
+    $doctor = $userRole === 'doctor' ? \App\Models\Doctor::where('user_id', $user->id)->first() : null;
+    $profileImage =
+        $userRole === 'doctor'
+            ? $doctor?->image ?? 'uploads/images/default.jpg'
+            : $user->profile_picture ?? 'uploads/images/default.jpg';
+    $dashboardUrl = match ($userRole) {
+        'admin' => route('dashboard.admin'),
+        'doctor' => route('dashboard.doctor'),
+        'user' => route('dashboard.user'),
+        default => '#',
+    };
+    $roleLabel = match ($userRole) {
+        'admin' => 'Administrator',
+        'doctor' => 'Doctor',
+        'user' => 'Patient',
+        default => ucfirst($userRole ?? 'User'),
+    };
 @endphp
 
 @if (config('adminlte.usermenu_profile_url', false))
-    @php($profile_url = Auth::user()->adminlte_profile_url())
+    @php($profile_url = $user->adminlte_profile_url())
 @endif
 
 @if (config('adminlte.use_route_url', false))
@@ -18,41 +36,87 @@
 
 <li class="nav-item dropdown user-menu">
 
-    {{-- User menu toggler --}}
-    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-        @if (config('adminlte.usermenu_image'))
-            <img src="{{ Auth::user()->adminlte_image() }}" class="user-image img-circle elevation-2"
-                alt="{{ Auth::user()->name }}">
-        @endif
-        <span @if (config('adminlte.usermenu_image')) class="d-none d-md-inline" @endif>
-            {{ Auth::user()->name }}
+    {{-- USER MENU TOGGLER --}}
+    <a href="#" class="nav-link dropdown-toggle user-menu-toggle" data-toggle="dropdown">
+        <span class="user-menu-avatar">
+            <img src="{{ asset($profileImage) }}" alt="{{ $user->name }}">
         </span>
+        <span class="user-menu-name d-none d-md-inline">
+            {{ $user->name }}
+        </span>
+        <i class="fas fa-chevron-down user-menu-arrow"></i>
     </a>
 
-    {{-- Simple dropdown list --}}
-    <ul class="dropdown-menu dropdown-menu-right shadow-sm border-0">
+    {{-- USER MENU DROPDOWN --}}
+    <ul class="dropdown-menu dropdown-menu-right user-menu-dropdown">
 
-        <li>
-            <a href="{{ $profile_url ?? '#' }}" class="dropdown-item d-flex align-items-center gap-2">
-                <i class="fa fa-user text-primary"></i>
-                <span>Profile</span>
+        {{-- PROFILE HEADER --}}
+        <li class="user-menu-profile">
+            <div class="user-menu-profile-image">
+                <img src="{{ asset($profileImage) }}" alt="{{ $user->name }}">
+            </div>
+            <div class="user-menu-profile-info">
+                <strong>{{ $user->name }}</strong>
+                <span>
+                    <i class="fas fa-circle"></i>
+                    {{ $roleLabel }}
+                </span>
+            </div>
+        </li>
+
+        {{-- DASHBOARD --}}
+        <li class="user-menu-dashboard">
+            <a href="{{ $dashboardUrl }}" class="user-menu-item">
+                <span class="user-menu-item-icon dashboard-icon">
+                    <i class="fas fa-th-large"></i>
+                </span>
+                <span class="user-menu-item-content">
+                    <strong>Dashboard</strong>
+                    <small>View your dashboard</small>
+                </span>
+                <i class="fas fa-chevron-right user-menu-item-arrow"></i>
             </a>
         </li>
 
+        {{-- PROFILE --}}
         <li>
-            <a href="#" class="dropdown-item d-flex align-items-center gap-2 text-danger"
+            <a href="{{ $profile_url ?? '#' }}" class="user-menu-item">
+                <span class="user-menu-item-icon profile-icon">
+                    <i class="fas fa-user"></i>
+                </span>
+                <span class="user-menu-item-content">
+                    <strong>My Profile</strong>
+                    <small>Manage your account</small>
+                </span>
+                <i class="fas fa-chevron-right user-menu-item-arrow"></i>
+            </a>
+        </li>
+
+        {{-- DIVIDER --}}
+        <li class="user-menu-divider"></li>
+
+        {{-- LOGOUT --}}
+        <li>
+            <a href="#" class="user-menu-item user-menu-logout"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <i class="fa fa-power-off"></i>
-                <span>Logout</span>
+                <span class="user-menu-item-icon logout-icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                </span>
+                <span class="user-menu-item-content">
+                    <strong>Logout</strong>
+                    <small>Sign out of your account</small>
+                </span>
+                <i class="fas fa-chevron-right user-menu-item-arrow"></i>
             </a>
         </li>
 
-        <form id="logout-form" action="{{ $logout_url }}" method="POST" style="display: none;">
+        <form id="logout-form" action="{{ $logout_url }}" method="POST" class="user-menu-logout-form">
             @if (config('adminlte.logout_method'))
                 {{ method_field(config('adminlte.logout_method')) }}
             @endif
             {{ csrf_field() }}
         </form>
+
     </ul>
 
 </li>

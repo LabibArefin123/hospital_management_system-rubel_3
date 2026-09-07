@@ -1,0 +1,31 @@
+/* =========================================================
+   USER MENU ACTIONS
+========================================================= */
+.user-menu-logout {
+    margin-bottom: 7px;
+}
+
+.user-menu-logout:hover {
+    background: #fff8f8;
+}
+
+.user-menu-logout:hover .logout-icon {
+    background: #dc3545;
+    color: #ffffff;
+}
+
+.user-menu-logout:hover .user-menu-item-arrow {
+    color: #dc3545;
+}
+
+.user-menu-logout-form {
+    display: none !important;
+}
+
+.user-menu-item:focus {
+    outline: none;
+}
+
+.user-menu-item:focus-visible {
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+}

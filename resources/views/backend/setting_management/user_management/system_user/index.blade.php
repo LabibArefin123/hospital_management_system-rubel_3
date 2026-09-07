@@ -12,20 +12,31 @@
 @stop
 
 @section('content_header')
-    <div class="d-flex justify-content-between align-items-center flex-wrap">
-        <h1 class="mb-0">System Users</h1>
-        <div class="d-flex align-items-center gap-2">
-            {{-- Add Patient User --}}
-            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#patientUserModal">
-                <i class="fas fa-user-plus mr-1"></i>
-                Add Patient User
-            </button>
+    <div class="system-user-header">
+        <div class="system-user-header-content">
+            <div class="system-user-title-wrapper">
+                <div class="system-user-icon">
+                    <i class="fas fa-users-cog"></i>
+                </div>
+                <div>
+                    <h1 class="system-user-title">System Users</h1>
+                    <p class="system-user-subtitle">Manage patient accounts and system access.</p>
+                </div>
+            </div>
 
-            {{-- Add System User --}}
-            <a href="{{ route('system_users.create') }}" class="btn btn-success btn-sm">
-                <i class="fas fa-user-cog mr-1"></i>
-                Add System User
-            </a>
+            <div class="system-user-header-actions">
+                <button type="button" class="btn btn-primary system-user-action-btn" data-bs-toggle="modal"
+                    data-bs-target="#patientUserModal">
+
+                    <i class="fas fa-user-plus"></i>
+                    <span>Add Patient User</span>
+                </button>
+
+                <a href="{{ route('system_users.create') }}" class="btn btn-success system-user-action-btn">
+                    <i class="fas fa-user-cog"></i>
+                    <span>Add System User </span>
+                </a>
+            </div>
         </div>
     </div>
 @stop

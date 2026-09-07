@@ -3,13 +3,8 @@
         <div class="col-md-4">
             <div class="small-box bg-info shadow-lg">
                 <div class="inner">
-                    <h3>
-                        {{ $doctor->experience_years }}
-                    </h3>
-
-                    <p>
-                        Years Experience
-                    </p>
+                    <h3>{{ $doctor->experience_years }} </h3>
+                    <p>Years Experience</p>
                 </div>
 
                 <div class="icon">
@@ -21,13 +16,8 @@
         <div class="col-md-4">
             <div class="small-box bg-success shadow-lg">
                 <div class="inner">
-                    <h3>
-                        {{ $doctor->success_rate }}%
-                    </h3>
-
-                    <p>
-                        Success Rate
-                    </p>
+                    <h3>{{ $doctor->success_rate }}%</h3>
+                    <p>Success Rate </p>
                 </div>
 
                 <div class="icon">
@@ -39,13 +29,8 @@
         <div class="col-md-4">
             <div class="small-box bg-primary shadow-lg">
                 <div class="inner">
-                    <h3>
-                        {{ $doctor->total_patients }}+
-                    </h3>
-
-                    <p>
-                        Total Patients
-                    </p>
+                    <h3>{{ $doctor->total_patients }}+</h3>
+                    <p>Total Patients </p>
                 </div>
 
                 <div class="icon">

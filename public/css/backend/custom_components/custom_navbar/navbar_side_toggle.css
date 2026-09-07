@@ -1,0 +1,41 @@
+/* NAVBAR SIDEBAR TOGGLE */
+.main-header .navbar-nav .nav-item > .nav-link[data-widget="pushmenu"] {
+    width: 40px;
+    height: 40px;
+    margin: 0 4px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    font-size: 0.95rem;
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.main-header .navbar-nav .nav-item > .nav-link[data-widget="pushmenu"]:hover {
+    background: #f3f7fb;
+    color: #007bff;
+}
+
+.main-header .navbar-nav .nav-item > .nav-link[data-widget="pushmenu"]:active {
+    transform: scale(0.96);
+}
+
+.main-header .navbar-nav .nav-item > .nav-link[data-widget="pushmenu"] i {
+    transition: transform 0.25s ease;
+}
+
+.main-header .navbar-nav .nav-item > .nav-link[data-widget="pushmenu"]:hover i {
+    transform: rotate(3deg);
+}
+
+@media (max-width: 767.98px) {
+    .main-header .navbar-nav .nav-item > .nav-link[data-widget="pushmenu"] {
+        width: 38px;
+        height: 38px;
+        margin: 0 2px;
+    }
+}
