@@ -1,0 +1,107 @@
+.permission-summary-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem 1.15rem;
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.permission-summary-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.permission-summary-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 9px;
+    background: rgba(0, 160, 214, 0.1);
+    color: #00a0d6;
+    font-size: 0.9rem;
+}
+
+.permission-summary-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.permission-summary-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.permission-summary-count {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: #343a40;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.permission-summary-count #selectedPermissionCount {
+    color: #8b0000;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.permission-summary-count #totalPermissionCount {
+    color: #00a0d6;
+    font-weight: 700;
+}
+
+.permission-summary-separator {
+    color: #adb5bd;
+    margin: 0 0.1rem;
+}
+
+.permission-summary-status {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.7rem;
+    border-radius: 20px;
+    background: #f8f9fa;
+    color: #6c757d;
+    font-size: 0.72rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+.permission-summary-status i {
+    font-size: 0.7rem;
+}
+
+.permission-summary-status.has-selection {
+    background: rgba(139, 0, 0, 0.08);
+    color: #8b0000;
+}
+
+.permission-table-total {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.4rem 0.7rem;
+    border-radius: 20px;
+    background: #f8f9fa;
+    color: #6c757d;
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.permission-table-total #permissionTableTotal {
+    color: #8b0000;
+    font-weight: 700;
+}

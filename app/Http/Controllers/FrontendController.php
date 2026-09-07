@@ -326,7 +326,10 @@ class FrontendController extends Controller
 
     public function contact()
     {
-        return view('frontend.contact_page.contact');
+        $doctors = Doctor::orderBy('speciality', 'asc')->get();
+        $services = Service::orderBy('title', 'asc')->get();
+
+        return view('frontend.contact_page.contact', compact('doctors', 'services'));
     }
 
     public function contact_store(Request $request)

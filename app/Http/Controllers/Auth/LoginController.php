@@ -79,28 +79,17 @@ class LoginController extends Controller
             'Welcome back, ' . Auth::user()->name . '!'
         );
 
-        /*
-    |--------------------------------------------------------------------------
-    | ROLE BASED REDIRECT
-    |--------------------------------------------------------------------------
-    */
+        /*ROLE BASED REDIRECT */
 
         if (Auth::user()->hasRole('admin')) {
-
             return redirect()->route('dashboard.admin');
         }
 
         if (Auth::user()->hasRole('doctor')) {
-
             return redirect()->route('dashboard.doctor');
         }
 
-        /*
-    |--------------------------------------------------------------------------
-    | FALLBACK
-    |--------------------------------------------------------------------------
-    */
-
+        /*FALLBACK */
         return redirect()->route('dashboard.user');
     }
 
@@ -119,10 +108,8 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
         return redirect('/');
     }
 }

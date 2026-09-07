@@ -131,7 +131,7 @@
     <script src="{{ asset('js/custom_frontend/password_toggle.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/sweet_alert.js') }}"></script>
 
-    @if (request()->routeIs('doctor.show') || request()->routeIs('service.show'))
+    @if (request()->routeIs('doctor.show') || request()->routeIs('service.show') || request()->routeIs('contact') ) 
         <script src="{{ asset('js/custom_frontend/phone_validation.js') }}"></script>
     @endif
 

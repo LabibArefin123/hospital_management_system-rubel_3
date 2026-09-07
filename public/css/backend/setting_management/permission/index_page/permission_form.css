@@ -1,0 +1,139 @@
+.permission-form-card {
+    margin-bottom: 1rem;
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+}
+
+.permission-card-header {
+    padding: 1rem 1.15rem;
+    border-bottom: 1px solid #edf0f2;
+    background: #fafbfc;
+}
+
+.permission-card-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.permission-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(139, 0, 0, 0.08);
+    color: #8b0000;
+    font-size: 0.8rem;
+}
+
+.permission-card-heading h5 {
+    margin: 0;
+    color: #343a40;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.permission-card-heading p {
+    margin: 0.2rem 0 0;
+    color: #6c757d;
+    font-size: 0.72rem;
+}
+
+.permission-form-body {
+    padding: 1.1rem 1.15rem;
+}
+
+.permission-form-group {
+    width: 100%;
+    max-width: 100%;
+}
+
+.permission-form-group label {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: #343a40;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.permission-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.permission-input-icon {
+    position: absolute;
+    top: 50%;
+    left: 0.85rem;
+    z-index: 2;
+    color: #adb5bd;
+    font-size: 0.75rem;
+    transform: translateY(-50%);
+}
+
+.permission-name-input {
+    height: 40px;
+    padding-left: 2.35rem;
+    border: 1px solid #ced4da;
+    width: 100%;
+    border-radius: 7px;
+    font-size: 0.78rem;
+    box-shadow: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.permission-name-input:focus {
+    border-color: #8b0000;
+    box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.08);
+}
+
+.permission-name-input::placeholder {
+    color: #adb5bd;
+}
+
+.permission-form-help {
+    display: block;
+    margin-top: 0.45rem;
+    color: #868e96;
+    font-size: 0.68rem;
+}
+
+.permission-form-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.85rem 1.15rem;
+    background: #fafbfc;
+    border-top: 1px solid #edf0f2;
+}
+
+.permission-save-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    height: 36px;
+    padding: 0 1rem;
+    border: 1px solid #8b0000;
+    border-radius: 7px;
+    background: #8b0000;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    transition: all 0.2s ease;
+}
+
+.permission-save-btn:hover {
+    background: #700000;
+    border-color: #700000;
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(139, 0, 0, 0.18);
+}

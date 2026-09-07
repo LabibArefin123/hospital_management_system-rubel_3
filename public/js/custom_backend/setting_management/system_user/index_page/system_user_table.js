@@ -3,7 +3,7 @@ $(document).ready(function () {
         processing: true,
         serverSide: true,
         searching: false,
-        lengthChange: true,
+        lengthChange: false,
         pageLength: 10,
         ordering: false,
         responsive: true,
@@ -51,7 +51,7 @@ $(document).ready(function () {
                 name: "actions",
                 orderable: false,
                 searchable: false,
-                className: "text-nowrap",
+                // className: "text-nowrap",
             },
         ],
         language: {

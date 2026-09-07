@@ -15,10 +15,6 @@
         <div class="certified-slider">
             <div class="certified-track" id="certTrack">
                 <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="cert-card">
-                    <div class="cert-card-top">
-                        <span class="cert-status"><i class="fas fa-check"></i> Verified</span>
-                        <i class="fas fa-external-link-alt cert-link-icon"></i>
-                    </div>
                     <div class="cert-img">
                         <img src="{{ asset('uploads/images/welcome_page/certify_section/C1.png') }}"
                             alt="Medical Commission">
@@ -29,10 +25,6 @@
                     </div>
                 </a>
                 <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="cert-card">
-                    <div class="cert-card-top">
-                        <span class="cert-status"><i class="fas fa-check"></i> Verified</span>
-                        <i class="fas fa-external-link-alt cert-link-icon"></i>
-                    </div>
                     <div class="cert-img">
                         <img src="{{ asset('uploads/images/welcome_page/certify_section/C2.png') }}"
                             alt="Government Approved">
@@ -43,10 +35,6 @@
                     </div>
                 </a>
                 <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="cert-card">
-                    <div class="cert-card-top">
-                        <span class="cert-status"><i class="fas fa-check"></i> Verified</span>
-                        <i class="fas fa-external-link-alt cert-link-icon"></i>
-                    </div>
                     <div class="cert-img">
                         <img src="{{ asset('uploads/images/welcome_page/certify_section/C3.png') }}"
                             alt="NABH Accreditation">
@@ -57,10 +45,6 @@
                     </div>
                 </a>
                 <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="cert-card">
-                    <div class="cert-card-top">
-                        <span class="cert-status"><i class="fas fa-check"></i> Verified</span>
-                        <i class="fas fa-external-link-alt cert-link-icon"></i>
-                    </div>
                     <div class="cert-img">
                         <img src="{{ asset('uploads/images/welcome_page/certify_section/C3.png') }}"
                             alt="NABH Accredited">
@@ -72,8 +56,7 @@
                 </a>
                 <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="cert-card">
                     <div class="cert-card-top">
-                        <span class="cert-status"><i class="fas fa-check"></i> Verified</span>
-                        <i class="fas fa-external-link-alt cert-link-icon"></i>
+     
                     </div>
                     <div class="cert-img">
                         <img src="{{ asset('uploads/images/welcome_page/certify_section/C4.svg') }}"
@@ -86,8 +69,6 @@
                 </a>
                 <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="cert-card">
                     <div class="cert-card-top">
-                        <span class="cert-status"><i class="fas fa-check"></i> Verified</span>
-                        <i class="fas fa-external-link-alt cert-link-icon"></i>
                     </div>
                     <div class="cert-img">
                         <img src="{{ asset('uploads/images/welcome_page/certify_section/C5.png') }}"
@@ -99,10 +80,6 @@
                     </div>
                 </a>
                 <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="cert-card">
-                    <div class="cert-card-top">
-                        <span class="cert-status"><i class="fas fa-check"></i> Verified</span>
-                        <i class="fas fa-external-link-alt cert-link-icon"></i>
-                    </div>
                     <div class="cert-img">
                         <img src="{{ asset('uploads/images/welcome_page/certify_section/C6.png') }}"
                             alt="Paramedical Council">
@@ -113,10 +90,6 @@
                     </div>
                 </a>
                 <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="cert-card">
-                    <div class="cert-card-top">
-                        <span class="cert-status"><i class="fas fa-check"></i> Verified</span>
-                        <i class="fas fa-external-link-alt cert-link-icon"></i>
-                    </div>
                     <div class="cert-img">
                         <img src="{{ asset('uploads/images/welcome_page/certify_section/C2.png') }}"
                             alt="Ministry of Health">

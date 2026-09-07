@@ -15,10 +15,15 @@ class SystemUserController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
+        /* Users: oldest → latest */
+        $users = User::query()
+            ->oldest('created_at')
+            ->get();
+
         /* Patient appointments eligible for creating a patient account */
-        $users = User::all();
         $patientAppointments = Appointment::query()
             ->with(['doctor', 'service'])
             ->whereNull('user_id')
@@ -29,42 +34,42 @@ class SystemUserController extends Controller
             ->get()
             ->filter(function ($appointment) {
                 $userQuery = User::query();
-                if ($appointment->phone && $appointment->email) {
 
+                if ($appointment->phone && $appointment->email) {
                     $userQuery->where(function ($query) use ($appointment) {
                         $query->where('phone', $appointment->phone)
                             ->orWhere('email', $appointment->email);
                     });
                 } elseif ($appointment->phone) {
-
                     $userQuery->where('phone', $appointment->phone);
                 } elseif ($appointment->email) {
-
                     $userQuery->where('email', $appointment->email);
                 }
 
                 return !$userQuery->exists();
             })
             ->sort(function ($a, $b) {
-
+                /* Oldest appointment first */
                 $dateCompare = strcmp(
-                    $b->appointment_date?->format('Y-m-d') ?? '',
-                    $a->appointment_date?->format('Y-m-d') ?? ''
+                    $a->appointment_date?->format('Y-m-d') ?? '',
+                    $b->appointment_date?->format('Y-m-d') ?? ''
                 );
 
                 if ($dateCompare !== 0) {
                     return $dateCompare;
                 }
 
+                /* Earliest time first */
                 $timeCompare = strcmp(
-                    $b->appointment_time?->format('H:i:s') ?? '',
-                    $a->appointment_time?->format('H:i:s') ?? ''
+                    $a->appointment_time?->format('H:i:s') ?? '',
+                    $b->appointment_time?->format('H:i:s') ?? ''
                 );
 
                 if ($timeCompare !== 0) {
                     return $timeCompare;
                 }
 
+                /* Alphabetical name fallback */
                 return strcasecmp(
                     $a->name ?? '',
                     $b->name ?? ''
@@ -72,13 +77,12 @@ class SystemUserController extends Controller
             })
             ->values();
 
-        /*Group patient appointments  */
+        /* Group patient appointments by date */
         $patientAppointmentGroups = $patientAppointments
             ->groupBy(function ($appointment) {
                 return $appointment->appointment_date->format('Y-m-d');
             })
             ->map(function ($appointments) {
-
                 return [
                     'date' => $appointments->first()->appointment_date,
                     'appointments' => $appointments->values(),
@@ -86,7 +90,7 @@ class SystemUserController extends Controller
             })
             ->values();
 
-        /*System User Statistics*/
+        /* System User Statistics */
         $userTotals = [
             'admin' => User::role('admin')->count(),
             'doctor' => User::role('doctor')->count(),

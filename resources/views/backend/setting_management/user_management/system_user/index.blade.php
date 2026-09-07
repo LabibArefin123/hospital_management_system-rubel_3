@@ -62,7 +62,6 @@
 @section('content')
     {{-- USER TOTALS --}}
     @include('backend.setting_management.user_management.system_user.partials.index_page.card_box')
-
     {{--  USER TABLE --}}
     <div class="card system-user-card">
         <div class="card-header system-user-table-header">
@@ -83,7 +82,7 @@
         @include('backend.setting_management.user_management.system_user.modal.filter_part')
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table system-user-table" id="systemUsersTable" width="100%">
+                <table class="table system-user-table" id="systemUsersTable">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -109,41 +108,32 @@
                                 <td class="system-user-action-cell">
                                     <div class="system-user-actions">
                                         <a href="{{ route('system_users.show', $user->id) }}"
-                                            class="btn btn-info btn-sm system-user-action-btn">
+                                            class="btn btn-info btn-sm custom-action-btn">
                                             <i class="fas fa-eye"></i>
                                             <span>View</span>
                                         </a>
-
                                         <a href="{{ route('system_users.edit', $user->id) }}"
-                                            class="btn btn-warning btn-sm system-user-action-btn">
+                                            class="btn btn-warning btn-sm custom-action-btn">
                                             <i class="fas fa-edit"></i>
                                             <span>Edit</span>
                                         </a>
-
                                         @if (auth()->user()->hasRole('admin'))
                                             <button type="button"
-                                                class="btn btn-danger btn-sm change-password-btn system-user-action-btn"
+                                                class="btn btn-danger btn-sm change-password-btn custom-action-btn"
                                                 data-bs-toggle="modal" data-bs-target="#changePasswordModal"
                                                 data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}"
                                                 data-user-email="{{ $user->email ?? '' }}"
                                                 data-user-role="{{ $user->roles->pluck('name')->join(', ') }}"
-                                                data-user-picture="{{ $user->hasRole('doctor') && $user->doctor && $user->doctor->image
-                                                    ? asset($user->doctor->image)
-                                                    : ($user->profile_picture
-                                                        ? asset($user->profile_picture)
-                                                        : asset('uploads/images/default.jpg')) }}">
+                                                data-user-picture="{{ $user->hasRole('doctor') && $user->doctor && $user->doctor->image ? asset($user->doctor->image) : ($user->profile_picture ? asset($user->profile_picture) : asset('uploads/images/default.jpg')) }}">
                                                 <i class="fas fa-key"></i>
                                                 <span>Change Password</span>
                                             </button>
-
                                             <form action="{{ route('system_users.destroy', $user->id) }}" method="POST"
                                                 class="system-user-delete-form"
                                                 onsubmit="return confirm('Are you sure you want to delete this user?');">
                                                 @csrf
                                                 @method('DELETE')
-
-                                                <button type="submit"
-                                                    class="btn btn-secondary btn-sm system-user-action-btn">
+                                                <button type="submit" class="btn btn-secondary btn-sm custom-action-btn">
                                                     <i class="fas fa-trash"></i>
                                                     <span>Delete</span>
                                                 </button>

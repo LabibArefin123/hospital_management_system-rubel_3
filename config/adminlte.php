@@ -306,22 +306,13 @@ return [
     |
     */
     'menu' => [
-
-        /*
-    |--------------------------------------------------------------------------
-    | TOP NAVBAR
-    |--------------------------------------------------------------------------
-    */
-
+        /* TOP NAVBAR */
         [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
 
-
-        /* =========================================================
-| ADMIN DASHBOARD
-========================================================= */
+        /* ADMIN DASHBOARD */
         [
             'text' => 'Admin Panel',
             'route' => 'dashboard.admin',
@@ -330,21 +321,16 @@ return [
             'icon_color' => 'primary',
         ],
 
-        /* =========================================================
-| DOCTOR DASHBOARD
-========================================================= */
+        /*  DOCTOR DASHBOARD */
         [
             'text' => 'Doctor Workspace',
             'route' => 'dashboard.doctor',
-            'can' => 'dashboard.doctor',
             'can' => 'dashboard.doctor',
             'icon' => 'fas fa-user-md',
             'icon_color' => 'info',
         ],
 
-        /* =========================================================
-| PATIENT / USER DASHBOARD
-========================================================= */
+        /*  PATIENT DASHBOARD*/
         [
             'text' => 'Patient Portal',
             'route' => 'dashboard.user',
@@ -352,8 +338,8 @@ return [
             'icon' => 'fas fa-user-circle',
             'icon_color' => 'success',
         ],
-        /*Appointment Menu*/
 
+        /*Appointment Menu*/
         [
             'text' => 'Appointment Menu',
             'icon' => 'fas fa-calendar-check',
@@ -394,12 +380,8 @@ return [
 
             ],
         ],
-        /*
-    |--------------------------------------------------------------------------
-    | DOCTOR MANAGEMENT
-    |--------------------------------------------------------------------------
-    */
 
+        /* DOCTOR MENU  */
         [
             'text' => 'Doctor Management',
             'icon' => 'fas fa-user-md',
@@ -430,12 +412,7 @@ return [
             ],
         ],
 
-        /*
-    |--------------------------------------------------------------------------
-    | SERVICE MANAGEMENT
-    |--------------------------------------------------------------------------
-    */
-
+        /* SERVICE MENU */
         [
             'text' => 'Service Management',
             'icon' => 'fas fa-concierge-bell',
@@ -466,33 +443,8 @@ return [
             ],
         ],
 
-        /*
-    |--------------------------------------------------------------------------
-    | BLOG MANAGEMENT
-    |--------------------------------------------------------------------------
-    */
 
-        [
-            'text' => 'Blog Management',
-            'icon' => 'fas fa-blog',
-            'icon_color' => 'info',
-
-            'submenu' => [
-
-                [
-                    'text' => 'All Blogs',
-                    'url' => 'admin/blog',
-                    'can' => 'manage-blog',
-                    'icon' => 'fas fa-newspaper',
-                ],
-            ],
-        ],
-
-        /*
-    |--------------------------------------------------------------------------
-    | SYSTEM SETTINGS
-    |--------------------------------------------------------------------------
-    */
+        /* SYSTEM SETTINGS   */
 
         [
             'text' => 'System Settings',
@@ -570,26 +522,7 @@ return [
     */
 
     'plugins' => [
-        'Datatables' => [
-            'active' => true,
-            'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
-                ],
-                [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
-                ],
-            ],
-        ],
+      
         'Select2' => [
             'active' => false,
             'files' => [

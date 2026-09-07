@@ -1,103 +1,136 @@
-.system-user-action-cell{
-    min-width:390px;
-    width:1%;
-    padding-top:.65rem!important;
-    padding-bottom:.65rem!important;
-    vertical-align:middle!important;
-    white-space:nowrap;
+.system-user-action-cell {
+    min-width: 430px;
+    width: 1%;
+    padding-top: 0.65rem !important;
+    padding-bottom: 0.65rem !important;
+    vertical-align: middle !important;
+    white-space: nowrap;
 }
 
-.system-user-actions{
-    display:flex;
-    align-items:center;
-    justify-content:flex-start;
-    gap:.35rem;
-    width:100%;
-    min-height:34px;
-    margin:0;
-    padding:0;
-    white-space:nowrap;
+.system-user-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.4rem;
+    width: 100%;
+    min-height: 36px;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
 }
 
-.system-user-actions .system-user-action-btn,
-.system-user-actions a.system-user-action-btn,
-.system-user-actions button.system-user-action-btn{
-    display:inline-flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    vertical-align:middle!important;
-    position:relative;
-    top:0;
-    height:34px!important;
-    min-height:34px!important;
-    margin:0!important;
-    padding:0 .65rem!important;
-    border-radius:6px;
-    border-width:1px;
-    font-size:.75rem;
-    font-weight:600;
-    line-height:34px;
-    white-space:nowrap;
-    box-sizing:border-box;
-    text-decoration:none;
+.custom-action-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    vertical-align: middle !important;
+    position: relative;
+    top: 0;
+    width: 96px;
+    height: 36px !important;
+    min-width: 96px !important;
+    max-width: 96px !important;
+    min-height: 36px !important;
+    margin: 0 !important;
+    padding: 0 0.5rem !important;
+    border-radius: 7px;
+    border-width: 1px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    line-height: 1 !important;
+    white-space: nowrap;
+    box-sizing: border-box;
+    text-decoration: none;
+    flex: 0 0 96px;
 }
 
-.system-user-actions .system-user-action-btn i{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    margin-right:.3rem;
-    font-size:.7rem;
-    line-height:1;
+.custom-action-btn i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    min-width: 14px;
+    margin-right: 0.35rem;
+    font-size: 0.7rem;
+    line-height: 1;
 }
 
-.system-user-delete-form{
-    display:flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    height:34px!important;
-    margin:0!important;
-    padding:0!important;
-    border:0!important;
-    vertical-align:middle!important;
+.custom-action-btn span {
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
 }
 
-.system-user-delete-form .system-user-action-btn{
-    flex:none;
+.system-user-delete-form {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 96px;
+    height: 36px !important;
+    min-width: 96px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    vertical-align: middle;
+}
+.system-user-delete-form .custom-action-btn {
+    flex: 0 0 96px;
 }
 
-.system-user-actions .system-user-action-btn:hover{
-    transform:translateY(-1px);
+.custom-action-btn:hover {
+    transform: translateY(-1px);
 }
 
-@media(max-width:992px){
-    .system-user-action-cell{
-        min-width:360px;
+@media (max-width: 992px) {
+    .system-user-action-cell {
+        min-width: 410px;
     }
-
-    .system-user-actions .system-user-action-btn{
-        padding:0 .55rem!important;
-        font-size:.72rem;
+    .system-user-actions {
+        gap: 0.3rem;
+    }
+    .custom-action-btn {
+        width: 90px;
+        min-width: 90px;
+        max-width: 90px;
+        height: 34px !important;
+        min-height: 34px !important;
+        flex-basis: 90px;
+        font-size: 0.7rem;
+        padding: 0 0.4rem !important;
+    }
+    .system-user-delete-form {
+        width: 90px;
+        min-width: 90px;
+        height: 34px !important;
+    }
+    .system-user-delete-form .custom-action-btn {
+        flex-basis: 90px;
     }
 }
 
-@media(max-width:768px){
-    .system-user-action-cell{
-        min-width:340px;
+@media (max-width: 768px) {
+    .system-user-action-cell {
+        min-width: 390px;
     }
-
-    .system-user-actions{
-        gap:.25rem;
+    .system-user-actions {
+        gap: 0.25rem;
     }
-
-    .system-user-actions .system-user-action-btn,
-    .system-user-delete-form{
-        height:32px!important;
-        min-height:32px!important;
+    .custom-action-btn {
+        width: 86px;
+        min-width: 86px;
+        max-width: 86px;
+        height: 32px !important;
+        min-height: 32px !important;
+        flex-basis: 86px;
+        font-size: 0.68rem;
+        padding: 0 0.3rem !important;
     }
-
-    .system-user-actions .system-user-action-btn{
-        padding:0 .5rem!important;
-        line-height:32px;
+    .system-user-delete-form {
+        width: 86px;
+        min-width: 86px;
+        height: 32px !important;
+    }
+    .system-user-delete-form .custom-action-btn {
+        flex-basis: 86px;
     }
 }

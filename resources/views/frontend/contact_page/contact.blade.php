@@ -51,7 +51,6 @@
                                 <label>Email</label>
                                 <input type="email" name="email"
                                     class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}">
-
                                 @error('email')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -59,34 +58,31 @@
 
                         </div>
 
-                        {{-- Row 2 --}}
                         <div class="form-row">
-
                             <div class="form-group col-md-12">
                                 <label>Phone</label>
                                 <input type="text" name="phone"
-                                    class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}"
-                                    placeholder="01XXXXXXXXX">
-
+                                    class="global-mobile-input form-control @error('phone') is-invalid @enderror"
+                                    value="{{ old('phone') }}" placeholder="01XXXXXXXXX">
                                 @error('phone')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
 
                             <div class="form-group col-md-12">
-                                <label>Department</label>
-                                <select name="department" class="form-control @error('department') is-invalid @enderror">
+                                <label for="department">Department</label>
 
-                                    <option value="">Select</option>
+                                <select name="department" id="department"
+                                    class="form-control @error('department') is-invalid @enderror">
 
-                                    <option value="Cardiology" {{ old('department') == 'Cardiology' ? 'selected' : '' }}>
-                                        Cardiology</option>
-                                    <option value="Dermatology" {{ old('department') == 'Dermatology' ? 'selected' : '' }}>
-                                        Dermatology</option>
-                                    <option value="Neurology" {{ old('department') == 'Neurology' ? 'selected' : '' }}>
-                                        Neurology</option>
-                                    <option value="Gynecology" {{ old('department') == 'Gynecology' ? 'selected' : '' }}>
-                                        Gynecology</option>
+                                    <option value="">Select Department</option>
+
+                                    @foreach ($doctors as $doctor)
+                                        <option value="{{ $doctor->speciality }}"
+                                            {{ old('department') == $doctor->speciality ? 'selected' : '' }}>
+                                            {{ $doctor->speciality }}
+                                        </option>
+                                    @endforeach
 
                                 </select>
 
@@ -94,23 +90,23 @@
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
-
                         </div>
 
                         {{-- Service --}}
                         <div class="form-group">
-                            <label>Service</label>
+                            <label for="service">Service</label>
 
-                            <select name="service" class="form-control @error('service') is-invalid @enderror">
+                            <select name="service" id="service"
+                                class="form-control @error('service') is-invalid @enderror">
 
                                 <option value="">Select Service</option>
 
-                                <option value="Consultation" {{ old('service') == 'Consultation' ? 'selected' : '' }}>
-                                    Consultation</option>
-                                <option value="Checkup" {{ old('service') == 'Checkup' ? 'selected' : '' }}>Checkup
-                                </option>
-                                <option value="Emergency" {{ old('service') == 'Emergency' ? 'selected' : '' }}>Emergency
-                                </option>
+                                @foreach ($services as $service)
+                                    <option value="{{ $service->title }}"
+                                        {{ old('service') == $service->title ? 'selected' : '' }}>
+                                        {{ $service->title }}
+                                    </option>
+                                @endforeach
 
                             </select>
 
@@ -133,14 +129,10 @@
                         <button type="submit" class="btn btn-success">
                             Send Message
                         </button>
-
                     </form>
                 </div>
 
-                <!-- RIGHT SIDE -->
                 <div class="contact-right">
-
-                    <!-- Visit -->
                     <div class="info-card">
                         <h5>Visit Our Clinic</h5>
                         <div class="contact-detail">
@@ -172,7 +164,6 @@
                         </div>
                     </div>
 
-                    <!-- Map -->
                     <div class="info-card map-card">
                         <iframe
                             src="https://maps.google.com/maps?q=mirpur%20dohs%20dhaka&t=&z=13&ie=UTF8&iwloc=&output=embed"
@@ -180,7 +171,6 @@
                         </iframe>
                     </div>
 
-                    <!-- Hours -->
                     <div class="info-card contact-hours-card">
                         <h5>Clinic Hours</h5>
                         <div class="hours-row">
@@ -192,11 +182,8 @@
                             <span>Appointments available</span>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
     </section>
 
