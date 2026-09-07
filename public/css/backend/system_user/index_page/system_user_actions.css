@@ -1,22 +1,21 @@
 .system-user-action-cell {
-    min-width: 486px;
     width: 1%;
-    padding-top: 0.65rem !important;
-    padding-bottom: 0.65rem !important;
+    min-width: 1%;
+    padding: 0.65rem 0.75rem !important;
     vertical-align: middle !important;
-    white-space: nowrap;
+    white-space: nowrap !important;
 }
 
 .system-user-actions {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 0.4rem;
-    width: max-content;
-    min-height: 36px;
-    margin: 0;
-    padding: 0;
-    white-space: nowrap;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0.4rem !important;
+    width: max-content !important;
+    min-width: max-content !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    white-space: nowrap !important;
 }
 
 .custom-action-btn {
@@ -32,39 +31,40 @@
     max-height: 36px !important;
     margin: 0 !important;
     padding: 0 0.5rem !important;
-    border-radius: 7px;
-    border-width: 1px;
-    font-size: 0.74rem;
-    font-weight: 600;
+    border-radius: 7px !important;
+    border-width: 1px !important;
+    font-size: 0.74rem !important;
+    font-weight: 600 !important;
     line-height: 1 !important;
-    white-space: nowrap;
-    box-sizing: border-box;
-    text-decoration: none;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+    text-decoration: none !important;
     vertical-align: middle !important;
-    position: relative;
-    top: 0;
+    position: relative !important;
+    top: 0 !important;
 }
 
 .custom-action-btn i {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 14px;
-    width: 14px;
-    min-width: 14px;
-    height: 14px;
-    margin: 0 0.35rem 0 0;
-    font-size: 0.7rem;
-    line-height: 1;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 14px !important;
+    width: 14px !important;
+    min-width: 14px !important;
+    height: 14px !important;
+    margin: 0 0.35rem 0 0 !important;
+    font-size: 0.7rem !important;
+    line-height: 1 !important;
 }
 
 .custom-action-btn span {
-    display: inline-block;
-    width: auto;
-    margin: 0;
-    padding: 0;
-    line-height: 1;
-    white-space: nowrap;
+    display: inline-block !important;
+    width: auto !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
 }
 
 .custom-action-btn:hover {
@@ -72,72 +72,113 @@
 }
 
 .custom-action-btn:focus {
-    outline: none;
+    outline: none !important;
 }
 
 .system-user-delete-btn {
     display: inline-flex !important;
 }
 
-@media (max-width: 992px) {
-    .system-user-action-cell {
-        min-width: 468px;
-    }
+#dataTables td.system-user-action-cell {
+    white-space: nowrap !important;
+}
 
-    .system-user-actions {
-        gap: 0.3rem;
-        min-height: 34px;
-    }
+#dataTables td.system-user-action-cell .system-user-actions {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
 
-    .custom-action-btn {
-        flex: 0 0 106px !important;
-        width: 106px !important;
-        min-width: 106px !important;
-        max-width: 106px !important;
-        height: 34px !important;
-        min-height: 34px !important;
-        max-height: 34px !important;
-        font-size: 0.7rem;
-        padding: 0 0.4rem !important;
-    }
+table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control,
+table.dataTable.dtr-inline.collapsed > tbody > tr > th.dtr-control {
+    position: relative;
+}
 
-    .custom-action-btn i {
-        flex-basis: 13px;
-        width: 13px;
-        min-width: 13px;
-        height: 13px;
-        font-size: 0.66rem;
-    }
+table.dataTable.dtr-inline.collapsed > tbody > tr.parent td.dtr-control:before,
+table.dataTable.dtr-inline.collapsed > tbody > tr.parent th.dtr-control:before {
+    content: "−";
+}
+
+table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before,
+table.dataTable.dtr-inline.collapsed > tbody > tr > th.dtr-control:before {
+    top: 50%;
+    left: 6px;
+    width: 18px;
+    height: 18px;
+    margin-top: -9px;
+    line-height: 18px;
+    font-size: 14px;
+}
+
+table.dataTable.dtr-inline.collapsed > tbody > tr.parent td.dtr-control:before,
+table.dataTable.dtr-inline.collapsed > tbody > tr.parent th.dtr-control:before {
+    line-height: 16px;
+}
+
+table.dataTable > tbody > tr.child ul.dtr-details {
+    width: 100%;
+    margin: 0;
+    padding: 0.5rem 0;
+}
+
+table.dataTable > tbody > tr.child ul.dtr-details > li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.65rem 0.75rem;
+    border-bottom: 1px solid #eef1f4;
+}
+
+table.dataTable > tbody > tr.child ul.dtr-details > li:last-child {
+    border-bottom: 0;
+}
+
+table.dataTable > tbody > tr.child span.dtr-title {
+    flex: 0 0 120px;
+    font-weight: 700;
+    color: #495057;
+}
+
+table.dataTable > tbody > tr.child span.dtr-data {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+table.dataTable > tbody > tr.child .system-user-actions {
+    width: max-content !important;
+    max-width: 100%;
+    flex-wrap: wrap;
 }
 
 @media (max-width: 768px) {
     .system-user-action-cell {
-        min-width: 450px;
-    }
-
-    .system-user-actions {
-        gap: 0.25rem;
-        min-height: 32px;
+        width: auto;
+        min-width: 0;
+        padding: 0.55rem !important;
     }
 
     .custom-action-btn {
-        flex: 0 0 102px !important;
-        width: 102px !important;
-        min-width: 102px !important;
-        max-width: 102px !important;
-        height: 32px !important;
-        min-height: 32px !important;
-        max-height: 32px !important;
-        font-size: 0.68rem;
-        padding: 0 0.3rem !important;
+        flex: 0 0 110px !important;
+        width: 110px !important;
+        min-width: 110px !important;
+        max-width: 110px !important;
+        height: 36px !important;
+        min-height: 36px !important;
+        max-height: 36px !important;
     }
 
-    .custom-action-btn i {
-        flex-basis: 12px;
-        width: 12px;
-        min-width: 12px;
-        height: 12px;
-        font-size: 0.63rem;
-        margin-right: 0.3rem;
+    table.dataTable > tbody > tr.child ul.dtr-details > li {
+        display: block;
+    }
+
+    table.dataTable > tbody > tr.child span.dtr-title {
+        display: block;
+        margin-bottom: 0.4rem;
+    }
+
+    table.dataTable > tbody > tr.child .system-user-actions {
+        width: 100% !important;
+        flex-wrap: wrap;
+        gap: 0.4rem !important;
     }
 }
+    

@@ -6,9 +6,11 @@
     <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_total.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_filter.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_card.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_profile.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_actions.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/system_user/inde x_page/system_user_responsive.css') }}">
     <link rel="stylesheet"
         href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal.css') }}">
     <link rel="stylesheet"
@@ -101,11 +103,12 @@
         @include('backend.setting_management.user_management.system_user.modal.filter_part')
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table system-user-table" id="systemUsersTable">
+                <table class="table system-user-table" id="dataTables">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Role</th>
+                            <th>Picture</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Primary Phone</th>
@@ -116,9 +119,21 @@
                     </thead>
                     <tbody>
                         @foreach ($users as $user)
+                            @php
+                                $profileImage =
+                                    $user->hasRole('doctor') && $user->doctor && $user->doctor->image
+                                        ? asset($user->doctor->image)
+                                        : ($user->profile_picture
+                                            ? asset($user->profile_picture)
+                                            : asset('uploads/images/default.jpg'));
+                            @endphp
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $user->roles->pluck('name')->join(', ') }}</td>
+                                <td class="system-user-picture-cell">
+                                    <img src="{{ $profileImage }}" alt="{{ $user->name }}"
+                                        class="system-user-table-picture">
+                                </td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->phone ?? 'Not Provided' }}</td>
@@ -131,11 +146,13 @@
                                             <i class="fas fa-eye"></i>
                                             <span>View</span>
                                         </a>
+
                                         <a href="{{ route('system_users.edit', $user->id) }}"
                                             class="btn btn-warning btn-sm custom-action-btn">
                                             <i class="fas fa-edit"></i>
                                             <span>Edit</span>
                                         </a>
+
                                         @if (auth()->user()->hasRole('admin'))
                                             <button type="button"
                                                 class="btn btn-danger btn-sm change-password-btn custom-action-btn"
@@ -143,7 +160,7 @@
                                                 data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}"
                                                 data-user-email="{{ $user->email ?? '' }}"
                                                 data-user-role="{{ $user->roles->pluck('name')->join(', ') }}"
-                                                data-user-picture="{{ $user->hasRole('doctor') && $user->doctor && $user->doctor->image ? asset($user->doctor->image) : ($user->profile_picture ? asset($user->profile_picture) : asset('uploads/images/default.jpg')) }}">
+                                                data-user-picture="{{ $profileImage }}">
                                                 <i class="fas fa-key"></i>
                                                 <span>Change Password</span>
                                             </button>
@@ -153,7 +170,7 @@
                                                 data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}"
                                                 data-user-email="{{ $user->email ?? '' }}"
                                                 data-user-role="{{ $user->roles->pluck('name')->join(', ') }}"
-                                                data-user-picture="{{ $user->hasRole('doctor') && $user->doctor && $user->doctor->image ? asset($user->doctor->image) : ($user->profile_picture ? asset($user->profile_picture) : asset('uploads/images/default.jpg')) }}"
+                                                data-user-picture="{{ $profileImage }}"
                                                 data-delete-url="{{ route('system_users.destroy', $user->id) }}">
                                                 <i class="fas fa-trash"></i>
                                                 <span>Delete</span>
@@ -198,10 +215,9 @@
     </script>
     <script
         src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_user_password_toggle.js') }}">
-    </script>
+    </script>   
     <script src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_delete_modal.js') }}">
     </script>
-    <script src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_user_table.js') }}"></script>
     <script src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_user_filter.js') }}">
     </script>
 @stop
