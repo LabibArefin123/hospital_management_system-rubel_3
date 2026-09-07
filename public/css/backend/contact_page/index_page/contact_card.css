@@ -1,0 +1,28 @@
+/* CONTACT CARD */
+#contactFilterSection + .card {
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    overflow: hidden;
+}
+
+#contactFilterSection + .card .card-header {
+    border-bottom: 1px solid #edf0f2;
+    min-height: 62px;
+}
+
+#contactFilterSection + .card .card-title {
+    color: #343a40;
+    font-size: 1.05rem;
+    margin-bottom: 0;
+}
+
+#totalMessageCount {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+#contactFilterSection + .card .badge-primary {
+    border-radius: 6px;
+    font-weight: 600;
+}

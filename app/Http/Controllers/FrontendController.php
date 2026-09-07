@@ -187,42 +187,69 @@ class FrontendController extends Controller
     {
         /* LOGGED-IN USER APPOINTMENT DATA*/
         $userAppointment = null;
-
         if (Auth::check() && Auth::user()->hasRole('user')) {
             $userAppointment = Appointment::where('user_id', Auth::id())
                 ->latest('id')
                 ->first();
         }
-
+        /* DOCTOR + SCHEDULES*/
         $doctor = Doctor::with([
             'schedules' => function ($query) {
                 $query->orderBy('date')
                     ->orderBy('time');
             }
         ])->findOrFail($id);
-
-        $appointments = Appointment::where('doctor_id', $doctor->id)
-            ->pluck('id', 'appointment_date');
-
+        /* BOOKED APPOINTMENT SLOTS*/
         $bookedSlots = Appointment::where('doctor_id', $doctor->id)
-            ->get(['appointment_date', 'appointment_time'])
+            ->get([
+                'appointment_date',
+                'appointment_time'
+            ])
             ->mapWithKeys(function ($appointment) {
                 $date = \Carbon\Carbon::parse($appointment->appointment_date)->format('Y-m-d');
                 $time = \Carbon\Carbon::parse($appointment->appointment_time)->format('H:i');
-
                 return [
                     $date . '|' . $time => true
                 ];
             })
             ->toArray();
-
+        /* SELECTED SLOT AFTER VALIDATION ERROR*/
+        $oldDate = old('appointment_date');
+        $oldTime = old('appointment_time');
+        $hasAppointmentTimeError = session()->has('errors') && $errors->has('appointment_time');
+        /* GROUP SCHEDULES BY DATE*/
         $groupedSchedules = $doctor->schedules
-            ->groupBy(function ($item) {
-                return \Carbon\Carbon::parse($item->date)->format('Y-m-d');
+            ->groupBy(function ($schedule) {
+                return \Carbon\Carbon::parse($schedule->date)->format('Y-m-d');
             });
-
+        /* PREPARE SCHEDULE DATA FOR BLADE*/
+        $groupedSchedules = $groupedSchedules->map(function ($schedules, $date) use ($bookedSlots, $oldDate, $oldTime, $hasAppointmentTimeError) {
+            return [
+                'date' => $date,
+                'day' => \Carbon\Carbon::parse($date)->format('l'),
+                'formatted_date' => \Carbon\Carbon::parse($date)->format('d M Y'),
+                'schedules' => $schedules->map(function ($schedule) use ($bookedSlots, $oldDate, $oldTime, $hasAppointmentTimeError) {
+                    $slotDate = \Carbon\Carbon::parse($schedule->date)->format('Y-m-d');
+                    $slotTime = \Carbon\Carbon::parse($schedule->time)->format('H:i');
+                    $slotKey = $slotDate . '|' . $slotTime;
+                    $isOccupied = isset($bookedSlots[$slotKey]);
+                    if ($hasAppointmentTimeError && $oldDate === $slotDate && $oldTime === $slotTime) {
+                        $isOccupied = true;
+                    }
+                    return [
+                        'id' => $schedule->id,
+                        'date' => $slotDate,
+                        'time' => $slotTime,
+                        'formatted_time' => \Carbon\Carbon::parse($slotTime)->format('h:i A'),
+                        'slot_key' => $slotKey,
+                        'is_occupied' => $isOccupied,
+                    ];
+                }),
+            ];
+        });
+        /* PAGINATION 3 DATES PER PAGE*/
         $schedulePages = $groupedSchedules->chunk(3);
-
+        /* RETURN VIEW*/
         return view(
             'frontend.doctor_page.doctor_information.show',
             compact(

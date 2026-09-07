@@ -39,7 +39,7 @@
                 </div>
 
                 {{--  SCHEDULE PART --}}
-                @include('frontend.service_page.booking_form.partials.schedule_part')
+                @include('frontend.service_page.booking_form.partials.scheidule_part')
                 {{-- PATIENT INFORMATION --}}
                 @include('frontend.service_page.booking_form.partials.patient_infomation')
             </div>

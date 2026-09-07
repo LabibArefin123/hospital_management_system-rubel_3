@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="{{ asset('css/backend/setting_management/permission/index_page/permission_total.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/setting_management/permission/index_page/permission_form.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/setting_management/permission/index_page/permission_table.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/backend/setting_management/permission/index_page/permission_responsive.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/backend/setting_management/permission/index_page/permission_responsive.css') }}">
 @stop
 
 @section('content_header')

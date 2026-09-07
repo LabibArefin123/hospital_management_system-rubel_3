@@ -1,0 +1,28 @@
+/* =========================================================
+   CONTACT HEADER
+========================================================= */
+.content-header h1 {
+    color: #343a40;
+    font-size: 1.7rem;
+    letter-spacing: -0.3px;
+}
+
+#toggleFilterBtn {
+    min-width: 105px;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+#toggleFilterBtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+#filterArrow {
+    transition: transform 0.25s ease;
+}
+
+#filterArrow.rotate {
+    transform: rotate(180deg);
+}

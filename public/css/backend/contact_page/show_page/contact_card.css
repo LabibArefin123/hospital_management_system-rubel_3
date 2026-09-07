@@ -1,0 +1,63 @@
+/* =========================================================
+   CONTACT SHOW CARD
+========================================================= */
+
+.contact-show-card {
+    border: 1px solid #e9ecef !important;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06) !important;
+}
+
+.contact-show-card .card-header {
+    min-height: 60px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e9ecef;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+}
+
+.contact-show-card .card-title {
+    margin: 0;
+    color: #343a40;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.contact-show-card .card-title i {
+    margin-right: 7px;
+    color: #007bff;
+}
+
+.contact-show-card .card-body {
+    padding: 24px;
+    background: #ffffff;
+}
+
+.contact-show-card .card-footer {
+    padding: 15px 20px;
+    border-top: 1px solid #edf0f2;
+    background: #fafbfc;
+}
+
+.contact-show-card .row {
+    row-gap: 2px;
+}
+
+@media (max-width: 767.98px) {
+    .contact-show-card .card-body {
+        padding: 20px;
+    }
+
+    .contact-show-card .card-footer {
+        padding: 14px 18px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .contact-show-card .card-body {
+        padding: 16px;
+    }
+}

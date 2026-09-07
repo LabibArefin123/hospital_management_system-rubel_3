@@ -1,0 +1,115 @@
+/* =========================================================
+   CONTACT ACTIONS
+========================================================= */
+
+.contact-actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+}
+
+.contact-actions form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.contact-action-btn {
+    min-height: 36px;
+    height: 36px;
+    margin: 0;
+    padding: 7px 11px;
+    border-radius: 7px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: 1px solid transparent;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1;
+    vertical-align: middle;
+    text-decoration: none !important;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.contact-action-btn i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    font-size: 0.72rem;
+    line-height: 1;
+    font-style: normal;
+}
+
+.contact-action-btn span {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.contact-view-btn {
+    border-color: #d9edf7;
+    background: #f1faff;
+    color: #17a2b8;
+}
+
+.contact-view-btn:hover {
+    border-color: #17a2b8;
+    background: #17a2b8;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(23, 162, 184, 0.18);
+}
+
+.contact-delete-btn {
+    border-color: #f3d6d9;
+    background: #fff6f6;
+    color: #dc3545;
+}
+
+.contact-delete-btn:hover {
+    border-color: #dc3545;
+    background: #dc3545;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(220, 53, 69, 0.18);
+}
+
+.contact-action-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.contact-action-btn:focus {
+    outline: none;
+}
+
+.contact-action-btn:focus-visible {
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.12);
+}
+
+@media (max-width: 767.98px) {
+    .contact-actions {
+        gap: 6px;
+    }
+
+    .contact-action-btn {
+        min-height: 35px;
+        height: 35px;
+        padding: 7px 10px;
+        font-size: 0.75rem;
+    }
+
+    .contact-action-btn i {
+        font-size: 0.7rem;
+    }
+}
