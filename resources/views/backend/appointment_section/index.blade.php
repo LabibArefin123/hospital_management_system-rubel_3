@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/appointment_provider.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/appointment_action.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/appointment_resp.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/appointment_pagination.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/pagination_part/appointment_pagination.css') }}">
 @stop
 
 @section('content_header')

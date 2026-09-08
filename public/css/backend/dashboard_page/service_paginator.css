@@ -1,5 +1,5 @@
 /* ============================================================
-   service APPOINTMENT PAGINATION
+   SERVICE APPOINTMENT PAGINATION
 ============================================================ */
 
 .service-appointment-paginator {
@@ -7,8 +7,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 8px;
-    margin-bottom: 25px;
     padding: 0 4px;
 }
 
@@ -19,11 +17,46 @@
     align-items: center;
 }
 
+.service-appointment-paginator nav > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.service-appointment-paginator .small {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 7px 14px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    color: #6c757d;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+    white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.service-appointment-paginator .small span {
+    color: #495057;
+    font-weight: 600;
+    margin: 0 3px;
+}
+
 .service-appointment-paginator .pagination {
     margin: 0;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 5px;
+}
+
+.service-appointment-paginator .page-item {
+    margin: 0;
 }
 
 .service-appointment-paginator .page-item .page-link {
@@ -36,7 +69,7 @@
     border: 1px solid #dee2e6;
     border-radius: 8px !important;
     background: #fff;
-    color: #0d6efd;
+    color: #00a0d6;
     font-size: 13px;
     font-weight: 600;
     line-height: 1;
@@ -45,18 +78,18 @@
 }
 
 .service-appointment-paginator .page-item .page-link:hover {
-    background: #0d6efd;
-    border-color: #0d6efd;
+    background: #00a0d6;
+    border-color: #00a0d6;
     color: #fff;
     transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.18);
+    box-shadow: 0 4px 10px rgba(0, 160, 214, 0.18);
 }
 
 .service-appointment-paginator .page-item.active .page-link {
-    background: #0d6efd;
-    border-color: #0d6efd;
+    background: #00a0d6;
+    border-color: #00a0d6;
     color: #fff;
-    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 160, 214, 0.2);
 }
 
 .service-appointment-paginator .page-item.disabled .page-link {
@@ -98,18 +131,33 @@
 
 @media (max-width: 767.98px) {
     .service-appointment-paginator {
-        flex-direction: column;
-        align-items: center;
-        gap: 14px;
         margin-top: 12px;
         margin-bottom: 20px;
+        padding: 0;
     }
+
+    .service-appointment-paginator nav > div {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
     .service-appointment-paginator nav {
-        justify-content: center;
+        justify-content: flex-start;
     }
+
+    .service-appointment-paginator .small {
+        width: max-content;
+        min-height: 34px;
+        font-size: 12px;
+    }
+
     .service-appointment-paginator .pagination {
+        justify-content: flex-start;
         gap: 3px;
+        width: max-content;
     }
+
     .service-appointment-paginator .page-item .page-link {
         min-width: 34px;
         height: 34px;
@@ -122,6 +170,7 @@
     .service-appointment-paginator .pagination {
         gap: 2px;
     }
+
     .service-appointment-paginator .page-item .page-link {
         min-width: 32px;
         height: 32px;

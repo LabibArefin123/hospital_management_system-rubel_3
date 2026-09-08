@@ -4,7 +4,6 @@
 
 .appointment-pagination {
     width: 100%;
-    margin-top: 28px;
     padding: 18px 4px 2px;
     border-top: 1px solid rgba(0, 0, 0, 0.07);
 }
@@ -22,16 +21,26 @@
     align-items: center;
 }
 
-.appointment-pagination-links nav .small {
+.appointment-pagination-links .small {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 7px 14px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
     color: #6c757d;
     font-size: 13px;
     font-weight: 600;
-    line-height: 36px;
+    line-height: 1.5;
+    white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
-.appointment-pagination-links nav .small span {
+.appointment-pagination-links .small span {
     color: #495057;
     font-weight: 600;
+    margin: 0 3px;
 }
 
 .appointment-pagination-links nav .pagination {
@@ -119,6 +128,7 @@
 
     .appointment-pagination-links nav .small {
         line-height: 1.5;
+        white-space: nowrap;
     }
 
     .appointment-pagination-links nav .pagination {
