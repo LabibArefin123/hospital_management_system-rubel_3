@@ -1,0 +1,149 @@
+@media (max-width: 1199.98px) {
+    .appointment-page-header {
+        margin-bottom: 20px;
+    }
+
+    .appointment-card-top {
+        padding-left: 13px;
+        padding-right: 13px;
+    }
+
+    .appointment-patient,
+    .appointment-provider,
+    .appointment-details,
+    .appointment-patient-meta {
+        margin-left: 13px;
+        margin-right: 13px;
+    }
+
+    .appointment-card-footer {
+        padding-left: 13px !important;
+        padding-right: 13px !important;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .appointment-page-heading h1 {
+        font-size: 1.4rem;
+    }
+
+    .appointment-page-summary {
+        display: none;
+    }
+
+    .appointment-filter-body {
+        padding: 17px;
+    }
+
+    .appointment-section-header {
+        margin-bottom: 14px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .appointment-page-header {
+        align-items: flex-start;
+    }
+
+    .appointment-page-heading {
+        align-items: flex-start;
+    }
+
+    .appointment-page-icon {
+        width: 40px;
+        height: 40px;
+        flex: 0 0 40px;
+    }
+
+    .appointment-page-heading h1 {
+        font-size: 1.25rem;
+    }
+
+    .appointment-page-heading p {
+        font-size: 0.75rem;
+        line-height: 1.5;
+    }
+
+    .appointment-filter-header {
+        padding: 15px;
+    }
+
+    .appointment-filter-body {
+        padding: 15px;
+    }
+
+    .appointment-clear-btn {
+        width: 100%;
+    }
+
+    .appointment-section-header {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .appointment-section-title h3 {
+        font-size: 0.98rem;
+    }
+
+    .appointment-section-title p {
+        display: none;
+    }
+
+    .appointment-section-count {
+        font-size: 0.65rem;
+        padding: 6px 9px;
+    }
+
+    .appointment-card-top {
+        padding-top: 12px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .appointment-page-header {
+        margin-bottom: 17px;
+    }
+
+    .appointment-page-icon {
+        width: 36px;
+        height: 36px;
+        flex: 0 0 36px;
+    }
+
+    .appointment-page-icon i {
+        font-size: 15px;
+    }
+
+    .appointment-page-heading h1 {
+        font-size: 1.1rem;
+    }
+
+    .appointment-filter-header h5 {
+        font-size: 0.85rem;
+    }
+
+    .appointment-section-icon {
+        width: 34px;
+        height: 34px;
+    }
+
+    .appointment-section-title h3 {
+        font-size: 0.9rem;
+    }
+
+    .appointment-section-count {
+        white-space: nowrap;
+    }
+
+    .appointment-card-inner {
+        border-radius: 12px;
+    }
+
+    .appointment-type-badge {
+        font-size: 0.56rem;
+    }
+
+    .appointment-status {
+        font-size: 0.57rem;
+    }
+}

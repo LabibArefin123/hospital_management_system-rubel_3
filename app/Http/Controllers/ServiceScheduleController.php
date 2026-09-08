@@ -14,16 +14,17 @@ class ServiceScheduleController extends Controller
      */
     public function index()
     {
-        $schedules = ServiceSchedule::with('service')
-            ->latest()
-            ->get();
-
-        return view(
-            'backend.service_doctor_schedule_section.index',
-            compact('schedules')
-        );
+        $schedules = ServiceSchedule::with('service')->latest()->get();
+        $groupedSchedules = $schedules->groupBy('service_id')->map(function ($serviceSchedules) {
+            return [
+                'service' => $serviceSchedules->first()->service,
+                'schedules' => $serviceSchedules,
+                'availableCount' => $serviceSchedules->where('is_booked', 0)->count(),
+                'bookedCount' => $serviceSchedules->where('is_booked', 1)->count(),
+            ];
+        });
+        return view('backend.service_doctor_schedule_section.index', compact('groupedSchedules'));
     }
-
     /**
      * Create Page
      */

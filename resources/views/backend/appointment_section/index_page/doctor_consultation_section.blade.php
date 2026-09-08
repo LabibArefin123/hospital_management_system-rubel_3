@@ -1,100 +1,106 @@
- <!-- DOCTOR CONSULTATION SECTION -->
- <div class="d-flex align-items-center justify-content-between mt-4 mb-3">
-     <h3 class="font-weight-bold">
-         <i class="fas fa-user-md text-primary"></i>
-         Doctor Consultations
-     </h3>
-     <span class="badge badge-primary px-3 py-2">
-         {{ $doctorAppointments->count() }} Appointments
-     </span>
- </div>
-
- <div class="row appointment-wrapper">
-     @forelse($doctorAppointments as $appointment)
-         <div class="col-md-3 mb-4 appointment-card" data-type="{{ strtolower($appointment->type) }}"
-             data-status="{{ strtolower($appointment->status) }}"
-             data-search="
-            {{ strtolower($appointment->name) }}
-            {{ strtolower($appointment->doctor->name ?? '') }}
-         ">
-             <div class="card shadow border-0 h-100">
-                 <div class="card-body">
-                     <div class="d-flex justify-content-between">
-                         <div>
-                             <h5 class="font-weight-bold mb-1">
-                                 {{ $appointment->name }}
-                             </h5>
-
-                             <small class="text-muted">
-                                 {{ $appointment->phone }}
-                             </small>
-                         </div>
-                         <div>
-                             @if ($appointment->status == 'pending')
-                                 <span class="badge badge-warning">Pending</span>
-                             @elseif($appointment->status == 'confirmed')
-                                 <span class="badge badge-success"> Confirmed</span>
-                             @elseif($appointment->status == 'cancelled')
-                                 <span class="badge badge-danger">Cancelled</span>
-                             @endif
-                         </div>
-                     </div>
-
-                     <hr>
-
-                     <p class="mb-2">
-                         <i class="fas fa-user-md text-primary"></i>
-
-                         <strong>{{ $appointment->doctor->name ?? 'N/A' }}</strong>
-                     </p>
-
-                     <p class="mb-2">
-                         <i class="fas fa-calendar text-info"></i>
-                         {{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d M Y') }}
-                     </p>
-
-                     <p class="mb-2">
-                         <i class="fas fa-clock text-success"></i>
-                         {{ \Carbon\Carbon::parse($appointment->appointment_time)->format('h:i A') }}
-                     </p>
-
-                     <p class="mb-0">
-                         <i class="fas fa-money-bill-wave text-warning"></i>
-                         ৳ {{ number_format($appointment->amount, 2) }}
-                     </p>
-                 </div>
-
-                 <div class="card-footer bg-white border-0">
-                     <div class="appointment-actions">
-                         <a href="{{ route('appointments.show', $appointment->id) }}"
-                             class="btn btn-info btn-sm appointment-action-btn">
-                             <i class="fas fa-eye"></i>
-                             <span>View</span>
-                         </a>
-                         <a href="{{ route('appointments.cancel', $appointment->id) }}"
-                             class="btn btn-secondary btn-sm appointment-action-btn">
-                             <i class="fas fa-ban"></i>
-                             <span>Cancel</span>
-                         </a>
-                         <form action="{{ route('appointments.destroy', $appointment->id) }}" method="POST"
-                             class="appointment-action-form">
-                             @csrf
-                             @method('DELETE')
-                             <button type="submit" class="btn btn-danger btn-sm appointment-action-btn"
-                                 onclick="return confirm('Delete appointment?')">
-                                 <i class="fas fa-trash"></i>
-                                 <span>Delete</span>
-                             </button>
-                         </form>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     @empty
-         <div class="col-12">
-             <div class="alert alert-light text-center shadow-sm">
-                 No Doctor Consultation Found
-             </div>
-         </div>
-     @endforelse
- </div>
+<div class="appointment-section appointment-section-doctor" data-section-type="doctor">
+    <div class="appointment-section-header">
+        <div class="appointment-section-title">
+            <div class="appointment-section-icon appointment-section-icon-doctor"><i class="fas fa-user-md"></i></div>
+            <div>
+                <h3>Doctor Consultations</h3>
+                <p>Patient appointments with doctors.</p>
+            </div>
+        </div>
+        <span class="appointment-section-count appointment-section-count-doctor"
+            data-count="{{ $doctorAppointments->count() }}">{{ $doctorAppointments->count() }} Appointments</span>
+    </div>
+    <div class="row appointment-wrapper">
+        @forelse($doctorAppointments as $appointment)
+            <div class="col-xl-3 col-lg-4 col-md-6 mb-4 appointment-card" data-type="doctor"
+                data-status="{{ strtolower($appointment->status) }}"
+                data-search="{{ strtolower($appointment->name . ' ' . $appointment->phone . ' ' . $appointment->doctor_name . ' ' . $appointment->doctor_speciality) }}">
+                <div class="appointment-card-inner">
+                    <div class="appointment-card-top">
+                        <div class="appointment-type-badge appointment-type-doctor"><i class="fas fa-user-md"></i>
+                            Doctor Consultation</div>
+                        @if ($appointment->status == 'pending')
+                            <span class="appointment-status appointment-status-pending">Pending</span>
+                        @elseif($appointment->status == 'confirmed')
+                            <span class="appointment-status appointment-status-confirmed">Confirmed</span>
+                        @elseif($appointment->status == 'cancelled')
+                            <span class="appointment-status appointment-status-cancelled">Cancelled</span>
+                        @endif
+                    </div>
+                    <div class="appointment-patient">
+                        <img src="{{ $appointment->patient_image }}" class="appointment-patient-image"
+                            alt="{{ $appointment->name }}">
+                        <div class="appointment-patient-info">
+                            <h5>{{ $appointment->name }}</h5>
+                            <span><i class="fas fa-phone-alt"></i> {{ $appointment->patient_phone }}</span>
+                        </div>
+                    </div>
+                    <div class="appointment-patient-meta">
+                        <div><span>Age</span><strong>{{ $appointment->patient_age }}</strong></div>
+                        <div><span>Gender</span><strong>{{ $appointment->patient_gender }}</strong></div>
+                    </div>
+                    <div class="appointment-provider">
+                        <img src="{{ $appointment->doctor_image }}" class="appointment-provider-image-doctor"
+                            alt="{{ $appointment->doctor_name }}">
+                        <div class="appointment-provider-info">
+                            <span>Doctor</span>
+                            <strong>{{ $appointment->doctor_name }}</strong>
+                            <small>{{ $appointment->doctor_speciality }}</small>
+                        </div>
+                    </div>
+                    <div class="appointment-details">
+                        <div class="appointment-detail">
+                            <i class="fas fa-calendar-alt"></i>
+                            <div><span>Date</span><strong>{{ $appointment->formatted_date }}</strong></div>
+                        </div>
+                        <div class="appointment-detail">
+                            <i class="fas fa-clock"></i>
+                            <div><span>Time</span><strong>{{ $appointment->formatted_time }}</strong></div>
+                        </div>
+                        <div class="appointment-detail">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <div><span>Amount</span><strong>৳ {{ $appointment->amount_formatted }}</strong></div>
+                        </div>
+                    </div>
+                    <div class="card-footer appointment-card-footer">
+                        <div class="appointment-actions">
+                            <a href="{{ route('appointments.show', $appointment->id) }}"
+                                class="btn btn-info btn-sm appointment-action-btn">
+                                <i class="fas fa-eye"></i>
+                                <span>View</span>
+                            </a>
+                            <a href="{{ route('appointments.cancel', $appointment->id) }}"
+                                class="btn btn-secondary btn-sm appointment-action-btn">
+                                <i class="fas fa-ban"></i>
+                                <span>Cancel</span>
+                            </a>
+                            <form action="{{ route('appointments.destroy', $appointment->id) }}" method="POST"
+                                class="appointment-action-form">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm appointment-action-btn"
+                                    onclick="return confirm('Delete appointment?')">
+                                    <i class="fas fa-trash"></i>
+                                    <span>Delete</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div class="col-12 appointment-empty-state">
+                <i class="fas fa-user-md"></i>
+                <h5>No Doctor Consultations</h5>
+                <p>There are currently no doctor appointments.</p>
+            </div>
+        @endforelse
+    </div>
+    @if ($doctorAppointments->hasPages())
+        <div class="appointment-pagination">
+            <div class="appointment-pagination-links">
+                {{ $doctorAppointments->links() }}
+            </div>
+        </div>
+    @endif
+</div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\Payment;
@@ -16,47 +17,73 @@ class AppointmentController extends Controller
     public function index()
     {
         $user = Auth::user();
-
         if ($user->hasRole('admin')) {
-            $appointments = Appointment::with([
-                'doctor',
-                'service',
-                'user'
-            ])
+            $doctorAppointments = Appointment::with(['doctor', 'service', 'user'])
+                ->where('type', 'doctor')
                 ->latest()
-                ->get();
-        } else {
+                ->paginate(8, ['*'], 'doctor_page');
+            $serviceAppointments = Appointment::with(['doctor', 'service', 'user'])
+                ->where('type', 'service')
+                ->latest()
+                ->paginate(8, ['*'], 'service_page');
+        } elseif ($user->hasRole('doctor')) {
             $doctor = Doctor::where('user_id', $user->id)->first();
-
             if (!$doctor) {
                 abort(403, 'Doctor profile not found.');
             }
-
-            $appointments = Appointment::with([
-                'doctor',
-                'service',
-                'user'
-            ])
+            $doctorAppointments = Appointment::with(['doctor', 'service', 'user'])
                 ->where('type', 'doctor')
                 ->where('doctor_id', $doctor->id)
                 ->latest()
-                ->get();
+                ->paginate(8, ['*'], 'doctor_page');
+            $serviceAppointments = null;
+        } else {
+            abort(403);
         }
 
-        $doctorAppointments = $appointments
-            ->where('type', 'doctor');
+        $formatAppointments = function ($appointments) {
+            if (!$appointments) {
+                return null;
+            }
+            $appointments->getCollection()->transform(function ($appointment) {
+                $appointment->formatted_date = $appointment->appointment_date
+                    ? Carbon::parse($appointment->appointment_date)->format('d M Y')
+                    : 'N/A';
+                $appointment->formatted_time = $appointment->appointment_time
+                    ? Carbon::parse($appointment->appointment_time)->format('h:i A')
+                    : 'N/A';
+                $appointment->patient_image = ($appointment->user && $appointment->user->profile_picture)
+                    ? asset($appointment->user->profile_picture)
+                    : asset('uploads/images/default.jpg');
+                $appointment->doctor_image = ($appointment->doctor && $appointment->doctor->image)
+                    ? asset($appointment->doctor->image)
+                    : asset('uploads/images/default.jpg');
+                $appointment->service_image = ($appointment->service && $appointment->service->image)
+                    ? asset($appointment->service->image)
+                    : asset('uploads/images/default.jpg');
+                $appointment->patient_age = $appointment->age ?? 'N/A';
+                $appointment->patient_gender = $appointment->gender ?? 'N/A';
+                $appointment->patient_phone = $appointment->phone ?? ($appointment->user->phone ?? 'N/A');
+                $appointment->patient_email = $appointment->email ?? ($appointment->user->email ?? 'N/A');
+                $appointment->doctor_name = $appointment->doctor->name ?? 'N/A';
+                $appointment->doctor_speciality = $appointment->doctor->speciality ?? 'N/A';
+                $appointment->service_title = $appointment->service->title ?? 'N/A';
+                $appointment->amount_formatted = number_format($appointment->amount ?? 0, 2);
+                $appointment->search_text = strtolower(
+                    ($appointment->name ?? '') . ' ' .
+                        ($appointment->phone ?? '') . ' ' .
+                        ($appointment->doctor->name ?? '') . ' ' .
+                        ($appointment->doctor->speciality ?? '') . ' ' .
+                        ($appointment->service->title ?? '')
+                );
+                return $appointment;
+            });
+            return $appointments;
+        };
 
-        $serviceAppointments = $appointments
-            ->where('type', 'service');
-
-        return view(
-            'backend.appointment_section.index',
-            compact(
-                'appointments',
-                'doctorAppointments',
-                'serviceAppointments'
-            )
-        );
+        $doctorAppointments = $formatAppointments($doctorAppointments);
+        $serviceAppointments = $formatAppointments($serviceAppointments);
+        return view('backend.appointment_section.index', compact('doctorAppointments', 'serviceAppointments'));
     }
 
     public function show($id)

@@ -27,42 +27,28 @@
 @stop
 
 @section('content')
-
     <div class="row">
-        @php
-            $groupedSchedules = $schedules->groupBy('service_id');
-        @endphp
-
-        @forelse($groupedSchedules as $serviceId => $serviceSchedules)
-            @php
-                $service = $serviceSchedules->first()->service;
-                $availableCount = $serviceSchedules->where('is_booked', 0)->count();
-                $bookedCount = $serviceSchedules->where('is_booked', 1)->count();
-            @endphp
+        @forelse($groupedSchedules as $serviceId=>$serviceData)
             <div class="col-12 mb-4">
                 <div class="card shadow border-0">
-                    {{-- HEADER --}}
                     <div class="card-header bg-white border-0">
                         <div class="d-flex justify-content-between align-items-center flex-wrap">
                             <div class="d-flex align-items-center">
-                                {{-- SERVICE ICON --}}
                                 <div class="rounded-circle d-flex align-items-center justify-content-center mr-3">
-                                    <img src="{{ asset($service->image) }}" width="70" height="70"
+                                    <img src="{{ asset($serviceData['service']->image) }}" width="70" height="70"
                                         style="object-fit:cover;border-radius:8px;">
                                 </div>
-
-                                {{-- SERVICE INFORMATION --}}
                                 <div>
-                                    <h4 class="font-weight-bold mb-1"> {{ $service->title ?? 'N/A' }} </h4>
+                                    <h4 class="font-weight-bold mb-1">{{ $serviceData['service']->title ?? 'N/A' }}</h4>
                                     <div class="d-flex flex-wrap">
-                                        <span class="badge badge-success mr-2 px-3 py-2">{{ $availableCount }}
+                                        <span
+                                            class="badge badge-success mr-2 px-3 py-2">{{ $serviceData['availableCount'] }}
                                             Available</span>
-                                        <span class="badge badge-danger px-3 py-2">{{ $bookedCount }} Booked</span>
+                                        <span class="badge badge-danger px-3 py-2">{{ $serviceData['bookedCount'] }}
+                                            Booked</span>
                                     </div>
                                 </div>
                             </div>
-
-                            {{-- COLLAPSE BUTTON --}}
                             <button class="btn btn-light border" data-toggle="collapse"
                                 data-target="#serviceSchedule{{ $serviceId }}">
                                 <i class="fas fa-calendar-alt text-primary"></i>
@@ -70,64 +56,44 @@
                             </button>
                         </div>
                     </div>
-
-                    {{-- BODY --}}
                     <div id="serviceSchedule{{ $serviceId }}" class="collapse show">
                         <div class="card-body">
                             <div class="row">
-                                @foreach ($serviceSchedules as $schedule)
+                                @foreach ($serviceData['schedules'] as $schedule)
                                     <div class="col-md-3 mb-3">
                                         <div
-                                            class="border rounded-lg p-3 h-100
-                                            {{ $schedule->is_booked ? 'border-danger bg-light' : 'border-success bg-white' }}">
-
-                                            {{-- DATE / TIME / STATUS --}}
+                                            class="border rounded-lg p-3 h-100 {{ $schedule->is_booked ? 'border-danger bg-light' : 'border-success bg-white' }}">
                                             <div class="d-flex justify-content-between align-items-start">
                                                 <div>
                                                     <h6 class="font-weight-bold mb-2">
                                                         <i class="fas fa-calendar text-info"></i>
-                                                        {{ \Carbon\Carbon::parse($schedule->date)->format('d M Y') }}
+                                                        {{ $schedule->formatted_date }}
                                                     </h6>
-
                                                     <p class="mb-2">
                                                         <i class="fas fa-clock text-success"></i>
-                                                        {{ \Carbon\Carbon::parse($schedule->time)->format('h:i A') }}
+                                                        {{ $schedule->formatted_time }}
                                                     </p>
                                                 </div>
-
-                                                {{-- STATUS --}}
                                                 <div>
                                                     @if ($schedule->is_booked)
-                                                        <span class="badge badge-danger px-3 py-2">
-                                                            Booked
-                                                        </span>
+                                                        <span class="badge badge-danger px-3 py-2">Booked</span>
                                                     @else
-                                                        <span class="badge badge-success px-3 py-2">
-                                                            Available
-                                                        </span>
+                                                        <span class="badge badge-success px-3 py-2">Available</span>
                                                     @endif
                                                 </div>
                                             </div>
-
                                             <hr>
-
-                                            {{-- ACTIONS --}}
                                             <div class="service-schedule-actions">
                                                 <a href="{{ route('service-schedules.show', $schedule->id) }}"
                                                     class="btn btn-info btn-sm service-schedule-action-btn"
                                                     title="View Schedule">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
-
-                                                {{-- EDIT --}}
                                                 <a href="{{ route('service-schedules.edit', $schedule->id) }}"
                                                     class="btn btn-warning btn-sm service-schedule-action-btn"
                                                     title="Edit Schedule">
-
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-
-                                                {{-- DELETE --}}
                                                 <form action="{{ route('service-schedules.destroy', $schedule->id) }}"
                                                     method="POST" class="service-schedule-action-form">
                                                     @csrf

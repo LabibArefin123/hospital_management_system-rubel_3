@@ -1,0 +1,107 @@
+.appointment-filter-card {
+    margin-bottom: 26px;
+    border: 1px solid #e8edf3;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 7px 24px rgba(15, 23, 42, 0.055);
+    overflow: hidden;
+}
+
+.appointment-filter-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 21px;
+    border-bottom: 1px solid #edf1f5;
+}
+
+.appointment-filter-header h5 {
+    margin: 0 0 3px;
+    color: #334155;
+    font-size: 0.94rem;
+    font-weight: 700;
+}
+
+.appointment-filter-header h5 i {
+    margin-right: 7px;
+    color: #8b0000;
+}
+
+.appointment-filter-header span {
+    color: #94a3b8;
+    font-size: 0.75rem;
+}
+
+.appointment-filter-indicator {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background: #f8fafc;
+    color: #00a0d6;
+}
+
+.appointment-filter-body {
+    padding: 20px 21px;
+}
+
+.appointment-filter-label {
+    display: block;
+    margin-bottom: 7px;
+    color: #64748b;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.35px;
+}
+
+.appointment-filter-control {
+    height: 43px !important;
+    border: 1px solid #dce3ea !important;
+    border-radius: 9px !important;
+    color: #334155 !important;
+    font-size: 0.83rem !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease;
+}
+
+.appointment-filter-control:focus {
+    border-color: #00a0d6 !important;
+    box-shadow: 0 0 0 3px rgba(0, 160, 214, 0.08) !important;
+}
+
+.appointment-search-wrapper {
+    position: relative;
+}
+
+.appointment-search-wrapper i {
+    position: absolute;
+    left: 14px;
+    top: 14px;
+    color: #94a3b8;
+    font-size: 13px;
+    z-index: 2;
+}
+
+.appointment-search-wrapper input {
+    padding-left: 38px;
+}
+
+.appointment-clear-btn {
+    width: 43px;
+    height: 43px;
+    border: 1px solid #dce3ea;
+    border-radius: 9px;
+    background: #f8fafc;
+    color: #64748b;
+    transition: all 0.2s ease;
+}
+
+.appointment-clear-btn:hover {
+    background: #8b0000;
+    border-color: #8b0000;
+    color: #fff;
+    transform: translateY(-1px);
+}
