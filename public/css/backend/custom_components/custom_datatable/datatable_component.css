@@ -1,0 +1,345 @@
+/* ============================================================
+   DATATABLE COMPONENTS
+   DataTables 3 + Bootstrap 5 + AdminLTE
+============================================================ */
+
+/* ============================================================
+   DATATABLE WRAPPER
+============================================================ */
+
+.dataTables_wrapper {
+    width: 100%;
+}
+
+/* ============================================================
+   TOP CONTROL ROW
+============================================================ */
+
+.dataTables_wrapper .dt-layout-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 18px;
+}
+
+.dataTables_wrapper .dt-layout-cell {
+    display: flex;
+    align-items: center;
+}
+
+/* ============================================================
+   ENTRIES PER PAGE
+============================================================ */
+
+.dataTables_wrapper .dt-length {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.dataTables_wrapper .dt-length label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+/* SELECT */
+
+.dataTables_wrapper .dt-length select {
+    width: auto !important;
+    min-width: 70px;
+    height: 36px;
+
+    margin: 0 !important;
+    padding: 5px 30px 5px 10px;
+
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+
+    background-color: #fff !important;
+    color: #334155 !important;
+
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+
+    cursor: pointer;
+    outline: none;
+
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+
+    transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.dataTables_wrapper .dt-length select:hover {
+    border-color: #cbd5e1 !important;
+}
+
+.dataTables_wrapper .dt-length select:focus {
+    border-color: #8b0000 !important;
+
+    box-shadow: 0 0 0 0.15rem rgba(139, 0, 0, 0.1) !important;
+
+    outline: none !important;
+}
+
+/* ============================================================
+   SEARCH
+============================================================ */
+
+.dataTables_wrapper .dt-search {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0;
+}
+
+.dataTables_wrapper .dt-search label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin: 0;
+
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+
+    white-space: nowrap;
+}
+
+/* SEARCH INPUT */
+
+.dataTables_wrapper .dt-search input {
+    width: 230px !important;
+    height: 36px;
+
+    margin: 0 !important;
+    padding: 6px 12px;
+
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+
+    background: #fff !important;
+    color: #334155 !important;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    outline: none;
+
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+
+    transition:
+        width 0.2s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.dataTables_wrapper .dt-search input::placeholder {
+    color: #94a3b8;
+    opacity: 1;
+}
+
+.dataTables_wrapper .dt-search input:hover {
+    border-color: #cbd5e1 !important;
+}
+
+.dataTables_wrapper .dt-search input:focus {
+    width: 260px !important;
+
+    border-color: #8b0000 !important;
+
+    box-shadow: 0 0 0 0.15rem rgba(139, 0, 0, 0.1) !important;
+
+    outline: none !important;
+}
+
+/* ============================================================
+   TABLE INFORMATION
+============================================================ */
+
+.dataTables_wrapper .dt-info {
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* ============================================================
+   PAGINATION
+============================================================ */
+
+.dataTables_wrapper .dt-paging {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.dataTables_wrapper .dt-paging .pagination {
+    margin: 0;
+    gap: 4px;
+}
+
+.dataTables_wrapper .dt-paging .page-item {
+    margin: 0;
+}
+
+.dataTables_wrapper .dt-paging .page-link {
+    min-width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 5px 10px;
+
+    border-radius: 8px !important;
+
+    border: 1px solid #e2e8f0 !important;
+
+    background: #fff;
+    color: #8b0000;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.dataTables_wrapper .dt-paging .page-link:hover {
+    background: #8b0000 !important;
+    border-color: #8b0000 !important;
+    color: #fff !important;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 4px 10px rgba(139, 0, 0, 0.15);
+}
+
+.dataTables_wrapper .dt-paging .page-item.active .page-link {
+    background: #8b0000 !important;
+    border-color: #8b0000 !important;
+    color: #fff !important;
+}
+
+.dataTables_wrapper .dt-paging .page-item.disabled .page-link {
+    background: #f8f9fa !important;
+    border-color: #e9ecef !important;
+    color: #adb5bd !important;
+
+    cursor: not-allowed;
+
+    box-shadow: none;
+
+    transform: none;
+}
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 767.98px) {
+    .dataTables_wrapper .dt-layout-row {
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 12px;
+
+        margin-bottom: 15px;
+    }
+
+    .dataTables_wrapper .dt-layout-cell {
+        width: 100%;
+    }
+
+    .dataTables_wrapper .dt-search {
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .dataTables_wrapper .dt-search label {
+        width: 100%;
+    }
+
+    .dataTables_wrapper .dt-search input {
+        width: 100% !important;
+        max-width: 280px;
+    }
+
+    .dataTables_wrapper .dt-search input:focus {
+        width: 100% !important;
+        max-width: 280px;
+    }
+
+    .dataTables_wrapper .dt-paging {
+        justify-content: center;
+    }
+
+    .dataTables_wrapper .dt-paging .pagination {
+        justify-content: center;
+    }
+
+    .dataTables_wrapper .dt-info {
+        text-align: center;
+    }
+}
+
+/* ============================================================
+   SMALL MOBILE
+============================================================ */
+
+@media (max-width: 480px) {
+    .dataTables_wrapper .dt-length label,
+    .dataTables_wrapper .dt-search label {
+        font-size: 12px;
+    }
+
+    .dataTables_wrapper .dt-length select {
+        min-width: 62px;
+        height: 34px;
+
+        padding: 4px 24px 4px 8px;
+
+        font-size: 12px;
+    }
+
+    .dataTables_wrapper .dt-search input {
+        height: 34px;
+
+        max-width: 100%;
+
+        font-size: 12px;
+    }
+
+    .dataTables_wrapper .dt-search input:focus {
+        max-width: 100%;
+    }
+
+    .dataTables_wrapper .dt-paging .page-link {
+        min-width: 32px;
+        height: 32px;
+
+        padding: 4px 7px;
+
+        font-size: 11px;
+    }
+}
+    

@@ -7,6 +7,7 @@
 @stop
 
 @section('adminlte_css')
+    <link rel="stylesheet" href="{{ asset('css/backend/custom_components/custom_datatable/datatable_components.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/admin_part/header_part/dashboard_header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/admin_part/filter_part/admin_filter.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/admin_part/section_part/header_part.css') }}">

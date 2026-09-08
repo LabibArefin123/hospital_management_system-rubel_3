@@ -1,9 +1,9 @@
 /* =========================================================
    MAIN BACKEND CSS IMPORT
 ========================================================= */
-@import url("./custom_components/custom_navbar//navbar.css");
-@import url("./custom_components/custom_navbar//navbar_fullscreen.css");
-@import url("./custom_components/custom_navbar//navbar_side_toggle.css");
+@import url("./custom_components/custom_navbar/navbar.css");
+@import url("./custom_components/custom_navbar/navbar_fullscreen.css");
+@import url("./custom_components/custom_navbar/navbar_side_toggle.css");
 @import url("./custom_components/custom_navbar/dropdown_user_menu/user_menu.css");
 @import url("./custom_components/custom_navbar/dropdown_user_menu/user_menu_dropdown.css");
 @import url("./custom_components/custom_navbar/dropdown_user_menu/user_menu_profile.css");
