@@ -3,14 +3,11 @@
 @section('title', 'Edit Doctor Schedule')
 
 @section('content_header')
-    <div class="d-flex justify-content-between align-items-center">
-        <h3>
-            Edit Schedule Doctor
-        </h3>
-
-        <a href="{{ route('doctor-schedules.index') }}" class="back-btn btn btn-sm btn-secondary">
-            <i class="fas fa-arrow-left"></i>
-            Back
+    <div class="doctor-schedule-header">
+        <h3>Edit Schedule Doctor</h3>
+        <a href="{{ route('doctor-schedules.index') }}" class="doctor-schedule-back-btn btn btn-secondary"><i
+                class="fas fa-arrow-left"></i>
+            <span>Back</span>
         </a>
     </div>
 @stop

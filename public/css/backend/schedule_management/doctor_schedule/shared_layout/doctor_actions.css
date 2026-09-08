@@ -1,0 +1,41 @@
+.doctor-schedule-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 18px 28px !important;
+    border-top: 1px solid #edf1f5 !important;
+    background: #fff !important;
+}
+
+.doctor-schedule-submit-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 170px;
+    height: 44px;
+    padding: 0 22px !important;
+    border: 0 !important;
+    border-radius: 9px !important;
+    background: #8b0000 !important;
+    color: #fff !important;
+    font-size: 0.86rem !important;
+    font-weight: 700 !important;
+    box-shadow: 0 6px 16px rgba(139, 0, 0, 0.18);
+    transition: all 0.2s ease;
+}
+
+.doctor-schedule-submit-btn:hover {
+    background: #a00000 !important;
+    color: #fff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 9px 20px rgba(139, 0, 0, 0.24);
+}
+
+.doctor-schedule-submit-btn:active {
+    transform: translateY(0);
+}
+
+.doctor-schedule-submit-btn i {
+    font-size: 0.8rem;
+}

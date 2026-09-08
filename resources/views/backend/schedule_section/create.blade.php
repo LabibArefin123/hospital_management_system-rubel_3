@@ -2,12 +2,25 @@
 
 @section('title', 'Create Doctor Schedule')
 
+@section('adminlte_css')
+    <link rel="stylesheet"
+        href="{{ asset('css/backend/schedule_management/doctor_schedule/shared_layout/doctor_header.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/backend/schedule_management/doctor_schedule/shared_layout/doctor_preview.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/backend/schedule_management/doctor_schedule/shared_layout/doctor_form.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/backend/schedule_management/doctor_schedule/shared_layout/doctor_actions.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/backend/schedule_management/doctor_schedule/shared_layout/doctor_resp.css') }}">
+@stop
+
 @section('content_header')
-    <div class="d-flex justify-content-between">
+    <div class="doctor-schedule-header">
         <h1>Add New Doctor Schedule</h1>
-        <a href="{{ route('doctor-schedules.index') }}"
-            class="btn btn-sm btn-warning d-flex align-items-center gap-1 flex-shrink-0 back-btn">
-            <i class="fas fa-arrow-left"></i> Go Back
+        <a href="{{ route('doctor-schedules.index') }}" class="doctor-schedule-back-btn btn btn-warning"><i
+                class="fas fa-arrow-left"></i>
+            <span>Go Back</span>
         </a>
     </div>
 @stop
