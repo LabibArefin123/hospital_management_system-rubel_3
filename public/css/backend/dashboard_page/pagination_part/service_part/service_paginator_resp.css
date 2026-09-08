@@ -1,0 +1,49 @@
+@media (max-width: 767.98px) {
+    .service-appointment-paginator {
+        margin-top: 12px;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    .service-appointment-paginator nav > div {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .service-appointment-paginator nav {
+        justify-content: flex-start;
+    }
+
+    .service-appointment-paginator .small {
+        width: max-content;
+        min-height: 34px;
+        font-size: 12px;
+    }
+
+    .service-appointment-paginator .pagination {
+        justify-content: flex-start;
+        gap: 3px;
+        width: max-content;
+    }
+
+    .service-appointment-paginator .page-item .page-link {
+        min-width: 34px;
+        height: 34px;
+        font-size: 12px;
+        padding: 0 7px;
+    }
+}
+
+@media (max-width: 400px) {
+    .service-appointment-paginator .pagination {
+        gap: 2px;
+    }
+
+    .service-appointment-paginator .page-item .page-link {
+        min-width: 32px;
+        height: 32px;
+        padding: 0 6px;
+        font-size: 11px;
+    }
+}

@@ -10,7 +10,22 @@
 {{-- Global  CSS Start  --}}
 <link rel="stylesheet" href="{{ asset('css/backend/backend.css') }}">
 {{-- Dashboard Paginator CSS Start  --}}
-<link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/doctor_paginator.css') }}">
+{{-- Doctor Paginator CSS Start  --}}
+<link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/pagination_part/doctor_part/doctor_paginator_base.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/pagination_part/doctor_part/doctor_paginator_info.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/pagination_part/doctor_part/doctor_paginator_navigation.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/pagination_part/doctor_part/doctor_paginator_states.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/pagination_part/doctor_part/doctor_paginator_icons.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/pagination_part/doctor_part/doctor_paginator_resp.css') }}">
+{{-- Doctor Paginator CSS End  --}}
+{{-- Service Paginator CSS Start  --}}
+<link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/pagination_part/service_part/service_paginator_base.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/pagination_part/service_part/service_paginator_info.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/pagination_part/service_part/service_paginator_navigation.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/pagination_part/service_part/service_paginator_states.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/pagination_part/service_part/service_paginator_icons.css') }}">
+<link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/pagination_part/service_part/service_paginator_resp.css') }}">
+{{-- Service Paginator CSS End  --}}
 <link rel="stylesheet" href="{{ asset('css/backend/dashboard_page/service_paginator.css') }}">
 {{-- Dashboard Paginator CSS End  --}}
 {{-- Validation Modal CSS Start  --}}

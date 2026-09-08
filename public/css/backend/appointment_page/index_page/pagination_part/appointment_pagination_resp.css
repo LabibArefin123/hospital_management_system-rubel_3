@@ -1,0 +1,34 @@
+@media (max-width: 768px) {
+    .appointment-pagination {
+        margin-top: 24px;
+        padding: 16px 0 2px;
+    }
+
+    .appointment-pagination-links nav .d-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .appointment-pagination-links nav .small {
+        line-height: 1.5;
+        white-space: nowrap;
+    }
+
+    .appointment-pagination-links nav .pagination {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        width: max-content;
+    }
+
+    .appointment-pagination-links nav {
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        padding-bottom: 4px;
+    }
+
+    .appointment-pagination-links nav::-webkit-scrollbar {
+        display: none;
+    }
+}

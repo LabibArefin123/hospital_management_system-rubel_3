@@ -1,0 +1,21 @@
+.service-appointment-paginator .page-link[aria-label="Previous"],
+.service-appointment-paginator .page-link[aria-label="Next"] {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.service-appointment-paginator .page-link svg {
+    width: 14px;
+    height: 14px;
+}
+
+.service-appointment-paginator .pagination svg {
+    max-width: 14px;
+    max-height: 14px;
+}
+
+.service-appointment-paginator .pagination .relative {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

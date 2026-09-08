@@ -3,14 +3,38 @@
 @section('title', 'Appointment List')
 
 @section('adminlte_css')
-    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/appointment_header.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/appointment_filter.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/appointment_card.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/appointment_patient.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/appointment_provider.css') }}">
+    {{-- Header Part --}}
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/header_part/appointment_header.css') }}">
+    {{-- Filter Part --}}
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/filter_part/appointment_filter.css') }}">
+    {{-- Start of Appointment Card Part --}}
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/card_part/appointment_card_base.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/card_part/appointment_card_section.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/card_part/appointment_card_header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/card_part/appointment_card_details.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/card_part/appointment_card_footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/card_part/appointment_card_empty.css') }}">
+    {{-- End of Appointment Card Part --}}
+    {{-- Start of Patient Part --}}
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/patient_part/appointment_patient_base.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/patient_part/appointment_patient_info.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/patient_part/appointment_patient_meta.css') }}">
+    {{-- End of Patient Part --}}
+    {{-- Start of Provider Part --}}
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/provider_part/appointment_provider_base.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/provider_part/appointment_provider_image.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/provider_part/appointment_provider_info.css') }}">
+    {{-- End of Patient Part --}}
     <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/appointment_action.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/appointment_resp.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/pagination_part/appointment_pagination.css') }}">
+    {{-- Start of Pagination --}}
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/pagination_part/appointment_pagination_base.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/pagination_part/appointment_pagination_info.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/pagination_part/appointment_pagination_navigation.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/pagination_part/appointment_pagination_states.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/pagination_part/appointment_pagination_resp.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/pagination_part/appointment_pagination_mobile.css') }}">
+    {{-- End of Pagination Part --}}
 @stop
 
 @section('content_header')

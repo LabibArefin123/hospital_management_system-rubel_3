@@ -1,0 +1,49 @@
+@media (max-width: 767.98px) {
+    .doctor-appointment-paginator {
+        margin-top: 12px;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    .doctor-appointment-paginator nav > div {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .doctor-appointment-paginator nav {
+        justify-content: flex-start;
+    }
+
+    .doctor-appointment-paginator .small {
+        width: max-content;
+        min-height: 34px;
+        font-size: 12px;
+    }
+
+    .doctor-appointment-paginator .pagination {
+        justify-content: flex-start;
+        gap: 3px;
+        width: max-content;
+    }
+
+    .doctor-appointment-paginator .page-item .page-link {
+        min-width: 34px;
+        height: 34px;
+        font-size: 12px;
+        padding: 0 7px;
+    }
+}
+
+@media (max-width: 400px) {
+    .doctor-appointment-paginator .pagination {
+        gap: 2px;
+    }
+
+    .doctor-appointment-paginator .page-item .page-link {
+        min-width: 32px;
+        height: 32px;
+        padding: 0 6px;
+        font-size: 11px;
+    }
+}

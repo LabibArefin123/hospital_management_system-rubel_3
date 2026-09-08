@@ -1,0 +1,26 @@
+/* Hover */
+.doctor-appointment-paginator .page-item .page-link:hover {
+    background: #8b0000;
+    border-color: #8b0000;
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(139, 0, 0, 0.18);
+}
+
+/* Active */
+.doctor-appointment-paginator .page-item.active .page-link {
+    background: #8b0000;
+    border-color: #8b0000;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(139, 0, 0, 0.2);
+}
+
+/* Disabled */
+.doctor-appointment-paginator .page-item.disabled .page-link {
+    background: #f8f9fa;
+    border-color: #e9ecef;
+    color: #adb5bd;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}

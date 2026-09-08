@@ -1,0 +1,26 @@
+/* Hover */
+.service-appointment-paginator .page-item .page-link:hover {
+    background: #00a0d6;
+    border-color: #00a0d6;
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 160, 214, 0.18);
+}
+
+/* Active */
+.service-appointment-paginator .page-item.active .page-link {
+    background: #00a0d6;
+    border-color: #00a0d6;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 160, 214, 0.2);
+}
+
+/* Disabled */
+.service-appointment-paginator .page-item.disabled .page-link {
+    background: #f8f9fa;
+    border-color: #e9ecef;
+    color: #adb5bd;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}

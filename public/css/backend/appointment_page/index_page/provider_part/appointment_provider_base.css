@@ -1,0 +1,27 @@
+.appointment-provider {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin: 0 15px 13px;
+    padding: 10px;
+    border-radius: 10px;
+    background: #f8fafc;
+    border: 1px solid #edf1f5;
+}
+
+.appointment-provider-icon {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #eaf8ee;
+    color: #198754;
+}
+
+.appointment-provider-icon-service {
+    background: rgba(25, 135, 84, 0.09);
+    color: #198754;
+}

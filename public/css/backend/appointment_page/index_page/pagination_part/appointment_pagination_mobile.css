@@ -1,0 +1,18 @@
+@media (max-width: 480px) {
+    .appointment-pagination {
+        margin-top: 20px;
+        padding-top: 14px;
+    }
+
+    .appointment-pagination-links nav .d-flex {
+        gap: 12px;
+    }
+
+    .appointment-pagination-links .page-link {
+        min-width: 32px;
+        height: 32px;
+        padding: 5px 8px;
+        border-radius: 7px !important;
+        font-size: 12px;
+    }
+}

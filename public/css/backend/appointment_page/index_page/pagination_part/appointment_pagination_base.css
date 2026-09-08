@@ -1,0 +1,18 @@
+.appointment-pagination {
+    width: 100%;
+    padding: 18px 4px 2px;
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.appointment-pagination-links {
+    width: 100%;
+}
+
+.appointment-pagination-links nav {
+    width: 100%;
+}
+
+.appointment-pagination-links nav .d-flex {
+    width: 100%;
+    align-items: center;
+}

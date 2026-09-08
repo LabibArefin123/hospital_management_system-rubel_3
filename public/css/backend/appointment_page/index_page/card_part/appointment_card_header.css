@@ -1,0 +1,52 @@
+.appointment-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 14px 15px 10px;
+}
+
+.appointment-type-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 8px;
+    border-radius: 6px;
+    font-size: 0.61rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15px;
+}
+
+.appointment-type-doctor {
+    background: rgba(0, 160, 214, 0.08);
+    color: #0088b7;
+}
+
+.appointment-type-service {
+    background: rgba(25, 135, 84, 0.08);
+    color: #198754;
+}
+
+.appointment-status {
+    padding: 5px 8px;
+    border-radius: 6px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.appointment-status-pending {
+    background: #fff3cd;
+    color: #946c00;
+}
+
+.appointment-status-confirmed {
+    background: #d1e7dd;
+    color: #146c43;
+}
+
+.appointment-status-cancelled {
+    background: #f8d7da;
+    color: #b02a37;
+}
