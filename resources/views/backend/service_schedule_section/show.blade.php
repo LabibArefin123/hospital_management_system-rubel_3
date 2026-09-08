@@ -13,6 +13,6 @@
     </div>
 @stop
 @section('content')
-    @include('backend.service_schedule_section.partial_layout.show_page.part_1')
-    @include('backend.service_schedule_section.partial_layout.show_page.part_2')
+    @include('backend.service_doctor_schedule_section.partial_layout.show_page.part_1')
+    @include('backend.service_doctor_schedule_section.partial_layout.show_page.part_2')
 @stop

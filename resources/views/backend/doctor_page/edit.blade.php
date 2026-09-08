@@ -69,19 +69,19 @@
                         @endif
 
                         {{-- This is for doctor basic information --}}
-                        @include('backend.doctor_section.partial_layout.edit_page.part_1')
+                        @include('backend.doctor_page.partial_layout.edit_page.part_1')
                         {{-- This is for doctor experience information --}}
-                        @include('backend.doctor_section.partial_layout.edit_page.part_2')
+                        @include('backend.doctor_page.partial_layout.edit_page.part_2')
                         {{-- This is for doctor professional information --}}
-                        @include('backend.doctor_section.partial_layout.edit_page.part_3')
+                        @include('backend.doctor_page.partial_layout.edit_page.part_3')
                         {{-- This is for consultation information --}}
-                        @include('backend.doctor_section.partial_layout.edit_page.part_4')
+                        @include('backend.doctor_page.partial_layout.edit_page.part_4')
                         {{-- This is for doctor account information --}}
-                        @include('backend.doctor_section.partial_layout.edit_page.part_5')
+                        @include('backend.doctor_page.partial_layout.edit_page.part_5')
                         {{-- This is for doctor about information --}}
-                        @include('backend.doctor_section.partial_layout.edit_page.part_6')
+                        @include('backend.doctor_page.partial_layout.edit_page.part_6')
                         {{-- This is for doctor image --}}
-                        @include('backend.doctor_section.partial_layout.edit_page.part_7')
+                        @include('backend.doctor_page.partial_layout.edit_page.part_7')
                     </div>
 
                     {{-- This is for edit actions --}}

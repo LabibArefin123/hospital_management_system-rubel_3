@@ -3,7 +3,7 @@
 @section('title', 'User Dashboard')
 
 @section('content_header')
-    @include('backend.dashboard.custom_header.user')
+    @include('backend.dashboard_menu.custom_header.user')
 @stop
 
 @section('adminlte_css')
@@ -15,13 +15,13 @@
 
 @section('content')
     {{-- ================= STATS CARD PART ================= --}}
-    @include('backend.dashboard.partials.user_part.card_box')
+    @include('backend.dashboard_menu.partials.user_part.card_box')
     {{-- ================= PAYMENT PART================= --}}
-    @include('backend.dashboard.partials.user_part.payment_box')
+    @include('backend.dashboard_menu.partials.user_part.payment_box')
     {{-- ================= LATEST APPOINTMENTS ================= --}}
-    @include('backend.dashboard.partials.user_part.latest_appointment')
+    @include('backend.dashboard_menu.partials.user_part.latest_appointment')
     {{-- ================= ALL APPOINTMENTS ================= --}}
-    @include('backend.dashboard.partials.user_part.all_appointment')
+    @include('backend.dashboard_menu.partials.user_part.all_appointment')
 @endsection
 
 @section('js')

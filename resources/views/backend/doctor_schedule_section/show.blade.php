@@ -18,7 +18,7 @@
 
 @section('content')
     {{-- DOCTOR PROFILE SECTION --}}
-    @include('backend.schedule_section.partial_layout.show_page.part_1')
+    @include('backend.doctor_schedule_section.partial_layout.show_page.part_1')
     {{-- SCHEDULE INFORMATION SECTION --}}
-    @include('backend.schedule_section.partial_layout.show_page.part_2')
+    @include('backend.doctor_schedule_section.partial_layout.show_page.part_2')
 @stop

@@ -8,7 +8,8 @@
                     <div class="service-schedule-form-group">
                         <label class="service-schedule-label">Select Service</label>
                         <select name="service_id" id="serviceSelect"
-                            class="form-control service-schedule-control @error('service_id') is-invalid @enderror">
+                            class="form-control service-schedule-control @error('service_id') is-invalid @enderror"
+                            disabled>
                             <option value="">Choose Service</option>
                             @foreach ($services as $service)
                                 <option value="{{ $service->id }}"
@@ -19,6 +20,7 @@
                                     {{ $service->title }}</option>
                             @endforeach
                         </select>
+                        <input type="hidden" name="service_id" value="{{ old('service_id', $schedule->service_id) }}">
                         @error('service_id')
                             <span class="service-schedule-error">{{ $message }}</span>
                         @enderror
@@ -51,9 +53,11 @@
                 <label class="service-schedule-label">Status</label>
                 <select name="is_booked"
                     class="form-control service-schedule-control @error('is_booked') is-invalid @enderror">
-                    <option value="0" {{ old('is_booked', $schedule->is_booked ? '1' : '0') == '0' ? 'selected' : '' }}>
+                    <option value="0"
+                        {{ old('is_booked', $schedule->is_booked ? '1' : '0') == '0' ? 'selected' : '' }}>
                         Available</option>
-                    <option value="1" {{ old('is_booked', $schedule->is_booked ? '1' : '0') == '1' ? 'selected' : '' }}>
+                    <option value="1"
+                        {{ old('is_booked', $schedule->is_booked ? '1' : '0') == '1' ? 'selected' : '' }}>
                         Booked</option>
                 </select>
                 @error('is_booked')

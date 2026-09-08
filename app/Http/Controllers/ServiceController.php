@@ -19,7 +19,7 @@ class ServiceController extends Controller
         $services = Service::latest()->get();
 
         return view(
-            'backend.service_section.index',
+            'backend.service_page.index',
             compact('services')
         );
     }
@@ -30,7 +30,7 @@ class ServiceController extends Controller
     public function create()
     {
         return view(
-            'backend.service_section.create'
+            'backend.service_page.create'
         );
     }
 
@@ -86,7 +86,7 @@ class ServiceController extends Controller
         $service = Service::findOrFail($id);
 
         return view(
-            'backend.service_section.show',
+            'backend.service_page.show',
             compact('service')
         );
     }
@@ -99,7 +99,7 @@ class ServiceController extends Controller
         $service = Service::findOrFail($id);
 
         return view(
-            'backend.service_section.edit',
+            'backend.service_page.edit',
             compact('service')
         );
     }

@@ -1,0 +1,7 @@
+.service-schedule-control:disabled {
+    background-color: #e9ecef !important;
+    color: #6c757d !important;
+    border-color: #ced4da !important;
+    cursor: not-allowed;
+    opacity: 1 !important;
+}

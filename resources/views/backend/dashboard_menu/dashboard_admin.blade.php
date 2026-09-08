@@ -3,7 +3,7 @@
 @section('title', 'Admin Dashboard')
 
 @section('content_header')
-    @include('backend.dashboard.custom_header.admin')
+    @include('backend.dashboard_menu.custom_header.admin')
 @stop
 
 @section('adminlte_css')
@@ -15,18 +15,18 @@
 
 @section('content')
     {{-- Filter section --}}
-    @include('backend.dashboard.custom_filter.admin.top_filter')
+    @include('backend.dashboard_menu.custom_filter.admin.top_filter')
     {{-- Card Box section --}}
-    @include('backend.dashboard.partials.admin_part.card-box')
+    @include('backend.dashboard_menu.partials.admin_part.card-box')
     {{-- Latest Appointment section --}}
-    @include('backend.dashboard.partials.admin_part.latest_appointment')
+    @include('backend.dashboard_menu.partials.admin_part.latest_appointment')
     <div class="row">
         {{-- Doctor appointment part --}}
-        @include('backend.dashboard.partials.admin_part.doctor_appointments')
+        @include('backend.dashboard_menu.partials.admin_part.doctor_appointments')
         {{-- Service appointment part --}}
-        @include('backend.dashboard.partials.admin_part.service_appointments')
+        @include('backend.dashboard_menu.partials.admin_part.service_appointments')
     </div>
-    @include('backend.dashboard.partials.admin_part.status_modal')
+    @include('backend.dashboard_menu.partials.admin_part.status_modal')
 @endsection
 
 @section('js')

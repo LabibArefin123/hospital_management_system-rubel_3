@@ -52,7 +52,7 @@ class DashboardController extends Controller
             ->paginate(8, ['*'], 'service_page');
 
         /* DASHBOARD VIEW */
-        return view('backend.dashboard.dashboard_admin', compact(
+        return view('backend.dashboard_menu.dashboard_admin', compact(
             'user',
             'totalAppointments',
             'totalEarnings',
@@ -119,7 +119,7 @@ class DashboardController extends Controller
             ->latest()
             ->paginate(8, ['*'], 'doctor_page');
 
-        return view('backend.dashboard.dashboard_doctor', compact(
+        return view('backend.dashboard_menu.dashboard_doctor', compact(
             'doctor',
             'totalAppointments',
             'totalEarnings',
@@ -177,7 +177,7 @@ class DashboardController extends Controller
             ->latest()
             ->paginate(8);
 
-        return view('backend.dashboard.dashboard_user', compact(
+        return view('backend.dashboard_menu.dashboard_user', compact(
             'user',
             'totalAppointments',
             'confirmedAppointments',

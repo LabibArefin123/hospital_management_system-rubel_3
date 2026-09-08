@@ -27,12 +27,12 @@
 
 @section('content')
     {{-- DOCTOR PREVIEW SECTION --}}
-    @include('backend.schedule_section.partial_layout.create_page.part_1')
+    @include('backend.doctor_schedule_section.partial_layout.create_page.part_1')
     {{-- FORM SECTION --}}
-    @include('backend.schedule_section.partial_layout.create_page.part_2')
+    @include('backend.doctor_schedule_section.partial_layout.create_page.part_2')
 
 @stop
 
 @section('js')
-    <script src="{{ asset('js/custom_backend/schedule_section/create_page/doctor-preview.js') }}"></script>
+    <script src="{{ asset('js/custom_backend/doctor_schedule_section/create_page/doctor-preview.js') }}"></script>
 @stop

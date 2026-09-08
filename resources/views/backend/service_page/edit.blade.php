@@ -39,11 +39,11 @@
                 @endif
 
                 {{-- BASIC FORM --}}
-                @include('backend.service_section.partial_layout.edit_page.part_1')
+                @include('backend.service_page.partial_layout.edit_page.part_1')
                 {{-- INSTRUCTIONS --}}
-                @include('backend.service_section.partial_layout.edit_page.part_2')
+                @include('backend.service_page.partial_layout.edit_page.part_2')
                 {{-- IMAGE  --}}
-                @include('backend.service_section.partial_layout.edit_page.part_3')
+                @include('backend.service_page.partial_layout.edit_page.part_3')
                 <div class="card-footer text-right">
                     <button type="submit" class="btn btn-warning">
                         <i class="fas fa-save mr-1"></i>

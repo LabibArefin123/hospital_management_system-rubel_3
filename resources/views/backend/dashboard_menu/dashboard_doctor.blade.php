@@ -3,7 +3,7 @@
 @section('title', 'Doctor Dashboard')
 
 @section('content_header')
-    @include('backend.dashboard.custom_header.doctor')
+    @include('backend.dashboard_menu.custom_header.doctor')
 @stop
 
 @section('adminlte_css')
@@ -14,16 +14,16 @@
 @stop
 @section('content')
     {{-- Card Box section --}}
-    @include('backend.dashboard.custom_filter.doctor.top_filter')
-    @include('backend.dashboard.partials.doctor_part.card-box')
+    @include('backend.dashboard_menu.custom_filter.doctor.top_filter')
+    @include('backend.dashboard_menu.partials.doctor_part.card-box')
     {{-- Latest Appointment section --}}
-    @include('backend.dashboard.partials.doctor_part.latest_appointment')
+    @include('backend.dashboard_menu.partials.doctor_part.latest_appointment')
     <div class="row">
         {{-- Doctor appointment part --}}
-        @include('backend.dashboard.partials.doctor_part.doctor_appointments')
+        @include('backend.dashboard_menu.partials.doctor_part.doctor_appointments')
         {{-- Service appointment part --}}
     </div>
-    @include('backend.dashboard.partials.doctor_part.status_modal')
+    @include('backend.dashboard_menu.partials.doctor_part.status_modal')
 @endsection
 
 @section('js')

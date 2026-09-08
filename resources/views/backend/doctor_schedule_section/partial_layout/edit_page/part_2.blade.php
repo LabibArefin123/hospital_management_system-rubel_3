@@ -7,8 +7,9 @@
                 <div class="col-md-4">
                     <div class="doctor-schedule-form-group">
                         <label class="doctor-schedule-label">Select Doctor</label>
-                        <select name="doctor_id" id="doctorSelect"
-                            class="form-control doctor-schedule-control @error('doctor_id') is-invalid @enderror">
+                        <select id="doctorSelect"
+                            class="form-control doctor-schedule-control @error('doctor_id') is-invalid @enderror"
+                            disabled>
                             @foreach ($doctors as $doctor)
                                 <option value="{{ $doctor->id }}"
                                     data-image="{{ asset($doctor->image ? $doctor->image : 'uploads/images/default.jpg') }}"
@@ -24,9 +25,11 @@
                                     data-availability="{{ $doctor->availability ?? 'N/A' }}"
                                     data-about="{{ $doctor->about ?? 'No information available.' }}"
                                     {{ old('doctor_id', $schedule->doctor_id) == $doctor->id ? 'selected' : '' }}>
-                                    {{ $doctor->name }}</option>
+                                    {{ $doctor->name }}
+                                </option>
                             @endforeach
                         </select>
+                        <input type="hidden" name="doctor_id" value="{{ old('doctor_id', $schedule->doctor_id) }}">
                         @error('doctor_id')
                             <span class="doctor-schedule-error">{{ $message }}</span>
                         @enderror
@@ -57,9 +60,11 @@
                 <label class="doctor-schedule-label">Status</label>
                 <select name="is_booked"
                     class="form-control doctor-schedule-control @error('is_booked') is-invalid @enderror">
-                    <option value="0" {{ old('is_booked', $schedule->is_booked) == 0 ? 'selected' : '' }}>Available
+                    <option value="0" {{ old('is_booked', $schedule->is_booked) == 0 ? 'selected' : '' }}>
+                        Available
                     </option>
-                    <option value="1" {{ old('is_booked', $schedule->is_booked) == 1 ? 'selected' : '' }}>Booked</option>
+                    <option value="1" {{ old('is_booked', $schedule->is_booked) == 1 ? 'selected' : '' }}>Booked
+                    </option>
                 </select>
                 @error('is_booked')
                     <span class="doctor-schedule-error">{{ $message }}</span>

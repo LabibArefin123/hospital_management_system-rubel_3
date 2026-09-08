@@ -32,13 +32,13 @@
     <div class="container-fluid doctor-show-page">
         <div class="doctor-show-overview">
             {{-- LEFT SIDE --}}
-            @include('backend.doctor_section.partial_layout.show_page.part_1')
+            @include('backend.doctor_page.partial_layout.show_page.part_1')
             {{-- RIGHT SIDE --}}
-            @include('backend.doctor_section.partial_layout.show_page.part_2')
+            @include('backend.doctor_page.partial_layout.show_page.part_2')
             {{-- PROFESSIONAL INFO --}}
         </div>
         <div class="doctor-show-section">
-            @include('backend.doctor_section.partial_layout.show_page.part_3')
+            @include('backend.doctor_page.partial_layout.show_page.part_3')
         </div>
     </div>
 @stop

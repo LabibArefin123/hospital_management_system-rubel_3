@@ -36,11 +36,11 @@
                     </div>
                 @endif
                 {{-- BASIC FORM --}}
-                @include('backend.service_section.partial_layout.create_page.part_1')
+                @include('backend.service_page.partial_layout.create_page.part_1')
                 {{-- INSTRUCTIONS --}}
-                @include('backend.service_section.partial_layout.create_page.part_2')
+                @include('backend.service_page.partial_layout.create_page.part_2')
                 {{-- IMAGE --}}
-                @include('backend.service_section.partial_layout.create_page.part_3')
+                @include('backend.service_page.partial_layout.create_page.part_3')
             </div>
 
             <div class="card-footer text-right">

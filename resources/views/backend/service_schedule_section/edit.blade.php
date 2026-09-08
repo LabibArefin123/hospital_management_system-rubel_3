@@ -3,6 +3,7 @@
 @section('title', 'Edit Service Schedule')
 
 @section('adminlte_css')
+    <link rel="stylesheet" href="{{ asset('css/backend/schedule_management/service_schedule/edit_page/input_hidden.css') }}">
     <link rel="stylesheet"
         href="{{ asset('css/backend/schedule_management/service_schedule/shared_layout/service_header.css') }}">
     <link rel="stylesheet"
@@ -26,8 +27,8 @@
 @stop
 
 @section('content')
-    @include('backend.service_schedule_section.partial_layout.edit_page.part_1')
-    @include('backend.service_schedule_section.partial_layout.edit_page.part_2')
+    @include('backend.service_doctor_schedule_section.partial_layout.edit_page.part_1')
+    @include('backend.service_doctor_schedule_section.partial_layout.edit_page.part_2')
 @stop
 
 @section('js')
