@@ -5,8 +5,13 @@
 @section('adminlte_css')
     {{-- Header Part --}}
     <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/header_part/appointment_header.css') }}">
-    {{-- Filter Part --}}
-    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/filter_part/appointment_filter.css') }}">
+    {{-- Start of Appointment Filter Part --}}
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/filter_part/appointment_filter_card.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/filter_part/appointment_filter_header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/filter_part/appointment_filter_body.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/filter_part/appointment_filter_control.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/filter_part/appointment_filter_actions.css') }}">
+    {{-- End of Appointment Filter Part --}}
     {{-- Start of Appointment Card Part --}}
     <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/card_part/appointment_card_base.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/appointment_page/index_page/card_part/appointment_card_section.css') }}">

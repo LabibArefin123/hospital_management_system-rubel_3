@@ -101,29 +101,43 @@ class AppointmentController extends Controller
             $appointment->id
         )->first();
 
+        $doctor = $appointment->doctor;
+        $service = $appointment->service;
+
+        $instructions = [];
+
+        if ($service && !empty($service->instructions)) {
+            $instructions = is_array($service->instructions)
+                ? $service->instructions
+                : [$service->instructions];
+        }
+
         if ($user->hasRole('admin')) {
             return view(
                 'backend.appointment_section.show',
                 compact(
                     'appointment',
-                    'payment'
+                    'payment',
+                    'doctor',
+                    'service',
+                    'instructions'
                 )
             );
         }
 
         if ($user->hasRole('doctor')) {
-            $doctor = Doctor::where(
+            $doctorUser = Doctor::where(
                 'user_id',
                 $user->id
             )->first();
 
-            if (!$doctor) {
+            if (!$doctorUser) {
                 abort(403, 'Doctor profile not found.');
             }
 
             if (
                 $appointment->type !== 'doctor' ||
-                $appointment->doctor_id !== $doctor->id
+                $appointment->doctor_id !== $doctorUser->id
             ) {
                 abort(
                     403,
@@ -135,13 +149,15 @@ class AppointmentController extends Controller
                 'backend.appointment_section.show',
                 compact(
                     'appointment',
-                    'payment'
+                    'payment',
+                    'doctor',
+                    'service',
+                    'instructions'
                 )
             );
         }
 
         if ($user->hasRole('user')) {
-
             if ($appointment->user_id !== $user->id) {
                 abort(
                     403,
@@ -153,7 +169,10 @@ class AppointmentController extends Controller
                 'backend.appointment_section.show',
                 compact(
                     'appointment',
-                    'payment'
+                    'payment',
+                    'doctor',
+                    'service',
+                    'instructions'
                 )
             );
         }

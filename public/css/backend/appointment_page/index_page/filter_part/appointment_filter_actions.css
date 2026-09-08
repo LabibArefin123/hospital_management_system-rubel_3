@@ -1,0 +1,35 @@
+/* APPOINTMENT FILTER ACTIONS */
+
+.appointment-search-wrapper {
+    position: relative;
+}
+
+.appointment-search-wrapper i {
+    position: absolute;
+    left: 14px;
+    top: 14px;
+    color: #94a3b8;
+    font-size: 13px;
+    z-index: 2;
+}
+
+.appointment-search-wrapper input {
+    padding-left: 38px;
+}
+
+.appointment-clear-btn {
+    width: 43px;
+    height: 43px;
+    border: 1px solid #dce3ea;
+    border-radius: 9px;
+    background: #f8fafc;
+    color: #64748b;
+    transition: all 0.2s ease;
+}
+
+.appointment-clear-btn:hover {
+    background: #8b0000;
+    border-color: #8b0000;
+    color: #fff;
+    transform: translateY(-1px);
+}

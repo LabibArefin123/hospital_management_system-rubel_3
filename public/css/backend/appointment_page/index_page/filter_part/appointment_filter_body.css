@@ -1,0 +1,15 @@
+/* APPOINTMENT FILTER BODY */
+
+.appointment-filter-body {
+    padding: 20px 21px;
+}
+
+.appointment-filter-label {
+    display: block;
+    margin-bottom: 7px;
+    color: #64748b;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.35px;
+}

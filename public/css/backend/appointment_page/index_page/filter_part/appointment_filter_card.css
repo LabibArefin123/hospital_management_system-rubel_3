@@ -1,0 +1,10 @@
+/* APPOINTMENT FILTER CARD */
+
+.appointment-filter-card {
+    margin-bottom: 26px;
+    border: 1px solid #e8edf3;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 7px 24px rgba(15, 23, 42, 0.055);
+    overflow: hidden;
+}

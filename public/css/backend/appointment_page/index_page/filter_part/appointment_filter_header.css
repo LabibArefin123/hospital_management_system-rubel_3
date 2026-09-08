@@ -1,0 +1,37 @@
+/* APPOINTMENT FILTER HEADER */
+
+.appointment-filter-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 21px;
+    border-bottom: 1px solid #edf1f5;
+}
+
+.appointment-filter-header h5 {
+    margin: 0 0 3px;
+    color: #334155;
+    font-size: 0.94rem;
+    font-weight: 700;
+}
+
+.appointment-filter-header h5 i {
+    margin-right: 7px;
+    color: #8b0000;
+}
+
+.appointment-filter-header span {
+    color: #94a3b8;
+    font-size: 0.75rem;
+}
+
+.appointment-filter-indicator {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background: #f8fafc;
+    color: #00a0d6;
+}
