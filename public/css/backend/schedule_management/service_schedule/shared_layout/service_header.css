@@ -1,0 +1,39 @@
+.service-schedule-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.service-schedule-header h1,
+.service-schedule-header h3 {
+    margin: 0;
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #1e293b;
+    letter-spacing: -0.3px;
+}
+
+.service-schedule-back-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    border: 0 !important;
+    border-radius: 9px !important;
+    padding: 8px 15px !important;
+    font-size: 0.86rem !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+    transition: all 0.2s ease;
+}
+
+.service-schedule-back-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.13);
+}
+
+.service-schedule-back-btn i {
+    font-size: 0.8rem;
+}

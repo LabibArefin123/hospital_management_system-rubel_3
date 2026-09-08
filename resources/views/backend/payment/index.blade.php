@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Payment Records')
+@section('title', 'Online Payment Records')
 
 @section('adminlte_css')
     <link rel="stylesheet" href="{{ asset('css/backend/payment_page/index_page/payment_header.css') }}">
@@ -18,8 +18,8 @@
                 <i class="fas fa-money-check-alt"></i>
             </div>
             <div>
-                <h1>Payment Records</h1>
-                <p>View and manage all payment transactions</p>
+                <h1>Online Payment Records</h1>
+                <p>View and manage all online payment transactions</p>
             </div>
         </div>
     </div>

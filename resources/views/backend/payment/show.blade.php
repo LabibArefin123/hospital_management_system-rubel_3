@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Payment Details')
+@section('title', 'Online Payment Details')
 
 @section('adminlte_css')
     <link rel="stylesheet" href="{{ asset('css/backend/payment_page/show_page/payment_header.css') }}">
@@ -17,7 +17,7 @@
                 <i class="fas fa-receipt"></i>
             </div>
             <div>
-                <h1>Payment Details</h1>
+                <h1>Online Payment Details</h1>
                 <p>Review payment, patient and appointment information</p>
             </div>
         </div>

@@ -2,6 +2,10 @@
 
 @section('title', 'Service Schedules')
 
+@section('adminlte_css')
+    <link rel="stylesheet" href="{{ asset('css/backend/schedule_management/service_schedule/service_schedule_action.css') }}">
+@stop
+
 @section('content_header')
     <div class="d-flex justify-content-between align-items-center">
         <div>
@@ -23,7 +27,7 @@
 @stop
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/backend/schedule_management/service_schedule/service_schedule_action.css') }}">
+
     <div class="row">
         @php
             $groupedSchedules = $schedules->groupBy('service_id');
@@ -42,8 +46,7 @@
                         <div class="d-flex justify-content-between align-items-center flex-wrap">
                             <div class="d-flex align-items-center">
                                 {{-- SERVICE ICON --}}
-                                <div class="rounded-circle d-flex align-items-center justify-content-center mr-3"
-                              >
+                                <div class="rounded-circle d-flex align-items-center justify-content-center mr-3">
                                     <img src="{{ asset($service->image) }}" width="70" height="70"
                                         style="object-fit:cover;border-radius:8px;">
                                 </div>

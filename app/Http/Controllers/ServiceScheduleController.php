@@ -19,7 +19,7 @@ class ServiceScheduleController extends Controller
             ->get();
 
         return view(
-            'backend.schedule_section.service_schedule_section.index',
+            'backend.service_schedule_section.index',
             compact('schedules')
         );
     }
@@ -32,7 +32,7 @@ class ServiceScheduleController extends Controller
         $services = Service::orderBy('title')->get();
 
         return view(
-            'backend.schedule_section.service_schedule_section.create',
+            'backend.service_schedule_section.create',
             compact('services')
         );
     }
@@ -69,7 +69,7 @@ class ServiceScheduleController extends Controller
             ->findOrFail($id);
 
         return view(
-            'backend.schedule_section.service_schedule_section.show',
+            'backend.service_schedule_section.show',
             compact('schedule')
         );
     }
@@ -83,7 +83,7 @@ class ServiceScheduleController extends Controller
         $services = Service::orderBy('title')->get();
 
         return view(
-            'backend.schedule_section.service_schedule_section.edit',
+            'backend.service_schedule_section.edit',
             compact('schedule', 'services')
         );
     }

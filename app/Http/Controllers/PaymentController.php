@@ -13,6 +13,7 @@ class PaymentController extends Controller
     {
         $payments = Payment::with([
             'user',
+            'appointment',
             'appointment.doctor',
             'appointment.service',
         ])
@@ -40,13 +41,28 @@ class PaymentController extends Controller
             $method = strtolower($payment->payment_method ?? '');
             $status = strtolower($payment->status ?? '');
 
-            $payment->patient_name = $payment->user->name ?? 'Guest User';
-            $payment->patient_phone = $payment->user->phone ?? null;
-            $payment->appointment_number = $appointment ? '#' . $appointment->id : 'N/A';
+            $payment->patient_name = $appointment?->name ?? 'Guest User';
+            $payment->patient_phone = $appointment?->phone ?? null;
+            $payment->appointment_number = $appointment
+                ? '#' . $appointment->id
+                : 'N/A';
+
+            /*Patient Profile Image  */
+            $user = $payment->user;
+
+            if (
+                $user &&
+                in_array(strtolower($user->role ?? ''), ['user', 'admin']) &&
+                !empty($user->profile_picture)
+            ) {
+                $payment->patient_image_url = asset($user->profile_picture);
+            } else {
+                $payment->patient_image_url = asset('uploads/images/default.jpg');
+            }
 
             $payment->provider_name = match ($type) {
-                'doctor' => $appointment->doctor->name ?? 'N/A',
-                'service' => $appointment->service->title ?? 'N/A',
+                'doctor' => $appointment?->doctor?->name ?? 'N/A',
+                'service' => $appointment?->service?->title ?? 'N/A',
                 default => 'N/A',
             };
 
@@ -57,8 +73,8 @@ class PaymentController extends Controller
             };
 
             $payment->provider_image = match ($type) {
-                'doctor' => $appointment->doctor->image ?? null,
-                'service' => $appointment->service->image ?? null,
+                'doctor' => $appointment?->doctor?->image ?? null,
+                'service' => $appointment?->service?->image ?? null,
                 default => null,
             };
 
@@ -169,7 +185,7 @@ class PaymentController extends Controller
             'failed' => 'Failed',
             default => 'Pending',
         };
-        
+
         $payment->status_badge = match ($paymentStatus) {
             'paid' => 'success',
             'failed' => 'danger',

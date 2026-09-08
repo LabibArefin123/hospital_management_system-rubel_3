@@ -1,7 +1,7 @@
 <div class="payment-table-card">
     <div class="payment-table-header">
         <div>
-            <h3>All Payments</h3>
+            <h3>All Online Payments</h3>
             <p>Transaction history and payment details</p>
         </div>
         <span class="payment-total-badge">
@@ -23,7 +23,7 @@
                     <th>Amount</th>
                     <th>Method</th>
                     <th>Status</th>
-                    <th >Date</th>
+                    <th>Date</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -34,12 +34,21 @@
                         <td>{{ $loop->iteration }}</td>
 
                         <td>
-                            <strong>{{ $payment->patient_name }}</strong>
-                            @if ($payment->patient_phone)
-                                <small class="d-block text-muted">
-                                    {{ $payment->patient_phone }}
-                                </small>
-                            @endif
+                            <div class="d-flex align-items-center">
+                                <img src="{{ $payment->patient_image_url }}" alt="{{ $payment->patient_name }}"
+                                    class="rounded-circle mr-2" width="42" height="42"
+                                    style="object-fit: cover;">
+
+                                <div>
+                                    <strong>{{ $payment->patient_name }}</strong>
+
+                                    @if ($payment->patient_phone)
+                                        <small class="d-block text-muted">
+                                            {{ $payment->patient_phone }}
+                                        </small>
+                                    @endif
+                                </div>
+                            </div>
                         </td>
 
                         <td>
@@ -109,7 +118,6 @@
                                     class="d-inline">
                                     @csrf
                                     @method('DELETE')
-
                                     <button type="submit" class="payment-action-btn payment-delete-btn"
                                         title="Delete Payment" onclick="return confirm('Delete this payment?')">
                                         <i class="fas fa-trash"></i>

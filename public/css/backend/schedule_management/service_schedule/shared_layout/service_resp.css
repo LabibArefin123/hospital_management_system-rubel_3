@@ -1,0 +1,117 @@
+/* =========================================================
+FILE: service_responsive.css
+========================================================= */
+@media (max-width: 991.98px) {
+    .service-preview-image-wrapper {
+        padding: 10px 15px;
+    }
+
+    .service-preview-info {
+        padding: 8px 15px;
+    }
+
+    .service-preview-card .card-body {
+        padding: 20px;
+    }
+
+    .service-schedule-form-card .card-body {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .service-schedule-header {
+        align-items: flex-start;
+        margin-bottom: 18px;
+    }
+
+    .service-schedule-header h1,
+    .service-schedule-header h3 {
+        font-size: 1.3rem;
+    }
+
+    .service-schedule-back-btn {
+        padding: 7px 12px !important;
+    }
+
+    .service-preview-card .row {
+        display: block;
+    }
+
+    .service-preview-image-wrapper {
+        height: auto;
+        padding: 15px 0 20px;
+        border-right: 0;
+        border-bottom: 1px solid #e9eef4;
+    }
+
+    .service-preview-image {
+        width: 120px !important;
+        height: 120px !important;
+    }
+
+    .service-preview-info {
+        padding: 15px 5px;
+    }
+
+    .service-preview-detail {
+        margin-bottom: 15px;
+    }
+
+    .service-schedule-form-card .card-body {
+        padding: 20px;
+    }
+
+    .service-schedule-form-group {
+        margin-bottom: 18px;
+    }
+
+    .service-schedule-card-footer {
+        padding: 16px 20px !important;
+    }
+
+    .service-schedule-submit-btn {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .service-schedule-header {
+        gap: 10px;
+    }
+    
+    .service-schedule-header h1,
+    .service-schedule-header h3 {
+        font-size: 1.15rem;
+    }
+    
+    .service-schedule-back-btn {
+        padding: 7px 10px !important;
+        font-size: 0.78rem !important;
+    }
+    
+    .service-schedule-back-btn i {
+        margin-right: 0;
+    }
+    
+    .service-preview-card .card-body {
+        padding: 16px;
+    }
+    
+    .service-preview-title {
+        font-size: 1.1rem !important;
+    }
+    
+    .service-preview-value {
+        font-size: 0.85rem;
+    }
+    
+    .service-schedule-form-card .card-body {
+        padding: 16px;
+    }
+    
+    .service-schedule-card-footer {
+        padding: 14px 16px !important;
+    }
+}

@@ -215,9 +215,22 @@
     </script>
     <script
         src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_user_password_toggle.js') }}">
-    </script>   
+    </script>
     <script src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_delete_modal.js') }}">
     </script>
-    <script src="{{ asset('js/custom_backend/setting_management/system_user/index_page/system_user_filter.js') }}">
+    <script
+        src="{{ asset('js/custom_backend/setting_management/system_user/index_page/filter_part/system_user_filter_state.js') }}">
+    </script>
+    <script
+        src="{{ asset('js/custom_backend/setting_management/system_user/index_page/filter_part/system_user_filter_toggle.js') }}">
+    </script>
+    <script
+        src="{{ asset('js/custom_backend/setting_management/system_user/index_page/filter_part/system_user_filter_apply.js') }}">
+    </script>
+    <script
+        src="{{ asset('js/custom_backend/setting_management/system_user/index_page/filter_part/system_user_filter_clear.js') }}">
+    </script>
+    <script
+        src="{{ asset('js/custom_backend/setting_management/system_user/index_page/filter_part/system_user_filter_search.js') }}">
     </script>
 @stop
