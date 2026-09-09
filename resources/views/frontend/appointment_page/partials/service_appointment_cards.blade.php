@@ -7,6 +7,7 @@
         <div class="patient-info">
             <div><strong>Patient:</strong> {{ $app->name }}</div>
             <div><strong>Age:</strong> {{ $app->age }}</div>
+            <div><strong>Gender:</strong> {{ $app->gender }}</div>
             <div><strong>Email:</strong> {{ $app->email ?: 'N/A' }}</div>
         </div>
         <div class="time-box">

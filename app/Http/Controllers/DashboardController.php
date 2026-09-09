@@ -11,9 +11,25 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function dashboard()
+    {
+        $user = Auth::user();
+
+        if ($user->hasRole('admin')) {
+            return redirect()->route('dashboard.admin');
+        }
+
+        if ($user->hasRole('doctor')) {
+            return redirect()->route('dashboard.doctor');
+        }
+
+        if ($user->hasRole('user')) {
+            return redirect()->route('dashboard.user');
+        }
+
+        abort(403, 'Unauthorized dashboard access.');
+    }
+    
     public function admin_dashboard()
     {
         $user = Auth::user();

@@ -65,7 +65,9 @@ Route::post('/logout', function () {
 
 /* AUTHENTICATED ROUTES*/
 Route::group(['middleware' => ['auth', 'permission']], function () {
+    
     //Dashboard Routes
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/admin-dashboard', [DashboardController::class, 'admin_dashboard'])->name('dashboard.admin');
     Route::get('/user-dashboard', [DashboardController::class, 'user_dashboard'])->name('dashboard.user');
     Route::get('/doctor-dashboard', [DashboardController::class, 'doctor_dashboard'])->name('dashboard.doctor');

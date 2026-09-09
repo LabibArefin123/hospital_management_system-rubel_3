@@ -32,6 +32,10 @@
                                 <strong>Age:</strong>
                                 {{ $app->age }}
                             </div>
+                            <div>
+                                <strong>Gender:</strong>
+                                {{ $app->gender }}
+                            </div>
 
                             <div>
                                 <strong>Email:</strong>
