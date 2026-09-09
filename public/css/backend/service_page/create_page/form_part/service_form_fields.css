@@ -1,0 +1,48 @@
+.service-create-card .form-group {
+    margin-bottom: 1.15rem;
+}
+
+.service-create-card .form-group:last-child {
+    margin-bottom: 0;
+}
+
+.service-create-card label {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: #343a40;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.service-create-card .form-control {
+    width: 100%;
+    min-height: 38px;
+    padding: 0.5rem 0.75rem;
+    color: #343a40;
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 7px;
+    font-size: 0.78rem;
+    box-shadow: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.service-create-card .form-control::placeholder {
+    color: #adb5bd;
+}
+
+.service-create-card .form-control:focus {
+    color: #343a40;
+    background: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.15rem rgba(0, 123, 255, 0.1);
+}
+
+.service-create-card textarea.form-control {
+    min-height: 110px;
+    resize: vertical;
+    line-height: 1.5;
+}

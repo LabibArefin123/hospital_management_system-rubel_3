@@ -1,0 +1,29 @@
+.service-field-error {
+    display: block;
+    margin-top: 0.35rem;
+    color: #dc3545;
+    font-size: 0.7rem;
+    line-height: 1.4;
+}
+
+.service-create-card .is-invalid {
+    border-color: #dc3545;
+}
+
+.service-create-card .is-invalid:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.15rem rgba(220, 53, 69, 0.1);
+}
+
+.service-create-error {
+    margin: 1.5rem;
+    margin-bottom: 0;
+    padding: 0.8rem 1rem;
+    border-radius: 7px;
+    font-size: 0.75rem;
+}
+
+.service-create-error ul {
+    margin: 0;
+    padding-left: 1.2rem;
+}

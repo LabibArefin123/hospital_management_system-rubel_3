@@ -8,7 +8,7 @@
     </p>
     <div class="row">
         <div class="form-group col-md-6">
-            <label for="serviceTitle">Service Title</label>
+            <label for="serviceTitle">Service Title <span class="text-danger">**</span></label>
             <input type="text" name="title" id="serviceTitle" value="{{ old('title') }}"
                 class="form-control @error('title') is-invalid @enderror" placeholder="Enter service title">
             @error('title')
@@ -16,7 +16,7 @@
             @enderror
         </div>
         <div class="form-group col-md-6">
-            <label for="servicePrice">Price</label>
+            <label for="servicePrice">Price <span class="text-danger">**</span></label>
             <input type="number" step="0.01" name="price" id="servicePrice" value="{{ old('price') }}"
                 class="form-control @error('price') is-invalid @enderror" placeholder="Enter service price">
             @error('price')

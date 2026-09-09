@@ -1,19 +1,19 @@
 /* CONTENT HEADER */
 
-.service-create-header {
+.service-edit-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     padding: 0;
 }
-.service-create-header h3 {
+.service-edit-header h3 {
     margin: 0;
     color: #343a40;
     font-size: 1.25rem;
     font-weight: 700;
 }
-.service-create-header .back-btn {
+.service-edit-header .back-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -28,9 +28,9 @@
     line-height: 1;
     transition: all 0.2s ease;
 }
-.service-create-header .back-btn i {
+.service-edit-header .back-btn i {
     font-size: 0.7rem;
 }
-.service-create-header .back-btn:hover {
+.service-edit-header .back-btn:hover {
     transform: translateY(-1px);
 }

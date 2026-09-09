@@ -10,15 +10,11 @@
     <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_profile.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_actions.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/backend/system_user/inde x_page/system_user_responsive.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal_content.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal_button.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal_responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal_content.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal_button.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal_responsive.css') }}">
 @stop
 
 @section('content_header')

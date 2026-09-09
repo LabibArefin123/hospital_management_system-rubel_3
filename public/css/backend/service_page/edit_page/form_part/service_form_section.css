@@ -1,0 +1,29 @@
+.service-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 0.35rem;
+    color: #343a40;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.service-section-title i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    color: #007bff;
+    background: #eef6ff;
+    border-radius: 7px;
+    font-size: 0.72rem;
+}
+
+.service-section-help {
+    margin: 0 0 1.2rem 2.35rem;
+    color: #6c757d;
+    font-size: 0.72rem;
+    line-height: 1.5;
+}

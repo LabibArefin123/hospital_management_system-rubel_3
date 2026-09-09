@@ -1,0 +1,21 @@
+.service-create-card {
+    overflow: hidden;
+    margin-bottom: 1rem;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+.service-create-card .card-body {
+    padding: 0;
+}
+
+.service-form-section {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.service-form-section:last-child {
+    border-bottom: 0;
+}

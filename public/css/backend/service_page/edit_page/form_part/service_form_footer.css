@@ -1,0 +1,27 @@
+.service-create-card .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 65px;
+    padding: 1rem 1.5rem;
+    background: #fafbfc;
+    border-top: 1px solid #e9ecef;
+}
+
+.service-create-card .card-footer .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    height: 36px;
+    padding: 0 0.9rem;
+    border-radius: 7px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    line-height: 1;
+    transition: all 0.2s ease;
+}
+
+.service-create-card .card-footer .btn:hover {
+    transform: translateY(-1px);
+}
