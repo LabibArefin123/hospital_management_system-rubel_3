@@ -19,9 +19,23 @@ class SystemUserController extends Controller
     public function index()
     {
         /* Users: oldest → latest */
+        /* System Users */
         $users = User::query()
+            ->with(['roles', 'doctor'])
             ->oldest('created_at')
-            ->get();
+            ->get()
+            ->each(function ($user) {
+                $user->profile_image =
+                    $user->hasRole('doctor') &&
+                    $user->doctor &&
+                    $user->doctor->image
+                    ? asset($user->doctor->image)
+                    : (
+                        $user->profile_picture
+                        ? asset($user->profile_picture)
+                        : asset('uploads/images/default.jpg')
+                    );
+            });
 
         /* Patient appointments eligible for creating a patient account */
         $patientAppointments = Appointment::query()

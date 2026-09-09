@@ -11,10 +11,14 @@
     <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_profile.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_actions.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/system_user_responsive.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal_content.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal_button.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal_responsive.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal_content.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal_button.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/backend/system_user/index_page/delete_modal_part/system_delete_modal_responsive.css') }}">
 @stop
 
 @section('content_header')
@@ -115,19 +119,11 @@
                     </thead>
                     <tbody>
                         @foreach ($users as $user)
-                            @php
-                                $profileImage =
-                                    $user->hasRole('doctor') && $user->doctor && $user->doctor->image
-                                        ? asset($user->doctor->image)
-                                        : ($user->profile_picture
-                                            ? asset($user->profile_picture)
-                                            : asset('uploads/images/default.jpg'));
-                            @endphp
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $user->roles->pluck('name')->join(', ') }}</td>
                                 <td class="system-user-picture-cell">
-                                    <img src="{{ $profileImage }}" alt="{{ $user->name }}"
+                                    <img src="{{ $user->profile_image }}" alt="{{ $user->name }}"
                                         class="system-user-table-picture">
                                 </td>
                                 <td>{{ $user->name }}</td>
@@ -156,7 +152,7 @@
                                                 data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}"
                                                 data-user-email="{{ $user->email ?? '' }}"
                                                 data-user-role="{{ $user->roles->pluck('name')->join(', ') }}"
-                                                data-user-picture="{{ $profileImage }}">
+                                                data-user-picture="{{ $user->profile_image }}">
                                                 <i class="fas fa-key"></i>
                                                 <span>Change Password</span>
                                             </button>
@@ -166,12 +162,13 @@
                                                 data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}"
                                                 data-user-email="{{ $user->email ?? '' }}"
                                                 data-user-role="{{ $user->roles->pluck('name')->join(', ') }}"
-                                                data-user-picture="{{ $profileImage }}"
+                                                data-user-picture="{{ $user->profile_image }}"
                                                 data-delete-url="{{ route('system_users.destroy', $user->id) }}">
                                                 <i class="fas fa-trash"></i>
                                                 <span>Delete</span>
                                             </button>
                                         @endif
+
                                     </div>
                                 </td>
                             </tr>
