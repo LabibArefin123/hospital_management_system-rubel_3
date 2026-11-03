@@ -1,0 +1,46 @@
+/* ==========================================================
+   CONTACT SEARCH - RESPONSIVE
+========================================================== */
+
+@media (max-width: 767px) {
+
+    .contact-search-inner {
+        min-height: auto;
+    }
+
+    .contact-search-information {
+        padding: 15px 13px;
+    }
+
+    .contact-search-heading {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .contact-search-name {
+        font-size: 15px;
+    }
+
+    .contact-search-date {
+        font-size: 9px;
+    }
+
+    .contact-search-details {
+        gap: 6px;
+        margin-top: 10px;
+    }
+
+    .contact-search-detail {
+        flex: 1 1 calc(50% - 6px);
+        font-size: 10px;
+    }
+
+    .contact-search-message {
+        margin-top: 10px;
+        padding: 9px 10px;
+    }
+
+    .contact-search-message p {
+        font-size: 10px;
+    }
+}

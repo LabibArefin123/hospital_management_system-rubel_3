@@ -56,6 +56,12 @@
         href="{{ asset('css/frontend/system_search/doctor_part/system_search_doctor_details.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search/doctor_part/system_search_doctor_resp.css') }}">
     {{-- System Search Doctor End --}}
+    {{-- System Search Contact Start --}}
+    <link rel="stylesheet" href="{{ asset('css/frontend/system_search/contact_part/system_search_contact_card.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/system_search/contact_part/system_search_contact_info.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/system_search/contact_part/system_search_contact_details.css') }}">
+    <link rel="stylesheet"href="{{ asset('css/frontend/system_search/contact_part/system_search_contact_resp.css') }}">
+    {{-- System Search Contact End --}}
     {{-- Dedicated search page --}}
     <link rel="stylesheet" href="{{ asset('css/frontend/system_search/system_search_page.css') }}">
 
@@ -131,13 +137,12 @@
     <script src="{{ asset('js/custom_frontend/password_toggle.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/sweet_alert.js') }}"></script>
 
-    @if (request()->routeIs('doctor.show') || request()->routeIs('service.show') || request()->routeIs('contact') ) 
+    @if (request()->routeIs('doctor.show') || request()->routeIs('service.show') || request()->routeIs('contact'))
         <script src="{{ asset('js/custom_frontend/phone_validation.js') }}"></script>
     @endif
 
     @if (request()->routeIs('appointment'))
-        <script src="{{ asset('js/custom_frontend/appointment_page/appointment_filter.js') }}">
-        </script>
+        <script src="{{ asset('js/custom_frontend/appointment_page/appointment_filter.js') }}"></script>
         {{-- Doctor Filter Start --}}
         <script src="{{ asset('js/custom_frontend/appointment_page/doctor_part/filter_doctor_appointment_core.js') }}">
         </script>

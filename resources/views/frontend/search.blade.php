@@ -64,6 +64,7 @@
     <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_containers.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_appointments.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_doctors.js') }}"></script>
+    <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_contacts.js') }}"></script>
     <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_results.js') }}"></script>
     {{-- STATE 5 - Renderer Core --}}
     <script src="{{ asset('js/custom_frontend/system_search/render_part/system_search_render_core.js') }}"></script>

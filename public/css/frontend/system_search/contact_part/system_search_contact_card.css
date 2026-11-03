@@ -1,0 +1,105 @@
+/* ==========================================================
+   SYSTEM SEARCH - CONTACT CARD
+========================================================== */
+
+.system-search-result-item[data-result-type="contact"] {
+    position: relative;
+    width: 100%;
+    margin-bottom: 14px;
+    overflow: hidden;
+
+    background: #ffffff;
+    border: 1px solid #e7ebf0;
+    border-radius: 17px;
+
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
+}
+
+.system-search-result-item[data-result-type="contact"]::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 4px;
+
+    background: #0d9488;
+}
+
+.system-search-result-item[data-result-type="contact"]:hover {
+    transform: translateY(-2px);
+
+    border-color: #b8e8df;
+
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.09);
+}
+
+.contact-search-inner {
+    display: flex;
+    align-items: stretch;
+    min-height: 155px;
+}
+
+/* GLOBAL DROPDOWN */
+
+#systemSearchResults
+.system-search-result-item[data-result-type="contact"] {
+    margin-bottom: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* CONTACT ICON */
+
+.contact-search-icon-wrapper {
+    flex: 0 0 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(145deg, #f0fdfa, #ccfbf1);
+}
+
+.contact-search-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 57px;
+    height: 57px;
+
+    color: #0d9488;
+    background: #ffffff;
+
+    border: 1px solid #ccfbf1;
+    border-radius: 16px;
+
+    font-size: 23px;
+
+    box-shadow: 0 5px 15px rgba(13, 148, 136, 0.10);
+}
+
+/* GLOBAL DROPDOWN */
+
+#systemSearchResults .contact-search-icon-wrapper {
+    flex: 0 0 75px;
+}
+
+#systemSearchResults .contact-search-icon {
+    width: 43px;
+    height: 43px;
+    font-size: 17px;
+}
+
+@media (max-width: 767px) {
+    .contact-search-icon-wrapper {
+        display: none;
+    }
+}   

@@ -1,6 +1,7 @@
-/** SYSTEM SEARCH RENDERER - CORE*/
+/** SYSTEM SEARCH RENDERER - CORE */
 (function (window, $) {
     "use strict";
+
     console.log("[System Search] STATE 5: Renderer core module loaded.");
 
     if (!window.SystemSearch) {
@@ -10,11 +11,11 @@
         return;
     }
 
-    /*MAIN RENDER*/
+    /* MAIN RENDER */
     window.SystemSearch.render = function (response, input) {
         response = response || {};
 
-        /*NORMALIZE APPOINTMENTS */
+        /* NORMALIZE APPOINTMENTS */
         const appointments = window.SystemSearch.normalizeAppointments(
             response.appointments,
         );
@@ -22,24 +23,34 @@
         /* NORMALIZE DOCTORS */
         const doctors = window.SystemSearch.normalizeDoctors(response.doctors);
 
-        /*COMBINE RESULTS */
-        const results = [...appointments, ...doctors];
+        /* NORMALIZE CONTACTS */
+        const contacts = window.SystemSearch.normalizeContacts(
+            response.contacts,
+        );
+
+        /* COMBINE RESULTS */
+        const results = window.SystemSearch.buildResults(
+            appointments,
+            doctors,
+            contacts,
+        );
 
         /* DEBUG */
         console.log("[System Search] STATE 10: Rendering results.", {
             appointments: appointments.length,
             doctors: doctors.length,
+            contacts: contacts.length,
             total: results.length,
         });
 
-        /*EMPTY RESULTS */
+        /* EMPTY RESULTS */
         if (!results.length) {
             console.log("[System Search] STATE 10: No results found.");
             window.SystemSearch.showEmpty(input);
             return;
         }
 
-        /*PAGE RESULTS */
+        /* PAGE RESULTS */
         window.SystemSearch.renderPageResults(results);
 
         /* GLOBAL RESULTS */

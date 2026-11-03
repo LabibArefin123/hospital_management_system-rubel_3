@@ -1,0 +1,79 @@
+/* ==========================================================
+   CONTACT SEARCH - INFORMATION
+========================================================== */
+
+.contact-search-information {
+    flex: 1;
+    min-width: 0;
+    padding: 18px 22px;
+}
+
+.contact-search-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.contact-search-name-area {
+    min-width: 0;
+}
+
+.contact-search-type {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-bottom: 5px;
+
+    color: #0d9488;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+.contact-search-name {
+    margin: 0;
+
+    color: #1f2937;
+
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.4;
+}
+
+.contact-search-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    flex-shrink: 0;
+
+    padding: 6px 10px;
+
+    color: #667085;
+    background: #f8fafc;
+
+    border: 1px solid #edf0f3;
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.contact-search-date i {
+    color: #0d9488;
+}
+
+/* GLOBAL DROPDOWN */
+
+#systemSearchResults .contact-search-information {
+    padding: 13px 15px;
+}
+
+#systemSearchResults .contact-search-name {
+    font-size: 14px;
+}

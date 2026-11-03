@@ -47,10 +47,11 @@ class FrontendController extends Controller
         if ($search === '') {
             if ($request->ajax()) {
                 return response()->json([
-                    'status' => true,
+                    'status'       => true,
                     'appointments' => [],
-                    'doctors' => [],
-                    'count' => 0,
+                    'doctors'      => [],
+                    'contacts'     => [],
+                    'count'        => 0,
                 ]);
             }
 
@@ -76,42 +77,73 @@ class FrontendController extends Controller
             ->limit(20)
             ->get();
 
-        /*DOCTOR SEARCH */
+        /*
+    |--------------------------------------------------------------------------
+    | DOCTOR SEARCH
+    |--------------------------------------------------------------------------
+    */
+
         $doctors = Doctor::query()
-            ->where('name', 'like', "%{$search}%")
+            ->where(function ($query) use ($search) {
+                $query->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('speciality', 'like', "%{$search}%")
+                    ->orWhere('qualification', 'like', "%{$search}%");
+            })
             ->latest('id')
             ->limit(20)
             ->get();
 
-        /* AJAX RESPONSE */
+        /*
+    |--------------------------------------------------------------------------
+    | CONTACT SEARCH
+    |--------------------------------------------------------------------------
+    */
+
+        $contacts = Contact::query()
+            ->where(function ($query) use ($search) {
+                $query->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('phone', 'like', "%{$search}%")
+                    ->orWhere('department', 'like', "%{$search}%")
+                    ->orWhere('service', 'like', "%{$search}%")
+                    ->orWhere('message', 'like', "%{$search}%");
+            })
+            ->latest('id')
+            ->limit(20)
+            ->get();
+
+        /*
+    |--------------------------------------------------------------------------
+    | AJAX RESPONSE
+    |--------------------------------------------------------------------------
+    */
+
         if ($request->ajax()) {
+
             return response()->json([
+
                 'status' => true,
 
-                /*APPOINTMENTS  */
+                /*
+            |--------------------------------------------------------------------------
+            | APPOINTMENTS
+            |--------------------------------------------------------------------------
+            */
+
                 'appointments' => $appointments->map(function ($appointment) {
 
-                    /* Appointment / User Image */
                     $profilePicture = optional($appointment->user)->profile_picture;
 
-                    if (!empty($profilePicture)) {
-                        /*
-                     * Adjust this path if your profile pictures
-                     * are stored somewhere else.
-                     */
-                        $image = asset(
-                            'uploads/images/users/' . $profilePicture
-                        );
-                    } else {
-
-                        $image = asset(
-                            'uploads/images/default.jpg'
-                        );
-                    }
+                    $image = !empty($profilePicture)
+                        ? asset('uploads/images/users/' . $profilePicture)
+                        : asset('uploads/images/default.jpg');
 
                     return [
-                        'name' => $appointment->name ?? '-',
-
+                        'id'     => $appointment->id,
+                        'name'   => $appointment->name ?? '-',
+                        'phone'  => $appointment->phone ?? '',
+                        'email'  => $appointment->email ?? '',
                         'status' => $appointment->status ?? 'pending',
 
                         'date' => $appointment->appointment_date
@@ -130,39 +162,69 @@ class FrontendController extends Controller
                     ];
                 })->values(),
 
-                /* DOCTORS  */
+                /*
+            |--------------------------------------------------------------------------
+            | DOCTORS
+            |--------------------------------------------------------------------------
+            */
+
                 'doctors' => $doctors->map(function ($doctor) {
 
                     $doctorImage = !empty($doctor->image)
-                        ? asset(
-                            $doctor->image
-                        )
-                        : asset(
-                            'uploads/images/default.jpg'
-                        );
+                        ? asset($doctor->image)
+                        : asset('uploads/images/default.jpg');
 
                     return [
-                        'id' => $doctor->id,
-                        'name' => $doctor->name ?? '-',
-                        'email' => $doctor->email ?? '',
-                        'speciality' => $doctor->speciality ?? '',
-                        'image' => $doctorImage,
-                        'success_rate' => $doctor->success_rate ?? null,
+                        'id'               => $doctor->id,
+                        'name'             => $doctor->name ?? '-',
+                        'email'            => $doctor->email ?? '',
+                        'speciality'       => $doctor->speciality ?? '',
+                        'image'            => $doctorImage,
+                        'success_rate'     => $doctor->success_rate ?? null,
                         'experience_years' => $doctor->experience_years ?? null,
-                        'total_patients' => $doctor->total_patients ?? null,
-                        'qualification' => $doctor->qualification ?? '',
-                        'location' => $doctor->location ?? '',
+                        'total_patients'   => $doctor->total_patients ?? null,
+                        'qualification'    => $doctor->qualification ?? '',
+                        'location'         => $doctor->location ?? '',
                         'consultation_fee' => $doctor->consultation_fee ?? null,
-                        'availability' => $doctor->availability ?? '',
-                        'about' => $doctor->about ?? '',
-                        'url' => route(
-                            'doctor.show',
-                            $doctor->id
-                        ),
+                        'availability'     => $doctor->availability ?? '',
+                        'about'            => $doctor->about ?? '',
+
+                        'url' => route('doctor.show', $doctor->id),
                     ];
                 })->values(),
 
-                'count' => $appointments->count() + $doctors->count(),
+                /*
+            |--------------------------------------------------------------------------
+            | CONTACTS
+            |--------------------------------------------------------------------------
+            */
+
+                'contacts' => $contacts->map(function ($contact) {
+
+                    return [
+                        'id'         => $contact->id,
+                        'name'       => $contact->name ?? '-',
+                        'email'      => $contact->email ?? '',
+                        'phone'      => $contact->phone ?? '',
+                        'department' => $contact->department ?? '',
+                        'service'    => $contact->service ?? '',
+                        'message'    => $contact->message ?? '',
+                        'date'       => $contact->created_at
+                            ? $contact->created_at->format('d M Y')
+                            : '-',
+                    ];
+                })->values(),
+
+                /*
+            |--------------------------------------------------------------------------
+            | TOTAL RESULTS
+            |--------------------------------------------------------------------------
+            */
+
+                'count' => $appointments->count()
+                    + $doctors->count()
+                    + $contacts->count(),
+
             ]);
         }
 
@@ -170,7 +232,7 @@ class FrontendController extends Controller
             'search' => $search,
         ]);
     }
-
+    
     public function doctor(Request $request)
     {
         $search = $request->query('search');

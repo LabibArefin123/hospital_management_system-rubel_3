@@ -231,6 +231,142 @@
             `;
         }
 
+        /* CONTACT RESULT */
+        if (item.type === "contact") {
+            const email = window.SystemSearch.escape(item.email || "");
+            const phone = window.SystemSearch.escape(item.phone || "");
+
+            const department = window.SystemSearch.escape(
+                item.department || "",
+            );
+
+            const service = window.SystemSearch.escape(item.service || "");
+
+            const message = window.SystemSearch.escape(item.message || "");
+
+            const date = window.SystemSearch.escape(item.date || "-");
+
+            return `
+        <div
+            class="system-search-result-item contact-search-card"
+            data-result-type="contact"
+        >
+
+            <div class="contact-search-inner">
+
+                <!-- Contact Icon -->
+
+                <div class="contact-search-icon-wrapper">
+
+                    <div class="contact-search-icon">
+                        <i class="fas fa-envelope-open-text"></i>
+                    </div>
+
+                </div>
+
+                <!-- Contact Information -->
+
+                <div class="contact-search-information">
+
+                    <div class="contact-search-heading">
+
+                        <div class="contact-search-name-area">
+
+                            <span class="contact-search-type">
+                                <i class="fas fa-address-book"></i>
+                                Contact Request
+                            </span>
+
+                            <h4 class="contact-search-name">
+                                ${name}
+                            </h4>
+
+                        </div>
+
+                        <span class="contact-search-date">
+                            <i class="far fa-calendar-alt"></i>
+                            ${date}
+                        </span>
+
+                    </div>
+
+                    <!-- Contact Details -->
+
+                    <div class="contact-search-details">
+
+                        ${
+                            email
+                                ? `
+                                    <div class="contact-search-detail">
+                                        <i class="fas fa-envelope"></i>
+                                        <span>${email}</span>
+                                    </div>
+                                `
+                                : ""
+                        }
+
+                        ${
+                            phone
+                                ? `
+                                    <div class="contact-search-detail">
+                                        <i class="fas fa-phone-alt"></i>
+                                        <span>${phone}</span>
+                                    </div>
+                                `
+                                : ""
+                        }
+
+                        ${
+                            department
+                                ? `
+                                    <div class="contact-search-detail">
+                                        <i class="fas fa-hospital"></i>
+                                        <span>${department}</span>
+                                    </div>
+                                `
+                                : ""
+                        }
+
+                        ${
+                            service
+                                ? `
+                                    <div class="contact-search-detail">
+                                        <i class="fas fa-stethoscope"></i>
+                                        <span>${service}</span>
+                                    </div>
+                                `
+                                : ""
+                        }
+
+                    </div>
+
+                    <!-- Contact Message -->
+
+                    ${
+                        message
+                            ? `
+                                <div class="contact-search-message">
+
+                                    <span class="contact-search-message-label">
+                                        <i class="fas fa-comment-medical"></i>
+                                        Message
+                                    </span>
+
+                                    <p>${message}</p>
+
+                                </div>
+                            `
+                            : ""
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+    `;
+        }
+
         /* APPOINTMENT RESULT  */
         const image = window.SystemSearch.escapeAttribute(
             item.image || window.SystemSearch.defaultImage,

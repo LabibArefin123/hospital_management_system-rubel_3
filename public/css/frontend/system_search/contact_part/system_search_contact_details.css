@@ -1,0 +1,94 @@
+/* ==========================================================
+   CONTACT SEARCH - DETAILS
+========================================================== */
+
+.contact-search-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin-top: 13px;
+}
+
+.contact-search-detail {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    min-width: 0;
+    min-height: 34px;
+
+    padding: 6px 10px;
+
+    color: #475467;
+    background: #f8fafc;
+
+    border: 1px solid #edf0f3;
+    border-radius: 9px;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.contact-search-detail i {
+    color: #0d9488;
+    font-size: 11px;
+}
+
+.contact-search-detail span {
+    overflow-wrap: anywhere;
+}
+
+/* ==========================================================
+   MESSAGE
+========================================================== */
+
+.contact-search-message {
+    margin-top: 13px;
+    padding: 11px 13px;
+
+    background: #f0fdfa;
+
+    border: 1px solid #ccfbf1;
+    border-radius: 10px;
+}
+
+.contact-search-message-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-bottom: 5px;
+
+    color: #0f766e;
+
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.contact-search-message p {
+    margin: 0;
+
+    color: #475467;
+
+    font-size: 11px;
+    line-height: 1.6;
+
+    overflow-wrap: anywhere;
+}
+
+/* GLOBAL DROPDOWN */
+
+#systemSearchResults .contact-search-message {
+    margin-top: 9px;
+    padding: 8px 10px;
+}
+
+#systemSearchResults .contact-search-message p {
+    display: -webkit-box;
+
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
