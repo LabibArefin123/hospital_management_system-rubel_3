@@ -63,4 +63,6 @@
 @section('js')
     <script src="{{ asset('js/custom_backend/setting_management/system_user/profile_page/edit_page/image_preview.js') }}">
     </script>
+    <script src="{{ asset('js/custom_backend/setting_management/system_user/profile_page/edit_page/show_password.js') }}">
+    </script>
 @endsection

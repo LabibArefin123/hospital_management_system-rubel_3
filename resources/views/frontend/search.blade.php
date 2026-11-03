@@ -20,9 +20,9 @@
                 <input type="text" id="systemSearchPageInput" value="{{ $search ?? '' }}"
                     placeholder="Search patient or doctor..." autocomplete="off" spellcheck="false">
 
-                    <button type="button" id="systemSearchPageClear">
-                        <i class="fas fa-times"></i>
-                    </button>
+                <button type="button" id="systemSearchPageClear">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
         </div>
     </section>
