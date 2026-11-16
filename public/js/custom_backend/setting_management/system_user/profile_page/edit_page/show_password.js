@@ -21,7 +21,6 @@
 
         /* TOGGLE PASSWORD VISIBILITY */
         const isPassword = $input.attr("type") === "password";
-
         $input.attr("type", isPassword ? "text" : "password");
 
         /* UPDATE ICON */
@@ -42,3 +41,4 @@
 
     console.log("[Profile] STATE 1: Password toggle handler initialized.");
 })(window, jQuery);
+
